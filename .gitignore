@@ -1,0 +1,13 @@
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Estado local de Obsidian (no se comparte)
+.obsidian/workspace*.json
+.trash/

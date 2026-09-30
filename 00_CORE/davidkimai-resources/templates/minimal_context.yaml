@@ -1,0 +1,28 @@
+# ============================================================
+# CONTEXTO MÍNIMO — qué archivos darle a la IA en cada tarea
+# ------------------------------------------------------------
+# Sirve sobre todo si usás una IA que no lee tu vault sola
+# (ChatGPT, Gemini...): adjuntale exactamente estos archivos.
+# Reemplazá lo que está entre < > por el nombre real.
+# ============================================================
+
+# Para orientarte, planificar o actualizar la célula
+orientarse:
+  archivos:
+    - 00_CORE/atoms/00_vault-rules.md            # reglas del vault (siempre)
+    - 00_CORE/cells/<proyecto>-context.md         # la célula del proyecto (siempre)
+  tope_tokens: 3500
+
+# Para escribir algo que va a leer otra persona
+escribir:
+  archivos:
+    - 00_CORE/atoms/00_vault-rules.md
+    - 00_CORE/cells/<proyecto>-context.md
+    - 00_CORE/molecules/marco-comunicacion-general.md
+    - 00_CORE/cognitive-tools/<guia>.md          # A → redaccion-tecnica · B → redaccion-narrativa
+                                                 # C → redaccion-persuasiva · D → redaccion-operativa
+    - 00_CORE/protocols/ai-write-protocol.md
+  tope_tokens: 5000
+
+# Ver: 00_CORE/protocols/context-injection.md y
+#      00_CORE/davidkimai-resources/evaluation/token_budgeting.md

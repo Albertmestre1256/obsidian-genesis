@@ -1,0 +1,22 @@
+filters:
+  and:
+    - 'file.inFolder("00_CORE/cells")'
+    - 'file.ext == "md"'
+    - 'file.name.endsWith("-context")'
+properties:
+  file.name:
+    displayName: Ficha
+  note.proyecto:
+    displayName: Proyecto
+  note.contexto:
+    displayName: Contexto
+  note.actualizado:
+    displayName: Actualizado
+views:
+  - type: table
+    name: Proyectos
+    order:
+      - file.name
+      - note.proyecto
+      - note.contexto
+      - note.actualizado
