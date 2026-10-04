@@ -20,7 +20,7 @@ def comprobar_ruta(path):
     for parte in reversed((path,) + tuple(path.parents)):
         try:
             info = parte.lstat()
-        except FileNotFoundError:
+        except (FileNotFoundError, NotADirectoryError):
             continue
         if stat.S_ISLNK(info.st_mode) or getattr(info, "st_file_attributes", 0) & 0x400:
             raise ValueError("La ruta contiene un enlace o junction: {}".format(parte))
