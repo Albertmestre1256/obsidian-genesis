@@ -10,7 +10,7 @@ Vamos a trabajar en el proyecto: $ARGUMENTS
 2. Leé la célula `00_CORE/cells/$ARGUMENTS-context.md`.
    - Si no existe, buscá una célula cuya propiedad `proyecto` coincida con el nombre pedido. Por ejemplo, `aprender-python` está en `00_CORE/cells/ejemplo-context.md`. Si hay una coincidencia única, usala; si hay varias o ninguna, listá las opciones y preguntá. No confundas los datos ficticios del ejemplo con datos del usuario.
    - Si no hay ninguna, sugerime crear una con `/nuevo-proyecto`.
-3. No leas otros proyectos, índices ni archivos que no te pida: cuanto menos contexto de más, mejor trabajás.
+3. Empezá con reglas y ficha. Si necesitás ubicar un archivo o comprobar un dato para responder al pedido, consultá el índice o la fuente pertinente de ese proyecto. No leas otros proyectos ni cargues toda la bóveda.
 4. Respondeme en no más de 8 líneas:
    - De qué trata el proyecto y cuál es su objetivo
    - Qué acciones están en curso y cuáles pendientes

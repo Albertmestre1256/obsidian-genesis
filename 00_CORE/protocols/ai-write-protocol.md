@@ -6,6 +6,8 @@ descripcion: Protocolo de escritura con IA — Analyze → Plan → Draft → Re
 
 # Protocolo de Escritura con IA
 
+Usalo para textos que necesitan estructura o revisión detallada. Para un mensaje breve, redactá y revisá directamente con los datos disponibles. Reutilizá lo que el usuario ya explicó; preguntá solo por información que afecte el resultado. Las fases son una guía interna: no hace falta entregar cinco documentos.
+
 ## Fase 1: ANALYZE (Análisis)
 - Leer célula del proyecto + marco de comunicación
 - Identificar: audiencia, objetivo, formato, restricciones
@@ -21,7 +23,7 @@ descripcion: Protocolo de escritura con IA — Analyze → Plan → Draft → Re
 ## Fase 3: DRAFT (Redacción)
 - Escribir siguiendo outline
 - Usar técnicas del contexto correspondiente
-- **Regla**: Un hecho por párrafo; toda afirmación importante sale de los **Hechos clave**
+- **Regla**: Cada afirmación importante se respalda en la ficha o en fuentes pertinentes disponibles; no inventar datos para completar la estructura
 - **Output**: Draft completo (Markdown)
 
 ## Fase 4: REVIEW (Revisión)

@@ -46,10 +46,10 @@ creado:
 
 ## Flujo de trabajo recomendado
 
-1. **Empezar** — `/empezar <proyecto>`: la IA lee la célula y te dice dónde quedaste
+1. **Empezar** — abrí la ficha para ver dónde quedaste. Con Claude Code podés usar `/empezar <proyecto>`
 2. **Trabajar** — material nuevo a `01_FUENTES/`, borradores en `02_SINTESIS/`
-3. **Escribir** — `/redactar <proyecto> <qué>` cuando necesites producir un texto
-4. **Cerrar** — `/cerrar <proyecto>`: la célula queda al día para la próxima sesión
+3. **Escribir** — trabajá en tu nota o pedí ayuda a una IA. En Claude Code, `/redactar <proyecto> <qué>`
+4. **Cerrar** — actualizá la ficha con decisiones y próximos pasos. Con Claude Code, `/cerrar <proyecto>` propone los cambios para que los revises
 
 ---
 

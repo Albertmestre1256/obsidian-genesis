@@ -1,6 +1,8 @@
 # Mis proyectos
 
-Abrí una ficha para ver sus hechos, decisiones y acciones. El proyecto aprender-python es un ejemplo ficticio para practicar.
+**¿Primera vez?** [[DOCS/primer-proyecto|Crear mi primer proyecto, paso a paso]]. Podés empezar sin IA ni Python.
+
+¿Ya tenés un proyecto? Abrí su ficha para ver qué sigue. El proyecto aprender-python es un ejemplo ficticio. Si la tabla no aparece, abrí la ficha desde la carpeta `00_CORE/cells/`.
 
 ## Fichas de proyecto
 

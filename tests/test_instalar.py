@@ -97,6 +97,56 @@ def test_archivo_creado_despues_del_plan_no_se_pisa(tmp_path):
     assert destino.read_bytes() == b"edicion simultanea"
 
 
+@pytest.mark.parametrize("fallo", [OSError, KeyboardInterrupt])
+def test_copia_interrumpida_se_puede_reintentar(tmp_path, monkeypatch, fallo):
+    vault = tmp_path / "vault"
+    vault.mkdir()
+    nota = vault / "mi-nota.md"
+    nota.write_bytes(b"contenido privado")
+    _, nuevos, _, conflictos = instalar.planificar(vault)
+    assert not conflictos
+    copiar = instalar.shutil.copyfileobj
+    intentos = []
+
+    def fallar_en_segundo_archivo(entrada, salida):
+        intentos.append(salida.name)
+        if len(intentos) == 2:
+            salida.write(entrada.read(4))
+            raise fallo("copia interrumpida")
+        return copiar(entrada, salida)
+
+    with monkeypatch.context() as parche:
+        parche.setattr(instalar.shutil, "copyfileobj", fallar_en_segundo_archivo)
+        with pytest.raises(fallo):
+            instalar.copiar_nuevos(nuevos)
+    assert nuevos[0][1].read_bytes() == nuevos[0][0].read_bytes()
+    assert not nuevos[1][1].exists()
+    assert nota.read_bytes() == b"contenido privado"
+
+    _, pendientes, iguales, conflictos = instalar.planificar(vault)
+    assert not conflictos
+    assert len(iguales) == 1
+    instalar.copiar_nuevos(pendientes)
+    assert all(objetivo.read_bytes() == fuente.read_bytes() for fuente, objetivo in nuevos)
+    assert nota.read_bytes() == b"contenido privado"
+
+
+def test_padre_archivo_se_informa_como_conflicto_tambien_en_posix(tmp_path, monkeypatch):
+    """En POSIX lstat(hijo de archivo) lanza ENOTDIR, no FileNotFoundError."""
+    (tmp_path / "DOCS").write_bytes(b"archivo personal")
+    original_lstat = Path.lstat
+
+    def simular_posix(path, *args, **kwargs):
+        if tmp_path / "DOCS" in path.parents:
+            raise NotADirectoryError(str(path))
+        return original_lstat(path, *args, **kwargs)
+
+    monkeypatch.setattr(Path, "lstat", simular_posix)
+    _, _, _, conflictos = instalar.planificar(tmp_path)
+    assert any(ruta.startswith("DOCS/") for ruta in conflictos)
+    assert (tmp_path / "DOCS").read_bytes() == b"archivo personal"
+
+
 def test_enlace_en_destino_se_rechaza(tmp_path):
     externo = tmp_path / "externo"
     externo.mkdir()

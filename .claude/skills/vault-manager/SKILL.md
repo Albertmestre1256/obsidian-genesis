@@ -16,7 +16,7 @@ Este vault guarda el contexto de cada proyecto en una **célula** (`00_CORE/cell
 | "escribime / redactá / armá un mail, informe, carta..." | `.claude/skills/redactar/SKILL.md` |
 | "¿está todo bien?", "revisá las células" | `.claude/skills/validar/SKILL.md` |
 | "terminamos", "guardá lo de hoy", "actualizá la célula" | `.claude/skills/cerrar/SKILL.md` |
-| "no sé por dónde empezar", "¿cómo funciona esto?" | Explicá el vault en 5 líneas simples y ofrecé `/nuevo-proyecto` o `/empezar` |
+| "no sé por dónde empezar", "¿cómo funciona esto?" | Explicá que una bóveda es una carpeta de notas y orientá a `DOCS/primer-proyecto.md`; ofrecé `/nuevo-proyecto` si quiere ayuda para crearla |
 
 ## Reglas que valen siempre
 
@@ -24,7 +24,7 @@ Este vault guarda el contexto de cada proyecto en una **célula** (`00_CORE/cell
 - Cargar el mínimo contexto posible (ver `00_CORE/protocols/context-injection.md`). Nunca mezclar proyectos.
 - `01_FUENTES/` no se edita: solo se agregan archivos. Los borradores van a `02_SINTESIS/`; las versiones finales, a `03_ENTREGABLES/`.
 - No inventar hechos. Si falta un dato, preguntarlo o marcarlo `[FALTA: ...]`.
-- Después de modificar una célula, correr `python 00_CORE/schemas/validate.py`.
+- Después de modificar una célula, correr `python 00_CORE/schemas/validate.py` si hay Python. Si falta, usar la revisión manual de `.claude/skills/validar/SKILL.md` y aclararlo.
 - Los bloques entre `%%` son ayuda para el usuario: ignorarlos al leer una célula.
 - Hablar en lenguaje simple: el usuario puede no saber cómo funciona Obsidian ni qué son las propiedades de una nota.
 

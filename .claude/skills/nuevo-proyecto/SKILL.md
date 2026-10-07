@@ -11,7 +11,7 @@ Primero leé `00_CORE/atoms/00_vault-rules.md`. Reutilizá las respuestas ya dis
 
 1. Si no te di un nombre, preguntámelo.
 2. Armá un "nombre corto": minúsculas, sin tildes, palabras separadas por guiones. Ejemplo: "Mi Tesis 2026" → `mi-tesis-2026`.
-3. Fijate que no existan ya `00_CORE/cells/<nombre-corto>-context.md` ni una carpeta `<nombre-corto>/` en la raíz del vault. Si alguno existe, avisame y pará.
+3. Fijate que no existan ya `00_CORE/cells/<nombre-corto>-context.md` ni una carpeta `<nombre-corto>/` en la raíz del vault. Buscá también ese identificador en la propiedad `proyecto` de las fichas de `00_CORE/cells/`, aplicando el mismo criterio de nombre corto, aunque el archivo tenga otro nombre: por ejemplo, `aprender-python` ya pertenece a `ejemplo-context.md`. Si hay alguna coincidencia por ruta o propiedad, mostrá cuál es y preguntá si retomamos ese proyecto o elegimos otro identificador. No crees una segunda ficha con el mismo identificador.
 4. Completá estos datos conmigo en lenguaje simple, agrupando las preguntas que falten:
    a. ¿De qué se trata el proyecto? (1 a 3 oraciones)
    b. ¿Qué querés lograr, y para cuándo?

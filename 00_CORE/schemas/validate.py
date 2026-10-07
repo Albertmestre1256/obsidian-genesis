@@ -22,6 +22,7 @@ Requiere solo Python 3.8 o más nuevo. No hace falta instalar nada más.
 """
 
 import datetime
+import json
 import re
 import sys
 import unicodedata
@@ -64,40 +65,110 @@ def es_fecha(valor):
         return False
 
 
-def quitar_comillas(valor):
+def leer_escalar(valor):
+    """Lee un valor de una línea; rechaza YAML que no sabe interpretar."""
     valor = valor.strip()
-    if len(valor) >= 2 and valor[0] == valor[-1] and valor[0] in "\"'":
-        return valor[1:-1]
+    if valor.startswith(('"', "'")):
+        patron = r'("(?:[^"\\]|\\.)*"|\'(?:[^\']|\'\')*\')(?:\s+#.*)?\s*'
+        m = re.fullmatch(patron, valor)
+        if not m:
+            raise ValueError("Hay comillas sin cerrar o texto después de las comillas.")
+        texto = m.group(1)
+        if texto.startswith("'"):
+            return texto[1:-1].replace("''", "'")
+        try:
+            return json.loads(texto)
+        except ValueError:
+            raise ValueError("El texto entre comillas dobles tiene un escape no admitido; "
+                             "usá comillas simples o editá la propiedad en Obsidian.")
+    valor = re.split(r"(?:^|\s+)#", valor, maxsplit=1)[0].rstrip()
+    if not valor or valor.lower() in {"null", "~"}:
+        return None
+    if valor[0] in "[]{}!&*|>@`" or re.match(r"[-?:](?:\s|$)", valor):
+        raise ValueError("Usá texto en una línea entre comillas o una lista simple; "
+                         "el revisor no admite mapas, bloques multilínea ni referencias YAML.")
+    if re.search(r":(?:\s|$)", valor):
+        raise ValueError("El texto que contiene dos puntos seguidos de un espacio "
+                         "debe estar entre comillas, por ejemplo: 'Meta: automatizar'.")
+    if valor.lower() in {"true", "false"}:
+        return valor.lower() == "true"
+    if re.fullmatch(r"[-+]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][-+]?\d+)?", valor):
+        return float(valor)
     return valor
+
+
+def leer_valor(valor):
+    """Admite escalares y listas de una línea, incluidas comas entre comillas."""
+    valor = valor.strip()
+    if not valor.startswith("["):
+        return leer_escalar(valor)
+    items, inicio, comilla, i = [], 1, None, 1
+    while i < len(valor):
+        caracter = valor[i]
+        if comilla:
+            if comilla == '"' and caracter == "\\":
+                i += 2
+                continue
+            if caracter == comilla:
+                if comilla == "'" and valor[i:i + 2] == "''":
+                    i += 2
+                    continue
+                comilla = None
+        elif caracter in "\"'" and not valor[inicio:i].strip():
+            comilla = caracter
+        elif caracter in "[{":
+            raise ValueError("El revisor admite listas simples, sin listas ni mapas dentro.")
+        elif caracter in ",]":
+            item = valor[inicio:i].strip()
+            if item:
+                items.append(leer_escalar(item))
+            elif caracter == ",":
+                raise ValueError("Hay un elemento vacío en la lista.")
+            if caracter == "]":
+                resto = valor[i + 1:]
+                if resto.strip() and not re.match(r"\s+#", resto):
+                    raise ValueError("Hay texto después del cierre de la lista.")
+                return items
+            inicio = i + 1
+        i += 1
+    raise ValueError("La lista tiene corchetes o comillas sin cerrar.")
 
 
 def leer_propiedades(texto, primera_linea):
     """Lee propiedades simples ('clave: valor' y listas) sin librerías externas.
 
-    Devuelve (propiedades, error). Las células solo usan propiedades simples,
-    que son las únicas que Obsidian deja editar desde el recuadro de propiedades.
+    Devuelve (propiedades, error). No es un lector de todo YAML: las estructuras
+    no admitidas se informan, nunca se ignoran ni se dan por válidas.
     """
     props, ultima_clave = {}, None
     for n, linea in enumerate(texto.splitlines(), start=primera_linea):
         if not linea.strip() or linea.lstrip().startswith("#"):
             continue
-        if linea[0] in " \t":                      # contenido de una lista
-            item = linea.strip()
-            if ultima_clave is not None and item.startswith("- "):
-                if not isinstance(props[ultima_clave], list):
-                    props[ultima_clave] = []
-                props[ultima_clave].append(quitar_comillas(item[2:]))
-            continue                               # otras sangrías: se ignoran
+        item = linea.strip()
+        if item.startswith("- "):
+            if ultima_clave is None or props[ultima_clave] is not None and not isinstance(props[ultima_clave], list):
+                return None, f"La línea {n} agrega una lista a una propiedad que ya tiene un valor."
+            if props[ultima_clave] is None:
+                props[ultima_clave] = []
+            try:
+                props[ultima_clave].append(leer_escalar(item[2:]))
+            except ValueError as error:
+                return None, f"La línea {n} de las propiedades: {error}"
+            continue
+        if linea[0] in " \t":
+            return None, (f"La línea {n} usa sangría no admitida. "
+                          "Usá propiedades sin sangría y texto en una línea entre comillas.")
         m = RE_CLAVE.match(linea)
         if not m:
             return None, (f"La línea {n} de las propiedades no tiene el formato 'nombre: valor' "
                           f"(dice: {linea.strip()[:40]!r}).")
         clave, valor = m.group(1).strip(), (m.group(2) or "").strip()
-        if valor.startswith("[") and valor.endswith("]") and not valor.lower().startswith(MARCA_PENDIENTE):
-            valor = [quitar_comillas(v) for v in valor[1:-1].split(",") if v.strip()]
-        else:
-            valor = quitar_comillas(valor)
-        props[clave] = valor
+        if clave in props:
+            return None, f"La propiedad '{clave}' está repetida en la línea {n}; dejá una sola."
+        try:
+            props[clave] = leer_valor(valor)
+        except ValueError as error:
+            return None, f"La línea {n} de la propiedad '{clave}': {error}"
         ultima_clave = clave
     return props, None
 
@@ -159,8 +230,12 @@ def validar(path):
     if "tipo" in props and normalizar(props["tipo"]) != "celula":
         errores.append("La propiedad 'tipo' tiene que ser: celula")
     for campo in ("proyecto", "descripcion"):
-        if campo in props and not str(props[campo]).strip():
-            errores.append(f"La propiedad '{campo}' está vacía.")
+        if campo in props:
+            if props[campo] is None or props[campo] == "":
+                errores.append(f"La propiedad '{campo}' está vacía.")
+            elif not isinstance(props[campo], str) or not props[campo].strip():
+                errores.append(f"La propiedad '{campo}' tiene que ser texto no vacío, "
+                               "no una lista, número o casilla. Usá comillas si es necesario.")
 
     # 2. Contexto: alcanza con que empiece con la letra (acepta 'd' o 'D - operativo')
     if "contexto" in props:

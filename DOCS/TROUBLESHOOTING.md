@@ -4,7 +4,7 @@
 → En Mac, usá `Cmd + Shift + .` en Finder. En Windows, el punto no las oculta por sí solo; si tienen el atributo oculto, activá Ver → Mostrar → Elementos ocultos. Para una bóveda nueva alcanza con abrir la carpeta completa.
 
 ## "python no se reconoce como un comando" (o "command not found: python")
-→ Python no está instalado o no está en el PATH. Probá con `python3` o, en Windows, con `py`. Si ninguno funciona, instalá Python desde python.org (en Windows, marcá "Add Python to PATH" durante la instalación). Python hace falta para el validador automático y `instalar.py`. Podés usar revisión manual y copiar solo archivos ausentes siguiendo el README.
+→ Python no está instalado o no está en el PATH. Probá con `python3` o, en Windows, con `py`. Si ninguno funciona, instalá Python desde python.org (en Windows, marcá "Add Python to PATH" durante la instalación). Python hace falta para el validador automático y `instalar.py`. Podés usar revisión manual y copiar solo archivos ausentes siguiendo la [instalación manual](instalacion-manual.md).
 
 ---
 
@@ -18,6 +18,11 @@
 
 ### "La línea N de las propiedades no tiene el formato 'nombre: valor'"
 → Cada propiedad ocupa una línea con el formato `nombre: valor` (el nombre, dos puntos, un espacio y el valor). Lo más fácil es editarlas desde el recuadro de propiedades de Obsidian, no en el texto.
+
+### Comillas, dos puntos o propiedades vacías
+→ Si un texto contiene dos puntos seguidos de un espacio, encerralo completo entre comillas: `descripcion: "Meta: automatizar planillas"`. Cerrá siempre las comillas. `proyecto` y `descripcion` necesitan texto: `null` y `[]` no son nombres ni descripciones.
+
+El revisor admite propiedades en una línea y listas simples. No es un lector de todo YAML: si informa una estructura no admitida, escribí ese valor como texto en una línea. Evitá repetir la misma propiedad.
 
 ### "Falta la propiedad 'X'" o "Falta la sección '## X'"
 → Copiala desde `TEMPLATE_cell.md` a tu célula y completala. Las secciones obligatorias son `## Hechos clave` y `## Próximas acciones`.
@@ -63,7 +68,7 @@ No copió nada. Hay archivos con el mismo nombre y distinto contenido. Comparalo
 
 ## El instalador agregó archivos pero la revisión dio errores
 
-Los archivos nuevos están copiados y las notas previas se conservaron. Revisá las células mencionadas por el validador. Si hubo un error de permisos o de disco durante la copia, el registro muestra hasta dónde llegó; un reintento omite archivos ya idénticos.
+Los archivos nuevos están copiados y las notas previas se conservaron. Revisá las células mencionadas por el validador. Si hubo un error de permisos o de disco durante la copia, el registro muestra hasta dónde llegó. El instalador intenta retirar únicamente el archivo incompleto que acababa de crear; si no puede, lo informa. Un reintento omite archivos ya idénticos.
 
 ## No aparece el panel o la fecha automática
 

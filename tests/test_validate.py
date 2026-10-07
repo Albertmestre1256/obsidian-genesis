@@ -1,6 +1,8 @@
 """Pruebas del validador de células (00_CORE/schemas/validate.py)."""
 import re
 
+import pytest
+
 
 def reemplazar(texto, viejo, nuevo):
     assert viejo in texto, f"el ejemplo ya no contiene {viejo!r}"
@@ -56,8 +58,71 @@ def test_propiedades_extra_de_obsidian(revisar, ejemplo):
 
 
 def test_texto_con_dos_puntos(revisar, ejemplo):
-    texto = re.sub(r"^descripcion: .*$", "descripcion: Meta: automatizar planillas", ejemplo, flags=re.M)
+    texto = re.sub(r"^descripcion: .*$", 'descripcion: "Meta: automatizar planillas"', ejemplo, flags=re.M)
     assert revisar(texto)[0] == []
+
+
+@pytest.mark.parametrize("valor", [
+    "'Meta: automatizar # un texto, con coma'",
+    "'El proyecto de l''autor'",
+    '"Una descripcion con \\"comillas\\""',
+    '"Una descripcion" # comentario',
+    "Un enlace https://example.com/#seccion # comentario",
+])
+def test_textos_yaml_validos(revisar, ejemplo, valor):
+    texto = re.sub(r"^descripcion: .*$", lambda _: "descripcion: " + valor, ejemplo, flags=re.M)
+    assert revisar(texto) == ([], [])
+
+
+def test_comentario_en_fecha_y_listas_con_comas(revisar, ejemplo):
+    texto = reemplazar(ejemplo, "actualizado: 2026-09-27",
+                       "actualizado: 2026-09-27 # ultima revision\n"
+                       'aliases: ["Python, desde cero", \'l\'\'autor\', curso] # aliases')
+    assert revisar(texto) == ([], [])
+
+
+@pytest.mark.parametrize("valor", [
+    "Meta: automatizar planillas",
+    '"Sin cierre',
+    "'Sin cierre",
+    '"Texto" sobrante',
+    '"Escape \\q no valido"',
+    "[una lista sin cierre",
+    "[texto, [lista anidada]]",
+    "{campo: valor}",
+    ">\n  Una descripcion en bloque",
+    "*referencia",
+])
+def test_yaml_roto_o_no_admitido_no_se_aprueba(revisar, ejemplo, valor):
+    texto = re.sub(r"^descripcion: .*$", lambda _: "descripcion: " + valor, ejemplo, flags=re.M)
+    errores, _ = revisar(texto)
+    assert errores and "propiedad 'descripcion'" in errores[0]
+
+
+@pytest.mark.parametrize("campo", ["proyecto", "descripcion"])
+@pytest.mark.parametrize("valor", ["", "null", "~", "[]", "[texto]", "true", "123", '" "'])
+def test_campos_de_texto_no_aceptan_vacios_ni_otros_tipos(revisar, ejemplo, campo, valor):
+    texto = re.sub(r"^" + campo + r": .*$", lambda _: campo + ": " + valor, ejemplo, flags=re.M)
+    errores, _ = revisar(texto)
+    assert any("'" + campo + "'" in error for error in errores)
+
+
+def test_propiedad_repetida_no_se_ignora(revisar, ejemplo):
+    texto = reemplazar(ejemplo, "contexto: D", "contexto: D\ncontexto: A")
+    errores, _ = revisar(texto)
+    assert errores and "repetida" in errores[0]
+
+
+def test_sangria_invalida_no_se_ignora(revisar, ejemplo):
+    texto = reemplazar(ejemplo, "contexto: D", "contexto: D\n  clave: contenido")
+    errores, _ = revisar(texto)
+    assert errores and "sangría" in errores[0]
+
+
+def test_lista_no_reemplaza_valor_previo(revisar, ejemplo):
+    texto = reemplazar(ejemplo, "contexto: D", "contexto: D\n  - A")
+    errores, _ = revisar(texto)
+    assert errores and "ya tiene un valor" in errores[0]
 
 
 # ------------------------------------------------------------------

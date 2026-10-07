@@ -7,7 +7,7 @@ El kit organiza proyectos en una bóveda de Obsidian. Los archivos del repositor
 1. Identificá la carpeta del kit y la bóveda de destino. No supongas que son la misma.
 2. Leé `00_CORE/atoms/00_vault-rules.md` antes de decidir dónde trabajar.
 3. Identificá el proyecto pedido y su célula dentro de `00_CORE/cells/`. Buscá también por la propiedad `proyecto`: el ejemplo `aprender-python` está en `ejemplo-context.md`.
-4. Cargá solo el contexto necesario para la tarea. Para redactar, sumá el marco de comunicación, el protocolo y la guía correspondiente indicados en `00_CORE/protocols/context-injection.md`.
+4. Cargá solo el contexto necesario para la tarea. Para textos elaborados, sumá las guías indicadas en `00_CORE/protocols/context-injection.md`; para un mensaje breve usá los datos del pedido y la ficha.
 
 Todos los proyectos usan las mismas reglas generales. No impongas un área de estudio, un tipo de candidatura ni un proyecto concreto. Las fuentes del ejemplo son ficticias.
 
@@ -15,7 +15,7 @@ Todos los proyectos usan las mismas reglas generales. No impongas un área de es
 
 ### Nueva
 
-El ZIP completo ya es una bóveda. Indicá al usuario que lo descomprima y elija Abrir carpeta como bóveda en Obsidian. La raíz contiene `.obsidian/`, `.claude/`, `00_CORE/` y `Panel.md`. No hace falta copiar carpetas internas.
+El ZIP completo ya es una bóveda. Indicá al usuario que lo descomprima y elija Abrir carpeta como bóveda en Obsidian. La raíz contiene `.obsidian/`, `.claude/`, `00_CORE/` y `Panel.md`. No hace falta copiar carpetas internas. Para alguien que empieza desde cero, dirigí a `DOCS/primer-proyecto.md`: primero una ficha y una tarea; las carpetas del proyecto pueden agregarse después.
 
 ### Existente
 

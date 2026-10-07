@@ -1,14 +1,18 @@
-# Obsidian + IA: kit de arranque con Context Engineering
+# Tu primera bóveda de Obsidian, con o sin IA
 
 Guardá el contexto de cada proyecto en una ficha corta y retomá el trabajo con tu IA sin explicar todo de nuevo. Podés usar el kit con Claude, ChatGPT, Gemini o un asistente con acceso a tus archivos.
 
-Para empezar solo necesitás [Obsidian](https://obsidian.md) y la IA que ya usás. Python es opcional para revisar fichas o instalar el kit en una bóveda existente.
+Una **bóveda** es una carpeta de notas que abrís con [Obsidian](https://obsidian.md). Para empezar necesitás Obsidian; la IA y Python son opcionales. El kit trae reglas para los asistentes, una ficha para cada proyecto y un lugar donde encontrar el próximo paso.
+
+**¿Es tu primera vez?** Seguí [Tu primer proyecto, paso a paso](DOCS/primer-proyecto.md). No necesitás conocer términos técnicos ni configurar un asistente.
 
 ## Una bóveda nueva, en tres pasos
 
 1. **Descargá y descomprimí** el ZIP del repositorio (Code → Download ZIP) o el paquete de una release cuando esté publicada.
 2. En Obsidian, elegí **Abrir carpeta como bóveda** y seleccioná la carpeta descomprimida que contiene este README. Ya incluye la configuración necesaria.
-3. Abrí **[Panel](Panel.md)**. Para probar con una IA, adjuntá las [reglas](00_CORE/atoms/00_vault-rules.md) y la [ficha de ejemplo](00_CORE/cells/ejemplo-context.md) y pegá:
+3. Abrí **[Panel](Panel.md)** y elegí **Crear mi primer proyecto**. La guía te lleva desde una nota vacía hasta tu primera tarea.
+
+**Opcional: probar primero con una IA.** Adjuntá las [reglas](00_CORE/atoms/00_vault-rules.md) y la [ficha de ejemplo](00_CORE/cells/ejemplo-context.md) y pegá:
 
    > Leé primero las reglas y después la ficha adjunta del proyecto aprender-python. Es un ejemplo ficticio. Resumí el objetivo, las acciones pendientes y el próximo paso. No modifiques archivos.
 
@@ -30,7 +34,7 @@ En macOS o Linux usá `python3 instalar.py "/ruta/de/tu/boveda"`. En Windows tam
 
 Para ver qué agregaría sin escribir: `python instalar.py "C:/ruta/de/tu/boveda" --dry-run`.
 
-Sin Python, copiá `00_CORE/`, `PROJECT_TEMPLATE/`, `DOCS/`, `.claude/`, `Panel.md`, `Proyectos.base` y `AI-INSTRUCTIONS.md` a la raíz de tu bóveda, **omitiendo cualquier archivo que ya exista**. No copies `.obsidian/` sobre una bóveda existente. Después revisá [los ajustes opcionales de Obsidian](DOCS/obsidian.md).
+Sin Python, seguí la [instalación manual](DOCS/instalacion-manual.md): copiá solo archivos ausentes y conservá los ajustes de `.obsidian/`. La guía queda disponible también dentro de la bóveda instalada.
 
 ## Tu primer proyecto
 
@@ -38,7 +42,7 @@ Con Claude Code, escribí `/nuevo-proyecto Mi proyecto`. Te pide los datos que f
 
 Con ChatGPT, Claude o Gemini en un chat, seguí [Usar con otras IAs](DOCS/usar-con-otras-ias.md): incluye los cinco prompts y explica cómo guardar sus respuestas en Obsidian.
 
-A mano: duplicá `PROJECT_TEMPLATE/`, nombrá la copia y creá una nota en `00_CORE/cells/` cuyo nombre termine en `-context.md`. Insertá `TEMPLATE_cell` con el plugin Plantillas, completá los campos y actualizá el enlace a esa ficha en el índice del proyecto. También podés copiar la plantilla y poner la fecha a mano.
+Sin IA: seguí [la guía de primer proyecto](DOCS/primer-proyecto.md). Primero creás una ficha; las carpetas para documentos y borradores se agregan cuando las necesitás.
 
 ## Uso diario
 
@@ -50,7 +54,7 @@ A mano: duplicá `PROJECT_TEMPLATE/`, nombrá la copia y creá una nota en `00_C
 | Crear proyecto | `/nuevo-proyecto Nombre del proyecto` | Usar el prompt de creación |
 | Revisar fichas | `/validar` | Pedir una revisión manual |
 
-`/cerrar` y `/nuevo-proyecto` se invocan manualmente en Claude Code. Las escrituras y permisos dependen de tu asistente y su configuración. El kit pide revisar un plan antes de guardar el cierre o redactar un entregable; no garantiza que el cliente muestre un permiso por cada archivo.
+`/cerrar` y `/nuevo-proyecto` se invocan manualmente en Claude Code. Las escrituras y permisos dependen de tu asistente y su configuración. El kit pide revisar los cambios antes de guardar el cierre y acordar la estructura de textos elaborados; los borradores breves pueden resolverse directamente en el chat; no garantiza que el cliente muestre un permiso por cada archivo.
 
 ## Qué guarda cada carpeta
 

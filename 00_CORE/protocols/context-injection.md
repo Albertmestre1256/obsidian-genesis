@@ -1,35 +1,35 @@
 ---
 level: organ
 tipo: context-injection-protocol
-descripcion: Qué contexto darle a la IA en cada tarea — solo lo necesario
+descripcion: Elegir el contexto mínimo según la tarea y ampliar solo cuando haga falta.
 ---
 
-# Protocolo de Inyección de Contexto
+# Qué darle a la IA
 
-## Regla de oro
-Darle a la IA **solo lo que necesita para esta tarea**. Más contexto no es mejor: la distrae y la hace mezclar información vieja con la vigente.
+Leé `00_CORE/atoms/00_vault-rules.md` y la ficha del proyecto en `00_CORE/cells/`. Buscala por su propiedad `proyecto`; el ejemplo aprender-python está en `ejemplo-context.md`.
 
-## Qué cargar según la tarea
+| Tarea | Qué sumar |
+|---|---|
+| Retomar, planificar o cerrar | Nada más, salvo información necesaria que falte en la ficha |
+| Ubicar un archivo o crear carpetas | Índice y estructura real de ese proyecto |
+| Comprobar una afirmación o analizar material | Las fuentes concretas relacionadas con la pregunta |
+| Escribir un mensaje breve | Destinatario, objetivo y datos necesarios; pueden estar en el pedido |
+| Preparar un informe, carta o propuesta con estructura | Marco, protocolo y una guía de redacción, indicados abajo |
 
-**Para orientarse, planificar o actualizar la célula** (`/empezar`, `/cerrar`):
-1. `00_CORE/atoms/00_vault-rules.md` — reglas del vault
-2. `00_CORE/cells/<proyecto>-context.md` — célula del proyecto
+## Guías de escritura, cuando hagan falta
 
-**Para escribir algo que va a leer otra persona** (`/redactar`), además:
-3. `00_CORE/molecules/marco-comunicacion-general.md` — marco de comunicación
-4. La guía de redacción del contexto del texto, en `00_CORE/cognitive-tools/`: A → `redaccion-tecnica.md` · B → `redaccion-narrativa.md` · C → `redaccion-persuasiva.md` · D → `redaccion-operativa.md`
-5. `00_CORE/protocols/ai-write-protocol.md` — pasos para escribir
+- `00_CORE/molecules/marco-comunicacion-general.md`: elegir destinatario, intención y estructura.
+- `00_CORE/protocols/ai-write-protocol.md`: preparar y revisar un texto elaborado.
+- Una guía en `00_CORE/cognitive-tools/`: A → `redaccion-tecnica.md`, B → `redaccion-narrativa.md`, C → `redaccion-persuasiva.md`, D → `redaccion-operativa.md`.
 
-## Qué NO cargar (salvo que el usuario lo pida)
-- Índices de proyecto: sirven para navegar, no para trabajar
-- Otros proyectos: mezclan información
-- Guías de redacción de otros contextos
-- Conversaciones anteriores, salvo que haga falta continuidad
+El tipo de texto puede diferir del contexto habitual del proyecto. Elegí por la tarea sin pedir al principiante que conozca las letras. No cargues las cuatro guías.
 
-## Presupuesto
-- Orientarse: menos de 3500 tokens. Escribir: menos de 5000 tokens.
-- Detalle en `00_CORE/davidkimai-resources/evaluation/token_budgeting.md`.
+## Si falta contexto
 
-## Mantener la célula liviana
-- Lo que ya no es vigente se saca de la célula (o se mueve a `_archivo`).
-- Una sesión nueva nunca debería arrancar con información vieja.
+Pedí el archivo o dato concreto que falta. No interpretes la ausencia de un adjunto como ausencia del archivo en la bóveda. En un chat sin acceso a archivos, ofrecé trabajar con lo disponible e indicá qué no se puede verificar.
+
+## Mantener la ficha útil
+
+Conservá hechos vigentes, decisiones y próximas acciones. Los detalles largos van en notas enlazadas. Proponé archivar lo anterior antes de moverlo; no lo borres para cumplir un tamaño arbitrario.
+
+Como orientación, intentá mantener el arranque por debajo de 3500 tokens y una tarea de escritura por debajo de 5000. Son estimaciones, no razones para omitir evidencia necesaria. Ver `00_CORE/davidkimai-resources/evaluation/token_budgeting.md` si necesitás ajustar el presupuesto.

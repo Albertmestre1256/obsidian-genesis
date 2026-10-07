@@ -20,7 +20,7 @@ def comprobar_ruta(path):
     for parte in reversed((path,) + tuple(path.parents)):
         try:
             info = parte.lstat()
-        except FileNotFoundError:
+        except (FileNotFoundError, NotADirectoryError):
             continue
         if stat.S_ISLNK(info.st_mode) or getattr(info, "st_file_attributes", 0) & 0x400:
             raise ValueError("La ruta contiene un enlace o junction: {}".format(parte))
@@ -78,8 +78,23 @@ def copiar_nuevos(nuevos):
         comprobar_ruta(objetivo)
         objetivo.parent.mkdir(parents=True, exist_ok=True)
         comprobar_ruta(objetivo)
-        with fuente.open("rb") as entrada, objetivo.open("xb") as salida:
-            shutil.copyfileobj(entrada, salida)
+        creado = None
+        try:
+            with fuente.open("rb") as entrada, objetivo.open("xb") as salida:
+                creado = os.fstat(salida.fileno())
+                shutil.copyfileobj(entrada, salida)
+        except BaseException:
+            # Solo retirar nuestro archivo incompleto. Si otro proceso cambió
+            # la ruta, conservarla. Nunca borrar un archivo que ya existía.
+            if creado is not None:
+                try:
+                    comprobar_ruta(objetivo)
+                    if os.path.samestat(creado, objetivo.lstat()):
+                        objetivo.unlink()
+                except (OSError, ValueError):
+                    print("No se pudo retirar el archivo incompleto: {}. Revisalo antes de reintentar."
+                          .format(objetivo), file=sys.stderr)
+            raise
         print("Agregado: {}".format(objetivo))
 
 

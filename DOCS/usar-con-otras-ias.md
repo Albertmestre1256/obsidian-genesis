@@ -37,17 +37,17 @@ Retomemos [nombre del proyecto]. Lee primero las reglas de la bóveda y después
 Adjuntá las reglas, `00_CORE/cells/TEMPLATE_cell.md` y el índice de `PROJECT_TEMPLATE/`.
 
 ```text
-Quiero crear el proyecto [nombre]. Lee las reglas y las plantillas adjuntas. Pregunta solo lo que falte sobre objetivo, audiencia, hechos con fuentes y próximo paso. Prepara una ficha con propiedades válidas y un índice del proyecto. Usa un nombre corto sin espacios para el archivo y la carpeta. No inventes datos. Si no puedes escribir en mi bóveda, dame cada texto con su destino y las carpetas que tengo que crear.
+Quiero crear el proyecto [nombre]. Lee las reglas y las plantillas adjuntas. Pregunta solo lo que falte sobre objetivo, audiencia, hechos con fuentes y próximo paso. Prepara una ficha con propiedades válidas y un índice del proyecto. Usa un nombre corto en minúsculas, sin tildes y con guiones entre palabras para el archivo y la carpeta. Si puedes leer mi bóveda, comprueba que no existan las rutas de destino ni otra ficha con ese identificador en la propiedad proyecto, aunque tenga otro nombre de archivo. Ante una coincidencia, indícala y pide que elija entre retomar ese proyecto o usar otro identificador. Si no puedes comprobarlo, indícame qué revisar antes de crear archivos. No inventes datos. Si no puedes escribir en mi bóveda, dame cada texto con su destino y las carpetas que tengo que crear.
 ```
 
-Guardá la ficha dentro de `00_CORE/cells/`, con un nombre terminado en `-context.md`. Duplicá `PROJECT_TEMPLATE/` para la carpeta del proyecto y actualizá su índice. Completá la fecha real; los marcadores de Plantillas se resuelven en Obsidian al insertar la plantilla, no al adjuntarla a un chat.
+Antes de guardar, revisá la propiedad `proyecto` de las fichas en `00_CORE/cells/` y las rutas propuestas. El ejemplo ya usa el identificador `aprender-python`, aunque su archivo se llame `ejemplo-context.md`. Si el nombre está libre, guardá la ficha dentro de `00_CORE/cells/`, con un nombre terminado en `-context.md`; duplicá `PROJECT_TEMPLATE/` para la carpeta del proyecto y actualizá su índice. Completá la fecha real; los marcadores de Plantillas se resuelven en Obsidian al insertar la plantilla, no al adjuntarla a un chat.
 
 ### 3. Redactar
 
-Además de reglas y ficha, adjuntá el marco `00_CORE/molecules/marco-comunicacion-general.md`, el protocolo `00_CORE/protocols/ai-write-protocol.md` y la guía de redacción adecuada en `00_CORE/cognitive-tools/` (técnica, narrativa, persuasiva u operativa).
+Para un mensaje breve, bastan reglas, ficha y tu pedido con destinatario y objetivo. Para un informe, carta o propuesta con estructura, agregá el marco `00_CORE/molecules/marco-comunicacion-general.md`, el protocolo `00_CORE/protocols/ai-write-protocol.md` y la guía de redacción adecuada en `00_CORE/cognitive-tools/` (técnica, narrativa, persuasiva u operativa).
 
 ```text
-Necesito [tipo de texto] para [destinatario], en el proyecto [nombre]. Quiero que el destinatario [acción o idea principal]. Lee primero las reglas, la ficha y las guías adjuntas. Propón un plan breve y espera mi aprobación antes de redactar. Usa hechos respaldados; marca los datos que falten. Entrega el borrador y una ruta dentro de la síntesis de este proyecto. No envíes el texto a nadie.
+Necesito [tipo de texto] para [destinatario], en el proyecto [nombre]. Quiero que el destinatario [acción o idea principal]. Lee primero las reglas y la ficha. Si es un texto breve, redacta un borrador en el chat. Si necesita estructura, consulta las guías adjuntas, propón un plan breve y espera mi aprobación. Pregunta solo por datos que cambien el resultado. Usa hechos respaldados; marca los datos que falten. Entrega el borrador y una ruta dentro de la síntesis de este proyecto. No envíes el texto a nadie.
 ```
 
 ### 4. Validar

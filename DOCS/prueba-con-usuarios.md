@@ -10,7 +10,7 @@ Entregá el ZIP y el README. Pedí que hagan estas tareas sin explicarles los pa
 
 1. Abrir el kit como bóveda y encontrar el Panel.
 2. Retomar aprender-python con la IA que usan habitualmente.
-3. Crear un proyecto propio de prueba y su ficha.
+3. Crear un proyecto propio de prueba y su ficha siguiendo `DOCS/primer-proyecto.md`; comprobar que puede hacerlo sin IA ni terminal.
 4. Redactar un correo ficticio con la información de esa ficha.
 5. Cerrar la sesión y comprobar que el avance quedó en Obsidian.
 
@@ -27,6 +27,9 @@ Entregá el ZIP y el README. Pedí que hagan estas tareas sin explicarles los pa
 | Tareas completadas sin ayuda | |
 | Dónde se trabó / mensaje visible | |
 | Ayuda que necesitó | |
+| Palabras o instrucciones que no entendió | |
+| ¿Pudo crear la ficha sin IA ni terminal? | |
+| ¿Entendió que un adjunto del chat no actualiza Obsidian? | |
 | Observación o cambio propuesto | |
 
 Si pide ayuda, registrá el punto y ayudá para poder evaluar las tareas siguientes; esa tarea ya no cuenta como completada sin ayuda. Guardá el registro original en las fuentes del proyecto que organiza la prueba, fuera del kit público.

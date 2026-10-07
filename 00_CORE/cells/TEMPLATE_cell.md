@@ -11,11 +11,12 @@ actualizado: "{{date:YYYY-MM-DD}}"
 
 %%
 CÓMO USAR ESTA PLANTILLA
-1. Copiala en esta misma carpeta y renombrala: nombre-de-tu-proyecto-context.md
-   (el nombre TIENE que terminar en -context.md)
-2. Completá las propiedades de arriba y reemplazá cada [completar: ...] de abajo.
-3. Con Plantillas → Insertar plantilla, actualizado se completa con la fecha. Si copiaste a mano, reemplazá {{date:YYYY-MM-DD}} por la fecha de hoy (AAAA-MM-DD).
-4. Si tenés Python, revisala con: python 00_CORE/schemas/validate.py
+Elegí UNA de estas formas de crear la ficha:
+- Con Plantillas: creá una nota VACÍA en esta carpeta, con nombre nombre-de-tu-proyecto-context.md. Usá Plantillas → Insertar plantilla y elegí TEMPLATE_cell. La propiedad actualizado se completa con la fecha.
+- A mano: duplicá esta plantilla y renombrá la copia nombre-de-tu-proyecto-context.md. Reemplazá {{date:YYYY-MM-DD}} por la fecha de hoy (AAAA-MM-DD). No uses Insertar plantilla sobre esa copia: duplicaría el contenido.
+
+En ambos casos, el nombre tiene que terminar en -context.md. Completá las propiedades y reemplazá cada [completar: ...].
+Si tenés Python, revisala con: python 00_CORE/schemas/validate.py
 
 Qué va en "contexto" (una sola letra):
   A = técnico     → informes, código, documentación (precisión y evidencia)

@@ -6,7 +6,7 @@ descripcion: Marco de comunicación — 4 contextos (A, B, C, D), 5 preguntas an
 
 # Marco de Comunicación
 
-> Se consulta **antes de escribir cualquier cosa que va a leer otra persona**: un mail, un informe, una carta, una propuesta.
+> Guía para textos que necesitan estructura: informes, cartas, propuestas o mensajes difíciles. Para un mensaje breve con objetivo y destinatario claros, aplicá las reglas básicas sin cargar todo el marco. Las preguntas orientan el trabajo; no son un cuestionario obligatorio para el usuario.
 
 ## 1. ¿En qué contexto estás?
 
