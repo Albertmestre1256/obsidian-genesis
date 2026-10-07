@@ -7,6 +7,8 @@ from pathlib import Path
 RAIZ = Path(__file__).resolve().parent.parent
 TEXTOS = [p for p in RAIZ.rglob("*") if p.suffix in {".md", ".py", ".yaml", ".json"}
           and ".git" not in p.parts and "tests" not in p.parts]
+# Salidas personales documentadas que se crean en la bóveda del usuario.
+RUTAS_GENERADAS = {"00_CORE/configuracion.md"}
 
 
 def test_rutas_citadas_existen():
@@ -16,6 +18,9 @@ def test_rutas_citadas_existen():
     for archivo in TEXTOS:
         for ruta in patron.findall(archivo.read_text(encoding="utf-8")):
             ruta = ruta.rstrip("/.")
+            if ruta in RUTAS_GENERADAS:
+                assert not (RAIZ / ruta).exists(), "No distribuir una configuración personal"
+                continue
             if "<" in ruta or " " in ruta:
                 continue
             base = RAIZ
@@ -25,7 +30,9 @@ def test_rutas_citadas_existen():
 
 
 def test_archivos_esenciales():
-    for ruta in ["LICENSE", "README.md", "AI-INSTRUCTIONS.md",
+    for ruta in ["LICENSE", "README.md", "AI-INSTRUCTIONS.md", "AGENTS.md", "CLAUDE.md",
+                 "00_CORE/protocols/configurar-vault.md", ".claude/skills/configurar/SKILL.md",
+                 "DOCS/empezar-con-ia.md", "DOCS/creacion-para-asistentes.md", "crear_proyecto.py",
                  "00_CORE/atoms/00_vault-rules.md", "00_CORE/cells/TEMPLATE_cell.md",
                  "00_CORE/cells/ejemplo-context.md", "00_CORE/schemas/validate.py",
                  ".claude/settings.json", ".obsidian/app.json", "Panel.md", "Proyectos.base", "instalar.py", ".github/workflows/tests.yml"]:

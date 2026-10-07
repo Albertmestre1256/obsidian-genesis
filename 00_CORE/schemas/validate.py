@@ -272,7 +272,7 @@ def validar(path):
     _, acciones = secs.get(normalizar("Próximas acciones"), (None, None))
     if acciones is not None:
         if not acciones:
-            avisos.append("No hay próximas acciones: anotá al menos el próximo paso.")
+            avisos.append("No hay próximas acciones: podés elegir el primer paso después. Este aviso no bloquea la configuración.")
         for a in acciones:
             if not RE_TAREA.match(a):
                 errores.append(f"La acción '{recortar(contenido(a))}' tiene que empezar con '- [ ] ' "

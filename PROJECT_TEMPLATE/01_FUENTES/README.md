@@ -1,20 +1,9 @@
-# 01_FUENTES — Fuentes Crudas
+# 01_FUENTES — Material original
 
-> **Regla**: **NUNCA editar** — Solo append (agregar al final)
+Guardá acá el material recibido o reunido para este proyecto: apuntes, PDFs, datos, capturas, transcripciones y conversaciones exportadas.
 
-## Qué va aquí
-- Chats exportados (ChatGPT, Claude, WhatsApp, etc.)
-- PDFs originales (certificados, papers, contratos)
-- Exportaciones de otras apps (notas, correos, planillas)
-- Raw data (CSVs, JSONs, logs)
-- Capturas de pantalla
-- Transcripciones
+**Conservá cada original tal como llegó.** Agregar material significa guardar nuevos archivos; no editar ni agregar texto dentro de los originales existentes. Si necesitás corregir, resumir o analizar una fuente, trabajá con una copia o una nota en [02_SINTESIS](../02_SINTESIS/).
 
-## Qué NO va aquí
-- Resúmenes, análisis, síntesis
-- Versiones editadas
-- Decisiones o conclusiones
+Podés pedirle a la IA: «Usá estas fuentes para este proyecto y conservá los originales». La IA debe leer las reglas de la bóveda y la ficha del proyecto antes de decidir dónde guardarlas.
 
-## Convención de Nombres
-`<fecha>_<fuente>_<descripcion>.<ext>`
-Ej: `2026-01-15_chatgpt_ideas-iniciales.md`
+Para reconocer los archivos, usá nombres descriptivos. Por ejemplo, `2026-10-07_apuntes_tema-1.pdf`; la fecha puede ser la de recepción. Si todavía no tenés material, esta carpeta puede quedar vacía.

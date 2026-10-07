@@ -34,6 +34,12 @@ def test_instala_y_preserva_notas_y_configuracion(tmp_path):
     despues = foto(vault)
     assert all(despues[ruta] == contenido for ruta, contenido in antes.items())
     assert (vault / ".claude/skills/empezar/SKILL.md").is_file()
+    assert (vault / ".claude/skills/configurar/SKILL.md").is_file()
+    for entrada in ("AGENTS.md", "CLAUDE.md", "AI-INSTRUCTIONS.md"):
+        assert (vault / entrada).read_bytes() == (RAIZ / entrada).read_bytes()
+    assert (vault / "00_CORE/protocols/configurar-vault.md").is_file()
+    assert (vault / "crear_proyecto.py").read_bytes() == (RAIZ / "crear_proyecto.py").read_bytes()
+    assert not (vault / "00_CORE/configuracion.md").exists()
     assert "TODO BIEN" in resultado.stdout
     assert not (vault / ".obsidian/core-plugins.json").exists()
     assert not (vault / "tests").exists()
@@ -52,6 +58,16 @@ def test_conflicto_no_copia_nada(tmp_path):
     resultado = ejecutar(tmp_path, "--yes")
     assert resultado.returncode == 2
     assert "Panel.md" in resultado.stdout
+    assert foto(tmp_path) == antes
+
+
+@pytest.mark.parametrize("entrada", ["AGENTS.md", "CLAUDE.md", "crear_proyecto.py"])
+def test_conserva_instrucciones_propias_del_asistente(tmp_path, entrada):
+    (tmp_path / entrada).write_text("Mis reglas existentes", encoding="utf-8")
+    antes = foto(tmp_path)
+    resultado = ejecutar(tmp_path, "--yes")
+    assert resultado.returncode == 2
+    assert entrada in resultado.stdout
     assert foto(tmp_path) == antes
 
 

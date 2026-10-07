@@ -2,6 +2,14 @@
 
 ## Sin publicar — candidata a v0.1.0
 
+- Creador opcional de proyectos para asistentes: plantillas completas, nombres válidos, detección de coincidencias por propiedad y reanudación sin reemplazar archivos editados.
+- Entrevista sin plazos, hechos ni acciones obligatorios; reanudación basada en la configuración y ficha existentes.
+- Creación inicial y creación de proyectos posteriores usan el mismo criterio para quitar marcadores y conservar datos.
+
+- Arranque principal guiado por IA: entregar carpeta, responder preguntas y recibir bóveda configurada.
+- Entradas AGENTS.md y CLAUDE.md, skill configurar y un único protocolo de configuración nueva, existente o mediante archivos descargables.
+- El instalador incluye las entradas de los asistentes y conserva las instrucciones existentes ante conflictos.
+
 - Guía de primer proyecto sin IA ni Python, enlazada al inicio del Panel y README.
 - Reglas generales por proyecto y carga de guías proporcional a la tarea; los mensajes breves no requieren un proceso de cinco fases.
 

@@ -1,8 +1,10 @@
 # Usar el kit con ChatGPT, Claude o Gemini
 
-Podés trabajar desde un chat sin terminal. Abrí la bóveda en Obsidian y adjuntá las notas necesarias a tu IA. Al terminar, revisá su propuesta y copiá los cambios aprobados a la nota original. En la siguiente sesión adjuntá la versión actualizada.
+**¿Todavía no tenés configurada la bóveda?** Empezá por [darle la carpeta a tu IA](empezar-con-ia.md). Esta guía sirve para el trabajo diario después del arranque.
 
-Si tu asistente tiene acceso autorizado a la carpeta, puede leer y editar los archivos directamente. Confirmá ese acceso antes de pedirle que guarde algo. Subir una nota como adjunto no mantiene su contenido sincronizado.
+Con una IA que tenga acceso a tu carpeta, pedile que lea las reglas y la ficha y se encargue de los archivos. Al terminar, revisá su propuesta de cambios; después de aprobarla, la IA guarda y verifica lo acordado.
+
+También podés trabajar desde un chat sin terminal usando adjuntos. En ese caso, revisá su propuesta y copiá los cambios aprobados a la nota original; en la siguiente sesión adjuntá la versión actualizada. Subir una nota como adjunto no mantiene su contenido sincronizado. El asistente debe aclarar qué acceso tiene antes de afirmar que guardó algo.
 
 ## Dejar preparado un espacio por proyecto
 
@@ -37,10 +39,10 @@ Retomemos [nombre del proyecto]. Lee primero las reglas de la bóveda y después
 Adjuntá las reglas, `00_CORE/cells/TEMPLATE_cell.md` y el índice de `PROJECT_TEMPLATE/`.
 
 ```text
-Quiero crear el proyecto [nombre]. Lee las reglas y las plantillas adjuntas. Pregunta solo lo que falte sobre objetivo, audiencia, hechos con fuentes y próximo paso. Prepara una ficha con propiedades válidas y un índice del proyecto. Usa un nombre corto en minúsculas, sin tildes y con guiones entre palabras para el archivo y la carpeta. Si puedes leer mi bóveda, comprueba que no existan las rutas de destino ni otra ficha con ese identificador en la propiedad proyecto, aunque tenga otro nombre de archivo. Ante una coincidencia, indícala y pide que elija entre retomar ese proyecto o usar otro identificador. Si no puedes comprobarlo, indícame qué revisar antes de crear archivos. No inventes datos. Si no puedes escribir en mi bóveda, dame cada texto con su destino y las carpetas que tengo que crear.
+Quiero crear el proyecto [nombre]. Lee las reglas y las plantillas. Pregunta solo lo que falte, de a una o dos preguntas, sobre objetivo, uso y próximo paso. No exijas una fecha ni hechos que todavía no tengo. Prepara una ficha con propiedades válidas y un índice del proyecto; deja vacías las secciones sin datos y quita los marcadores de ejemplo. Usa un nombre corto en minúsculas, sin tildes y con guiones. Si puedes leer mi bóveda, comprueba que no existan las rutas de destino ni otra ficha con ese identificador en la propiedad proyecto, aunque tenga otro nombre. Ante una coincidencia, ofrece retomar ese proyecto o usar otro identificador. Si puedes escribir, crea y verifica los archivos dentro del alcance acordado, sin mandarme a copiarlos. Si no puedes comprobar o escribir, acláralo y entrega los textos con sus destinos. No inventes datos.
 ```
 
-Antes de guardar, revisá la propiedad `proyecto` de las fichas en `00_CORE/cells/` y las rutas propuestas. El ejemplo ya usa el identificador `aprender-python`, aunque su archivo se llame `ejemplo-context.md`. Si el nombre está libre, guardá la ficha dentro de `00_CORE/cells/`, con un nombre terminado en `-context.md`; duplicá `PROJECT_TEMPLATE/` para la carpeta del proyecto y actualizá su índice. Completá la fecha real; los marcadores de Plantillas se resuelven en Obsidian al insertar la plantilla, no al adjuntarla a un chat.
+La IA con acceso a archivos debe comprobar las coincidencias, crear la ficha y el índice y enlazar el Panel. El ejemplo ya usa `aprender-python`, aunque su archivo se llame `ejemplo-context.md`. Si trabajás solo con adjuntos, guardá los textos entregados en los destinos indicados y usá la [guía manual](primer-proyecto.md). La fecha de actualización debe ser real; adjuntar una plantilla a un chat no resuelve automáticamente sus marcadores.
 
 ### 3. Redactar
 
@@ -64,7 +66,7 @@ Revisa las fichas adjuntas usando las reglas del validador. Si puedes ejecutarlo
 Cerramos la sesión de [nombre del proyecto]. Compara lo trabajado con la ficha adjunta más reciente. Propón solo hechos nuevos con fuente, decisiones, cambios en acciones y preguntas abiertas. No dupliques lo existente ni conviertas propuestas en decisiones. Espera mi aprobación. Después entrega la ficha actualizada, o guarda los cambios si tienes acceso autorizado, y verifica el resultado.
 ```
 
-Después de aprobar: actualizá la nota en Obsidian y reemplazá el adjunto del proyecto o Gem cuando corresponda. Así la próxima conversación recibe el avance real.
+Después de aprobar, la IA con acceso guarda y verifica la nota. Si usás solo adjuntos, actualizá la nota en Obsidian y reemplazá el adjunto del proyecto o Gem cuando corresponda. Así la próxima conversación recibe el avance real.
 
 ## Fuentes de configuración
 

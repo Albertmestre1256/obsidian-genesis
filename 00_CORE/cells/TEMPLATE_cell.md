@@ -2,7 +2,7 @@
 tipo: celula
 proyecto: "[completar: nombre-corto-del-proyecto]"
 descripcion: "[completar: qué es este proyecto, en 1 a 3 oraciones]"
-objetivo: "[completar: qué querés lograr y para cuándo]"
+objetivo: "[completar: qué querés lograr; la fecha del objetivo es opcional]"
 contexto: "[completar: A, B, C o D]"
 actualizado: "{{date:YYYY-MM-DD}}"
 ---

@@ -1,11 +1,9 @@
-# _archivo — Lo que ya no está vigente
+# _archivo — Historial del proyecto
 
-> **Regla**: nada se borra, se archiva.
+Esta carpeta conserva lo que dejó de estar vigente, cuando decidas archivarlo: borradores anteriores, ideas descartadas o notas sobre decisiones que cambiaron.
 
-## Qué va aquí
-- Versiones viejas de borradores y entregables
-- Datos de la célula que dejaron de ser verdad o ya no sirven
-- Ideas descartadas (por si hay que volver a mirarlas)
+Podés dejarla vacía al empezar. La IA no debe mover ni borrar archivos por iniciativa propia: primero propone cuáles archivar y vos decidís. Los originales de [01_FUENTES](../01_FUENTES/) se conservan en su lugar.
 
-## Por qué no dejarlo mezclado
-Si lo viejo queda junto a lo vigente, la IA puede usarlo como si fuera actual.
+Al archivar, indicá qué quedó reemplazado y por qué. Por ejemplo, una nota `2026-10-07_cambio-de-plan.md` puede enlazar el plan anterior y el nuevo. Si se mueve una nota, revisá también los enlaces que apuntaban a ella.
+
+La ficha del proyecto debe reflejar el estado vigente. El material archivado sirve para consultar el historial; la IA no debe presentarlo como una decisión actual.

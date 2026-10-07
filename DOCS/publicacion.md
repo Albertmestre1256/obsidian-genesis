@@ -3,7 +3,7 @@
 Usá esta lista sobre la versión final del kit:
 
 - [ ] Revisar el recorrido de primer proyecto y las reglas con lenguaje de principiante.
-- [ ] Probar las cinco skills en Claude Code real.
+- [ ] Probar la configuración guiada y las cinco skills de trabajo diario en Claude Code real.
 - [ ] Ejecutar `python -m pytest -q` y el validador.
 - [ ] Confirmar nombre de repositorio, cuenta y visibilidad con la persona responsable.
 - [ ] Confirmar el contacto previsto con el autor del material de origen.

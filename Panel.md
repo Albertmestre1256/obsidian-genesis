@@ -1,6 +1,8 @@
 # Mis proyectos
 
-**¿Primera vez?** [[DOCS/primer-proyecto|Crear mi primer proyecto, paso a paso]]. Podés empezar sin IA ni Python.
+**¿Todavía no configuraste tu bóveda?** [[DOCS/empezar-con-ia|Dale la carpeta a tu IA y dejá que te guíe]]. El asistente prepara los archivos con tus respuestas.
+
+¿Preferís hacerlo vos? [[DOCS/primer-proyecto|Alternativa manual]].
 
 ¿Ya tenés un proyecto? Abrí su ficha para ver qué sigue. El proyecto aprender-python es un ejemplo ficticio. Si la tabla no aparece, abrí la ficha desde la carpeta `00_CORE/cells/`.
 

@@ -1,15 +1,15 @@
 # Inicio rápido
 
 1. Descargá y descomprimí el kit.
-2. En Obsidian elegí **Abrir carpeta como bóveda** y seleccioná la carpeta que contiene `README.md`.
-3. Abrí **Panel** y seguí [Tu primer proyecto](primer-proyecto.md), sin IA ni Python.
+2. Dale esa carpeta a una IA con acceso a archivos.
+3. Pedile: «Leé las reglas de `00_CORE/atoms/00_vault-rules.md` y `AI-INSTRUCTIONS.md`. Configurá mi bóveda guiándome con preguntas simples; encargate vos de los archivos».
 
-**Para probar una IA con el ejemplo:** adjuntá `00_CORE/atoms/00_vault-rules.md` y `00_CORE/cells/ejemplo-context.md` a tu IA y pedile resumir el proyecto ficticio aprender-python. Con Claude Code, abrilo en esa carpeta y usá `/empezar aprender-python`.
+La IA te preguntará qué querés organizar, si ya tenés notas y cuál será tu primer proyecto. Después preparará los archivos y te explicará cómo abrir la bóveda en Obsidian.
 
-Después creá tu propio proyecto con `/nuevo-proyecto` o con los prompts de [Usar con otras IAs](usar-con-otras-ias.md).
+[Cómo darle la carpeta y qué esperar](empezar-con-ia.md).
 
-**Bóveda existente:** desde la carpeta descargada del kit, ejecutá `python instalar.py "ruta de tu bóveda"`. El instalador muestra conflictos y no reemplaza archivos. Sin Python, seguí la [instalación manual](instalacion-manual.md). Si el kit ya está instalado, abrí `Panel.md` en tu bóveda.
+Si tu chat solo trabaja con adjuntos, leé la alternativa de archivos descargables en esa guía. Recibir un ZIP no significa que pueda escribir en tu computadora.
 
-**Revisión opcional:** `python 00_CORE/schemas/validate.py`. No necesita paquetes adicionales. Sin Python podés pedir una revisión manual a la IA.
+Cuando la bóveda esté configurada, abrí **Panel** y tu ficha para retomar el trabajo. [Uso diario con IA](usar-con-otras-ias.md).
 
-[Configurar Obsidian](obsidian.md) · [Resolver problemas](TROUBLESHOOTING.md)
+¿Preferís hacerlo sin IA? [Primer proyecto a mano](primer-proyecto.md) · [Instalación manual en una bóveda existente](instalacion-manual.md).

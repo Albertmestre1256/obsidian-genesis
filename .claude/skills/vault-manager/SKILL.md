@@ -1,6 +1,6 @@
 ---
 name: vault-manager
-description: Guía para trabajar en este vault de Obsidian organizado con Context Engineering. Usar cuando el usuario quiera empezar o retomar un proyecto, crear un proyecto nuevo, escribir algo para un proyecto, revisar o actualizar la célula de un proyecto, o no sepa por dónde empezar.
+description: Orienta la configuración y el trabajo diario en una bóveda de Obsidian con este kit, eligiendo el recorrido de inicio, proyecto, escritura o cierre. No usar para desarrollar o revisar el propio kit.
 ---
 
 # Vault Manager
@@ -16,7 +16,9 @@ Este vault guarda el contexto de cada proyecto en una **célula** (`00_CORE/cell
 | "escribime / redactá / armá un mail, informe, carta..." | `.claude/skills/redactar/SKILL.md` |
 | "¿está todo bien?", "revisá las células" | `.claude/skills/validar/SKILL.md` |
 | "terminamos", "guardá lo de hoy", "actualizá la célula" | `.claude/skills/cerrar/SKILL.md` |
-| "no sé por dónde empezar", "¿cómo funciona esto?" | Explicá que una bóveda es una carpeta de notas y orientá a `DOCS/primer-proyecto.md`; ofrecé `/nuevo-proyecto` si quiere ayuda para crearla |
+| "no sé por dónde empezar", "¿cómo funciona esto?" | Leé `00_CORE/protocols/configurar-vault.md` e iniciá la conversación guiada, sin enviarlo a copiar plantillas manualmente |
+
+La configuración inicial usa `00_CORE/protocols/configurar-vault.md` y puede crear el primer proyecto dentro del alcance acordado. Para agregar proyectos después, usá la ruta de nuevo-proyecto. No inicies la configuración cuando se pida desarrollar el kit.
 
 ## Reglas que valen siempre
 

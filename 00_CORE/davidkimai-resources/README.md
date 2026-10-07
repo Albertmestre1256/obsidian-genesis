@@ -1,12 +1,14 @@
-# davidkimai-resources — Recursos de Context Engineering
+# Recursos opcionales sobre contexto para IA
 
-> Estos recursos adaptan ideas del repositorio [Context Engineering](https://github.com/davidkimai/Context-Engineering) de **davidkimai** (licencia MIT, © 2025 davidkimai). La carpeta lleva su nombre para darle el crédito que corresponde. El término *context engineering* fue popularizado por Andrej Karpathy.
+Esta carpeta contiene adaptaciones de ideas del repositorio [Context Engineering](https://github.com/davidkimai/Context-Engineering) de **davidkimai** (licencia MIT, © 2025 davidkimai). Conserva su nombre para identificar el origen; este kit es un trabajo derivado e independiente.
 
-No hace falta leerlos para usar el kit: los comandos y protocolos ya los aplican. Sirven para entender por qué el kit funciona así.
+El contexto es la información que le das a una IA para resolver una tarea. Estos recursos ayudan a seleccionar la información pertinente sin cargar todos los proyectos a la vez. No necesitás leerlos ni editar archivos YAML para comenzar: seguí el [README principal](../../README.md) y respondé las preguntas del asistente.
 
-| Archivo | Qué explica |
+| Recurso | Para qué sirve |
 |---|---|
-| `evaluation/token_budgeting.md` | Cuánto contexto darle a la IA y por qué menos es mejor |
-| `field-theory/field_dynamics.md` | Cómo se comporta el contexto: qué atrae, qué filtrar, qué limpiar |
-| `protocols/01_extract_information.md` | Plantilla para pedirle a una IA que extraiga información de una fuente |
-| `templates/minimal_context.yaml` | Qué archivos darle a la IA en cada tarea (útil con IAs que no leen el vault) |
+| [Cuánto contexto usar](evaluation/token_budgeting.md) | Elegir información suficiente para la tarea y cuidar el espacio disponible |
+| [Cómo organizar el contexto](field-theory/field_dynamics.md) | Explorar un modelo conceptual para seleccionar, relacionar y limpiar información |
+| [Extraer información](protocols/01_extract_information.md) | Pedir datos de una fuente con una estructura definida |
+| [Contexto mínimo por tarea](templates/minimal_context.yaml) | Consultar ejemplos de qué archivos aportar al asistente |
+
+Para configurar o retomar un proyecto, la IA empieza por las [reglas de la bóveda](../atoms/00_vault-rules.md) y sigue las [instrucciones para asistentes](../../AI-INSTRUCTIONS.md). Consulta estos recursos cuando la tarea los necesite; no son un paso obligatorio de la entrevista.

@@ -8,10 +8,10 @@ Invitá a 3–5 personas, al menos dos sin experiencia con Obsidian. Incluí Win
 
 Entregá el ZIP y el README. Pedí que hagan estas tareas sin explicarles los pasos:
 
-1. Abrir el kit como bóveda y encontrar el Panel.
-2. Retomar aprender-python con la IA que usan habitualmente.
-3. Crear un proyecto propio de prueba y su ficha siguiendo `DOCS/primer-proyecto.md`; comprobar que puede hacerlo sin IA ni terminal.
-4. Redactar un correo ficticio con la información de esa ficha.
+1. Descargar el kit, dar la carpeta a un asistente con acceso a archivos y pegar el pedido de inicio del README.
+2. Responder las preguntas para configurar una bóveda nueva y su primer proyecto de prueba, sin crear archivos a mano.
+3. Abrir la carpeta preparada en Obsidian y encontrar su proyecto desde el Panel. Comprobar que la ficha refleja sus respuestas.
+4. Empezar una tarea con el asistente, por ejemplo redactar un correo ficticio con la información de esa ficha.
 5. Cerrar la sesión y comprobar que el avance quedó en Obsidian.
 
 ## Registro por persona
@@ -28,10 +28,14 @@ Entregá el ZIP y el README. Pedí que hagan estas tareas sin explicarles los pa
 | Dónde se trabó / mensaje visible | |
 | Ayuda que necesitó | |
 | Palabras o instrucciones que no entendió | |
-| ¿Pudo crear la ficha sin IA ni terminal? | |
+| ¿La IA configuró los archivos sin exigir edición manual ni términos técnicos? | |
 | ¿Entendió que un adjunto del chat no actualiza Obsidian? | |
 | Observación o cambio propuesto | |
 
 Si pide ayuda, registrá el punto y ayudá para poder evaluar las tareas siguientes; esa tarea ya no cuenta como completada sin ayuda. Guardá el registro original en las fuentes del proyecto que organiza la prueba, fuera del kit público.
 
 El plan de publicación exige que **4 de 5 personas** completen las cinco tareas sin ayuda. Si solo participaron tres, el criterio sigue pendiente. Corregí los obstáculos, repetí las tareas afectadas y registrá la versión probada.
+
+El recorrido manual es una alternativa: evaluarlo por separado no sustituye la prueba principal de configuración guiada. Anotá si el asistente trabajó con acceso directo a carpeta, con un ZIP descargable o solo con texto; este último no cuenta como configuración completada.
+
+Antes de convocar participantes, revisar también en carpetas de prueba: bóveda existente con reglas propias, nombre de proyecto ocupado y reanudación tras una configuración parcial. La prueba visual en Obsidian queda para la etapa final del proyecto.

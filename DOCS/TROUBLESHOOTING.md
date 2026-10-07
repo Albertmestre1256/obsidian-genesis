@@ -4,7 +4,13 @@
 → En Mac, usá `Cmd + Shift + .` en Finder. En Windows, el punto no las oculta por sí solo; si tienen el atributo oculto, activá Ver → Mostrar → Elementos ocultos. Para una bóveda nueva alcanza con abrir la carpeta completa.
 
 ## "python no se reconoce como un comando" (o "command not found: python")
-→ Python no está instalado o no está en el PATH. Probá con `python3` o, en Windows, con `py`. Si ninguno funciona, instalá Python desde python.org (en Windows, marcá "Add Python to PATH" durante la instalación). Python hace falta para el validador automático y `instalar.py`. Podés usar revisión manual y copiar solo archivos ausentes siguiendo la [instalación manual](instalacion-manual.md).
+→ Probá con `python3` o, en Windows, con `py`. Si estás usando una IA con acceso a archivos, pedile que continúe con sus herramientas y revisión manual: el kit funciona sin Python. Python solo se necesita para el instalador, creador y revisor automáticos. La [instalación manual](instalacion-manual.md) es una alternativa si elegís hacerlo por tu cuenta.
+
+## La IA vuelve a preguntarme lo que ya respondí
+→ Pedile que relea `00_CORE/configuracion.md` y la ficha de tu proyecto. Si quedó a mitad de camino, debe conservar lo creado y retomar solo lo pendiente. Si ya estaba lista, «sigamos» debe continuar tu proyecto.
+
+## Todavía no tengo fecha, fuentes ni una primera tarea
+→ Podés empezar con el propósito del proyecto. No hace falta inventar datos para rellenar la ficha. La fecha de actualización sí debe ser real; la fecha del objetivo es opcional. La IA puede dejar vacías las secciones sin datos y ayudarte a elegir el próximo paso después.
 
 ---
 

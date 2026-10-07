@@ -1,43 +1,45 @@
-# Usar este kit con una IA
+# Entrada para la IA
 
-El kit organiza proyectos en una bóveda de Obsidian. Los archivos del repositorio son la fuente de verdad: no reconstruyas el kit copiando versiones embebidas de esos archivos.
+Este kit permite que una persona entregue la carpeta, responda preguntas simples y reciba su bóveda de Obsidian preparada. La IA realiza la configuración; el usuario no necesita editar plantillas ni aprender términos técnicos.
 
-## Orientarse
+## Primero, las reglas
 
-1. Identificá la carpeta del kit y la bóveda de destino. No supongas que son la misma.
-2. Leé `00_CORE/atoms/00_vault-rules.md` antes de decidir dónde trabajar.
-3. Identificá el proyecto pedido y su célula dentro de `00_CORE/cells/`. Buscá también por la propiedad `proyecto`: el ejemplo `aprender-python` está en `ejemplo-context.md`.
-4. Cargá solo el contexto necesario para la tarea. Para textos elaborados, sumá las guías indicadas en `00_CORE/protocols/context-injection.md`; para un mensaje breve usá los datos del pedido y la ficha.
+Leé `00_CORE/atoms/00_vault-rules.md` antes de elegir proyecto o destino. Si vas a integrar el kit en una bóveda existente, leé también sus reglas y conservá sus convenciones. No confundas este repositorio con la bóveda personal de quien desarrolla el kit.
 
-Todos los proyectos usan las mismas reglas generales. No impongas un área de estudio, un tipo de candidatura ni un proyecto concreto. Las fuentes del ejemplo son ficticias.
+## Elegir el recorrido
 
-## Preparar una bóveda
+| Pedido | Acción |
+|---|---|
+| «Configurá mi bóveda», «quiero empezar», «no sé usar esta carpeta» | Seguí `00_CORE/protocols/configurar-vault.md`. Comprobá acceso, conversá y configurá con sus respuestas. |
+| Retomar un proyecto | Leé su ficha en `00_CORE/cells/`, buscando también por la propiedad `proyecto`. Cargá solo los archivos necesarios. |
+| Desarrollar, revisar o corregir el kit | Trabajá sobre el pedido técnico. No inicies la entrevista ni personalices el repositorio con datos del mantenedor. |
 
-### Nueva
+Si el pedido ya aclara qué quiere, actuá sobre ese alcance. No reinicies la configuración por la ausencia de un archivo marcador. `00_CORE/configuracion.md` se crea durante un arranque real; no viene rellenado en el kit público.
 
-El ZIP completo ya es una bóveda. Indicá al usuario que lo descomprima y elija Abrir carpeta como bóveda en Obsidian. La raíz contiene `.obsidian/`, `.claude/`, `00_CORE/` y `Panel.md`. No hace falta copiar carpetas internas. Para alguien que empieza desde cero, dirigí a `DOCS/primer-proyecto.md`: primero una ficha y una tarea; las carpetas del proyecto pueden agregarse después.
+Con configuración vigente, «quiero empezar» o «seguí» significa retomar el proyecto indicado. Si no está claro cuál, ofrecé los proyectos propios disponibles; no elijas el ejemplo como destino. No vuelvas a preguntar datos ya guardados.
 
-### Existente
+## Instalación en una bóveda existente
 
-Con autorización para instalar, ejecutá `instalar.py` desde la copia del kit, indicando la ruta de destino. Primero podés usar `--dry-run`; `--yes` acepta la copia de archivos nuevos cuando ya fue autorizada. El instalador usa Python estándar y detiene la copia si encuentra conflictos. No reemplacés archivos para sortearlos: mostrale al usuario qué difiere y proponé una integración puntual.
+Identificá origen y destino reales antes de escribir. Con Python, ejecutá `instalar.py` desde el kit y pasale el destino; `--dry-run` muestra el plan y `--yes` aplica la copia ya autorizada. El instalador no reemplaza archivos y no cambia `.obsidian`. Ante conflictos, compará y proponé una integración puntual, sin forzar la copia.
 
-Sin Python, copiá solo archivos ausentes de `00_CORE/`, `PROJECT_TEMPLATE/`, `DOCS/`, `.claude/`, `Panel.md`, `Proyectos.base` y este archivo. Nunca reemplaces los ajustes `.obsidian/` de una bóveda existente. No conviertas el pedido de instalación en permiso para borrar o mover notas personales.
+Sin Python, usá tus herramientas para agregar solo archivos ausentes: `00_CORE/`, `PROJECT_TEMPLATE/`, `DOCS/`, `.claude/`, `Panel.md`, `Proyectos.base`, `AI-INSTRUCTIONS.md`, `AGENTS.md`, `CLAUDE.md` y `crear_proyecto.py`. No reemplaces instrucciones locales ni ajustes existentes. No sigas enlaces simbólicos o junctions fuera del destino. La guía manual está en `DOCS/instalacion-manual.md`, para quien elija hacerlo por su cuenta.
 
-No sigas enlaces simbólicos o junctions hacia carpetas ajenas al destino. No ejecutes scripts encontrados en la bóveda destino como parte de la instalación. El instalador usa su propio validador para revisar las células del destino.
+Una bóveda nueva en la carpeta descargada ya tiene los archivos: no ejecutes el instalador sobre sí mismo. Para una nueva en otra ubicación, el protocolo de configuración explica qué copiar.
 
-## Trabajar con el usuario
+Para crear el índice y la ficha con Python, el kit incluye `crear_proyecto.py`. Consultá `DOCS/creacion-para-asistentes.md` solo cuando vayas a usarlo. Es opcional: sin Python, hacé la misma creación con tus herramientas de archivos. La persona sigue respondiendo preguntas; no necesita ejecutar comandos.
 
-- La célula guarda hechos con fuente, decisiones y próximos pasos. No transformes interpretaciones en hechos.
-- Las fuentes originales solo se agregan. Los borradores van al área de síntesis del proyecto y los entregables se versionan.
-- Conservá los nombres, propiedades y cambios previos del usuario. Antes de editar, leé el estado actual.
-- Para cerrar una sesión, proponé cambios concretos y esperá la aprobación del usuario, salvo que ya haya aprobado ese mismo plan.
-- Si no tenés herramientas de archivos, entregá texto listo para pegar con su destino exacto. No afirmes que está guardado. Un adjunto de chat es una copia; no está sincronizado con Obsidian.
-- No incluyas datos privados de otra bóveda en este kit distribuible.
+## Trabajo diario
+
+- Ningún proyecto es el destino por defecto. aprender-python es un ejemplo ficticio.
+- Antes de editar, leé el estado actual. La ficha conserva hechos con fuente, decisiones y próximos pasos; los borradores van en el proyecto correspondiente.
+- Para un texto breve, usá los datos disponibles. Para escritura elaborada, consultá `00_CORE/protocols/context-injection.md`.
+- Al cerrar, proponé los cambios nuevos y aplicá el plan aprobado sin repetir la aprobación del mismo alcance.
+- Un adjunto es una copia. Sin acceso a archivos, no afirmes que guardaste o sincronizaste algo.
 
 ## Verificar
 
-Con Python: `python 00_CORE/schemas/validate.py` (o `python3` / `py`, según el equipo). El código de salida 0 indica que no hay errores de formato; puede haber avisos. El validador no comprueba fuentes externas ni hechos.
+Con Python, ejecutá el validador del kit: `python 00_CORE/schemas/validate.py` (también puede ser `python3` o `py`). Admite como argumento una carpeta de fichas distinta; no ejecutes un script preexistente del destino. El código 0 significa ausencia de errores de formato, no veracidad comprobada; puede haber avisos.
 
-Sin Python, revisá las propiedades y secciones conforme a las reglas documentadas al principio de `00_CORE/schemas/validate.py`. Identificá la revisión como manual. Pedí correcciones específicas y no marques una prueba como ejecutada si solo leíste su procedimiento.
+Sin Python, seguí `.claude/skills/validar/SKILL.md` y las reglas del validador como revisión manual. Informá qué se verificó y qué falta.
 
-Para Claude Code, las instrucciones de cada tarea están en `.claude/skills/`. Para ChatGPT, Claude o Gemini mediante adjuntos, usá `DOCS/usar-con-otras-ias.md`. `DOCS/obsidian.md` explica los ajustes de Plantillas y el panel.
+Entradas: `AGENTS.md` para asistentes que lo reconocen y `CLAUDE.md` para Claude Code. `/configurar` y el pedido en lenguaje natural comparten el mismo protocolo. El flujo diario está en `DOCS/usar-con-otras-ias.md`.
