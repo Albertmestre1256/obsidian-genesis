@@ -2,34 +2,15 @@
 level: cognitive-tool
 tipo: narrative-writing
 contexto_aplicable: ["B"]
-descripcion: Redacción narrativa para cartas, ensayos, presentaciones personales y relatos
+descripcion: Relatos, ensayos y cartas personales apoyados en experiencias reales.
 ---
 
-# Redacción Narrativa — Contexto B
+# Redacción narrativa — B
 
-## Principios
-- Historias verdaderas > storytelling fabricado
-- Coherencia narrativa > lista de logros
-- Autenticidad > perfección pulida
-- Vulnerabilidad controlada = fortaleza
+Elegí una idea central y una voz adecuada para quien escribe y quien lee. Usá experiencias confirmadas por la persona o documentadas en las fuentes; no agregues logros, emociones ni episodios que no haya contado.
 
-## Estructura WISH + STAR
-1. **WISH** — ¿Quién lee? ¿Qué dudas tiene? ¿Qué le ofrecés? ¿Cómo lo ayudás?
-2. **Gancho** — Hecho verificable que abre la historia (1-2 líneas)
-3. **STAR** — Situación, Tarea, Acción, Resultado (con números si los hay). Versión corta: **SOS** (situación, obstáculo, solución)
-4. **Reflexión** — Qué aprendiste, cómo cambiaste
-5. **Cierre con acción** — Qué harás, impacto futuro
+Una estructura posible es situación, dificultad, acción y reflexión. Usala cuando sirva a la pieza; no hace falta forzar una historia en cada párrafo ni cerrar siempre con una acción.
 
-## Técnicas Obligatorias
-- **WISH** en apertura
-- **Think-Feel-Do** en desarrollo
-- **Historias verdaderas** apoyadas en los **Hechos clave** de la célula
-- **Intención única** por párrafo
-- **Estructura** gancho → medio (≥80%) → cierre con acción
+Los números y detalles concretos ayudan cuando existen. Conservá la incertidumbre si faltan; una experiencia no necesita métricas para poder contarse.
 
-## Checklist Pre-Entrega
-- [ ] La historia central se apoya en un hecho de **Hechos clave** que tiene fuente
-- [ ] Métricas en STAR (números, no "mucho"/"poco")
-- [ ] Vulnerabilidad real, no performativa
-- [ ] Cierre conecta con misión del proyecto
-- [ ] Límite de palabras respetado (±10%)
+Antes de entregar, revisá coherencia, autenticidad, extensión solicitada y que el texto no atribuya sentimientos o experiencias inventados.

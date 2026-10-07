@@ -2,6 +2,7 @@ filters:
   and:
     - 'file.inFolder("00_CORE/cells")'
     - 'file.ext == "md"'
+    - 'note.ejemplo != true'
     - 'file.name.endsWith("-context")'
 properties:
   file.name:

@@ -1,45 +1,25 @@
 # Entrada para la IA
 
-Este kit permite que una persona entregue la carpeta, responda preguntas simples y reciba su bóveda de Obsidian preparada. La IA realiza la configuración; el usuario no necesita editar plantillas ni aprender términos técnicos.
-
-## Primero, las reglas
-
-Leé `00_CORE/atoms/00_vault-rules.md` antes de elegir proyecto o destino. Si vas a integrar el kit en una bóveda existente, leé también sus reglas y conservá sus convenciones. No confundas este repositorio con la bóveda personal de quien desarrolla el kit.
+Leé primero `00_CORE/atoms/00_vault-rules.md`. Este kit prepara una bóveda mediante preguntas simples; la persona no necesita editar plantillas ni conocer YAML.
 
 ## Elegir el recorrido
 
-| Pedido | Acción |
+| Pedido | Qué leer y hacer |
 |---|---|
-| «Configurá mi bóveda», «quiero empezar», «no sé usar esta carpeta» | Seguí `00_CORE/protocols/configurar-vault.md`. Comprobá acceso, conversá y configurá con sus respuestas. |
-| Retomar un proyecto | Leé su ficha en `00_CORE/cells/`, buscando también por la propiedad `proyecto`. Cargá solo los archivos necesarios. |
-| Desarrollar, revisar o corregir el kit | Trabajá sobre el pedido técnico. No inicies la entrevista ni personalices el repositorio con datos del mantenedor. |
+| Configurar una bóveda nueva o adaptar una existente | Seguí `00_CORE/protocols/configurar-vault.md`; incluye entrevista, integración y verificación. |
+| «Seguí» o «quiero empezar», con configuración vigente | Leé `00_CORE/configuracion.md` y la ficha del proyecto indicado. Retomá lo pendiente; si hay varios proyectos y no está claro cuál, preguntá. |
+| Trabajar en un proyecto | Buscá su ficha por la propiedad `proyecto`. Sumá fuentes o índice solo cuando la tarea los necesite. |
+| Escribir un texto elaborado | Consultá `00_CORE/protocols/context-injection.md` para elegir las guías. |
+| Desarrollar o revisar el kit | Atendé ese pedido; no inicies la entrevista ni personalices el repositorio. |
 
-Si el pedido ya aclara qué quiere, actuá sobre ese alcance. No reinicies la configuración por la ausencia de un archivo marcador. `00_CORE/configuracion.md` se crea durante un arranque real; no viene rellenado en el kit público.
+La ausencia de `00_CORE/configuracion.md` no demuestra que la bóveda esté vacía. Esa nota se crea al configurar, no viene rellenada en el kit. Si la configuración quedó parcial, conservá lo creado y retomá solo lo pendiente. Una bóveda lista no implica que el proyecto esté terminado.
 
-Con configuración vigente, «quiero empezar» o «seguí» significa retomar el proyecto indicado. Si no está claro cuál, ofrecé los proyectos propios disponibles; no elijas el ejemplo como destino. No vuelvas a preguntar datos ya guardados.
+## Herramientas opcionales
 
-## Instalación en una bóveda existente
+- **Integrar en una bóveda existente:** desde el kit leído, ejecutá `python instalar.py "ruta-del-destino" --dry-run`. Revisá el plan y aplicá con `--yes` dentro del alcance autorizado. No reemplaza archivos ni ajustes de `.obsidian`; ante conflictos, compará y proponé una integración puntual. Sin Python, seguí `DOCS/instalacion-manual.md` con tus herramientas de archivos.
+- **Crear índice, ficha y carpetas:** `crear_proyecto.py`; consultá `DOCS/creacion-para-asistentes.md` si lo vas a usar. No completa el Panel ni la nota de configuración.
+- **Revisar fichas:** `python 00_CORE/schemas/validate.py`, opcionalmente con la carpeta de fichas como argumento. Ejecutá el validador del kit leído, no código preexistente de una bóveda ajena. Sin Python, aplicá la revisión manual de `.claude/skills/validar/SKILL.md`.
 
-Identificá origen y destino reales antes de escribir. Con Python, ejecutá `instalar.py` desde el kit y pasale el destino; `--dry-run` muestra el plan y `--yes` aplica la copia ya autorizada. El instalador no reemplaza archivos y no cambia `.obsidian`. Ante conflictos, compará y proponé una integración puntual, sin forzar la copia.
+En una bóveda nueva dentro de la carpeta descargada, los archivos ya están: no ejecutes el instalador sobre sí mismo. Con convenciones propias, respetá las reglas del destino y adaptá los archivos dentro del alcance acordado.
 
-Sin Python, usá tus herramientas para agregar solo archivos ausentes: `00_CORE/`, `PROJECT_TEMPLATE/`, `DOCS/`, `.claude/`, `Panel.md`, `Proyectos.base`, `AI-INSTRUCTIONS.md`, `AGENTS.md`, `CLAUDE.md` y `crear_proyecto.py`. No reemplaces instrucciones locales ni ajustes existentes. No sigas enlaces simbólicos o junctions fuera del destino. La guía manual está en `DOCS/instalacion-manual.md`, para quien elija hacerlo por su cuenta.
-
-Una bóveda nueva en la carpeta descargada ya tiene los archivos: no ejecutes el instalador sobre sí mismo. Para una nueva en otra ubicación, el protocolo de configuración explica qué copiar.
-
-Para crear el índice y la ficha con Python, el kit incluye `crear_proyecto.py`. Consultá `DOCS/creacion-para-asistentes.md` solo cuando vayas a usarlo. Es opcional: sin Python, hacé la misma creación con tus herramientas de archivos. La persona sigue respondiendo preguntas; no necesita ejecutar comandos.
-
-## Trabajo diario
-
-- Ningún proyecto es el destino por defecto. aprender-python es un ejemplo ficticio.
-- Antes de editar, leé el estado actual. La ficha conserva hechos con fuente, decisiones y próximos pasos; los borradores van en el proyecto correspondiente.
-- Para un texto breve, usá los datos disponibles. Para escritura elaborada, consultá `00_CORE/protocols/context-injection.md`.
-- Al cerrar, proponé los cambios nuevos y aplicá el plan aprobado sin repetir la aprobación del mismo alcance.
-- Un adjunto es una copia. Sin acceso a archivos, no afirmes que guardaste o sincronizaste algo.
-
-## Verificar
-
-Con Python, ejecutá el validador del kit: `python 00_CORE/schemas/validate.py` (también puede ser `python3` o `py`). Admite como argumento una carpeta de fichas distinta; no ejecutes un script preexistente del destino. El código 0 significa ausencia de errores de formato, no veracidad comprobada; puede haber avisos.
-
-Sin Python, seguí `.claude/skills/validar/SKILL.md` y las reglas del validador como revisión manual. Informá qué se verificó y qué falta.
-
-Entradas: `AGENTS.md` para asistentes que lo reconocen y `CLAUDE.md` para Claude Code. `/configurar` y el pedido en lenguaje natural comparten el mismo protocolo. El flujo diario está en `DOCS/usar-con-otras-ias.md`.
+`AGENTS.md` y `CLAUDE.md` remiten a esta guía. Claude Code incluye `/configurar` y skills de trabajo diario; `/nuevo-proyecto` y `/cerrar` conservan su invocación manual. Para otros asistentes, usá `DOCS/usar-con-otras-ias.md`.

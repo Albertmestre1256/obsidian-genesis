@@ -41,7 +41,7 @@ Si empezás organizando tareas, podés usar D y cambiarlo más adelante.
 
 Debajo de las propiedades:
 
-- **Hechos clave:** anotá lo que ya sabés y de dónde sale. Una decisión personal puede citarse como `(fuente: mi decisión de hoy)`; un dato externo necesita su documento o referencia. Si no tenés datos todavía, dejá la sección vacía. Quitá el texto de ejemplo de tu copia.
+- **Hechos clave:** anotá lo que ya sabés y de dónde sale. Un dato que aportás puede citarse como `(fuente: mi información de hoy)`; un dato externo necesita su documento o referencia. Guardá las elecciones que hiciste en **Decisiones**. Si no tenés datos todavía, dejá la sección vacía. Quitá el texto de ejemplo de tu copia.
 - **Próximas acciones:** reemplazá la tarea de ejemplo por algo que puedas hacer a continuación. Por ejemplo, `- [ ] Anotar los tres temas que quiero estudiar`.
 - **Decisiones y Preguntas abiertas:** completalas si las necesitás; pueden quedar vacías.
 

@@ -1,37 +1,16 @@
 ---
 level: organ
 tipo: writing-protocol
-descripcion: Protocolo de escritura con IA — Analyze → Plan → Draft → Review → Polish
+descripcion: Preparar, redactar y revisar textos elaborados con el contexto necesario.
 ---
 
-# Protocolo de Escritura con IA
+# Escribir con IA
 
-Usalo para textos que necesitan estructura o revisión detallada. Para un mensaje breve, redactá y revisá directamente con los datos disponibles. Reutilizá lo que el usuario ya explicó; preguntá solo por información que afecte el resultado. Las fases son una guía interna: no hace falta entregar cinco documentos.
+Para mensajes breves, redactá y revisá directamente con los datos disponibles. Usá este recorrido cuando el texto necesite estructura o revisión detallada:
 
-## Fase 1: ANALYZE (Análisis)
-- Leer célula del proyecto + marco de comunicación
-- Identificar: audiencia, objetivo, formato, restricciones
-- Extraer los **Hechos clave** de la célula y respetar las **Decisiones** ya tomadas
-- **Output**: Brief estructurado (lista corta)
+1. **Preparar:** identificá destinatario, objetivo, formato y restricciones a partir del pedido y la ficha. Cargá las guías pertinentes según `00_CORE/protocols/context-injection.md`.
+2. **Acordar la estructura:** proponé un plan corto con las ideas y fuentes necesarias. Esperá la aprobación cuando ese alcance no esté ya acordado; no repitas una aprobación vigente.
+3. **Redactar:** usá la evidencia disponible y señalá los datos que falten. Una inferencia no es un hecho, una intención no es un logro y una sugerencia no es una decisión.
+4. **Revisar:** comprobá afirmaciones, referencias, claridad, formato y extensión solicitada. Entregá el texto con los pendientes que afecten su uso.
 
-## Fase 2: PLAN (Planificación)
-- Seleccionar los **Hechos clave** que sirven para esta pieza
-- Estructurar según marco de comunicación (contexto A/B/C/D)
-- Definir: gancho, medio (≥80%), cierre con acción
-- **Output**: Outline + qué hecho va en cada sección
-
-## Fase 3: DRAFT (Redacción)
-- Escribir siguiendo outline
-- Usar técnicas del contexto correspondiente
-- **Regla**: Cada afirmación importante se respalda en la ficha o en fuentes pertinentes disponibles; no inventar datos para completar la estructura
-- **Output**: Draft completo (Markdown)
-
-## Fase 4: REVIEW (Revisión)
-- Verificar: hechos vs célula, técnicas de contexto, límite de palabras
-- Checklist: WISH, Think-Feel-Do, Intención única, Estructura, Historias verdaderas
-- **Output**: Lista de cambios + draft revisado
-
-## Fase 5: POLISH (Pulido)
-- Aplicar cambios de review
-- Verificar: ortografía, formato y los límites de extensión que pida la tarea
-- **Output**: Final listo para compilar/entregar
+Son pasos internos: no hace falta producir un documento por cada uno. Si se pidió guardar, usá `02_SINTESIS/` del proyecto y conservá versiones anteriores. Un borrador no autoriza enviar ni publicar contenido; la versión final requiere la revisión acordada.

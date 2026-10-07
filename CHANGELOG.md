@@ -2,6 +2,10 @@
 
 ## Sin publicar — candidata a v0.1.0
 
+- Revisión de claridad: entrada única para asistentes, referencias compartidas y guías de escritura proporcionales al pedido.
+- README y Panel más breves; el ejemplo ficticio se consulta separado de proyectos y tareas propios.
+- Eliminada la plantilla YAML que duplicaba la selección de contexto; conservadas las rutas de guías para compatibilidad.
+
 - Creador opcional de proyectos para asistentes: plantillas completas, nombres válidos, detección de coincidencias por propiedad y reanudación sin reemplazar archivos editados.
 - Entrevista sin plazos, hechos ni acciones obligatorios; reanudación basada en la configuración y ficha existentes.
 - Creación inicial y creación de proyectos posteriores usan el mismo criterio para quitar marcadores y conservar datos.

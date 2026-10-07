@@ -32,4 +32,4 @@ Pedí el archivo o dato concreto que falta. No interpretes la ausencia de un adj
 
 Conservá hechos vigentes, decisiones y próximas acciones. Los detalles largos van en notas enlazadas. Proponé archivar lo anterior antes de moverlo; no lo borres para cumplir un tamaño arbitrario.
 
-Como orientación, intentá mantener el arranque por debajo de 3500 tokens y una tarea de escritura por debajo de 5000. Son estimaciones, no razones para omitir evidencia necesaria. Ver `00_CORE/davidkimai-resources/evaluation/token_budgeting.md` si necesitás ajustar el presupuesto.
+Si necesitás ajustar el tamaño del contexto, consultá `00_CORE/davidkimai-resources/evaluation/token_budgeting.md`. La cantidad depende de la tarea y del modelo; no omitas evidencia necesaria para cumplir un tamaño arbitrario.

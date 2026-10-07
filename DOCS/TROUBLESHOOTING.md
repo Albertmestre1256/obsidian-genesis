@@ -1,81 +1,60 @@
 # Solución de problemas
 
-## No veo las carpetas `.claude` ni `.obsidian`
-→ En Mac, usá `Cmd + Shift + .` en Finder. En Windows, el punto no las oculta por sí solo; si tienen el atributo oculto, activá Ver → Mostrar → Elementos ocultos. Para una bóveda nueva alcanza con abrir la carpeta completa.
+Si una IA está configurando tu bóveda, pasale el problema y pedile que revise los archivos: no necesitás corregirlos a mano. Las indicaciones de formato de abajo también sirven para quien elija el recorrido manual.
 
-## "python no se reconoce como un comando" (o "command not found: python")
-→ Probá con `python3` o, en Windows, con `py`. Si estás usando una IA con acceso a archivos, pedile que continúe con sus herramientas y revisión manual: el kit funciona sin Python. Python solo se necesita para el instalador, creador y revisor automáticos. La [instalación manual](instalacion-manual.md) es una alternativa si elegís hacerlo por tu cuenta.
+## La IA no puede guardar en mi carpeta
 
-## La IA vuelve a preguntarme lo que ya respondí
-→ Pedile que relea `00_CORE/configuracion.md` y la ficha de tu proyecto. Si quedó a mitad de camino, debe conservar lo creado y retomar solo lo pendiente. Si ya estaba lista, «sigamos» debe continuar tu proyecto.
+Comprobá que tenga acceso de escritura a la carpeta correcta. Un adjunto no concede ese acceso. Si puede generar archivos, pedile una copia configurada para descargar; si solo responde texto, quedará pendiente guardarlo. Ver [Empezar con una IA](empezar-con-ia.md).
 
-## Todavía no tengo fecha, fuentes ni una primera tarea
-→ Podés empezar con el propósito del proyecto. No hace falta inventar datos para rellenar la ficha. La fecha de actualización sí debe ser real; la fecha del objetivo es opcional. La IA puede dejar vacías las secciones sin datos y ayudarte a elegir el próximo paso después.
+## Vuelve a preguntarme lo que ya respondí
 
----
+Pedile que relea `00_CORE/configuracion.md` y la ficha de tu proyecto. Si la configuración quedó parcial, debe retomar solo lo pendiente. Si estaba lista, «seguí» continúa el proyecto.
 
-## Mensajes del revisor de células (`/validar`)
+## Todavía no tengo fecha, fuentes ni primera tarea
 
-### "Todavía no hay células para revisar"
-→ En `00_CORE/cells/`, duplicá `TEMPLATE_cell.md` y renombrala `<tu-proyecto>-context.md`. El nombre tiene que terminar en `-context.md`.
+Podés comenzar con un objetivo. Las secciones sin datos quedan vacías y sus avisos no bloquean la configuración. La fecha de actualización refleja cuándo cambió la ficha; no es un plazo del proyecto.
 
-### "No encuentro las propiedades"
-→ La célula tiene que empezar con una línea `---`, después las propiedades, y otra línea `---`. Copiá ese comienzo de `TEMPLATE_cell.md`. En Obsidian, las propiedades se ven como un recuadro arriba de la nota.
+## Python no está disponible
 
-### "La línea N de las propiedades no tiene el formato 'nombre: valor'"
-→ Cada propiedad ocupa una línea con el formato `nombre: valor` (el nombre, dos puntos, un espacio y el valor). Lo más fácil es editarlas desde el recuadro de propiedades de Obsidian, no en el texto.
+El kit funciona con herramientas de archivos y revisión manual. Python solo automatiza instalación, creación y validación. Si necesitás usarlo, el comando puede llamarse `python3` o `py` en lugar de `python`.
 
-### Comillas, dos puntos o propiedades vacías
-→ Si un texto contiene dos puntos seguidos de un espacio, encerralo completo entre comillas: `descripcion: "Meta: automatizar planillas"`. Cerrá siempre las comillas. `proyecto` y `descripcion` necesitan texto: `null` y `[]` no son nombres ni descripciones.
+## El instalador informa conflictos o se interrumpió
 
-El revisor admite propiedades en una línea y listas simples. No es un lector de todo YAML: si informa una estructura no admitida, escribí ese valor como texto en una línea. Evitá repetir la misma propiedad.
+Ante conflictos detectados en el plan, no copia nada: hay archivos con el mismo nombre y distinto contenido. Compará ambas versiones; repetir el comando no reemplaza la existente. `--dry-run` muestra el plan.
 
-### "Falta la propiedad 'X'" o "Falta la sección '## X'"
-→ Copiala desde `TEMPLATE_cell.md` a tu célula y completala. Las secciones obligatorias son `## Hechos clave` y `## Próximas acciones`.
+Si se interrumpió durante la copia, releé su registro: puede haber archivos completos agregados. El instalador intenta retirar solo su archivo incompleto y un reintento omite los ya idénticos. Si la copia terminó pero la revisión dio errores, los archivos están agregados: revisá las fichas señaladas.
 
-### "'contexto' vale '...'"
-→ Poné una sola letra: A (técnico), B (narrativo), C (persuasivo) o D (operativo).
+## El creador informa un proyecto existente
 
-### "'actualizado' está vacío" o "tiene que ser una fecha"
-→ Poné la fecha de la última actualización con el formato AAAA-MM-DD, por ejemplo `2026-01-31`. En el recuadro de propiedades de Obsidian podés elegirla en un calendario.
+Puede haber una carpeta ocupada o una ficha con el mismo identificador, aunque el archivo tenga otro nombre. Retomá el proyecto propio o elegí otro identificador. `aprender-python` pertenece al ejemplo ficticio: no adoptes sus datos como propios. Si una creación se interrumpió, conservá los archivos completos y releelos antes de reintentar.
 
-### "La acción '...' tiene que empezar con '- [ ] '"
-→ Cada acción es una tarea: `- [ ] algo pendiente` o `- [x] algo hecho`. Si está en curso, agregá `(en curso)` al final.
+## No aparece el Panel o la fecha automática
 
-### aviso: "El hecho '...' no tiene fuente"
-→ No es un error. Agregá al final del hecho de dónde sale el dato, por ejemplo `(fuente: contrato firmado, 01_FUENTES/contrato.pdf)`. Mientras tanto, tratalo como algo no comprobado.
+Seguí [Plantillas y panel](obsidian.md). En una bóveda existente el instalador conserva los plugins habilitados. Insertá la plantilla solo en una nota vacía; al duplicarla a mano, reemplazá `{{date:YYYY-MM-DD}}` por una fecha real.
 
-### aviso: "La decisión '...' no empieza con una fecha"
-→ Formato: `- 2026-01-31: qué se decidió — porque razón`.
+El ejemplo ficticio se abre desde la ayuda del Panel; está excluido de sus proyectos y tareas. Si todavía no creaste un proyecto propio, esas vistas pueden estar vacías.
 
-### aviso: "Quedan textos [completar: ...] sin reemplazar"
-→ Reemplazá esos textos por tus datos reales.
+## Claude Code no reconoce un comando
 
-### aviso: "La célula ocupa ~N tokens"
-→ Está demasiado larga para darle a la IA. Resumí, o mové lo viejo a la carpeta `_archivo` del proyecto.
+Abrilo en la raíz de la bóveda. Las skills están en `.claude/skills/`; si acabás de agregarlas, reiniciá la sesión. Conservá y compará cualquier comando previo del mismo nombre. Los permisos para leer o escribir dependen de tu configuración; el kit no los concede por sí mismo.
 
----
+## Mensajes del validador
 
-## Comandos e IA
+El validador es la referencia de formato. Con una IA, pedile que explique los mensajes y proponga cambios concretos antes de aplicarlos. Para edición manual:
 
-### Claude Code no reconoce `/empezar` (u otro comando)
-→ Abrí Claude Code en la raíz de la bóveda. Cada comando está en `.claude/skills/nombre/SKILL.md`. Reiniciá esa sesión si acabás de agregar las skills. Si una instalación previa tiene comandos del mismo nombre, revisá esas copias antes de migrar; el instalador no borra archivos antiguos.
+| Mensaje o problema | Qué revisar |
+|---|---|
+| No hay fichas | Creá un proyecto con la IA o seguí la [guía manual](primer-proyecto.md). No es un error de instalación. |
+| No encuentra propiedades | La nota empieza con `---`, propiedades y otro `---`. |
+| Propiedad faltante, repetida o vacía | Compará con `TEMPLATE_cell.md` y conservá una sola versión de cada campo. |
+| Comillas o dos puntos | Usá texto en una línea; por ejemplo, `descripcion: "Meta: ordenar apuntes"`. El lector admite propiedades planas y listas simples, no todo YAML. |
+| Contexto no reconocido | A: técnico; B: narrativo; C: persuasivo; D: operativo. La IA elige según el uso. |
+| Fecha incorrecta | Una fecha real con formato AAAA-MM-DD. |
+| Sección faltante | Deben estar `## Hechos clave` y `## Próximas acciones`, aunque no tengan viñetas todavía. |
+| Acción sin casilla | `- [ ] tarea pendiente` o `- [x] tarea hecha`, con texto. |
+| Hecho sin fuente | Agregá `(fuente: referencia)`; mientras falte, el dato no está comprobado. |
+| Decisión sin fecha | `- AAAA-MM-DD: decisión — motivo`. |
+| Texto de plantilla pendiente | Reemplazá o quitá `[completar: ...]` en tu copia; no inventes datos. |
+| Ficha larga | Resumí o enlazá notas de detalle. Proponé el archivo de información anterior antes de moverla. |
 
-### Claude me pide permiso para modificar archivos
-→ Revisá lo que propone. Los permisos efectivos dependen de tu configuración de Claude Code. La skill validar declara permiso solo para el comando del validador durante su uso; el kit no concede permisos generales de escritura.
-
-### Uso otra IA, no Claude Code
-→ Usá los prompts sin variables de [Usar con otras IAs](usar-con-otras-ias.md). Adjuntá reglas y ficha. Si el chat no puede editar tu carpeta, copiá vos el resultado a Obsidian.
-
-
-## El instalador informa conflictos
-
-No copió nada. Hay archivos con el mismo nombre y distinto contenido. Comparalos antes de decidir una actualización. Conservá tu versión si tiene notas o reglas propias; repetir el instalador no la reemplaza. `--dry-run` permite ver el plan sin escribir.
-
-## El instalador agregó archivos pero la revisión dio errores
-
-Los archivos nuevos están copiados y las notas previas se conservaron. Revisá las células mencionadas por el validador. Si hubo un error de permisos o de disco durante la copia, el registro muestra hasta dónde llegó. El instalador intenta retirar únicamente el archivo incompleto que acababa de crear; si no puede, lo informa. Un reintento omite archivos ya idénticos.
-
-## No aparece el panel o la fecha automática
-
-Seguí [Configurar Obsidian](obsidian.md). Bases requiere Obsidian 1.9.10 o posterior. En una bóveda existente el instalador no cambia los plugins habilitados. Al copiar una plantilla a mano, reemplazá el marcador de fecha por una fecha real.
+Los avisos no son errores. Formato correcto tampoco significa fuentes verificadas ni funcionamiento visual comprobado en Obsidian.

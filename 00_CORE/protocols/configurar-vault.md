@@ -49,14 +49,16 @@ Antes de escribir, mostrale un resumen concreto: carpeta de destino, primer proy
 
 **Bóveda existente:** seguí la instalación conservadora de `AI-INSTRUCTIONS.md`. `instalar.py` no cambia `.obsidian` y se detiene ante conflictos. No fuerces la copia para sortearlos. Si falta Python, hacé vos la comparación y copia de archivos ausentes con tus herramientas. Si los ajustes de Plantillas o Bases difieren, explicá qué función quedará pendiente y proponé un cambio puntual; conservar las notas no requiere habilitar plugins.
 
-Para el primer proyecto:
+### Crear el proyecto
+
+Esta sección también sirve para agregar un proyecto a una bóveda configurada. En ese caso conservá la configuración vigente y no repitas la entrevista ni la instalación.
 
 Con Python y una bóveda que conserva las reglas del kit, podés crear índice, ficha y carpetas con `crear_proyecto.py`, siguiendo `DOCS/creacion-para-asistentes.md`. Releé sus resultados y completá el Panel y la nota de configuración: ese script no declara terminada toda la configuración. Sin Python o con convenciones propias, realizá los pasos con tus herramientas.
 
 1. Derivá un identificador corto de su nombre, sin tildes y con guiones. Verificá que sea un nombre de archivo válido en el sistema; si está reservado o colisiona, proponé una variante. No uses nombres personales o datos que no haya dado.
 2. Creá su carpeta a partir de `PROJECT_TEMPLATE/` y completá el índice con sus respuestas. Creá su ficha desde `00_CORE/cells/TEMPLATE_cell.md`, con el identificador en `proyecto`, contexto, descripción, objetivo y fecha actual. Si el destino ya usa otra organización, integrá en esa estructura acordada.
 3. Quitá los textos de ejemplo de la copia creada. Los hechos llevan su fuente; una intención personal se atribuye al usuario, no se presenta como logro. Dejá vacías las secciones sin datos. Registrá como tarea solo el próximo paso que haya aceptado. Si falta un objetivo indispensable, volvé a la conversación.
-4. Enlazá índice y ficha. Agregá un acceso claro al primer proyecto en el Panel, conservando lo que ya exista. En una copia nueva del kit, reemplazá el aviso de configuración inicial y el cierre sobre creación manual por una bienvenida al proyecto y su próximo paso; dejá las guías como ayuda opcional. En una bóveda existente, adaptá solo el bloque del kit dentro del alcance acordado, sin quitar contenido propio. Mantené aprender-python identificado como ejemplo; no copies sus datos a la ficha personal ni lo borres sin pedido.
+4. Enlazá índice y ficha. Agregá un acceso claro al proyecto en el Panel, conservando lo que ya exista. En una copia nueva del kit, reemplazá el aviso de configuración inicial por una bienvenida al proyecto y su próximo paso; dejá las guías como ayuda opcional. En una bóveda existente, adaptá solo el bloque del kit dentro del alcance acordado, sin quitar contenido propio. Mantené aprender-python identificado como ejemplo; no copies sus datos a la ficha personal ni lo borres sin pedido. Su propiedad `ejemplo: true` lo excluye de las vistas de trabajo del Panel.
 5. Conservá las reglas generales del kit. Las preferencias particulares van en `00_CORE/configuracion.md` (o la nota equivalente acordada para el destino), con fecha, uso previsto, ubicación de la bóveda, enlaces a proyectos y estado `lista` o `parcial`. Si es parcial, enumerá lo completado y el paso o elección pendiente para poder retomar. No cambies el átomo compartido para introducir datos de una persona.
 
 No hacen falta cuentas adicionales, servicios, plugins comunitarios, sincronización ni instalaciones globales para completar este flujo con herramientas de archivos. No publiques ni hagas push de una bóveda personalizada.

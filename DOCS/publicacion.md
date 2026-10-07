@@ -1,20 +1,17 @@
-# Preparar la primera publicación
+# Preparar una publicación
 
-Usá esta lista sobre la versión final del kit:
+Antes de publicar una versión del kit:
 
-- [ ] Revisar el recorrido de primer proyecto y las reglas con lenguaje de principiante.
-- [ ] Probar la configuración guiada y las cinco skills de trabajo diario en Claude Code real.
-- [ ] Ejecutar `python -m pytest -q` y el validador.
-- [ ] Confirmar nombre de repositorio, cuenta y visibilidad con la persona responsable.
-- [ ] Confirmar el contacto previsto con el autor del material de origen.
-- [ ] Revisar archivos y ZIP para excluir notas personales, credenciales y estado local.
-- [ ] En la etapa final de validación, probar Panel, Plantillas y enlaces en Obsidian limpio.
-- [ ] Completar y registrar la prueba con usuarios sobre esa versión final.
-- [ ] Crear primero el repositorio privado, si se mantiene ese plan, y revisar allí el contenido.
-- [ ] Confirmar publicación pública, tag `v0.1.0` y release con ZIP.
+- [ ] Revisar el inicio y las reglas con lenguaje de principiante.
+- [ ] Ejecutar las pruebas automáticas y el validador.
+- [ ] Probar configuración y trabajo diario en Claude Code real.
+- [ ] Probar bóveda existente, nombres ocupados y reanudación parcial.
+- [ ] Completar y registrar la [prueba con usuarios](prueba-con-usuarios.md).
+- [ ] Comprobar al final Panel, Plantillas y enlaces en Obsidian limpio.
+- [ ] Revisar licencia y atribución, nombre del repositorio y visibilidad acordada.
+- [ ] Revisar el ZIP extraído: sin notas personales, credenciales ni estado local.
+- [ ] Publicar el tag y la release únicamente cuando se haya autorizado ese alcance.
 
-El ZIP debe incluir `.claude/`, `.obsidian/` y `.github/`, además de las notas y scripts. Excluir `.git/`, cachés de Python, `.obsidian/workspace*.json` y archivos personales. Extraerlo en una carpeta nueva y volver a ejecutar pruebas antes de subirlo.
+El ZIP incluye `.claude/`, `.obsidian/`, `.github/`, notas y scripts. Excluye `.git/`, cachés, `.obsidian/workspace*.json` y datos personales. Extraelo en una carpeta nueva y verificá el contenido antes de subirlo.
 
-No marcar los casilleros por haber escrito el procedimiento: se completan con resultados reales.
-
-Orden acordado para esta candidata: completar primero el contenido, las reglas y las pruebas automáticas; dejar la prueba visual de Obsidian para el final, antes de publicar.
+Registrá versión, entorno, resultado y limitaciones de cada prueba. No marques una comprobación por haber escrito el procedimiento ni confundas pruebas de archivos con una ejecución nativa o visual.

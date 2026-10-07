@@ -1,32 +1,15 @@
 ---
 disable-model-invocation: true
 name: nuevo-proyecto
-description: Crea un proyecto nuevo (carpetas + célula) haciéndote preguntas simples
+description: Crea las carpetas y la ficha de un proyecto mediante preguntas simples.
 argument-hint: <nombre del proyecto>
 ---
 
-Quiero crear un proyecto nuevo llamado: $ARGUMENTS
+Proyecto solicitado: $ARGUMENTS
 
-Primero leé `00_CORE/atoms/00_vault-rules.md`. Reutilizá las respuestas ya disponibles; preguntá solo lo que falte.
-
-1. Si no te di un nombre, preguntámelo.
-2. Armá un "nombre corto": minúsculas, sin tildes, palabras separadas por guiones. Ejemplo: "Mi Tesis 2026" → `mi-tesis-2026`.
-3. Fijate que no existan ya `00_CORE/cells/<nombre-corto>-context.md` ni una carpeta `<nombre-corto>/` en la raíz del vault. Buscá también ese identificador en la propiedad `proyecto` de las fichas de `00_CORE/cells/`, aplicando el mismo criterio de nombre corto, aunque el archivo tenga otro nombre: por ejemplo, `aprender-python` ya pertenece a `ejemplo-context.md`. Si hay alguna coincidencia por ruta o propiedad, mostrá cuál es y preguntá si retomamos ese proyecto o elegimos otro identificador. No crees una segunda ficha con el mismo identificador.
-   Si la coincidencia es el ejemplo ficticio, proponé otro identificador para el proyecto propio. Conservá el ejemplo y no trates sus datos como personales; solo usalo para practicar si la persona lo elige.
-4. Completá estos datos conmigo en lenguaje simple, agrupando las preguntas que falten:
-   a. ¿De qué se trata el proyecto? (1 a 3 oraciones)
-   b. ¿Qué querés lograr? La fecha del objetivo es opcional; no la exijas si no tiene una.
-   c. ¿Para qué vas a usar estas notas? Inferí el contexto A/B/C/D de su respuesta; no exijas que el usuario conozca esas letras.
-   d. ¿Hay algún dato que ya deba tener en cuenta? Si lo hay, preguntá de dónde sale. No exijas una cantidad mínima de hechos.
-   e. ¿Cuál es el próximo paso concreto?
-Hacé una o dos preguntas por turno, sin repetir lo ya respondido. Antes de crear archivos, mostrá las rutas y los datos reunidos. La solicitud explícita de crear el proyecto autoriza crearlos dentro de ese alcance.
-
-5. Creá índice, ficha y carpetas con las respuestas acordadas. Con Python y las reglas del kit sin cambios, podés usar `crear_proyecto.py` siguiendo `DOCS/creacion-para-asistentes.md`. Si lo usás, no vuelvas a crear a mano esos mismos archivos. Sin esa herramienta, copiá `PROJECT_TEMPLATE/` como `<nombre-corto>/`, completá el índice, cambiá el enlace por el de la ficha y poné la fecha de hoy en `creado`.
-6. Creá `00_CORE/cells/<nombre-corto>-context.md` a partir de `00_CORE/cells/TEMPLATE_cell.md`, con mis respuestas. Respetá su formato: propiedades arriba; hechos como `- hecho (fuente: ...)`; acciones como `- [ ] acción`.
-   - **No inventes hechos.** Si no te di una fuente, dejá `(fuente: )` vacío.
-   - Poné la fecha de hoy en la propiedad `actualizado`.
-   - Borrá los bloques de ayuda de la plantilla (los que están entre `%%`).
-   - Quitá los marcadores de ejemplo. Si no hay hechos o un próximo paso aceptado, dejá vacía esa sección; si falta el objetivo del proyecto, preguntalo. No inventes un plazo ni una acción para silenciar avisos.
-   - Enlazá ficha e índice y agregá un acceso al Panel conservando su contenido.
-7. Si hay Python, corré `python 00_CORE/schemas/validate.py` y corregí los errores de la célula nueva, si los hay. Si no hay Python, seguí la revisión manual de `.claude/skills/validar/SKILL.md` y aclaralo.
-8. Mostrame un resumen corto de lo que creaste y recordame que para trabajar uso: `/empezar <nombre-corto>`
+1. Leé primero `00_CORE/atoms/00_vault-rules.md`. Reutilizá las respuestas disponibles y preguntá solo por nombre, propósito y objetivo que falten, de a una o dos preguntas por turno. El plazo, los hechos y la primera tarea pueden quedar pendientes; una sugerencia no es una tarea aceptada. Inferí el contexto de comunicación.
+2. Derivá un identificador corto válido. Comprobá rutas y coincidencias por la propiedad `proyecto`, aunque la ficha tenga otro nombre. Ante una coincidencia propia, ofrecé retomar o elegir otro identificador. Si es el ejemplo ficticio, conservá sus datos y proponé un identificador distinto para el proyecto personal.
+3. Mostrá destino, objetivo, paso aceptado si lo hay y archivos que vas a crear. La solicitud explícita autoriza ese alcance, sin reemplazar archivos existentes.
+4. Aplicá la sección **Crear el proyecto** de `00_CORE/protocols/configurar-vault.md`, que comparte las mismas plantillas y comprobaciones con la configuración inicial. No reinicies la entrevista de la bóveda ni ejecutes su instalación. Con Python podés usar `crear_proyecto.py`, siguiendo `DOCS/creacion-para-asistentes.md`; si lo usás, no recrees a mano lo que ya produjo.
+5. Releé y verificá los archivos, los enlaces del Panel y el formato de la ficha con el validador del kit. Sin Python, aplicá la revisión manual de `.claude/skills/validar/SKILL.md`. Conservá los datos y ajustes existentes; si hay una nota de configuración, agregá el enlace al proyecto sin rehacerla.
+6. Entregá un acceso a la ficha y el próximo paso elegido o pendiente. Para retomar puede decir «seguí con este proyecto» o usar `/empezar <nombre-corto>`.

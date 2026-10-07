@@ -1,38 +1,16 @@
 ---
 level: resource
 tipo: field-theory
-descripcion: Attractors, Boundaries, Resonance, Residue para gestión de contexto
+descripcion: Modelo conceptual opcional para relacionar y mantener el contexto de un proyecto.
 ---
 
-# Field Theory — Dinámicas de Campo para Context Engineering
+# Un modelo para pensar el contexto
 
-## Conceptos Fundamentales
+Esta adaptación usa cuatro ideas como metáforas para organizar la información. No son parámetros medidos ni requisitos para configurar una bóveda:
 
-### Attractors (Atractores)
-Patrones semánticos estables que atraen contexto relevante.
-- **Identificar**: Clustering semántico de la célula
-- **Reforzar**: Repetición + elaboración en redacción
-- **Ejemplo**: en un proyecto de tesis, "pregunta de investigación", "fuentes primarias", "evidencia verificable"
+- **Atractores:** el objetivo y las preguntas del proyecto ayudan a seleccionar información pertinente.
+- **Límites:** separá proyectos y distinguí evidencia de información todavía no comprobada.
+- **Resonancia:** enlazá ideas y fuentes relacionadas cuando esa conexión ayude a la tarea.
+- **Residuo:** las decisiones guardadas permiten retomar; revisá qué sigue vigente antes de reutilizarlo.
 
-### Boundaries (Límites)
-Filtros que controlan qué entra/sale del contexto.
-- **Permeabilidad**: 0.6-0.8 (deja entrar relevante, filtra ruido)
-- **Gradiente**: Suave (no muro duro)
-- **Ejemplo**: Filtrar "historias sin métricas" en contexto A
-
-### Resonance (Resonancia)
-Interacción entre conceptos que se refuerzan.
-- **Amplificar**: Conexiones explícitas entre conceptos relacionados
-- **Ejemplo**: "objetivo" ↔ "próximas acciones" ↔ "decisiones" (cada una le da sentido a las otras)
-
-### Residue (Residuo)
-Fragmentos que persisten entre sesiones.
-- **Preservar**: Definiciones clave, decisiones, métricas base
-- **Limpiar**: Contexto obsoleto, tareas completadas
-- **Vencimiento sugerido**: 30 días para investigación de fondo, 7 días para el contexto de una tarea puntual
-
-## Aplicación Práctica
-1. **Inicializar campo**: Átomo + Molécula + Célula = attractors base
-2. **Tool cognitivo** = nouveaux attractors específicos de la tarea
-3. **Redactar** = resonar attractors con boundary filtering
-4. **Revisar** = limpiar residue, reforzar attractors clave
+La aplicación práctica del kit está en las reglas y fichas. No hace falta asignar coeficientes, imponer vencimientos automáticos ni cargar este recurso en cada sesión.

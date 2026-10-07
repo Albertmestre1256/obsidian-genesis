@@ -1,5 +1,6 @@
 ---
 tipo: celula
+ejemplo: true
 proyecto: aprender-python
 descripcion: Aprender Python desde cero para automatizar tareas repetitivas del trabajo (planillas y reportes).
 objetivo: Poder escribir por mi cuenta un script que limpie y resuma una planilla, en 3 meses.

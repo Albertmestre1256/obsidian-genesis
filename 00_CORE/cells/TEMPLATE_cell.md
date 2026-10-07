@@ -10,24 +10,9 @@ actualizado: "{{date:YYYY-MM-DD}}"
 # Célula del proyecto
 
 %%
-CÓMO USAR ESTA PLANTILLA
-Elegí UNA de estas formas de crear la ficha:
-- Con Plantillas: creá una nota VACÍA en esta carpeta, con nombre nombre-de-tu-proyecto-context.md. Usá Plantillas → Insertar plantilla y elegí TEMPLATE_cell. La propiedad actualizado se completa con la fecha.
-- A mano: duplicá esta plantilla y renombrá la copia nombre-de-tu-proyecto-context.md. Reemplazá {{date:YYYY-MM-DD}} por la fecha de hoy (AAAA-MM-DD). No uses Insertar plantilla sobre esa copia: duplicaría el contenido.
-
-En ambos casos, el nombre tiene que terminar en -context.md. Completá las propiedades y reemplazá cada [completar: ...].
-Si tenés Python, revisala con: python 00_CORE/schemas/validate.py
-
-Qué va en "contexto" (una sola letra):
-  A = técnico     → informes, código, documentación (precisión y evidencia)
-  B = narrativo   → cartas, ensayos, relatos personales
-  C = persuasivo  → propuestas, pitch, ventas
-  D = operativo   → mails, coordinación, organización del día a día
-
-Regla de oro: acá va solo lo que es VERDAD y está VIGENTE.
-Lo viejo se borra o se mueve a la carpeta _archivo del proyecto.
-Estos bloques de ayuda (los que abren y cierran con dos signos de porcentaje) no se ven en modo lectura; la IA y el validador los ignoran, y podés borrarlos.
-¿Querés ver una célula completa? Abrí ejemplo-context.md
+La IA completa esta ficha con tus respuestas. Para crearla a mano, usá una nota vacía e insertá TEMPLATE_cell una sola vez, o duplicala y reemplazá {{date:YYYY-MM-DD}} por la fecha real.
+El archivo termina en -context.md; proyecto lleva un identificador único. Contexto: A técnico, B narrativo, C persuasivo, D operativo. La guía manual está en DOCS/primer-proyecto.md.
+Quitá los marcadores de ejemplo de tu copia. Las secciones sin datos pueden quedar vacías. Estos comentarios son ayuda y no forman parte del estado del proyecto.
 %%
 
 ## Hechos clave
