@@ -1,6 +1,6 @@
 # Trabajar con una IA
 
-Si todavía no configuraste la bóveda, empezá por el [README principal](../README.md). Esta guía sirve para el trabajo diario con cualquier asistente que pueda leer los archivos que le entregues.
+Si todavía no configuraste la bóveda, empezá por el [README principal](../README.md), con recorridos para [OpenCode](opencode.md) y [ChatGPT](chatgpt.md). Esta guía sirve para el trabajo diario con cualquier asistente que pueda leer los archivos que le entregues.
 
 Con acceso a tu carpeta, la IA puede leer y guardar dentro del alcance acordado. Con adjuntos, trabajará sobre copias: vos actualizás la nota original con los cambios aprobados y entregás esa versión en la siguiente sesión. Adjuntar una nota no la mantiene sincronizada.
 

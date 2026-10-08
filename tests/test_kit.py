@@ -33,6 +33,7 @@ def test_archivos_esenciales():
     for ruta in ["LICENSE", "README.md", "INDICE.md", "actualizar_indice.py", "DOCS/indice-principal.md", "AI-INSTRUCTIONS.md", "AGENTS.md", "CLAUDE.md",
                  "00_CORE/protocols/configurar-vault.md", ".claude/skills/configurar/SKILL.md",
                  "DOCS/empezar-con-ia.md", "DOCS/creacion-para-asistentes.md", "crear_proyecto.py",
+                 ".opencode/commands/configurar.md", "DOCS/opencode.md", "DOCS/chatgpt.md",
                  "00_CORE/atoms/00_vault-rules.md", "00_CORE/cells/TEMPLATE_cell.md",
                  "00_CORE/cells/ejemplo-context.md", "00_CORE/schemas/validate.py",
                  ".claude/settings.json", ".obsidian/app.json", "Panel.md", "Proyectos.base", "instalar.py", ".github/workflows/tests.yml"]:

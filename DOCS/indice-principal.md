@@ -15,7 +15,7 @@ python actualizar_indice.py "ruta-de-la-boveda"
 
 `--comprobar` no escribe: devuelve 0 si está vigente, 1 si necesita actualizarse y 2 si hay un impedimento. Sin ese argumento actualiza únicamente `INDICE.md`. El creador y el instalador lo actualizan al completar sus comandos; tras editar Panel o configuración, la IA vuelve a actualizarlo. Sin Python, mantiene el mismo catálogo con sus herramientas de archivos, comprobando los enlaces y conservando los textos propios.
 
-Se regenera solo lo que está entre `%% vault-index:start %%` y `%% vault-index:end %%`. No edites ese bloque para agregar comentarios: ponelos antes o después. El script conserva esos textos y no agrega información del cuerpo de las notas. Si encuentra un `INDICE.md` previo sin ese bloque, se detiene; la IA debe leerlo y acordar una integración, sin reemplazarlo.
+Se regenera solo lo que está entre `%% vault-index:start %%` y `%% vault-index:end %%`, conservando sus saltos de línea LF o CRLF. No edites ese bloque para agregar comentarios: ponelos antes o después. El script conserva esos textos y no agrega información del cuerpo de las notas. Si encuentra un `INDICE.md` previo sin ese bloque, se detiene; la IA debe leerlo y acordar una integración, sin reemplazarlo.
 
 ## Bóvedas existentes y falta de acceso
 

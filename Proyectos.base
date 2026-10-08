@@ -1,9 +1,10 @@
 filters:
   and:
     - 'file.inFolder("00_CORE/cells")'
-    - 'file.ext == "md"'
+    - 'file.ext.lower() == "md"'
     - 'note.ejemplo != true'
-    - 'file.name.endsWith("-context")'
+    - '["celula", "célula"].contains(note.tipo.toString().trim().lower())'
+    - 'file.name.lower() != "template_cell"'
 properties:
   file.name:
     displayName: Ficha

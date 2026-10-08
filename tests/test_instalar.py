@@ -35,6 +35,8 @@ def test_instala_y_preserva_notas_y_configuracion(tmp_path):
     assert all(despues[ruta] == contenido for ruta, contenido in antes.items())
     assert (vault / ".claude/skills/empezar/SKILL.md").is_file()
     assert (vault / ".claude/skills/configurar/SKILL.md").is_file()
+    for entrada in ('.opencode/commands/configurar.md', 'DOCS/opencode.md', 'DOCS/chatgpt.md'):
+        assert (vault / entrada).read_bytes() == (RAIZ / entrada).read_bytes()
     for entrada in ("AGENTS.md", "CLAUDE.md", "AI-INSTRUCTIONS.md"):
         assert (vault / entrada).read_bytes() == (RAIZ / entrada).read_bytes()
     assert (vault / "00_CORE/protocols/configurar-vault.md").is_file()
@@ -58,6 +60,17 @@ def test_conflicto_no_copia_nada(tmp_path):
     resultado = ejecutar(tmp_path, "--yes")
     assert resultado.returncode == 2
     assert "Panel.md" in resultado.stdout
+    assert foto(tmp_path) == antes
+
+
+def test_comando_opencode_propio_impide_copia_sin_reemplazar(tmp_path):
+    comando = tmp_path / '.opencode/commands/configurar.md'
+    comando.parent.mkdir(parents=True)
+    comando.write_bytes(b'# Mi comando existente\r\n')
+    antes = foto(tmp_path)
+    resultado = ejecutar(tmp_path, '--yes')
+    assert resultado.returncode == 2
+    assert '.opencode/commands/configurar.md' in resultado.stdout
     assert foto(tmp_path) == antes
 
 

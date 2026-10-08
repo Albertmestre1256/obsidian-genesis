@@ -73,7 +73,7 @@ def planificar(destino, datos, origen=RAIZ):
     if not destino.is_dir():
         raise ValueError('La carpeta de bóveda debe existir y tener los archivos del kit.')
     reglas = Path('00_CORE/atoms/00_vault-rules.md')
-    if ruta_real(destino / reglas).read_bytes() != ruta_real(origen / reglas).read_bytes():
+    if ruta_real(destino / reglas).read_text(encoding='utf-8-sig') != ruta_real(origen / reglas).read_text(encoding='utf-8-sig'):
         raise ValueError('La bóveda tiene otras reglas; integrá el proyecto según sus convenciones sin usar este creador.')
     if not isinstance(datos, dict):
         raise ValueError('Los datos deben ser un objeto JSON.')
@@ -133,7 +133,10 @@ def planificar(destino, datos, origen=RAIZ):
     if errores:
         raise ValueError('La ficha propuesta no valida: ' + '; '.join(errores))
     cells = ruta_real(destino / '00_CORE/cells')
-    for actual in cells.glob('*-context.md'):
+    for actual in cells.iterdir():
+        if actual.suffix.lower() == '.md':
+            ruta_real(actual)
+    for actual in revisar.buscar_celulas(cells):
         ruta_real(actual)
         separado = revisar.separar(actual.read_text(encoding='utf-8-sig'))
         if separado is None:

@@ -5,7 +5,7 @@ validate.py — Revisa que tus células de proyecto estén bien armadas.
 Uso (desde la carpeta raíz de tu vault):
     python 00_CORE/schemas/validate.py
 
-Revisa todos los archivos 00_CORE/cells/*-context.md y muestra:
+Revisa las fichas de 00_CORE/cells/, también las renombradas, y muestra:
   ERRORES → hay que arreglarlos (falta una propiedad o una sección,
             valor no permitido, propiedades ilegibles). Mientras haya
             errores, la IA puede recibir contexto roto.
@@ -184,6 +184,32 @@ def separar(texto):
     return None
 
 
+def buscar_celulas(cells_dir):
+    """Reconoce fichas por propiedades; conserva la detección de nombres convencionales rotos."""
+    celulas = []
+    for path in sorted(Path(cells_dir).iterdir()):
+        if path.suffix.lower() != '.md' or path.name.lower() == 'template_cell.md':
+            continue
+        if path.name.lower().endswith('-context.md'):
+            celulas.append(path)
+            continue
+        if not path.is_file():
+            continue
+        partes = separar(path.read_text(encoding='utf-8-sig'))
+        if partes is None:
+            continue
+        for linea in partes[0].splitlines():
+            if re.match(r'^proyecto\s*:', linea):
+                celulas.append(path)
+                break
+            if re.match(r'^tipo\s*:', linea):
+                props, error = leer_propiedades(linea, primera_linea=2)
+                if not error and normalizar(props.get('tipo', '')) == 'celula':
+                    celulas.append(path)
+                    break
+    return celulas
+
+
 def secciones(cuerpo):
     """{'hechos clave': (titulo_original, [contenido de cada viñeta de primer nivel])}"""
     cuerpo = re.sub(r"%%.*?%%", "", cuerpo, flags=re.DOTALL)  # quitar la ayuda
@@ -321,7 +347,7 @@ def main(cells_dir=CELLS_DIR):
         print("Corré este script desde la raíz de tu vault:  python 00_CORE/schemas/validate.py")
         return 1
 
-    celulas = sorted(cells_dir.glob("*-context.md"))
+    celulas = buscar_celulas(cells_dir)
     if not celulas:
         print("Todavía no hay células para revisar.")
         print("Creá una copiando 00_CORE/cells/TEMPLATE_cell.md como nombre-de-tu-proyecto-context.md")

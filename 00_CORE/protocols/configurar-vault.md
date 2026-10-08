@@ -49,7 +49,7 @@ Incluí el documento principal de lectura y su actualización en ese alcance: `I
 
 ## 4. Hacer la configuración
 
-**Nueva en la carpeta descargada:** usá sus archivos, sin ejecutar el instalador sobre sí mismo. **Nueva en otra ubicación:** copiá los archivos del kit a la carpeta nueva, incluidos los directorios `.obsidian` y `.claude`; excluí `.git`, cachés, archivos de sesión `workspace*.json` y datos de pruebas. Detenete ante archivos distintos ya presentes: no es un destino vacío.
+**Nueva en la carpeta descargada:** usá sus archivos, sin ejecutar el instalador sobre sí mismo. **Nueva en otra ubicación:** copiá los archivos del kit a la carpeta nueva, incluidos los directorios `.obsidian`, `.claude` y `.opencode`; excluí `.git`, cachés, archivos de sesión `workspace*.json` y datos de pruebas. Detenete ante archivos distintos ya presentes: no es un destino vacío.
 
 **Bóveda existente:** seguí la instalación conservadora de `AI-INSTRUCTIONS.md`. `instalar.py` no cambia `.obsidian` y se detiene ante conflictos. No fuerces la copia para sortearlos. Si falta Python, hacé vos la comparación y copia de archivos ausentes con tus herramientas. Si los ajustes de Plantillas o Bases difieren, explicá qué función quedará pendiente y proponé un cambio puntual; conservar las notas no requiere habilitar plugins.
 

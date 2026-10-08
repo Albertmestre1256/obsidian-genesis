@@ -1,5 +1,7 @@
 # Darle la carpeta a una IA
 
+Si usás [OpenCode](opencode.md) o [ChatGPT](chatgpt.md), seguí su guía para abrir la carpeta o preparar una copia descargable. El recorrido y las reglas son los mismos.
+
 Descargá y descomprimí el kit. Abrí la carpeta que contiene `README.md` y `AI-INSTRUCTIONS.md` como carpeta de trabajo de un asistente que pueda leer y escribir archivos. Pegá el **mensaje de inicio del [README principal](../README.md)**.
 
 La IA prepara las notas con tus respuestas: qué querés organizar, si tenés notas que conservar y cuál es tu primer objetivo. Podés decir «todavía no sé» o «no tengo fecha». No necesitás elegir carpetas, editar plantillas ni ejecutar comandos.

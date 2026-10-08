@@ -2,6 +2,10 @@
 
 ## Sin publicar — candidata a v0.1.0
 
+- Inicio desde OpenCode con AGENTS.md y /configurar, y guía de ChatGPT con carpeta local, archivos adjuntos e instrucciones de proyecto. Comparten el protocolo de configuración y el índice; el instalador conserva comandos propios de OpenCode.
+- Creador y validador reconocen fichas renombradas por sus propiedades, evitando duplicar proyectos o ignorar sus errores. El creador acepta las mismas reglas con saltos de línea LF o CRLF.
+- Panel y Bases seleccionan las fichas por propiedades, sin exigir el sufijo del nombre; siguen excluyendo plantillas y ejemplos ficticios.
+- Comprobación del índice compatible con saltos de línea LF y CRLF: conserva el formato de Windows y no informa cambios inexistentes tras descargar el repositorio con Git.
 - INDICE.md como primera lectura de la IA: catálogo completo de archivos, proyectos propios y ejemplos separados.
 - Actualizador del índice con conservación de comentarios, comprobación sin escritura e integración en los comandos de instalación y creación.
 - Inicio, configuración, redacción y cierre mantienen el documento principal dentro del alcance de los cambios guardados.

@@ -6,6 +6,17 @@ Descargá el kit, dale la carpeta a una IA con acceso a archivos y respondé sus
 
 Una **bóveda** es una carpeta de notas que abrís con [Obsidian](https://obsidian.md). El kit está en español y sirve para estudio, trabajo o cualquier proyecto personal.
 
+## Elegí tu IA
+
+| Usás | Cómo iniciar |
+|---|---|
+| OpenCode | Abrí la carpeta del kit y escribí `/configurar`. [Guía](DOCS/opencode.md). |
+| ChatGPT | Abrí la carpeta en la app con acceso local o trabajá con una copia adjunta. [Guía](DOCS/chatgpt.md). |
+| Claude Code | Abrí la carpeta del kit y escribí `/configurar`. |
+| Otra IA con herramientas de archivos | Seguí los tres pasos de abajo. |
+
+Todas usan el mismo índice, reglas y protocolo de preguntas. Si tu asistente no muestra `/configurar`, podés pegar el mensaje de inicio de abajo.
+
 ## Empezar en tres pasos
 
 1. **Descargá y descomprimí** el repositorio: Code → Download ZIP, o el ZIP de una versión publicada.
@@ -33,6 +44,8 @@ Decí **«Seguí con [nombre del proyecto]»**. La IA lee las reglas y la ficha 
 Los [pedidos de uso diario](DOCS/usar-con-otras-ias.md) sirven con cualquier IA que lea el contexto. Con adjuntos, usá la ficha vigente y actualizá la nota original con los cambios aprobados: son copias, no archivos sincronizados.
 
 Claude Code incluye `/configurar`, `/empezar`, `/redactar`, `/validar`, `/nuevo-proyecto` y `/cerrar`. Los dos últimos conservan su invocación manual. El acceso y los permisos dependen del asistente.
+
+OpenCode incluye `/configurar` y usa los pedidos de uso diario para continuar. En ChatGPT podés usar esos mismos pedidos y las instrucciones de proyecto de su guía.
 
 ## Dónde está cada cosa
 
@@ -74,7 +87,7 @@ El kit guarda archivos locales y no instala sincronización. La IA puede procesa
 
 ## English
 
-An AI-guided Obsidian starter kit. Unzip it, give the folder to a file-capable assistant and use the setup prompt above. It reads the vault rules first and prepares your project through simple questions. Documentation is in Spanish. Attachments alone cannot grant access to your local folder.
+An AI-guided Obsidian starter kit for OpenCode, ChatGPT, Claude Code, and other file-capable assistants. Use the guide for your assistant and the setup prompt above. It reads the vault index and rules first and prepares your project through simple questions. Documentation is in Spanish. Attachments alone cannot grant access to your local folder.
 
 ## Licencia
 

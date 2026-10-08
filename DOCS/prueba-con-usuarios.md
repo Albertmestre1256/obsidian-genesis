@@ -4,6 +4,8 @@ Esta es una guía para realizar la prueba; no es un registro de resultados.
 
 Invitá a 3–5 personas, al menos dos sin experiencia con Obsidian. Incluí Windows y macOS. Usá una copia del kit con datos ficticios. No les pidas cuentas, notas ni credenciales personales.
 
+Incluí recorridos de [OpenCode](opencode.md) y [ChatGPT](chatgpt.md); anotá si hubo carpeta local o ZIP descargable. En OpenCode usá /configurar o el mensaje del README; en ChatGPT, su guía de acceso. No atribuyas el resultado de un asistente a los demás.
+
 ## Tareas
 
 Entregá el ZIP y el README. Pedí que hagan estas tareas sin explicarles los pasos:

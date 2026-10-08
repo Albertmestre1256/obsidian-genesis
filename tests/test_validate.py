@@ -202,3 +202,24 @@ def test_main_ignora_la_plantilla(validador, tmp_path, ejemplo, plantilla, capsy
 def test_main_con_error_devuelve_1(validador, tmp_path, plantilla):
     (tmp_path / "nuevo-context.md").write_text(plantilla, encoding="utf-8")
     assert validador.main(tmp_path) == 1
+
+
+@pytest.mark.parametrize('nombre', ['Estudio.md', 'ESTUDIO.MD'])
+def test_main_revisa_ficha_renombrada_y_detecta_errores(validador, tmp_path, ejemplo, nombre, capsys):
+    path = tmp_path / nombre
+    path.write_text(ejemplo, encoding='utf-8')
+    assert validador.main(tmp_path) == 0
+    assert nombre in capsys.readouterr().out
+    path.write_text(ejemplo.replace('contexto: D', 'contexto: E'), encoding='utf-8')
+    assert validador.main(tmp_path) == 1
+    assert "'contexto'" in capsys.readouterr().out
+
+
+def test_busqueda_distingue_fichas_de_notas_y_plantilla(validador, tmp_path, ejemplo, plantilla):
+    (tmp_path / 'TEMPLATE_cell.md').write_text(plantilla, encoding='utf-8')
+    (tmp_path / 'README.md').write_text('# Información sobre fichas\n', encoding='utf-8')
+    (tmp_path / 'Estudio.md').write_text(ejemplo, encoding='utf-8')
+    (tmp_path / 'rota-context.md').write_text('# Ficha sin propiedades\n', encoding='utf-8')
+    (tmp_path / 'Ficha incompleta.md').write_text('---\ntipo: celula\n---\n', encoding='utf-8')
+    assert {p.name for p in validador.buscar_celulas(tmp_path)} == {
+        'Estudio.md', 'rota-context.md', 'Ficha incompleta.md'}

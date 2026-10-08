@@ -16,7 +16,7 @@ Elegí un nombre corto, como `mi-primer-proyecto`. Usá minúsculas y guiones en
 
 En el listado de archivos de Obsidian, desplegá `00_CORE` y después `cells`. Creá una nota nueva dentro de `cells` y llamala `mi-primer-proyecto-context`. Obsidian guarda la nota como archivo `.md`; no necesitás escribir esa extensión en el título.
 
-El final `-context` permite que el Panel encuentre tu ficha. Si ese archivo ya existe, abrilo o elegí otro nombre; no reemplaces su contenido.
+El final `-context` es una convención para reconocer la ficha; el Panel la encuentra por su propiedad `tipo: celula`, aunque la renombres. Si ese archivo ya existe, abrilo o elegí otro nombre; no reemplaces su contenido.
 
 ## 3. Insertá la plantilla
 

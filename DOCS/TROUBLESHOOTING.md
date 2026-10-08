@@ -38,6 +38,14 @@ El ejemplo ficticio se abre desde la ayuda del Panel; está excluido de sus proy
 
 Abrilo en la raíz de la bóveda. Las skills están en `.claude/skills/`; si acabás de agregarlas, reiniciá la sesión. Conservá y compará cualquier comando previo del mismo nombre. Los permisos para leer o escribir dependen de tu configuración; el kit no los concede por sí mismo.
 
+## OpenCode no muestra /configurar
+
+Abrí la carpeta que contiene `AGENTS.md` y comprobá que esté `.opencode/commands/configurar.md`. Si acabás de agregarlo, abrí una sesión nueva. Podés iniciar con el mensaje del README; la [guía de OpenCode](opencode.md) usa el mismo protocolo.
+
+## ChatGPT ve los adjuntos pero no mi carpeta
+
+Un Proyecto de ChatGPT con archivos subidos trabaja sobre esas copias. Para guardar en la bóveda local, necesitás adjuntar la carpeta a un proyecto local con herramientas de escritura. También podés pedir una copia descargable si el chat puede generarla. Seguí la [guía de ChatGPT](chatgpt.md) y usá la versión vigente de tus notas al retomar.
+
 ## Mensajes del validador
 
 El validador es la referencia de formato. Con una IA, pedile que explique los mensajes y proponga cambios concretos antes de aplicarlos. Para edición manual:

@@ -26,4 +26,4 @@ Al configurar, guardá primero las respuestas acordadas con estado parcial y act
 
 En una bóveda nueva dentro de la carpeta descargada, los archivos ya están: no ejecutes el instalador sobre sí mismo. Con convenciones propias, respetá las reglas del destino y adaptá los archivos dentro del alcance acordado.
 
-`AGENTS.md` y `CLAUDE.md` remiten a esta guía. Claude Code incluye `/configurar` y skills de trabajo diario; `/nuevo-proyecto` y `/cerrar` conservan su invocación manual. Para otros asistentes, usá `DOCS/usar-con-otras-ias.md`.
+`AGENTS.md` y `CLAUDE.md` remiten a esta guía. OpenCode incluye `/configurar` en `.opencode/commands/` y usa este mismo protocolo; consultá `DOCS/opencode.md` para su acceso. ChatGPT sigue `DOCS/chatgpt.md`, con carpeta local o copia descargable según sus herramientas. Claude Code incluye `/configurar` y skills de trabajo diario; `/nuevo-proyecto` y `/cerrar` conservan su invocación manual. Los pedidos comunes están en `DOCS/usar-con-otras-ias.md`.

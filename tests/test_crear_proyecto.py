@@ -106,6 +106,27 @@ def test_colision_por_propiedad_en_archivo_con_otro_nombre(vault, datos):
     assert foto(vault) == before
 
 
+@pytest.mark.parametrize('nombre', ['Estudio.md', 'ESTUDIO.MD'])
+def test_ficha_renombrada_sin_sufijo_no_duplica_proyecto(vault, datos, nombre):
+    crear.aplicar(crear.planificar(vault, datos), [])
+    original = vault / '00_CORE/cells/preparar-dos-materias-context.md'
+    original.rename(original.with_name(nombre))
+    before = foto(vault)
+    with pytest.raises(ValueError, match='ya tiene ficha'):
+        crear.planificar(vault, datos)
+    assert foto(vault) == before
+
+
+@pytest.mark.parametrize('newline', [b'\n', b'\r\n'], ids=['LF', 'CRLF'])
+def test_mismas_reglas_con_otro_salto_de_linea_no_bloquean(vault, datos, newline):
+    path = vault / '00_CORE/atoms/00_vault-rules.md'
+    path.write_bytes(path.read_bytes().replace(b'\r\n', b'\n').replace(b'\n', newline))
+    before = foto(vault)
+    plan = crear.planificar(vault, datos)
+    assert plan['id'] == 'preparar-dos-materias'
+    assert foto(vault) == before
+
+
 def test_carpeta_ocupada_no_modifica(vault, datos):
     folder = vault / 'preparar-dos-materias'
     folder.mkdir()

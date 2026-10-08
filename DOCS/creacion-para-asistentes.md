@@ -28,7 +28,7 @@ python crear_proyecto.py --destino "ruta-de-la-boveda" --datos "ruta-del-json-te
 
 Revisá el JSON de salida y aplicá quitando `--dry-run` dentro del alcance ya acordado. No vuelvas a pedir permiso para cada archivo del mismo plan.
 
-El creador comprueba propiedades, nombre reservado, rutas y coincidencias por `proyecto`. Conserva archivos diferentes, rechaza enlaces o junctions y se detiene si las reglas del destino difieren de las del kit: en ese caso integrá según las convenciones acordadas con tus herramientas, sin forzar el script. Repetir exactamente los datos permite retomar una copia interrumpida y omite archivos idénticos; si alguien editó la ficha, retomá su versión vigente en lugar de recrearla.
+El creador comprueba propiedades, nombre reservado, rutas y coincidencias por `proyecto`, también en fichas renombradas. Conserva archivos diferentes, rechaza enlaces o junctions y se detiene si el contenido de las reglas del destino difiere del kit; los saltos de línea LF/CRLF no cuentan como diferencias. Ante reglas propias, integrá según las convenciones acordadas con tus herramientas, sin forzar el script. Repetir exactamente los datos permite retomar una copia interrumpida y omite archivos idénticos; si alguien editó la ficha, retomá su versión vigente en lugar de recrearla.
 
 La salida distingue archivos creados, archivos ya iguales, avisos e impedimentos. El comando actualiza `INDICE.md` después de crear el proyecto y conserva los comentarios fuera de su bloque automático. Un índice previo incompatible lo bloquea antes de crear archivos; si la actualización falla después, informa estado parcial y conserva los archivos completos. Releelos antes de reintentar.
 

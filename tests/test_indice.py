@@ -57,6 +57,16 @@ def test_propiedad_renombrada_ejemplo_y_duplicados(tmp_path):
     assert 'identificadores repetidos' in indice.bloque(indice.catalogo(tmp_path))
 
 
+@pytest.mark.parametrize('tipo', ['célula', ' CELULA '])
+def test_indice_reconoce_tipo_admitido_en_ficha_renombrada(tmp_path, tipo):
+    guardar(tmp_path, '00_CORE/cells/Estudio.md',
+            '---\ntipo: ' + json.dumps(tipo, ensure_ascii=False) + '\nproyecto: estudiar\n---\n')
+    indice.actualizar(tmp_path)
+    text = (tmp_path / 'INDICE.md').read_text(encoding='utf-8')
+    own = text.split('## Proyectos propios\n', 1)[1].split('## Ejemplos ficticios', 1)[0]
+    assert 'estudiar' in own and 'Estudio.md' in own
+
+
 def test_comprobar_no_escribe_y_actualizar_es_idempotente(tmp_path):
     guardar(tmp_path, 'nota.md', '# Mi nota\n')
     assert run(tmp_path, '--comprobar').returncode == 1
@@ -86,6 +96,37 @@ def test_conserva_comentarios_fuera_del_bloque(tmp_path):
     assert after.endswith(suffix) and 'nueva.md' in after
 
 
+@pytest.mark.parametrize('newline', [b'\n', b'\r\n'], ids=['LF', 'CRLF'])
+def test_frescura_y_actualizacion_conservan_saltos_y_comentarios(tmp_path, newline):
+    indice.actualizar(tmp_path)
+    path = tmp_path / 'INDICE.md'
+    prefix = b'# Comentario personal\r\n\n'
+    suffix = b'\n## Conservar literalmente\r\n'
+    original = path.read_bytes().replace(b'\n', newline)
+    before = prefix + original + suffix
+    path.write_bytes(before)
+    assert run(tmp_path, '--comprobar').returncode == 0
+    assert path.read_bytes() == before
+
+    guardar(tmp_path, 'nueva.md', '# Nueva nota\n')
+    assert run(tmp_path, '--comprobar').returncode == 1
+    assert path.read_bytes() == before
+    assert run(tmp_path).returncode == 0
+    after = path.read_bytes()
+    start, end = indice.INICIO.encode('utf-8'), indice.FIN.encode('utf-8')
+    assert after.split(start)[0] == before.split(start)[0]
+    assert after.split(end)[1] == before.split(end)[1]
+    block = after.split(start)[1].split(end)[0]
+    assert b'nueva.md' in block
+    if newline == b'\r\n':
+        assert b'\n' not in block.replace(b'\r\n', b'')
+    else:
+        assert b'\r' not in block
+    assert run(tmp_path, '--comprobar').returncode == 0
+    assert run(tmp_path).returncode == 0
+    assert path.read_bytes() == after
+
+
 @pytest.mark.parametrize('text', ['# Índice propio\n', indice.FIN + '\n' + indice.INICIO,
                                        indice.INICIO + '\n' + indice.FIN + '\n' + indice.FIN])
 def test_indice_incompatible_no_se_reemplaza(tmp_path, text):
@@ -111,6 +152,19 @@ def test_excluye_secretos_caches_y_sesiones_sin_leerlos(tmp_path, monkeypatch):
     monkeypatch.setattr(Path, 'open', guarded)
     records = indice.catalogo(tmp_path)
     assert {r['ruta'] for r in records} == set(included) | {'INDICE.md'}
+
+
+def test_catalogo_incluye_opencode_y_omite_dependencias(tmp_path):
+    guardar(tmp_path, '.opencode/commands/configurar.md',
+            '---\ndescription: Iniciar con preguntas.\n---\n')
+    guardar(tmp_path, '.opencode/node_modules/interno.md', '# No catalogar\n')
+    records = indice.catalogo(tmp_path)
+    assert {r['ruta'] for r in records} == {'.opencode/commands/configurar.md', 'INDICE.md'}
+    command = next(r for r in records if r['ruta'].endswith('configurar.md'))
+    assert command['grupo'] == 'Integración OpenCode'
+    indice.actualizar(tmp_path)
+    assert '.opencode/commands/configurar.md' in (tmp_path / 'INDICE.md').read_text(encoding='utf-8')
+    assert indice.actualizar(tmp_path, comprobar=True)['estado'] == 'vigente'
 
 
 def test_textos_de_notas_no_rompen_bloque_automatico(tmp_path):

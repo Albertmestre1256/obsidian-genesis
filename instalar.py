@@ -9,7 +9,7 @@ import stat
 import sys
 
 RAIZ = Path(__file__).resolve().parent
-CARPETAS = ("00_CORE", "PROJECT_TEMPLATE", "DOCS", ".claude")
+CARPETAS = ("00_CORE", "PROJECT_TEMPLATE", "DOCS", ".claude", ".opencode")
 ARCHIVOS = ("Panel.md", "Proyectos.base", "AI-INSTRUCTIONS.md", "AGENTS.md", "CLAUDE.md", "crear_proyecto.py", "actualizar_indice.py")
 IGNORAR = {"__pycache__", ".pytest_cache", ".DS_Store", "Thumbs.db"}
 

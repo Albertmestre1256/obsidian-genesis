@@ -12,7 +12,7 @@ Podés agregar presentación y comentarios antes o después del bloque automáti
 
 ## Panorama
 
-- Archivos catalogados: 65. Proyectos propios identificados: 0. Ejemplos ficticios: 1.
+- Archivos catalogados: 68. Proyectos propios identificados: 0. Ejemplos ficticios: 1.
 - Configuración: todavía no existe una nota de configuración del kit.
 - El estado detallado y las tareas se leen en cada ficha; este catálogo no los reemplaza.
 
@@ -42,11 +42,13 @@ Cada fila enlaza un archivo. Las carpetas se representan mediante sus archivos; 
 
 | Archivo | Qué contiene |
 |---|---|
+| [DOCS/chatgpt.md](DOCS/chatgpt.md) | Empezar con ChatGPT |
 | [DOCS/creacion-para-asistentes.md](DOCS/creacion-para-asistentes.md) | Crear los archivos de un proyecto |
 | [DOCS/empezar-con-ia.md](DOCS/empezar-con-ia.md) | Darle la carpeta a una IA |
 | [DOCS/indice-principal.md](DOCS/indice-principal.md) | Mantener el índice principal |
 | [DOCS/instalacion-manual.md](DOCS/instalacion-manual.md) | Agregar el kit a una bóveda sin Python |
 | [DOCS/obsidian.md](DOCS/obsidian.md) | Plantillas y panel |
+| [DOCS/opencode.md](DOCS/opencode.md) | Empezar con OpenCode |
 | [DOCS/primer-proyecto.md](DOCS/primer-proyecto.md) | Tu primer proyecto a mano |
 | [DOCS/prueba-con-usuarios.md](DOCS/prueba-con-usuarios.md) | Prueba del kit con personas nuevas |
 | [DOCS/publicacion.md](DOCS/publicacion.md) | Preparar una publicación |
@@ -121,6 +123,12 @@ Cada fila enlaza un archivo. Las carpetas se representan mediante sus archivos; 
 | [.claude/skills/validar/SKILL.md](.claude/skills/validar/SKILL.md) | Revisa las células de proyecto y explica en simple cualquier problema |
 | [.claude/skills/vault-manager/SKILL.md](.claude/skills/vault-manager/SKILL.md) | Orienta la configuración y el trabajo diario de una bóveda de Obsidian con este kit. No usar para desarrollar o revisar el propio kit. |
 
+### Integración OpenCode
+
+| Archivo | Qué contiene |
+|---|---|
+| [.opencode/commands/configurar.md](.opencode/commands/configurar.md) | Configura una bóveda de Obsidian con preguntas simples o retoma una configuración parcial. |
+
 ### Plantilla de carpetas
 
 | Archivo | Qué contiene |
@@ -162,7 +170,7 @@ Cada fila enlaza un archivo. Las carpetas se representan mediante sus archivos; 
 
 ## Alcance del catálogo
 
-Incluye notas, fuentes, adjuntos, guías y herramientas, además de .claude, .obsidian y .github cuando existen. No lee el cuerpo completo de las notas ni los archivos de ajustes para elaborar descripciones.
+Incluye notas, fuentes, adjuntos, guías y herramientas, además de .claude, .opencode, .obsidian y .github cuando existen. No lee el cuerpo completo de las notas ni los archivos de ajustes para elaborar descripciones.
 
 Excluye Git, papelera, registro interno del MCP, cachés, dependencias, sesiones workspace de Obsidian, otros archivos ocultos y nombres habituales de credenciales o claves. No sigue enlaces ni junctions; si los encuentra en el material a catalogar, informa el impedimento y conserva el índice anterior.
 
