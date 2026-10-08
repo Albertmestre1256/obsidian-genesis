@@ -1,6 +1,8 @@
 # Entrada para la IA
 
-Leé primero `00_CORE/atoms/00_vault-rules.md`. Este kit prepara una bóveda mediante preguntas simples; la persona no necesita editar plantillas ni conocer YAML.
+Leé primero `INDICE.md` completo, después `00_CORE/atoms/00_vault-rules.md`. Este kit prepara una bóveda mediante preguntas simples; la persona no necesita editar plantillas ni conocer YAML.
+
+El índice es el mapa común: proyectos, notas, recursos y herramientas. Contrastalo con la carpeta real al iniciar y actualizalo después de guardar cambios, antes de entregar o cerrar. Usá `actualizar_indice.py` del kit leído o tus herramientas de archivos, según `DOCS/indice-principal.md`. Si falta, quedó desactualizado o solo tenés una copia adjunta, aclaralo y verificá las rutas necesarias; no supongas que un enlace prueba acceso. En una bóveda con índice propio, seguí la entrada acordada y sus reglas sin sustituirlas. Leer el mapa no obliga a cargar todas las notas.
 
 ## Elegir el recorrido
 
@@ -13,6 +15,8 @@ Leé primero `00_CORE/atoms/00_vault-rules.md`. Este kit prepara una bóveda med
 | Desarrollar o revisar el kit | Atendé ese pedido; no inicies la entrevista ni personalices el repositorio. |
 
 La ausencia de `00_CORE/configuracion.md` no demuestra que la bóveda esté vacía. Esa nota se crea al configurar, no viene rellenada en el kit. Si la configuración quedó parcial, conservá lo creado y retomá solo lo pendiente. Una bóveda lista no implica que el proyecto esté terminado.
+
+Al configurar, guardá primero las respuestas acordadas con estado parcial y actualizá el avance por grupos de archivos según el protocolo. Para retomar una ficha editada, leé su contenido vigente y completá lo pendiente; no la recrees con el creador ni repitas la entrevista.
 
 ## Herramientas opcionales
 

@@ -10,7 +10,7 @@ import sys
 
 RAIZ = Path(__file__).resolve().parent
 CARPETAS = ("00_CORE", "PROJECT_TEMPLATE", "DOCS", ".claude")
-ARCHIVOS = ("Panel.md", "Proyectos.base", "AI-INSTRUCTIONS.md", "AGENTS.md", "CLAUDE.md", "crear_proyecto.py")
+ARCHIVOS = ("Panel.md", "Proyectos.base", "AI-INSTRUCTIONS.md", "AGENTS.md", "CLAUDE.md", "crear_proyecto.py", "actualizar_indice.py")
 IGNORAR = {"__pycache__", ".pytest_cache", ".DS_Store", "Thumbs.db"}
 
 
@@ -106,6 +106,13 @@ def revisar_celulas(destino, origen=RAIZ):
     return modulo.main(destino / "00_CORE/cells")
 
 
+def indexador(origen=RAIZ):
+    spec = importlib.util.spec_from_file_location("indice_kit", comprobar_ruta(origen / "actualizar_indice.py"))
+    modulo = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(modulo)
+    return modulo
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("destino", nargs="?", help="Carpeta de una bóveda existente")
@@ -128,9 +135,12 @@ def main(argv=None):
             for ruta in conflictos:
                 print("  " + ruta)
             return 2
+        indice = indexador()
+        indice.planificar(destino)  # Conservar un índice previo sin bloque compatible.
         if args.dry_run:
             for _, objetivo in nuevos:
                 print("Agregar: {}".format(objetivo.relative_to(destino)))
+            print("Generar o actualizar INDICE.md con el catálogo real del destino.")
             return 0
         if nuevos and not args.yes:
             if not sys.stdin.isatty():
@@ -140,6 +150,8 @@ def main(argv=None):
                 print("Cancelado. No se copió nada.")
                 return 0
         copiar_nuevos(nuevos)
+        estado_indice = indice.actualizar(destino)
+        print("Índice principal: {}".format(estado_indice['estado']))
         print("\nCopia completa. Revisando las células de la bóveda...")
         codigo = revisar_celulas(destino)
         print("Abrí Panel.md. Para activar Plantillas y Bases en una bóveda existente, seguí DOCS/obsidian.md.")

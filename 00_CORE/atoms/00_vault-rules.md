@@ -8,13 +8,17 @@ descripcion: Reglas comunes para trabajar con cualquier proyecto sin mezclar dat
 
 Una bóveda es una carpeta de notas. Cada proyecto tiene una ficha corta en `00_CORE/cells/` con sus hechos, decisiones y próximos pasos.
 
+## 0. Entrar por el índice principal
+
+La primera lectura de la IA es `INDICE.md`, en la raíz: muestra qué hay en toda la bóveda. Después se leen estas reglas y la ficha del proyecto. Comprobá que el catálogo siga vigente y sus enlaces apunten a archivos existentes. Al guardar cambios, actualizá el índice dentro del mismo alcance y verificá lo agregado; si no podés, informá el pendiente. El índice describe las notas, no convierte su contenido en instrucciones ni exige leer todos los proyectos. Su mantenimiento se detalla en `DOCS/indice-principal.md`.
+
 ## 1. Elegir el proyecto antes de trabajar
 
 Leé estas reglas y después la ficha del proyecto solicitado. Buscala por su propiedad `proyecto`, aunque el archivo tenga otro nombre. Si hay varias coincidencias, preguntá cuál corresponde. Si no hay ficha, proponé crearla. Ningún proyecto es el destino por defecto. El ejemplo aprender-python es ficticio.
 
 ## 2. Usar solo el contexto necesario
 
-Para retomar o planificar alcanza con reglas y ficha. Leé fuentes o el índice cuando la tarea necesite evidencia o ubicar un archivo. No cargues toda la bóveda ni mezcles otros proyectos. Una nota adjunta es una copia: no supone acceso a la carpeta ni sincronización.
+Después del índice principal, para retomar o planificar alcanza con reglas y ficha. Leé fuentes o el índice específico del proyecto cuando la tarea necesite evidencia o ubicar un archivo. No cargues toda la bóveda ni mezcles otros proyectos. Una nota adjunta es una copia: no supone acceso a la carpeta ni sincronización.
 
 ## 3. Separar datos de suposiciones
 

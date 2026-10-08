@@ -12,11 +12,13 @@ Una **bóveda** es una carpeta de notas que abrís con [Obsidian](https://obsidi
 2. **Abrí la carpeta en un asistente que pueda leer y escribir archivos.** Elegí la que contiene este README y `AI-INSTRUCTIONS.md`.
 3. **Pegá este mensaje y respondé sus preguntas:**
 
-   > Quiero que configures mi bóveda de Obsidian con este kit. Leé primero `00_CORE/atoms/00_vault-rules.md` y después `AI-INSTRUCTIONS.md`. No conozco Obsidian: guiame con preguntas simples, de a una o dos por vez, y encargate de los archivos según mis respuestas. Antes de escribir, explicame en qué carpeta vas a guardar todo y qué vas a crear. Si no tenés acceso para hacerlo, decímelo.
+   > Quiero que configures mi bóveda de Obsidian con este kit. Leé primero `INDICE.md`, después `00_CORE/atoms/00_vault-rules.md` y `AI-INSTRUCTIONS.md`. No conozco Obsidian: guiame con preguntas simples, de a una o dos por vez, y encargate de los archivos según mis respuestas. Antes de escribir, explicame en qué carpeta vas a guardar todo y qué vas a crear. Mantené el índice principal actualizado. Si no tenés acceso para hacerlo, decímelo.
 
 La IA pregunta qué querés organizar, si empezás de cero o tenés notas que conservar y cuál es el objetivo del primer proyecto. Podés responder «todavía no sé» o «no tengo fecha»; la primera tarea puede elegirse después.
 
 **Al terminar recibís:** la carpeta preparada, una ficha con el estado del proyecto, un Panel para acceder a ella y la explicación para abrir la bóveda en Obsidian. La IA verifica los archivos; el funcionamiento visual se comprueba en Obsidian.
+
+Si todavía no tenés Obsidian, podés preparar la carpeta igual. Después instalalo desde [obsidian.md](https://obsidian.md), elegí abrir una carpeta como bóveda, seleccioná la carpeta preparada y abrí `Panel.md`.
 
 ## Si usás adjuntos o ya tenés una bóveda
 
@@ -36,6 +38,7 @@ Claude Code incluye `/configurar`, `/empezar`, `/redactar`, `/validar`, `/nuevo-
 
 | Lugar | Uso |
 |---|---|
+| `INDICE.md` | Primera lectura de la IA: catálogo completo de la bóveda, proyectos y recursos |
 | `Panel.md` | Acceso a proyectos propios y tareas pendientes |
 | `00_CORE/atoms/` | Reglas compartidas |
 | `00_CORE/cells/` | Una ficha por proyecto: objetivo, hechos, decisiones y acciones |
@@ -45,6 +48,8 @@ Claude Code incluye `/configurar`, `/empezar`, `/redactar`, `/validar`, `/nuevo-
 | `DOCS/` | Ayuda opcional y guías de uso |
 
 La ficha también se llama **célula** en los archivos. El ejemplo `aprender-python` es ficticio: podés consultarlo desde la ayuda del Panel, separado de tus proyectos. Tus datos y tareas se completan con tus respuestas; las secciones sin información pueden quedar vacías.
+
+La IA empieza por el [índice principal](INDICE.md) para saber qué hay, lee las reglas y elige las notas necesarias para el proyecto. Mantiene el catálogo al guardar cambios; vos no tenés que editarlo. [Cómo se mantiene](DOCS/indice-principal.md).
 
 ## Ayuda opcional
 

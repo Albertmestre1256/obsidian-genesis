@@ -3,7 +3,7 @@ name: vault-manager
 description: Orienta la configuración y el trabajo diario de una bóveda de Obsidian con este kit. No usar para desarrollar o revisar el propio kit.
 ---
 
-Leé primero `00_CORE/atoms/00_vault-rules.md` y después `AI-INSTRUCTIONS.md` para elegir el recorrido. La ficha de cada proyecto está en `00_CORE/cells/` y se identifica por su propiedad `proyecto`.
+Leé primero `INDICE.md` y después `00_CORE/atoms/00_vault-rules.md` y después `AI-INSTRUCTIONS.md` para elegir el recorrido. La ficha de cada proyecto está en `00_CORE/cells/` y se identifica por su propiedad `proyecto`.
 
 | Pedido | Referencia |
 |---|---|

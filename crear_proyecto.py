@@ -61,6 +61,13 @@ def validador(origen):
     return modulo
 
 
+def indexador(origen=RAIZ):
+    spec = importlib.util.spec_from_file_location('indice_kit', ruta_real(origen / 'actualizar_indice.py'))
+    modulo = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(modulo)
+    return modulo
+
+
 def planificar(destino, datos, origen=RAIZ):
     origen, destino = ruta_real(origen), ruta_real(destino)
     if not destino.is_dir():
@@ -191,13 +198,18 @@ def main(argv=None):
     try:
         datos = json.loads(Path(args.datos).read_text(encoding='utf-8-sig'))
         plan = planificar(Path(args.destino), datos)
+        indice = indexador()
+        indice.planificar(plan['destino'])  # Comprobar compatibilidad sin escribir.
+        resultado_indice = {'estado': 'pendiente-de-aplicar', 'modificado': False}
         if not args.dry_run:
             intento_aplicar = True
             aplicar(plan, creados)
+            resultado_indice = indice.actualizar(plan['destino'])
         print(json.dumps({'estado': 'plan' if args.dry_run else 'archivos-creados',
                           'id': plan['id'], 'ficha': plan['ficha'], 'creados': creados,
                           'por_crear': list(plan['nuevos']) if args.dry_run else [],
                           'ya_iguales': plan['iguales'], 'avisos': plan['avisos'],
+                          'indice_principal': resultado_indice,
                           'pendiente': 'Enlazar el Panel y verificar la configuración completa.'}, ensure_ascii=False))
         return 0
     except (OSError, ValueError, KeyboardInterrupt) as error:

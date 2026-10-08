@@ -7,6 +7,8 @@ creado:
 
 # [completar: Nombre del proyecto]
 
+> **Mapa de la bóveda:** [[INDICE|Índice principal]].
+
 > **Reglas de la bóveda:** [[00_vault-rules]]
 > **Célula del proyecto:** [[completar-nombre-corto-context]]
 

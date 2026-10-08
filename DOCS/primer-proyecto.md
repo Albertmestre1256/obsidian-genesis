@@ -68,3 +68,5 @@ La carpeta del proyecto va al lado de `00_CORE/`. Guardá originales en `01_FUEN
 Seguí con [los pedidos para trabajar con una IA](usar-con-otras-ias.md) cuando necesites redactar o guardar avances. Las configuraciones avanzadas son opcionales.
 
 Referencia del comando y la fecha automática: [Plantillas de Obsidian](https://obsidian.md/help/plugins/templates). Esta guía aún está pendiente de la prueba visual y con principiantes.
+
+Al crear la ficha o agregar material, pedile a la IA que actualice `INDICE.md`; si trabajás a mano, mantené sus enlaces según la [guía del índice](indice-principal.md).

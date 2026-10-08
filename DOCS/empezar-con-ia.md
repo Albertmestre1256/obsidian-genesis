@@ -6,6 +6,10 @@ La IA prepara las notas con tus respuestas: qué querés organizar, si tenés no
 
 Antes de escribir debe mostrarte dónde trabajará y qué creará. Al terminar, debe entregar el acceso a tu proyecto, comprobar los archivos y explicar cómo abrir esa carpeta en Obsidian.
 
+Si no sabés qué primera tarea elegir, decí «preparalo sin tarea por ahora». Si el asistente vuelve a pedir datos que ya diste, señalalo; debe usar tus respuestas y preguntar solo lo que falta.
+
+No necesitás tener Obsidian instalado para preparar la carpeta con la IA. Para abrirla después, instalalo desde [obsidian.md](https://obsidian.md), elegí abrir una carpeta como bóveda y seleccioná la carpeta preparada. Abrí `Panel.md`: ahí tenés el acceso a tu proyecto.
+
 ## Si ya tenés notas
 
 Dale acceso también a tu bóveda y señalá que esa es la carpeta de destino. La IA lee sus reglas y conserva tus notas y ajustes. Si hay archivos incompatibles, debe explicar qué integración propone antes de cambiarlos.
@@ -19,3 +23,5 @@ Subir un ZIP no concede acceso a tu computadora. Si el chat puede leerlo y gener
 Si interrumpiste el inicio, decí «seguí con la configuración». Si ya está lista, decí «seguí con [proyecto]». La IA debe revisar lo guardado y continuar; no volver a preguntar todo. Los pedidos del [uso diario](usar-con-otras-ias.md) sirven para avanzar, redactar o guardar el cierre.
 
 `AGENTS.md` y `CLAUDE.md` remiten a `AI-INSTRUCTIONS.md`. En Claude Code también podés usar `/configurar`. Estas instrucciones orientan al asistente; el acceso efectivo depende de las herramientas y permisos que tenga.
+
+La entrada permanente de la IA es `INDICE.md`: primero lee qué hay en la bóveda, después las reglas y el proyecto. Al terminar de guardar, debe mantener ese catálogo actualizado.

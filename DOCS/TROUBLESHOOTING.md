@@ -58,3 +58,7 @@ El validador es la referencia de formato. Con una IA, pedile que explique los me
 | Ficha larga | Resumí o enlazá notas de detalle. Proponé el archivo de información anterior antes de moverla. |
 
 Los avisos no son errores. Formato correcto tampoco significa fuentes verificadas ni funcionamiento visual comprobado en Obsidian.
+
+## La IA no encuentra una nota nueva
+
+Pedile que lea `INDICE.md`, contraste el catálogo con la carpeta real y lo actualice según [la guía del índice](indice-principal.md). Si hay un índice propio incompatible o falta escritura, debe explicar el pendiente y conservar tus notas. Un adjunto antiguo no demuestra que esa nota no exista.

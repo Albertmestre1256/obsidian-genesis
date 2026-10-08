@@ -7,7 +7,7 @@ argument-hint: <nombre-del-proyecto>
 
 Cerramos la sesión del proyecto: $ARGUMENTS
 
-Primero leé `00_CORE/atoms/00_vault-rules.md`.
+Primero leé `INDICE.md` y después `00_CORE/atoms/00_vault-rules.md`.
 
 1. Leé la célula `00_CORE/cells/$ARGUMENTS-context.md`.
    Si ese archivo no existe, buscá una coincidencia única por la propiedad `proyecto`; el ejemplo aprender-python está en `00_CORE/cells/ejemplo-context.md`.
@@ -21,3 +21,5 @@ Primero leé `00_CORE/atoms/00_vault-rules.md`.
 4. Aplicá solo lo aprobado respetando el formato de la célula (hechos con `(fuente: ...)`, decisiones que empiezan con la fecha, tareas con `- [ ]` o `- [x]`), poné la fecha de hoy en la propiedad `actualizado` y corré `python 00_CORE/schemas/validate.py`.
 
 Si no hay Python, hacé la revisión manual indicada en `.claude/skills/validar/SKILL.md` y aclaralo.
+
+Al guardar archivos, actualizá y verificá el índice principal dentro del mismo alcance, según `DOCS/indice-principal.md`. Si no podés, informá ese pendiente.

@@ -7,7 +7,7 @@ allowed-tools:
 description: Revisa las células de proyecto y explica en simple cualquier problema
 ---
 
-Primero leé `00_CORE/atoms/00_vault-rules.md`.
+Primero leé `INDICE.md` y después `00_CORE/atoms/00_vault-rules.md`.
 
 1. Corré `python 00_CORE/schemas/validate.py`. Si el comando no está disponible, probá con `python3` y, en Windows, con `py`. Un resultado con errores de las fichas no significa que falte Python: informá esos errores.
    - **Si no hay Python**, leé las reglas y las funciones de lectura y validación de `00_CORE/schemas/validate.py`; son la fuente de verdad. Revisá cada `00_CORE/cells/*-context.md` sin ejecutar el script. Usá este resumen para orientarte:

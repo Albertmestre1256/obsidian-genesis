@@ -16,7 +16,7 @@ def test_rutas_citadas_existen():
     rotas = []
     patron = re.compile(r"((?:00_CORE|PROJECT_TEMPLATE|DOCS)/[A-Za-z0-9_./ÁÉÍÓÚáéíóúñ -]*[A-Za-z0-9_/])")
     for archivo in TEXTOS:
-        for ruta in patron.findall(archivo.read_text(encoding="utf-8")):
+        for ruta in patron.findall(unquote(archivo.read_text(encoding="utf-8"))):
             ruta = ruta.rstrip("/.")
             if ruta in RUTAS_GENERADAS:
                 assert not (RAIZ / ruta).exists(), "No distribuir una configuración personal"
@@ -30,7 +30,7 @@ def test_rutas_citadas_existen():
 
 
 def test_archivos_esenciales():
-    for ruta in ["LICENSE", "README.md", "AI-INSTRUCTIONS.md", "AGENTS.md", "CLAUDE.md",
+    for ruta in ["LICENSE", "README.md", "INDICE.md", "actualizar_indice.py", "DOCS/indice-principal.md", "AI-INSTRUCTIONS.md", "AGENTS.md", "CLAUDE.md",
                  "00_CORE/protocols/configurar-vault.md", ".claude/skills/configurar/SKILL.md",
                  "DOCS/empezar-con-ia.md", "DOCS/creacion-para-asistentes.md", "crear_proyecto.py",
                  "00_CORE/atoms/00_vault-rules.md", "00_CORE/cells/TEMPLATE_cell.md",

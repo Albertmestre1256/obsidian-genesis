@@ -2,6 +2,14 @@
 
 ## Sin publicar — candidata a v0.1.0
 
+- INDICE.md como primera lectura de la IA: catálogo completo de archivos, proyectos propios y ejemplos separados.
+- Actualizador del índice con conservación de comentarios, comprobación sin escritura e integración en los comandos de instalación y creación.
+- Inicio, configuración, redacción y cierre mantienen el documento principal dentro del alcance de los cambios guardados.
+
+- Configuración parcial guardada antes de crear el primer proyecto, con avance por grupos de archivos y reanudación desde fichas editadas.
+- Inicio sin tarea elegida, nombres derivados de las respuestas y entrega de ZIP con referencias portables, sin rutas temporales del asistente.
+- Instrucciones para quien todavía no instaló Obsidian y criterios para ensayos virtuales previos a las pruebas con personas.
+
 - Revisión de claridad: entrada única para asistentes, referencias compartidas y guías de escritura proporcionales al pedido.
 - README y Panel más breves; el ejemplo ficticio se consulta separado de proyectos y tareas propios.
 - Eliminada la plantilla YAML que duplicaba la selección de contexto; conservadas las rutas de guías para compatibilidad.

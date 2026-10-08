@@ -6,7 +6,7 @@ descripcion: Elegir el contexto mínimo según la tarea y ampliar solo cuando ha
 
 # Qué darle a la IA
 
-Leé `00_CORE/atoms/00_vault-rules.md` y la ficha del proyecto en `00_CORE/cells/`. Buscala por su propiedad `proyecto`; el ejemplo aprender-python está en `ejemplo-context.md`.
+Leé primero `INDICE.md`, después `00_CORE/atoms/00_vault-rules.md` y la ficha del proyecto en `00_CORE/cells/`. Buscala por su propiedad `proyecto`; el ejemplo aprender-python está en `ejemplo-context.md`. El índice principal se lee en cada inicio; el índice específico de un proyecto se carga cuando la tarea lo necesita.
 
 | Tarea | Qué sumar |
 |---|---|

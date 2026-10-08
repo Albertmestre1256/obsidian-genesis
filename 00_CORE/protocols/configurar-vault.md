@@ -10,13 +10,13 @@ Usá este recorrido cuando alguien entregue la carpeta del kit y pida empezar o 
 
 ## 1. Leer reglas y comprobar el punto de partida
 
-Leé primero `00_CORE/atoms/00_vault-rules.md` del kit. Identificá qué carpeta podés leer y qué herramientas de escritura tenés. Un ZIP adjunto, un enlace a GitHub o la mera presencia de archivos no prueban acceso a la carpeta del usuario.
+Leé primero `INDICE.md` del kit y después `00_CORE/atoms/00_vault-rules.md`. Identificá qué carpeta podés leer y qué herramientas de escritura tenés. Un ZIP adjunto, un enlace a GitHub o la mera presencia de archivos no prueban acceso a la carpeta del usuario.
 
 Revisá si hay una configuración previa en `00_CORE/configuracion.md` y fichas propias. Esa nota se crea durante la configuración; no viene rellenada en el kit. Si existe, verificá las rutas y retomá lo pendiente. Su ausencia no demuestra que una bóveda esté vacía. El ejemplo aprender-python no es un proyecto del usuario.
 
 Si la configuración está lista y el pedido es retomar, seguí la ficha del proyecto. Si la configuración es parcial, usá lo que ya está guardado y preguntá solo por la elección que falta. No repitas la entrevista ni rehagas archivos que la persona editó.
 
-Si el destino es una bóveda existente, leé sus reglas antes de decidir dónde escribir. Conservá sus convenciones y configuración. Si chocan con las del kit, explicá la diferencia y proponé una integración puntual, sin reemplazarlas automáticamente.
+Si el destino es una bóveda existente, leé su índice principal y sus reglas antes de decidir dónde escribir. Si aún no tiene un índice, revisá la estructura y proponé integrarlo en el alcance. Conservá sus convenciones y configuración. Si chocan con las del kit, explicá la diferencia y proponé una integración puntual, sin reemplazarlas automáticamente.
 
 ## 2. Conversar, de a poco
 
@@ -28,6 +28,8 @@ Empezá con estas preguntas solo si sus respuestas no están disponibles:
 - ¿Empezamos de cero o ya tenés notas en Obsidian que querés conservar?
 
 Después preguntá por el primer proyecto: qué quiere lograr y cuál sería un próximo paso útil. Si no sabe, ofrecé dos ejemplos relacionados con su idea; presentalos como propuestas. Una fecha es opcional. No exijas datos o fuentes que todavía no tiene.
+
+Si ya dijo qué quiere organizar y qué quiere lograr, derivá de ahí el nombre y la descripción: no los preguntes como campos adicionales. Si no sabe elegir una tarea, ofrecé preparar la bóveda sin tarea inicial y continuá cuando el objetivo esté acordado. Si tampoco hay un objetivo claro, proponé dos opciones sencillas y esperá su elección; no inventes un propósito para terminar el recorrido.
 
 Si todavía no eligió una primera tarea, podés preparar el proyecto con el objetivo acordado y dejar vacías sus acciones. Explicá que elegirá el primer paso después; no conviertas una sugerencia tuya en tarea aceptada. Los avisos por hechos o acciones vacíos no obligan a inventarlos ni a prolongar la entrevista.
 
@@ -43,11 +45,21 @@ Si la coincidencia corresponde al ejemplo ficticio del kit, proponé otro identi
 
 Antes de escribir, mostrale un resumen concreto: carpeta de destino, primer proyecto, objetivo, próximo paso y archivos que vas a crear o modificar. Si todavía hay elecciones sin resolver, preguntá por ellas. El pedido explícito de configurar, con destino y alcance ya acordados, autoriza crear lo propuesto; no pidas nuevamente permiso para cada archivo. Una reestructuración de notas existentes requiere autorización específica para esos cambios.
 
+Incluí el documento principal de lectura y su actualización en ese alcance: `INDICE.md` en una bóveda nueva, o la entrada acordada en una existente. No sustituyas un índice previo propio sin haber acordado la integración.
+
 ## 4. Hacer la configuración
 
 **Nueva en la carpeta descargada:** usá sus archivos, sin ejecutar el instalador sobre sí mismo. **Nueva en otra ubicación:** copiá los archivos del kit a la carpeta nueva, incluidos los directorios `.obsidian` y `.claude`; excluí `.git`, cachés, archivos de sesión `workspace*.json` y datos de pruebas. Detenete ante archivos distintos ya presentes: no es un destino vacío.
 
 **Bóveda existente:** seguí la instalación conservadora de `AI-INSTRUCTIONS.md`. `instalar.py` no cambia `.obsidian` y se detiene ante conflictos. No fuerces la copia para sortearlos. Si falta Python, hacé vos la comparación y copia de archivos ausentes con tus herramientas. Si los ajustes de Plantillas o Bases difieren, explicá qué función quedará pendiente y proponé un cambio puntual; conservar las notas no requiere habilitar plugins.
+
+### Guardar el punto de partida
+
+Después de acordar destino y alcance, y antes de crear el primer proyecto, guardá las respuestas en `00_CORE/configuracion.md` (o su equivalente acordado). Hacelo cuando la carpeta de destino esté disponible y las reglas ya se hayan leído o integrado. Si esa nota existe, releela y actualizá solo lo nuevo, sin sustituir las preferencias ni el estado de otros proyectos. No crees esta nota en el kit de origen al preparar otra bóveda.
+
+Dejá el estado `parcial` hasta verificar los archivos. Incluí fecha, uso, destino, nombre e identificador del proyecto acordado, objetivo, tarea aceptada o «sin elegir», archivos ya creados y lo pendiente. Distinguí un enlace previsto de uno que ya existe; no entregues un enlace previsto como acceso listo. Actualizá este avance después de cada grupo de archivos completado, para que una interrupción permita retomar sin repetir las preguntas.
+
+Conservá enlaces relativos a la bóveda. En un ZIP descargable identificá su carpeta raíz y aclarale a la persona que elegirá dónde descomprimirla; no guardes la ruta temporal del asistente como ubicación de su bóveda. La verificación visual tiene su propio estado, separado de `lista`.
 
 ### Crear el proyecto
 
@@ -61,6 +73,10 @@ Con Python y una bóveda que conserva las reglas del kit, podés crear índice, 
 4. Enlazá índice y ficha. Agregá un acceso claro al proyecto en el Panel, conservando lo que ya exista. En una copia nueva del kit, reemplazá el aviso de configuración inicial por una bienvenida al proyecto y su próximo paso; dejá las guías como ayuda opcional. En una bóveda existente, adaptá solo el bloque del kit dentro del alcance acordado, sin quitar contenido propio. Mantené aprender-python identificado como ejemplo; no copies sus datos a la ficha personal ni lo borres sin pedido. Su propiedad `ejemplo: true` lo excluye de las vistas de trabajo del Panel.
 5. Conservá las reglas generales del kit. Las preferencias particulares van en `00_CORE/configuracion.md` (o la nota equivalente acordada para el destino), con fecha, uso previsto, ubicación de la bóveda, enlaces a proyectos y estado `lista` o `parcial`. Si es parcial, enumerá lo completado y el paso o elección pendiente para poder retomar. No cambies el átomo compartido para introducir datos de una persona.
 
+Si la ficha ya fue creada o editada y falta únicamente Panel o configuración, completá esos pendientes con la ficha vigente. No vuelvas a ejecutar el creador como forma de «retomar»: los controles del script protegen las fichas diferentes y no reemplazan la lectura del estado actual. Una segunda ficha exige otro proyecto acordado, no otro nombre para sortear el bloqueo.
+
+Después de completar o retomar esos archivos, actualizá el índice principal según `DOCS/indice-principal.md`. Debe incluir las notas reales del destino, la configuración y el nuevo proyecto, conservando el resto del catálogo y separando el ejemplo ficticio. El catálogo copiado del kit no alcanza para una bóveda personalizada.
+
 No hacen falta cuentas adicionales, servicios, plugins comunitarios, sincronización ni instalaciones globales para completar este flujo con herramientas de archivos. No publiques ni hagas push de una bóveda personalizada.
 
 ## 5. Verificar y entregar
@@ -69,7 +85,9 @@ Releé los archivos creados: sin duplicados ni marcadores de plantilla pendiente
 
 En la nota de configuración, marcá `lista` solo si comprobaste la creación e integración de los archivos acordados. Si algo falló, registrá `parcial`, lo completado y el impedimento, sin atribuir cambios no realizados. Al reintentar, releé los archivos: no reinicies la entrevista ni dupliques el proyecto. Separá verificación de archivos de verificación visual: no digas que abriste Obsidian si no lo hiciste.
 
-Mostrá la ruta de la bóveda y un enlace a la ficha. Explicá cómo abrir la carpeta como bóveda en Obsidian y ofrecé empezar la primera tarea ahí mismo: «Ya preparé tu proyecto. ¿Empezamos con [paso acordado]?». No cierres con una lista de operaciones técnicas para que el usuario termine la configuración que vos podías hacer.
+La comprobación incluye que el índice principal esté actualizado y enlace la ficha, el índice del proyecto y los demás archivos creados. Si cambiás la descripción o la estructura al terminar, actualizalo nuevamente antes de entregar.
+
+Mostrá la ruta de la bóveda y un enlace a la ficha. Explicá cómo abrir esa carpeta como bóveda en Obsidian y entrar al Panel. Si todavía no tiene Obsidian, indicá que debe instalarlo desde `https://obsidian.md`; no presupongas que ya está instalado. Ofrecé empezar la tarea aceptada ahí mismo; si no hay tarea, ofrecé elegir el primer paso. No cierres con una lista de operaciones técnicas para que el usuario termine la configuración que vos podías hacer.
 
 ## Si no podés escribir en la carpeta
 

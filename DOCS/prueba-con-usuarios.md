@@ -39,3 +39,11 @@ El plan de publicación exige que **4 de 5 personas** completen las cinco tareas
 El recorrido manual es una alternativa: evaluarlo por separado no sustituye la prueba principal de configuración guiada. Anotá si el asistente trabajó con acceso directo a carpeta, con un ZIP descargable o solo con texto; este último no cuenta como configuración completada.
 
 Antes de convocar participantes, revisar también en carpetas de prueba: bóveda existente con reglas propias, nombre de proyecto ocupado y reanudación tras una configuración parcial. La prueba visual en Obsidian queda para la etapa final del proyecto.
+
+## Ensayos virtuales previos
+
+Simulá las respuestas de personas sin experiencia y verificá los archivos en carpetas desechables. Incluí: idea amplia sin tarea ni fecha, pedido que ya da todos los datos, interrupción antes de crear archivos, ficha editada antes de retomar, reglas propias, nombre del ejemplo ocupado, ZIP que se descomprime en otra ubicación, falta de escritura, creación sin Python y elección entre varios proyectos al retomar.
+
+Registrá el diálogo, qué preguntas faltaban de verdad, cuántos turnos hubo, qué archivos quedaron y si el resultado fue listo, parcial o impedido. No inventes tiempos de uso ni porcentajes de éxito de personas a partir de estos ensayos. Una salida por falta de acceso es correcta si lo explica, conserva los originales y no declara lista una bóveda que no pudo guardar. Una prueba por script acredita archivos; la conversación simulada por el evaluador acredita la revisión del recorrido, no el comportamiento independiente de otra IA.
+
+Comprobá también que el primer proyecto, la configuración y cualquier nota añadida figuren en `INDICE.md`, que la IA lo lea antes de las reglas y que la actualización conserve comentarios personales y no convierta el ejemplo en proyecto propio.
