@@ -3,6 +3,10 @@ level: organ
 tipo: writing-protocol
 descripcion: Preparar, redactar y revisar textos elaborados con el contexto necesario.
 ---
+> [!info] Índice de esta nota (líneas)
+> - Líneas 1–5: Propiedades
+> - Líneas 6–9: Este índice
+> - Líneas 11–20: Escribir con IA
 
 # Escribir con IA
 

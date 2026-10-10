@@ -7,6 +7,7 @@ import re
 import shutil
 import subprocess
 import sys
+import tempfile
 from urllib.parse import unquote
 
 import pytest
@@ -92,7 +93,8 @@ def test_conserva_comentarios_fuera_del_bloque(tmp_path):
     guardar(tmp_path, 'nueva.md', '# Nueva nota\n')
     indice.actualizar(tmp_path)
     after = path.read_text(encoding='utf-8')
-    assert after.startswith(prefix + original.split(indice.INICIO)[0])
+    lines = indice.lineador()
+    assert lines.sin_indice(after).startswith(lines.sin_indice(prefix + original, reubicar=True).split(indice.INICIO)[0])
     assert after.endswith(suffix) and 'nueva.md' in after
 
 
@@ -105,7 +107,7 @@ def test_frescura_y_actualizacion_conservan_saltos_y_comentarios(tmp_path, newli
     original = path.read_bytes().replace(b'\n', newline)
     before = prefix + original + suffix
     path.write_bytes(before)
-    assert run(tmp_path, '--comprobar').returncode == 0
+    assert run(tmp_path, '--comprobar').returncode == 1  # Reubicar y recalcular el índice de líneas.
     assert path.read_bytes() == before
 
     guardar(tmp_path, 'nueva.md', '# Nueva nota\n')
@@ -114,7 +116,9 @@ def test_frescura_y_actualizacion_conservan_saltos_y_comentarios(tmp_path, newli
     assert run(tmp_path).returncode == 0
     after = path.read_bytes()
     start, end = indice.INICIO.encode('utf-8'), indice.FIN.encode('utf-8')
-    assert after.split(start)[0] == before.split(start)[0]
+    lines = indice.lineador()
+    without = lambda raw: lines.sin_indice(raw.decode('utf-8'), reubicar=True).encode('utf-8')
+    assert without(after).split(start)[0] == without(before).split(start)[0]
     assert after.split(end)[1] == before.split(end)[1]
     block = after.split(start)[1].split(end)[0]
     assert b'nueva.md' in block
@@ -241,7 +245,7 @@ def test_creador_no_escribe_con_indice_incompatible(tmp_path):
 
 
 def test_fallo_primera_escritura_retira_solo_archivo_incompleto(tmp_path, monkeypatch):
-    original = Path.open
+    original = tempfile.NamedTemporaryFile
     class Interrupted:
         def __init__(self, stream):
             self.stream = stream
@@ -251,14 +255,15 @@ def test_fallo_primera_escritura_retira_solo_archivo_incompleto(tmp_path, monkey
             self.stream.close()
         def fileno(self):
             return self.stream.fileno()
+        def __getattr__(self, name):
+            return getattr(self.stream, name)
         def write(self, data):
             self.stream.write(data[:16])
             raise OSError('Interrupción ficticia durante la escritura.')
-    def patched(path, mode='r', *args, **kwargs):
-        stream = original(path, mode, *args, **kwargs)
-        return Interrupted(stream) if path.name == 'INDICE.md' and mode == 'xb' else stream
+    def patched(*args, **kwargs):
+        return Interrupted(original(*args, **kwargs))
     with monkeypatch.context() as patch:
-        patch.setattr(Path, 'open', patched)
+        patch.setattr(tempfile, 'NamedTemporaryFile', patched)
         with pytest.raises(OSError):
             indice.actualizar(tmp_path)
     assert not (tmp_path / 'INDICE.md').exists()
@@ -283,3 +288,45 @@ def test_cambio_ajeno_antes_del_reemplazo_se_conserva(tmp_path, monkeypatch):
 
 def test_indice_distribuido_coincide_con_archivos_del_kit():
     assert indice.actualizar(ROOT, comprobar=True)['estado'] == 'vigente'
+
+
+def test_checkout_de_claude_no_duplica_proyectos_en_indice(tmp_path):
+    guardar(tmp_path, '.claude/worktrees/otra-copia/00_CORE/cells/otro.md',
+            '---\ntipo: celula\nproyecto: otro\n---\n')
+    guardar(tmp_path, '.claude/skills/configurar/SKILL.md', '# Configurar\n')
+    guardar(tmp_path, 'investigacion/worktrees/nota.md', '# Nota propia\n')
+    records = indice.catalogo(tmp_path)
+    paths = {r['ruta'] for r in records}
+    assert '.claude/skills/configurar/SKILL.md' in paths
+    assert 'investigacion/worktrees/nota.md' in paths
+    assert not any(p.startswith('.claude/worktrees/') for p in paths)
+    assert 'otro' not in indice.bloque(records).split('## Ejemplos ficticios')[0]
+
+
+def test_etiquetas_distinguen_archivos_repetidos_y_conservan_destinos(tmp_path):
+    paths = ['proyecto/a/README.md', 'proyecto/b/README.md',
+             'proyecto/x/a/SKILL.md', 'proyecto/y/a/SKILL.md',
+             'proyecto/Nota.md', 'proyecto/sub/nota.md', 'proyecto/Plan [final].md']
+    for path in paths:
+        guardar(tmp_path, path, '# Nota\n')
+    records = indice.catalogo(tmp_path)
+    labels = indice.etiquetas(records)
+    assert labels['proyecto/a/README.md'] == 'a/README.md'
+    assert labels['proyecto/b/README.md'] == 'b/README.md'
+    assert labels['proyecto/x/a/SKILL.md'] == 'x/a/SKILL.md'
+    assert labels['proyecto/y/a/SKILL.md'] == 'y/a/SKILL.md'
+    assert labels['proyecto/Nota.md'] == 'proyecto/Nota.md'
+    assert labels['proyecto/sub/nota.md'] == 'sub/nota.md'
+    indice.actualizar(tmp_path)
+    text = (tmp_path / 'INDICE.md').read_text(encoding='utf-8')
+    assert {unquote(p) for p in re.findall(r'\]\(([^)]+)\)', text)} == set(paths) | {'INDICE.md'}
+    assert indice.actualizar(tmp_path, comprobar=True)['estado'] == 'vigente'
+
+
+def test_indice_del_proyecto_normaliza_tipo_como_la_ficha(tmp_path):
+    guardar(tmp_path, '00_CORE/cells/Estudio.md', '---\ntipo: Célula\nproyecto: estudio\n---\n')
+    guardar(tmp_path, 'Estudio/Entrada.md', '---\ntipo: " ÍNDICE-PROYECTO "\nproyecto: estudio\n---\n')
+    text = indice.bloque(indice.catalogo(tmp_path))
+    own = text.split('## Proyectos propios\n', 1)[1].split('## Ejemplos ficticios', 1)[0]
+    assert 'Estudio/Entrada.md' in own
+    assert 'Sin índice identificado' not in own

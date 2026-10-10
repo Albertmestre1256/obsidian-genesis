@@ -54,6 +54,23 @@ def test_reinstalar_es_idempotente(tmp_path):
     assert foto(tmp_path) == antes
 
 
+def test_no_instala_checkouts_anidados_de_claude(tmp_path):
+    import shutil
+    origen = tmp_path / 'kit'
+    shutil.copytree(RAIZ, origen, ignore=shutil.ignore_patterns('.git', '__pycache__', '.pytest_cache', 'worktrees'))
+    checkout = origen / '.claude/worktrees/otra-copia/nota-privada.md'
+    checkout.parent.mkdir(parents=True)
+    checkout.write_text('Material de otro checkout', encoding='utf-8')
+    legitima = origen / '00_CORE/worktrees/nota.md'
+    legitima.parent.mkdir()
+    legitima.write_text('Nota propia', encoding='utf-8')
+    paths = {p.relative_to(origen).as_posix() for p in instalar.archivos_kit(origen)}
+    assert '.claude/skills/configurar/SKILL.md' in paths
+    assert '00_CORE/worktrees/nota.md' in paths
+    assert not any(p.startswith('.claude/worktrees/') for p in paths)
+    assert checkout.read_text(encoding='utf-8') == 'Material de otro checkout'
+
+
 def test_conflicto_no_copia_nada(tmp_path):
     (tmp_path / "Panel.md").write_text("Mi panel", encoding="utf-8")
     antes = foto(tmp_path)

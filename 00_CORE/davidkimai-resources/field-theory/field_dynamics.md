@@ -3,6 +3,10 @@ level: resource
 tipo: field-theory
 descripcion: Modelo conceptual opcional para relacionar y mantener el contexto de un proyecto.
 ---
+> [!info] Índice de esta nota (líneas)
+> - Líneas 1–5: Propiedades
+> - Líneas 6–9: Este índice
+> - Líneas 11–20: Un modelo para pensar el contexto
 
 # Un modelo para pensar el contexto
 

@@ -176,21 +176,20 @@ def test_cambio_despues_del_plan_se_conserva(vault, datos):
 
 
 def test_interrupcion_y_reanudacion_conserva_archivos_completos(vault, datos, monkeypatch):
-    original = Path.open
+    original = os.link
     calls = []
 
-    def interrupted(path, mode='r', *args, **kwargs):
-        if mode == 'xb':
-            calls.append(path)
-            if len(calls) == 2:
-                raise KeyboardInterrupt()
-        return original(path, mode, *args, **kwargs)
+    def interrupted(source, target, *args, **kwargs):
+        calls.append(target)
+        if len(calls) == 2:
+            raise KeyboardInterrupt()
+        return original(source, target, *args, **kwargs)
 
     before = foto(vault)
     plan = crear.planificar(vault, datos)
     written = []
     with monkeypatch.context() as patched:
-        patched.setattr(Path, 'open', interrupted)
+        patched.setattr(os, 'link', interrupted)
         with pytest.raises(KeyboardInterrupt):
             crear.aplicar(plan, written)
     assert len(written) == 1
@@ -225,3 +224,59 @@ def test_junction_no_escribe_fuera(vault, datos, tmp_path):
         assert foto(outside) == {}
     finally:
         os.rmdir(str(junction))
+
+
+@pytest.mark.parametrize('template', ['# Ficha sin propiedades\n', '---\ntipo: celula\n'])
+def test_plantilla_danada_informa_bloqueo_sin_traceback(vault, datos, tmp_path, monkeypatch, capsys, template):
+    kit = tmp_path/'kit'
+    shutil.copytree(RAIZ/'00_CORE', kit/'00_CORE', ignore=shutil.ignore_patterns('__pycache__'))
+    (kit/'00_CORE/cells/TEMPLATE_cell.md').write_text(template, encoding='utf-8')
+    original = crear.planificar
+    monkeypatch.setattr(crear, 'planificar', lambda destino, data: original(destino, data, origen=kit))
+    payload = tmp_path/'datos.json'
+    payload.write_text(json.dumps(datos), encoding='utf-8')
+    before = foto(vault)
+    assert crear.main(['--destino', str(vault), '--datos', str(payload)]) == 1
+    report = json.loads(capsys.readouterr().out)
+    assert report['estado'] == 'bloqueado' and not report['creados']
+    assert 'plantilla' in report['error'].lower() and 'propiedades' in report['error']
+    assert 'antes de' in report['error']
+    assert foto(vault) == before
+
+
+def test_retoma_archivos_creados_si_falla_mapa_sin_repetir_perfil(vault, datos, tmp_path, monkeypatch, capsys, validador):
+    # El inventario y el perfil pertenecen al usuario; crear un proyecto no los rellena.
+    config = vault/'00_CORE/configuracion.md'
+    config.write_text('---\nestado: parcial\npersonalizacion: abierta\n---\n# Configuración\n'
+                      '| Ítem | Alcance | Estado | Dato o referencia | Origen y fecha | Para retomar |\n'
+                      '|---|---|---|---|---|---|\n'
+                      '| documento-perfil | boveda | omitido | Prefiero no compartir | Usuario | — |\n'
+                      '| plazo | proyecto:preparar-dos-materias | confirmado | Sin fecha | Usuario | — |\n', encoding='utf-8')
+    datos.pop('proximo_paso')
+    datos['autor'] = 'IA de prueba (fixture de recuperación)'
+    payload = tmp_path/'datos.json'
+    payload.write_text(json.dumps(datos), encoding='utf-8')
+    before = foto(vault)
+    index = crear.indexador()
+    def fail(*args):
+        raise OSError('Mapa ocupado durante la prueba')
+    with monkeypatch.context() as patch:
+        patch.setattr(index, 'actualizar', fail)
+        patch.setattr(crear, 'indexador', lambda: index)
+        assert crear.main(['--destino', str(vault), '--datos', str(payload)]) == 1
+    partial = json.loads(capsys.readouterr().out)
+    assert partial['estado'] == 'parcial' and partial['creados']
+    completed = {p:(vault/p).read_bytes() for p in partial['creados']}
+    assert all(foto(vault)[p] == raw for p,raw in before.items())
+    assert crear.main(['--destino', str(vault), '--datos', str(payload)]) == 0
+    result = json.loads(capsys.readouterr().out)
+    assert result['estado'] == 'archivos-creados' and not result['creados']
+    assert set(result['ya_iguales']) == set(partial['creados'])
+    assert result['indice_principal']['estado'] == 'actualizado'
+    assert all(foto(vault)[p] == raw for p,raw in before.items())
+    assert (vault/result['ficha']).read_bytes() == completed[result['ficha']]
+    errors, warnings = validador.validar(vault/result['ficha'])
+    assert not errors and any('no bloquea' in w for w in warnings)
+    assert crear.indexador().actualizar(vault, comprobar=True)['estado'] == 'vigente'
+    assert crear.lineador().main(['check', str(vault/result['ficha']),
+                                 str(vault/'preparar-dos-materias/00 - Índice y Contexto.md')]) == 0

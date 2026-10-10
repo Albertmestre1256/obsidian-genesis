@@ -1,29 +1,40 @@
+> [!info] Índice de esta nota (líneas)
+> - Líneas 1–5: Este índice
+> - Líneas 7–12: Entrada para la IA
+> - Líneas 13–24: Elegir el recorrido
+> - Líneas 25–40: Herramientas opcionales
+
 # Entrada para la IA
 
-Leé primero `INDICE.md` completo, después `00_CORE/atoms/00_vault-rules.md`. Este kit prepara una bóveda mediante preguntas simples; la persona no necesita editar plantillas ni conocer YAML.
+Leé primero `INDICE.md` completo y después `00_CORE/atoms/00_vault-rules.md`. Este kit prepara una bóveda mediante preguntas simples; la persona no necesita editar plantillas ni conocer YAML.
 
-El índice es el mapa común: proyectos, notas, recursos y herramientas. Contrastalo con la carpeta real al iniciar y actualizalo después de guardar cambios, antes de entregar o cerrar. Usá `actualizar_indice.py` del kit leído o tus herramientas de archivos, según `DOCS/indice-principal.md`. Si falta, quedó desactualizado o solo tenés una copia adjunta, aclaralo y verificá las rutas necesarias; no supongas que un enlace prueba acceso. En una bóveda con índice propio, seguí la entrada acordada y sus reglas sin sustituirlas. Leer el mapa no obliga a cargar todas las notas.
+El índice muestra lo disponible; contrastalo con la carpeta real al iniciar y mantenelo después de guardar, según `DOCS/indice-principal.md`. Con una copia adjunta, aclarás qué no podés verificar. En una bóveda existente, respetá su entrada y sus reglas sin sustituirlas. Después del mapa, cargá solo el contexto necesario.
 
 ## Elegir el recorrido
 
-| Pedido | Qué leer y hacer |
+| Pedido | Referencia |
 |---|---|
-| Configurar una bóveda nueva o adaptar una existente | Seguí `00_CORE/protocols/configurar-vault.md`; incluye entrevista, integración y verificación. |
-| «Seguí» o «quiero empezar», con configuración vigente | Leé `00_CORE/configuracion.md` y la ficha del proyecto indicado. Retomá lo pendiente; si hay varios proyectos y no está claro cuál, preguntá. |
-| Trabajar en un proyecto | Buscá su ficha por la propiedad `proyecto`. Sumá fuentes o índice solo cuando la tarea los necesite. |
-| Escribir un texto elaborado | Consultá `00_CORE/protocols/context-injection.md` para elegir las guías. |
-| Desarrollar o revisar el kit | Atendé ese pedido; no inicies la entrevista ni personalices el repositorio. |
+| Configurar una bóveda nueva, integrar una existente o retomar configuración parcial | `00_CORE/protocols/configurar-vault.md` |
+| Completar el perfil, revisar qué falta o retomar datos omitidos | `00_CORE/protocols/personalizar-vault.md` |
+| Crear, ampliar o consultar un nodo de notas | «Crear y actualizar un nodo» en `DOCS/indice-principal.md` |
+| Retomar, crear otro proyecto, redactar, revisar o cerrar | `DOCS/usar-con-otras-ias.md` |
+| Desarrollar o revisar el kit | Atendé ese pedido; no personalices el repositorio ni inicies la entrevista. |
 
-La ausencia de `00_CORE/configuracion.md` no demuestra que la bóveda esté vacía. Esa nota se crea al configurar, no viene rellenada en el kit. Si la configuración quedó parcial, conservá lo creado y retomá solo lo pendiente. Una bóveda lista no implica que el proyecto esté terminado.
-
-Al configurar, guardá primero las respuestas acordadas con estado parcial y actualizá el avance por grupos de archivos según el protocolo. Para retomar una ficha editada, leé su contenido vigente y completá lo pendiente; no la recrees con el creador ni repitas la entrevista.
+`00_CORE/configuracion.md` se crea durante la configuración, con el inventario de personalización; su ausencia no demuestra una bóveda vacía. Estado parcial: retomá pendientes conservando lo creado. Estado lista: continuá el proyecto sin reiniciar preguntas opcionales. Para completar el perfil, seguí su guía aunque la bóveda esté lista. Buscá fichas por `proyecto`; ante ambigüedad, preguntá.
 
 ## Herramientas opcionales
 
-- **Integrar en una bóveda existente:** desde el kit leído, ejecutá `python instalar.py "ruta-del-destino" --dry-run`. Revisá el plan y aplicá con `--yes` dentro del alcance autorizado. No reemplaza archivos ni ajustes de `.obsidian`; ante conflictos, compará y proponé una integración puntual. Sin Python, seguí `DOCS/instalacion-manual.md` con tus herramientas de archivos.
-- **Crear índice, ficha y carpetas:** `crear_proyecto.py`; consultá `DOCS/creacion-para-asistentes.md` si lo vas a usar. No completa el Panel ni la nota de configuración.
-- **Revisar fichas:** `python 00_CORE/schemas/validate.py`, opcionalmente con la carpeta de fichas como argumento. Ejecutá el validador del kit leído, no código preexistente de una bóveda ajena. Sin Python, aplicá la revisión manual de `.claude/skills/validar/SKILL.md`.
+Usá los scripts del kit leído, no código preexistente de una bóveda ajena. Python automatiza pasos; sin él, realizalos con herramientas de archivos siguiendo las mismas guías.
 
-En una bóveda nueva dentro de la carpeta descargada, los archivos ya están: no ejecutes el instalador sobre sí mismo. Con convenciones propias, respetá las reglas del destino y adaptá los archivos dentro del alcance acordado.
+| Herramienta | Referencia y alcance |
+|---|---|
+| `instalar.py` | Integración conservadora; simulá con `python instalar.py "ruta-del-destino" --dry-run` y aplicá con `--yes` dentro del alcance acordado. Conserva archivos y `.obsidian`; `DOCS/instalacion-manual.md` cubre la alternativa. No se usa sobre el propio kit. |
+| `crear_proyecto.py` | `DOCS/creacion-para-asistentes.md`; crea ficha, índice y carpetas, sin completar Panel ni configuración. |
+| `00_CORE/schemas/validate.py` | «Revisar fichas» de `DOCS/usar-con-otras-ias.md`, incluida revisión manual. |
+| `actualizar_indice.py` | `DOCS/indice-principal.md`; mantiene mapa general e índices de nodos, conservando índices propios y resúmenes manuales. |
+| `00_CORE/schemas/note_index.py` | `DOCS/mantenimiento.md`; crea, actualiza y comprueba rangos de líneas de notas editables. |
+| `00_CORE/schemas/registrar_cambios.py` | Misma guía; registra identidad y cambios, renovando el activo a los cinco días con historial archivado. |
 
-`AGENTS.md` y `CLAUDE.md` remiten a esta guía. OpenCode incluye `/configurar` en `.opencode/commands/` y usa este mismo protocolo; consultá `DOCS/opencode.md` para su acceso. ChatGPT sigue `DOCS/chatgpt.md`, con carpeta local o copia descargable según sus herramientas. Claude Code incluye `/configurar` y skills de trabajo diario; `/nuevo-proyecto` y `/cerrar` conservan su invocación manual. Los pedidos comunes están en `DOCS/usar-con-otras-ias.md`.
+Cada escritura autorizada incluye el mantenimiento de notas, mapas y registro definido en `DOCS/mantenimiento.md`. La IA se identifica y realiza esas operaciones; no las delega al principiante. Al desarrollar este kit, guarda evidencia de desarrollo fuera del contenido distribuible, sin crear un registro personal en el repositorio.
+
+`AGENTS.md` y `CLAUDE.md` remiten acá. Claude Code y OpenCode ofrecen `/configurar`, `/empezar`, `/nuevo-proyecto`, `/redactar`, `/validar` y `/cerrar`. En Claude, crear otro proyecto y cerrar conservan invocación manual. Para acceso y arranque: `DOCS/opencode.md` y `DOCS/chatgpt.md`. Los pedidos comunes funcionan con cualquier IA que pueda leer el contexto.

@@ -1,3 +1,10 @@
+> [!info] Índice de esta nota (líneas)
+> - Líneas 1–6: Este índice
+> - Líneas 8–15: Prueba del kit con personas nuevas
+> - Líneas 16–25: Tareas
+> - Líneas 26–51: Registro por persona
+> - Líneas 52–60: Ensayos virtuales previos
+
 # Prueba del kit con personas nuevas
 
 Esta es una guía para realizar la prueba; no es un registro de resultados.
@@ -49,3 +56,5 @@ Simulá las respuestas de personas sin experiencia y verificá los archivos en c
 Registrá el diálogo, qué preguntas faltaban de verdad, cuántos turnos hubo, qué archivos quedaron y si el resultado fue listo, parcial o impedido. No inventes tiempos de uso ni porcentajes de éxito de personas a partir de estos ensayos. Una salida por falta de acceso es correcta si lo explica, conserva los originales y no declara lista una bóveda que no pudo guardar. Una prueba por script acredita archivos; la conversación simulada por el evaluador acredita la revisión del recorrido, no el comportamiento independiente de otra IA.
 
 Comprobá también que el primer proyecto, la configuración y cualquier nota añadida figuren en `INDICE.md`, que la IA lo lea antes de las reglas y que la actualización conserve comentarios personales y no convierta el ejemplo en proyecto propio.
+
+Para el inventario de personalización, ensayá: saltar un CV, delegar una elección, responder de forma ambigua, continuar una tarea sin completar el perfil y volver después a «completemos mi perfil». Comprobá que conserva lo omitido, no inventa formación, pregunta solo lo pendiente pertinente y separa configuración lista de personalización abierta. Con dos proyectos, una respuesta de formación de uno no completa automáticamente la del otro. Migrar una configuración antigua debe conservar su contenido y fichas editadas.

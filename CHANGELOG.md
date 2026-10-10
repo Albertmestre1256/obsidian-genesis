@@ -1,44 +1,28 @@
+> [!info] Índice de esta nota (líneas)
+> - Líneas 1–4: Este índice
+> - Líneas 6–7: Cambios
+> - Líneas 8–28: Sin publicar — candidata a v0.1.0
+
 # Cambios
 
 ## Sin publicar — candidata a v0.1.0
 
-- Inicio desde OpenCode con AGENTS.md y /configurar, y guía de ChatGPT con carpeta local, archivos adjuntos e instrucciones de proyecto. Comparten el protocolo de configuración y el índice; el instalador conserva comandos propios de OpenCode.
-- Creador y validador reconocen fichas renombradas por sus propiedades, evitando duplicar proyectos o ignorar sus errores. El creador acepta las mismas reglas con saltos de línea LF o CRLF.
-- Panel y Bases seleccionan las fichas por propiedades, sin exigir el sufijo del nombre; siguen excluyendo plantillas y ejemplos ficticios.
-- Comprobación del índice compatible con saltos de línea LF y CRLF: conserva el formato de Windows y no informa cambios inexistentes tras descargar el repositorio con Git.
-- INDICE.md como primera lectura de la IA: catálogo completo de archivos, proyectos propios y ejemplos separados.
-- Actualizador del índice con conservación de comentarios, comprobación sin escritura e integración en los comandos de instalación y creación.
-- Inicio, configuración, redacción y cierre mantienen el documento principal dentro del alcance de los cambios guardados.
+- Configuración conversacional: entregar carpeta, responder preguntas y recibir una bóveda preparada, sin exigir Python ni edición de plantillas.
+- Protocolo único para bóvedas nuevas, existentes o copias descargables; guarda configuración parcial antes del proyecto y permite retomar fichas editadas.
+- Objetivo acordado, nombres derivados de las respuestas y fecha, fuentes y primera tarea opcionales. Enlaces portables en copias descargables.
+- Inventario persistente de personalización: perfil, formación, materiales, alcance, vida útil y preferencias; distingue pendientes, omisiones y propuestas por bóveda y proyecto, sin exigir CV ni reiniciar la configuración.
+- `INDICE.md` como primera lectura completa: catálogo con etiquetas breves, proyectos propios y ejemplos separados. Actualización después de guardar y comprobación al iniciar.
+- Actualizador conserva comentarios y saltos LF/CRLF, evita enlaces y junctions y se integra con instalación y creación.
+- Mapa vinculante de nodos con índices locales, resúmenes, padre e hijos. El mismo actualizador mantiene los bloques locales y el general; conserva índices manuales y fuentes originales.
+- Identificación de IA y registro renovable a los cinco días, con historial íntegro y reintentos incluso si las notas cambian después. Zona horaria local, validación de registros dañados y recuperación de escrituras interrumpidas.
+- Índices por líneas en notas editables y mapas nuevos, conservación de comentarios y exclusión de originales, históricos e integraciones del reindexado. Comprobación de rangos en CI; mantenimiento común sin exigir Python al usuario.
+- Guía común de trabajo diario y revisión manual; accesos de Claude Code y OpenCode remiten a ella, conservando sus metadatos y permisos.
+- Guías de OpenCode y ChatGPT para carpeta local o adjuntos; seis comandos para configurar, retomar, crear, redactar, validar y cerrar.
+- Instalador conservador con simulación y detección de conflictos, sin reemplazar notas, instrucciones propias ni ajustes de Obsidian.
+- Creador opcional comprueba nombres y coincidencias por propiedades, usa las plantillas y conserva archivos completos al reintentar.
+- Panel y Bases reconocen fichas renombradas por propiedades y excluyen plantillas y ejemplos ficticios.
+- Validador sin dependencias: propiedades planas, textos entre comillas y listas simples; explica errores de formato y avisos sin acreditar veracidad.
+- Guías de escritura proporcionales a la tarea, alternativa manual para principiantes y recursos opcionales con atribución a davidkimai.
+- Pruebas de conservación, reanudación, rutas y catálogo. CI en Windows/macOS/Linux con Python 3.8 y 3.13, acciones v7 y comprobación del índice.
 
-- Configuración parcial guardada antes de crear el primer proyecto, con avance por grupos de archivos y reanudación desde fichas editadas.
-- Inicio sin tarea elegida, nombres derivados de las respuestas y entrega de ZIP con referencias portables, sin rutas temporales del asistente.
-- Instrucciones para quien todavía no instaló Obsidian y criterios para ensayos virtuales previos a las pruebas con personas.
-
-- Revisión de claridad: entrada única para asistentes, referencias compartidas y guías de escritura proporcionales al pedido.
-- README y Panel más breves; el ejemplo ficticio se consulta separado de proyectos y tareas propios.
-- Eliminada la plantilla YAML que duplicaba la selección de contexto; conservadas las rutas de guías para compatibilidad.
-
-- Creador opcional de proyectos para asistentes: plantillas completas, nombres válidos, detección de coincidencias por propiedad y reanudación sin reemplazar archivos editados.
-- Entrevista sin plazos, hechos ni acciones obligatorios; reanudación basada en la configuración y ficha existentes.
-- Creación inicial y creación de proyectos posteriores usan el mismo criterio para quitar marcadores y conservar datos.
-
-- Arranque principal guiado por IA: entregar carpeta, responder preguntas y recibir bóveda configurada.
-- Entradas AGENTS.md y CLAUDE.md, skill configurar y un único protocolo de configuración nueva, existente o mediante archivos descargables.
-- El instalador incluye las entradas de los asistentes y conserva las instrucciones existentes ante conflictos.
-
-- Guía de primer proyecto sin IA ni Python, enlazada al inicio del Panel y README.
-- Reglas generales por proyecto y carga de guías proporcional a la tarea; los mensajes breves no requieren un proceso de cinco fases.
-
-- La carpeta descargada puede abrirse como bóveda: ajustes en la raíz.
-- Instalador sin paquetes adicionales, con simulación y detección previa de conflictos.
-- Instrucciones para IA breves, con referencias a los archivos reales.
-- Cinco skills de Claude Code y prompts para ChatGPT, Claude y Gemini.
-- Panel de proyectos con Bases, búsqueda de tareas y plantilla con fecha.
-- Pruebas automáticas del validador y de conservación de archivos al instalar.
-- Guía para pruebas con usuarios y preparación de una primera publicación.
-- El validador rechaza propiedades vacías, comillas incompletas y estructuras que no puede interpretar; admite textos entre comillas y listas simples.
-- Una copia interrumpida retira el archivo incompleto recién creado para permitir reintentar la instalación.
-- La creación de proyectos comprueba también su identificador en las fichas existentes.
-- Guía de instalación manual disponible dentro de la bóveda e instrucciones separadas para insertar o duplicar plantillas.
-
-Pendiente: comprobar la interfaz en Obsidian y Claude Code reales, ejecutar la prueba con usuarios y publicar la release. La fecha y el tag v0.1.0 se fijan al publicar.
+Pendiente: completar los recorridos nativos en Claude Code, OpenCode y ChatGPT, probar con usuarios, comprobar al final la interfaz de Obsidian y publicar la release autorizada. La fecha y el tag v0.1.0 se fijan al publicar.

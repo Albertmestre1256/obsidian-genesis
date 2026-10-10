@@ -1,5 +1,6 @@
 """Pruebas del validador de células (00_CORE/schemas/validate.py)."""
 import re
+from pathlib import Path
 
 import pytest
 
@@ -223,3 +224,54 @@ def test_busqueda_distingue_fichas_de_notas_y_plantilla(validador, tmp_path, eje
     (tmp_path / 'Ficha incompleta.md').write_text('---\ntipo: celula\n---\n', encoding='utf-8')
     assert {p.name for p in validador.buscar_celulas(tmp_path)} == {
         'Estudio.md', 'rota-context.md', 'Ficha incompleta.md'}
+
+
+@pytest.mark.parametrize('nombre', ['rota-context.md', 'Ficha renombrada.md'])
+def test_revision_continua_ante_ficha_no_utf8(validador, tmp_path, ejemplo, capsys, nombre):
+    broken = tmp_path/nombre
+    raw = '---\ntipo: celula\n---\n'.encode('utf-16')
+    broken.write_bytes(raw)
+    (tmp_path/'sana-context.md').write_text(ejemplo, encoding='utf-8')
+    assert validador.main(tmp_path) == 1
+    output = capsys.readouterr().out
+    assert nombre in output and 'UTF-8' in output
+    assert 'sana-context.md' in output
+    assert broken.read_bytes() == raw
+
+
+def test_revision_sin_permiso_conserva_archivo_y_continua(validador, tmp_path, ejemplo, monkeypatch, capsys):
+    broken = tmp_path/'Ficha personal.md'
+    broken.write_text(ejemplo, encoding='utf-8')
+    original = Path.read_text
+    def denied(path, *args, **kwargs):
+        if path == broken:
+            raise PermissionError('Permiso denegado en la prueba')
+        return original(path, *args, **kwargs)
+    (tmp_path/'sana-context.md').write_text(ejemplo, encoding='utf-8')
+    with monkeypatch.context() as patch:
+        patch.setattr(Path, 'read_text', denied)
+        assert validador.main(tmp_path) == 1
+    output = capsys.readouterr().out
+    assert broken.name in output and 'permiso' in output.lower()
+    assert 'sana-context.md' in output
+    assert broken.read_text(encoding='utf-8') == ejemplo
+
+
+def test_carpeta_con_nombre_de_ficha_no_se_valida_como_nota(validador, tmp_path, ejemplo, capsys):
+    (tmp_path/'archivo-context.md').mkdir()
+    (tmp_path/'sana-context.md').write_text(ejemplo, encoding='utf-8')
+    assert validador.main(tmp_path) == 0
+    assert 'archivo-context.md' not in capsys.readouterr().out
+
+
+def test_carpeta_inaccesible_informa_como_seguir(validador, tmp_path, monkeypatch, capsys):
+    original = Path.iterdir
+    def denied(path):
+        if path == tmp_path:
+            raise PermissionError('Carpeta inaccesible en la prueba')
+        return original(path)
+    monkeypatch.setattr(Path, 'iterdir', denied)
+    assert validador.main(tmp_path) == 1
+    output = capsys.readouterr().out
+    assert 'permiso de lectura' in output
+    assert 'TODO BIEN' not in output

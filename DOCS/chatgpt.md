@@ -1,3 +1,10 @@
+> [!info] Índice de esta nota (líneas)
+> - Líneas 1–6: Este índice
+> - Líneas 8–11: Empezar con ChatGPT
+> - Líneas 12–21: Con la carpeta en la app de escritorio
+> - Líneas 22–31: En la web o con archivos adjuntos
+> - Líneas 32–40: Un Proyecto de ChatGPT para continuar
+
 # Empezar con ChatGPT
 
 ChatGPT puede hacer la misma entrevista y preparar los archivos del kit. Elegí el recorrido según cómo le des acceso: carpeta local en la app, o una copia adjunta en un chat.

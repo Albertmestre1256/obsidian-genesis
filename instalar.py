@@ -40,7 +40,8 @@ def archivos_kit(origen):
         if not inicio.is_dir():
             raise ValueError("Se esperaba una carpeta: {}".format(nombre))
         for base, carpetas, archivos in os.walk(str(inicio), followlinks=False):
-            carpetas[:] = sorted(c for c in carpetas if c not in IGNORAR)
+            carpetas[:] = sorted(c for c in carpetas if c not in IGNORAR
+                                 and (Path(base).relative_to(origen).as_posix(), c) != ('.claude', 'worktrees'))
             for carpeta in carpetas:
                 comprobar_ruta(Path(base) / carpeta)
             for archivo in sorted(archivos):
@@ -98,19 +99,20 @@ def copiar_nuevos(nuevos):
         print("Agregado: {}".format(objetivo))
 
 
-def revisar_celulas(destino, origen=RAIZ):
-    # Ejecutar el validador del kit, nunca un script preexistente del destino.
-    spec = importlib.util.spec_from_file_location("validador_kit", origen / "00_CORE/schemas/validate.py")
-    modulo = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(modulo)
-    return modulo.main(destino / "00_CORE/cells")
-
-
-def indexador(origen=RAIZ):
-    spec = importlib.util.spec_from_file_location("indice_kit", comprobar_ruta(origen / "actualizar_indice.py"))
+def modulo_kit(origen, ruta, nombre):
+    """Cargar herramientas del origen comprobado, no scripts del destino."""
+    spec = importlib.util.spec_from_file_location(nombre, comprobar_ruta(origen / ruta))
     modulo = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(modulo)
     return modulo
+
+
+def revisar_celulas(destino, origen=RAIZ):
+    return modulo_kit(origen, "00_CORE/schemas/validate.py", "validador_kit").main(destino / "00_CORE/cells")
+
+
+def indexador(origen=RAIZ):
+    return modulo_kit(origen, "actualizar_indice.py", "indice_kit")
 
 
 def main(argv=None):
@@ -140,7 +142,7 @@ def main(argv=None):
         if args.dry_run:
             for _, objetivo in nuevos:
                 print("Agregar: {}".format(objetivo.relative_to(destino)))
-            print("Generar o actualizar INDICE.md con el catálogo real del destino.")
+            print("Generar o actualizar INDICE.md y los bloques de índices locales del destino.")
             return 0
         if nuevos and not args.yes:
             if not sys.stdin.isatty():
@@ -152,6 +154,8 @@ def main(argv=None):
         copiar_nuevos(nuevos)
         estado_indice = indice.actualizar(destino)
         print("Índice principal: {}".format(estado_indice['estado']))
+        if estado_indice['indices_manuales']:
+            print("Índices locales manuales para revisar, conservados: " + ", ".join(estado_indice['indices_manuales']))
         print("\nCopia completa. Revisando las células de la bóveda...")
         codigo = revisar_celulas(destino)
         print("Abrí Panel.md. Para activar Plantillas y Bases en una bóveda existente, seguí DOCS/obsidian.md.")

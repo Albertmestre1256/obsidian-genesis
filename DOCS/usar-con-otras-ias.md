@@ -1,47 +1,91 @@
+> [!info] Índice de esta nota (líneas)
+> - Líneas 1–12: Este índice
+> - Líneas 14–17: Trabajar con una IA
+> - Líneas 18–23: Contexto y archivos
+> - Líneas 24–27: Pedidos listos para usar
+> - Líneas 28–35: Retomar
+> - Líneas 36–41: Completar la personalización
+> - Líneas 42–47: Crear o ampliar un nodo
+> - Líneas 48–55: Crear otro proyecto
+> - Líneas 56–65: Redactar
+> - Líneas 66–84: Revisar fichas
+> - Líneas 85–91: Guardar el cierre
+
 # Trabajar con una IA
 
-Si todavía no configuraste la bóveda, empezá por el [README principal](../README.md), con recorridos para [OpenCode](opencode.md) y [ChatGPT](chatgpt.md). Esta guía sirve para el trabajo diario con cualquier asistente que pueda leer los archivos que le entregues.
+Para configurar la bóveda por primera vez, empezá por el [README](../README.md). Esta guía reúne el trabajo diario para cualquier IA; los comandos de Claude y OpenCode remiten a estas mismas secciones.
 
-Con acceso a tu carpeta, la IA puede leer y guardar dentro del alcance acordado. Con adjuntos, trabajará sobre copias: vos actualizás la nota original con los cambios aprobados y entregás esa versión en la siguiente sesión. Adjuntar una nota no la mantiene sincronizada.
+## Contexto y archivos
 
-## Qué información darle
+Leé `INDICE.md` completo, las reglas y la ficha vigente identificada por `proyecto`; para nodos, su índice local y ficha del padre si existe. Usá el destino indicado o inequívoco; preguntá ante ambigüedad. Los ejemplos se usan solo para practicar por elección explícita. Cargá después únicamente fuentes y guías pertinentes.
 
-Entregá primero `INDICE.md`, el mapa completo de la bóveda. Después, las reglas de `00_CORE/atoms/00_vault-rules.md` y la ficha vigente del proyecto en `00_CORE/cells/`. Agregá solo el material que la tarea necesite. Si el asistente tiene acceso a la bóveda, puede buscarlo; si usás adjuntos, agregás esos archivos al chat. No necesitás subir todos los proyectos.
+Al guardar, seguí [el mantenimiento común](mantenimiento.md): conservar versiones, verificar notas, actualizar mapas y registrar cambios. Con adjuntos, entregá copias y destinos; la persona debe actualizar los originales y compartir su versión vigente. Informá cualquier acceso o comprobación pendiente.
 
 ## Pedidos listos para usar
 
-Reemplazá lo que está entre corchetes. El asistente debe leer primero el índice principal y después las reglas, trabajar con el proyecto indicado y distinguir datos, propuestas y pendientes.
+Reemplazá lo que está entre corchetes. Cada sección define el mismo recorrido con comandos o lenguaje común.
 
 ### Retomar
 
-> Seguí con [proyecto]. Leé primero el índice principal, después las reglas y su ficha vigente. Resumí dónde quedamos y proponé un próximo paso; preguntame solo lo que falte para hacerlo.
+> Seguí con [proyecto]. Resumí dónde quedamos y proponé un próximo paso; preguntame solo lo necesario.
 
-Si querés practicar, podés elegir explícitamente la ficha `ejemplo-context.md`: sus datos son ficticios.
+Consultá la configuración existente y la ficha. Si la configuración es parcial, retomá lo pendiente según el [protocolo](../00_CORE/protocols/configurar-vault.md); si está lista, continuá el proyecto sin repetir la entrevista. La ausencia de configuración no demuestra que la bóveda esté vacía.
+
+Resumí brevemente objetivo, avance, pendientes y próximo paso. Si pide solo un resumen, respondé en el chat. Si pide continuar una tarea acordada, avanzá dentro de ese alcance; preguntá cuando falte una elección necesaria, sin repetir permisos vigentes.
+
+### Completar la personalización
+
+> Revisá qué falta para personalizar mi bóveda. Mostrame lo pendiente y lo que elegí omitir; hagamos una o dos preguntas por vez sin repetir lo que ya respondí.
+
+Seguí [Personalizar la bóveda](../00_CORE/protocols/personalizar-vault.md) y su inventario vigente; esa guía define consulta, preguntas y guardado, también con una bóveda lista.
+
+### Crear o ampliar un nodo
+
+> Agregá un nodo de [contenido] dentro de [nodo o proyecto]. Mantené su índice con resúmenes, los enlaces al padre y el mapa general.
+
+Seguí «Crear y actualizar un nodo» en [la guía del índice](indice-principal.md). Usá la colección indicada, conservá notas y completá los mapas dentro del mismo pedido, sin reinstalar la bóveda.
 
 ### Crear otro proyecto
 
-Con adjuntos, agregá también `TEMPLATE_cell.md`, el índice de `PROJECT_TEMPLATE/` y `00_CORE/protocols/configurar-vault.md`.
+> Quiero crear el proyecto [nombre]. Preguntá solo lo que falte y mostrá el destino y los archivos antes de crearlos.
 
-> Quiero crear el proyecto [nombre]. Leé primero el índice principal, después las reglas y seguí la sección «Crear el proyecto» del protocolo de configuración. Preguntá solo lo que falte sobre propósito, objetivo y próximo paso. Mostrá el destino y los archivos antes de crearlos. Conservá lo existente; si no podés leer o escribir mi bóveda, aclará qué queda pendiente y entregá los contenidos con sus destinos.
+Seguí «Crear el proyecto» del [protocolo de configuración](../00_CORE/protocols/configurar-vault.md), conservando la configuración vigente. No reinstales ni reinicies la entrevista de una bóveda lista. El creador opcional produce ficha, índice y carpetas; completá también Panel, configuración e índice principal, verificá el resultado y entregá acceso a la ficha y el próximo paso elegido o pendiente.
 
-Con acceso a archivos, la IA comprueba las coincidencias por identificador y crea ficha, índice y carpetas, además del acceso en el Panel. En un chat de texto, podés guardar los contenidos siguiendo la [guía manual](primer-proyecto.md).
+Con adjuntos, entregá además `TEMPLATE_cell.md`, el índice de `PROJECT_TEMPLATE/` y el protocolo. Para guardar a mano: [primer proyecto](primer-proyecto.md).
 
 ### Redactar
 
-Para un mensaje breve bastan el índice principal, el pedido, las reglas y la ficha. Para un texto elaborado, agregá las guías indicadas en `00_CORE/protocols/context-injection.md` si la IA no puede leerlas por su cuenta.
+> Necesito [texto] para [destinatario], en [proyecto], con el objetivo de [resultado]. Señalá lo que falte y conservá las versiones si te pido guardarlo.
 
-> Necesito [texto] para [destinatario], en [proyecto], con el objetivo de [resultado]. Usá los datos disponibles y señalá lo que falte. Para un texto breve, redactá en el chat; si necesita estructura, proponé un plan corto antes del borrador. No envíes ni publiques el texto. Si te pido guardarlo, usá la carpeta de borradores del proyecto y conservá versiones anteriores.
+Obtené destinatario, propósito y restricciones del pedido y la ficha; preguntá solo lo que afecte el resultado y marcá datos pendientes con `[FALTA: ...]`. Distinguí hechos, inferencias, intenciones y propuestas.
+
+Para un mensaje breve, redactá en el chat y revisá claridad y hechos. Para un texto elaborado, consultá `00_CORE/protocols/context-injection.md`, proponé un plan corto y esperá aprobación si ese alcance aún no está acordado. Inferí el contexto de comunicación; no exijas letras A/B/C/D.
+
+Guardar requiere el alcance acordado y una ruta libre, normalmente en `02_SINTESIS/`, con versión cuando corresponda. Redactar o guardar no autoriza enviar ni publicar.
 
 ### Revisar fichas
 
-Con adjuntos, agregá `00_CORE/schemas/validate.py`: contiene las reglas de revisión.
+> Revisá estas fichas con el validador del kit. Explicá errores y avisos y proponé correcciones, sin modificar todavía.
 
-> Revisá estas fichas con el validador del kit. Si podés ejecutarlo, informá el resultado; si no, hacé la revisión manual y aclaralo. Explicá los errores y avisos y proponé correcciones. Un formato válido no demuestra que los datos sean verdaderos. No modifiques las fichas todavía.
+Ejecutá `python 00_CORE/schemas/validate.py` del kit leído sobre las fichas correspondientes; no ejecutes código preexistente de una bóveda ajena. Si el comando no está disponible, probá `python3` o `py`. Un resultado con errores de fichas no significa que falte Python.
+
+Sin Python, aplicá «Revisión manual» de abajo; con adjuntos necesitás también `00_CORE/schemas/validate.py`. Informá archivos revisados y comprobaciones pendientes. Si no hay problemas, alcanza una línea; si los hay, explicá cada uno y mostrá la corrección propuesta. Formato válido no demuestra datos verdaderos ni funcionamiento visual. La [ayuda del validador](TROUBLESHOOTING.md#mensajes-del-validador) explica sus mensajes.
+
+#### Revisión manual
+
+El script es la referencia. Seguí `buscar_celulas`: archivos Markdown directamente en `00_CORE/cells/`, por `tipo: celula` o propiedad `proyecto`, además de `*-context.md`; excluí la plantilla y notas sin esas propiedades. Reconoce extensiones sin distinguir mayúsculas y normaliza tildes, espacios y mayúsculas en `tipo`.
+
+- **Errores de propiedades:** bloque inicial entre `---`, claves únicas; obligatorias `tipo`, `proyecto`, `descripcion`, `contexto`, `actualizado`. Tipo célula; proyecto y descripción como texto no vacío; contexto A/B/C/D, también minúsculas o `D - operativo`; fecha real AAAA-MM-DD.
+- **Lector limitado:** propiedades planas, valores en una línea, comillas cerradas, comentarios y listas simples adicionales. Mapas, bloques multilínea y referencias no están admitidos; esto no prueba que sean YAML inválido.
+- **Errores del cuerpo:** faltan `Hechos clave` o `Próximas acciones`, o acciones sin casilla y texto. Admite viñetas `-`, `*`, `+` y casillas `[ ]`, `[x]`, `[X]`; seguí `normalizar` y `secciones` para los títulos.
+- **Avisos:** hechos o acciones vacíos; hechos sin `(fuente: ...)` al final o fuente vacía; decisiones sin fecha válida al inicio; marcadores `[completar: ...]` en campos o viñetas revisados; tamaño mayor que `MAX_TOKENS_CELULA`, estimado con cuatro caracteres por token.
+
+Ignorá comentarios `%%...%%` y subviñetas al revisar secciones, como el script; el tamaño usa todo el texto. Aclaralo como revisión manual, sin afirmar que ejecutaste o pasó Python.
 
 ### Guardar el cierre
 
-> Cerramos la sesión de [proyecto]. Compará lo trabajado con la ficha más reciente y proponé solo los cambios nuevos: hechos con fuente, decisiones, tareas y preguntas. No conviertas sugerencias en decisiones. Después de mi aprobación, guardá y verificá lo acordado si tenés acceso; si no, entregá la ficha actualizada y su destino.
+> Cerramos la sesión de [proyecto]. Compará lo trabajado con la ficha vigente y proponé solo cambios nuevos. Guardá y verificá lo que apruebe.
 
-Al retomar, usá siempre la ficha vigente. La configuración del espacio o cuenta del asistente es opcional: estos pedidos también sirven en un chat común.
+Agrupá hechos con fuente, decisiones adoptadas con fecha y motivo, tareas nuevas o de estado cambiado, preguntas abiertas o resueltas y contenido que dejó de estar vigente. Una sugerencia no es una decisión. Proponé archivar antes de mover; conservá originales y enlaces.
 
-Cuando la IA guarda cambios, también mantiene el [índice principal](indice-principal.md). Con adjuntos, pedile esa copia actualizada además de las notas modificadas; si no pudo verificar la bóveda real, debe aclararlo.
+Esperá aprobación del plan, salvo que ya cubra ese mismo alcance. Aplicá solo lo acordado: hechos con `(fuente: ...)`, decisiones con fecha inicial, tareas `- [ ]` o `- [x]`, y `actualizado` con la fecha de la modificación. Verificá con «Revisar fichas» y mantené el índice. Sin escritura, entregá la ficha actualizada y su destino como pendiente.

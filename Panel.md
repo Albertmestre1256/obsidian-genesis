@@ -1,3 +1,10 @@
+> [!info] Índice de esta nota (líneas)
+> - Líneas 1–6: Este índice
+> - Líneas 8–15: Mis proyectos
+> - Líneas 16–19: Proyectos
+> - Líneas 20–27: Acciones pendientes
+> - Líneas 28–34: Ayuda opcional
+
 # Mis proyectos
 
 **Mapa de toda la bóveda:** [[INDICE|Índice principal — primera lectura de la IA]].

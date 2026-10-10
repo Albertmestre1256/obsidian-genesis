@@ -1,10 +1,21 @@
+> [!info] Índice de esta nota (líneas)
+> - Líneas 1–10: Este índice
+> - Líneas 12–19: Tu primer proyecto a mano
+> - Líneas 20–25: 1. Elegí algo pequeño
+> - Líneas 26–31: 2. Creá una ficha vacía
+> - Líneas 32–37: 3. Insertá la plantilla
+> - Líneas 38–58: 4. Completá la ficha
+> - Líneas 59–64: 5. Comprobá que podés retomarlo
+> - Líneas 65–72: 6. Usá una IA si te sirve
+> - Líneas 73–83: Cuando el proyecto crezca
+
 # Tu primer proyecto a mano
 
 Esta es la alternativa manual. El recorrido principal consiste en [darle la carpeta a una IA para que la configure con tus respuestas](empezar-con-ia.md).
 
 Una **bóveda** es la carpeta donde Obsidian guarda tus notas. Una **ficha de proyecto** responde: qué quiero hacer, qué sé y qué sigue. En algunos archivos se llama «célula»: es lo mismo.
 
-Al terminar tendrás una ficha propia y una primera tarea. Podés hacerlo sin IA ni Python. No hace falta aprender programación.
+Al terminar tendrás una ficha propia; la primera tarea puede elegirse después. Podés hacerlo sin IA ni Python.
 
 ## 1. Elegí algo pequeño
 
@@ -42,7 +53,7 @@ Si empezás organizando tareas, podés usar D y cambiarlo más adelante.
 Debajo de las propiedades:
 
 - **Hechos clave:** anotá lo que ya sabés y de dónde sale. Un dato que aportás puede citarse como `(fuente: mi información de hoy)`; un dato externo necesita su documento o referencia. Guardá las elecciones que hiciste en **Decisiones**. Si no tenés datos todavía, dejá la sección vacía. Quitá el texto de ejemplo de tu copia.
-- **Próximas acciones:** reemplazá la tarea de ejemplo por algo que puedas hacer a continuación. Por ejemplo, `- [ ] Anotar los tres temas que quiero estudiar`.
+- **Próximas acciones:** reemplazá la tarea de ejemplo por una que hayas elegido, como `- [ ] Anotar los tres temas que quiero estudiar`. Si todavía no elegiste ninguna, quitá el ejemplo y dejá la sección vacía.
 - **Decisiones y Preguntas abiertas:** completalas si las necesitás; pueden quedar vacías.
 
 ## 5. Comprobá que podés retomarlo
@@ -53,9 +64,9 @@ Abrí [Panel](../Panel.md): tu ficha debería aparecer en la tabla y tu tarea en
 
 ## 6. Usá una IA si te sirve
 
-Adjuntá al chat las reglas (`00_CORE/atoms/00_vault-rules.md`) y tu ficha, desde la carpeta de tu bóveda. Pegá:
+Adjuntá al chat `INDICE.md`, las reglas (`00_CORE/atoms/00_vault-rules.md`) y tu ficha, desde la carpeta de tu bóveda. Pegá:
 
-> Leé las reglas y mi ficha. Explicame en lenguaje simple dónde estoy y proponé un próximo paso pequeño. Usá solo mis datos; si falta algo necesario, preguntámelo. Por ahora respondé en el chat, sin modificar archivos.
+> Leé primero el índice completo, después las reglas y mi ficha. Explicame en lenguaje simple dónde estoy y proponé un próximo paso pequeño. Usá solo mis datos; si falta algo necesario, preguntámelo. Por ahora respondé en el chat, sin modificar archivos.
 
 Al terminar, pedile que proponga qué actualizar. Revisalo y copiá los cambios a tu ficha en Obsidian. La próxima vez adjuntá esa versión: el chat no actualiza tu carpeta por recibir un archivo.
 

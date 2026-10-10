@@ -1,3 +1,20 @@
+> [!info] Índice de esta nota (líneas)
+> - Líneas 1–16: Este índice
+> - Líneas 18–21: Solución de problemas
+> - Líneas 22–25: La IA no puede guardar en mi carpeta
+> - Líneas 26–29: Vuelve a preguntarme lo que ya respondí
+> - Líneas 30–33: Todavía no tengo fecha, fuentes ni primera tarea
+> - Líneas 34–37: Python no está disponible
+> - Líneas 38–43: El instalador informa conflictos o se interrumpió
+> - Líneas 44–47: El creador informa un proyecto existente
+> - Líneas 48–53: No aparece el Panel o la fecha automática
+> - Líneas 54–57: Claude Code no reconoce un comando
+> - Líneas 58–61: OpenCode no muestra los comandos del kit
+> - Líneas 62–65: OpenCode muestra un error del proveedor o modelo
+> - Líneas 66–69: ChatGPT ve los adjuntos pero no mi carpeta
+> - Líneas 70–90: Mensajes del validador
+> - Líneas 91–93: La IA no encuentra una nota nueva
+
 # Solución de problemas
 
 Si una IA está configurando tu bóveda, pasale el problema y pedile que revise los archivos: no necesitás corregirlos a mano. Las indicaciones de formato de abajo también sirven para quien elija el recorrido manual.
@@ -38,9 +55,13 @@ El ejemplo ficticio se abre desde la ayuda del Panel; está excluido de sus proy
 
 Abrilo en la raíz de la bóveda. Las skills están en `.claude/skills/`; si acabás de agregarlas, reiniciá la sesión. Conservá y compará cualquier comando previo del mismo nombre. Los permisos para leer o escribir dependen de tu configuración; el kit no los concede por sí mismo.
 
-## OpenCode no muestra /configurar
+## OpenCode no muestra los comandos del kit
 
-Abrí la carpeta que contiene `AGENTS.md` y comprobá que esté `.opencode/commands/configurar.md`. Si acabás de agregarlo, abrí una sesión nueva. Podés iniciar con el mensaje del README; la [guía de OpenCode](opencode.md) usa el mismo protocolo.
+Abrí la carpeta que contiene `AGENTS.md` y comprobá que esté `.opencode/commands/configurar.md`. Si acabás de agregar los comandos, abrí una sesión nueva. Podés iniciar con el mensaje del README y continuar con los [pedidos en lenguaje común](usar-con-otras-ias.md); la [guía de OpenCode](opencode.md) muestra ambos accesos. No reemplaces tus instrucciones con `/init` para intentar resolverlo.
+
+## OpenCode muestra un error del proveedor o modelo
+
+Si `/configurar` aparece pero la IA no responde, separá ese problema de los archivos del kit. Revisá la conexión y disponibilidad del modelo desde OpenCode según su [guía de proveedores](https://opencode.ai/docs/providers/). Un error de autenticación, límite de uso o 403 no se arregla recreando la bóveda, borrando tus notas o reinstalando el kit. Conservá lo ya guardado y retomá cuando el proveedor responda.
 
 ## ChatGPT ve los adjuntos pero no mi carpeta
 

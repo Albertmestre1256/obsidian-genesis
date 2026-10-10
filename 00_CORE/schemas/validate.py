@@ -1,24 +1,11 @@
 #!/usr/bin/env python3
-"""
-validate.py — Revisa que tus células de proyecto estén bien armadas.
+"""Revisa propiedades y secciones de las fichas, también las renombradas.
 
-Uso (desde la carpeta raíz de tu vault):
+Desde la raíz:
     python 00_CORE/schemas/validate.py
 
-Revisa las fichas de 00_CORE/cells/, también las renombradas, y muestra:
-  ERRORES → hay que arreglarlos (falta una propiedad o una sección,
-            valor no permitido, propiedades ilegibles). Mientras haya
-            errores, la IA puede recibir contexto roto.
-  AVISOS  → conviene mirarlos ([completar: ...] sin completar,
-            hechos sin fuente, célula demasiado larga).
-
-Una célula es una nota de Obsidian con:
-  - propiedades arriba (entre las dos líneas ---),
-  - secciones abajo: ## Hechos clave, ## Decisiones,
-    ## Próximas acciones, ## Preguntas abiertas.
-Los bloques entre %% ... %% son ayuda y se ignoran.
-
-Requiere solo Python 3.8 o más nuevo. No hace falta instalar nada más.
+Errores: formato que corregir. Avisos: datos que revisar, sin bloquear.
+Ignora ayuda entre %%...%%. Python estándar 3.8+; ver DOCS/TROUBLESHOOTING.md.
 """
 
 import datetime
@@ -28,15 +15,12 @@ import sys
 import unicodedata
 from pathlib import Path
 
-# ------------------------------------------------------------------
-# REGLAS DE VALIDACIÓN — si querés cambiar qué se revisa, editá acá
-# ------------------------------------------------------------------
+# Reglas de validación
 PROPIEDADES_OBLIGATORIAS = ["tipo", "proyecto", "descripcion", "contexto", "actualizado"]
 SECCIONES_OBLIGATORIAS = ["Hechos clave", "Próximas acciones"]
 CONTEXTOS = {"A": "técnico", "B": "narrativo", "C": "persuasivo", "D": "operativo"}
 MARCA_PENDIENTE = "[completar"
 MAX_TOKENS_CELULA = 3000  # ver davidkimai-resources/evaluation/token_budgeting.md
-# ------------------------------------------------------------------
 
 CELLS_DIR = Path(__file__).resolve().parent.parent / "cells"
 
@@ -48,9 +32,6 @@ RE_CONTEXTO = re.compile(r"^\s*([ABCD])(?![A-Za-zÀ-ÿ])", re.IGNORECASE)
 RE_CLAVE = re.compile(r"^([A-Za-zÀ-ÿ0-9_-][^:]*):(?:\s+(.*)|\s*)$")
 
 
-# ------------------------------------------------------------------
-# Lectura
-# ------------------------------------------------------------------
 def normalizar(texto):
     """'Próximas  Acciones 📌' → 'proximas acciones' (sin tildes, emojis ni mayúsculas)."""
     sin_tildes = unicodedata.normalize("NFKD", str(texto)).encode("ascii", "ignore").decode()
@@ -184,18 +165,32 @@ def separar(texto):
     return None
 
 
+def leer_nota(path):
+    """Un archivo ilegible se informa sin convertirlo ni abortar el resto."""
+    try:
+        return Path(path).read_text(encoding='utf-8-sig'), None
+    except UnicodeError:
+        return None, ('No puedo leer este archivo como UTF-8. Conservá el original y '
+                      'verificá su codificación antes de volver a revisarlo.')
+    except OSError:
+        return None, ('No puedo leer este archivo. Comprobá el permiso de lectura y '
+                      'que siga disponible antes de volver a revisarlo.')
+
+
 def buscar_celulas(cells_dir):
     """Reconoce fichas por propiedades; conserva la detección de nombres convencionales rotos."""
     celulas = []
     for path in sorted(Path(cells_dir).iterdir()):
-        if path.suffix.lower() != '.md' or path.name.lower() == 'template_cell.md':
+        if path.suffix.lower() != '.md' or path.name.lower() == 'template_cell.md' or not path.is_file():
             continue
         if path.name.lower().endswith('-context.md'):
             celulas.append(path)
             continue
-        if not path.is_file():
+        text, error = leer_nota(path)
+        if error:
+            celulas.append(path)  # No ocultar posibles fichas que no pudimos clasificar.
             continue
-        partes = separar(path.read_text(encoding='utf-8-sig'))
+        partes = separar(text)
         if partes is None:
             continue
         for linea in partes[0].splitlines():
@@ -232,12 +227,11 @@ def contenido(vineta):
     return RE_VINETA.match(vineta).group(1)
 
 
-# ------------------------------------------------------------------
-# Validación de una célula
-# ------------------------------------------------------------------
 def validar(path):
     errores, avisos = [], []
-    texto = Path(path).read_text(encoding="utf-8-sig")  # -sig: tolera la marca BOM de Windows
+    texto, error = leer_nota(path)
+    if error:
+        return [error], []
 
     partes = separar(texto)
     if partes is None:
@@ -285,7 +279,7 @@ def validar(path):
             errores.append(f"Falta la sección '## {nombre}' (copiala de TEMPLATE_cell.md).")
 
     # 5. Hechos clave
-    _, hechos = secs.get(normalizar("Hechos clave"), (None, None))
+    _, hechos = secs.get("hechos clave", (None, None))
     if hechos is not None:
         if not hechos:
             avisos.append("No hay hechos clave: la IA va a trabajar sin datos comprobados de tu proyecto.")
@@ -295,7 +289,7 @@ def validar(path):
                 avisos.append(f"El hecho '{recortar(contenido(h))}' no tiene fuente: tratalo como no comprobado.")
 
     # 6. Próximas acciones
-    _, acciones = secs.get(normalizar("Próximas acciones"), (None, None))
+    _, acciones = secs.get("proximas acciones", (None, None))
     if acciones is not None:
         if not acciones:
             avisos.append("No hay próximas acciones: podés elegir el primer paso después. Este aviso no bloquea la configuración.")
@@ -305,7 +299,7 @@ def validar(path):
                                "(pendiente) o '- [x] ' (hecha).")
 
     # 7. Decisiones (opcional)
-    _, decisiones = secs.get(normalizar("Decisiones"), (None, []))
+    _, decisiones = secs.get("decisiones", (None, []))
     for d in decisiones:
         m = RE_FECHA_INICIO.match(contenido(d))
         if not m or not es_fecha(m.group(1)):
@@ -331,9 +325,6 @@ def validar(path):
     return errores, avisos
 
 
-# ------------------------------------------------------------------
-# Programa
-# ------------------------------------------------------------------
 def main(cells_dir=CELLS_DIR):
     # La consola de Windows a veces no muestra bien acentos y símbolos.
     try:
@@ -347,29 +338,31 @@ def main(cells_dir=CELLS_DIR):
         print("Corré este script desde la raíz de tu vault:  python 00_CORE/schemas/validate.py")
         return 1
 
-    celulas = buscar_celulas(cells_dir)
+    try:
+        celulas = buscar_celulas(cells_dir)
+    except OSError:
+        print('No puedo revisar esta carpeta. Comprobá que esté disponible y tengas permiso de lectura.')
+        return 1
     if not celulas:
         print("Todavía no hay células para revisar.")
         print("Creá una copiando 00_CORE/cells/TEMPLATE_cell.md como nombre-de-tu-proyecto-context.md")
         return 0
 
-    total_err = total_av = con_error = 0
+    total_av = con_error = 0
     print(f"Revisando {len(celulas)} célula(s) en {cells_dir}\n")
 
     for path in celulas:
         errores, avisos = validar(path)
         marca = "✖" if errores else ("!" if avisos else "✔")
         print(f"{marca} {path.name}")
-        for e in errores:
-            print(f"    ERROR: {e}")
-        for a in avisos:
-            print(f"    aviso: {a}")
-        total_err += len(errores)
+        for etiqueta, mensajes in (("ERROR", errores), ("aviso", avisos)):
+            for mensaje in mensajes:
+                print(f"    {etiqueta}: {mensaje}")
         total_av += len(avisos)
         con_error += bool(errores)
 
     print("\n" + "=" * 60)
-    if total_err:
+    if con_error:
         print(f"HAY ERRORES en {con_error} célula(s). Arreglalos antes de usarlas con la IA.")
         print("¿No entendés un mensaje? Mirá DOCS/TROUBLESHOOTING.md")
         return 1

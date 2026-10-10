@@ -1,10 +1,12 @@
+> [!info] Índice de esta nota (líneas)
+> - Líneas 1–3: Este índice
+> - Líneas 5–40: Crear los archivos de un proyecto
+
 # Crear los archivos de un proyecto
 
-Referencia opcional para el asistente, después de leer las reglas y acordar destino, objetivo y alcance. La persona no tiene que completar JSON ni ejecutar comandos.
+Referencia del asistente para «Crear el proyecto» del [protocolo](../00_CORE/protocols/configurar-vault.md), con destino, objetivo y alcance acordados. `crear_proyecto.py` usa Python estándar 3.8+ y las plantillas del kit leído. La persona no prepara JSON ni ejecuta comandos.
 
-`crear_proyecto.py` usa Python estándar 3.8 o posterior. Crea el índice, la ficha y las carpetas desde las plantillas del kit. Se puede ejecutar desde el kit de origen sobre la bóveda descargada o una copia nueva. Usá el script y validador del kit leído; no ejecutes código preexistente de una bóveda ajena.
-
-Prepará un JSON temporal con las respuestas acordadas, fuera del repositorio distribuible. Su estructura es:
+Desde ese kit, prepará un JSON temporal con las respuestas, fuera del repositorio distribuible:
 
 ```json
 {
@@ -12,26 +14,27 @@ Prepará un JSON temporal con las respuestas acordadas, fuera del repositorio di
   "descripcion": "Preparar dos materias.",
   "objetivo": "Ordenar qué estudiar, sin fecha definida.",
   "contexto": "D",
+  "autor": "IA identificada (herramienta y modelo si se conoce)",
   "fecha": "2026-10-07",
   "proximo_paso": "Anotar los temas de las dos materias.",
   "hechos": []
 }
 ```
 
-El ejemplo es ficticio. `fecha` es la fecha actual del usuario, que calculás vos; no es un plazo obligatorio. `contexto` lo inferís del uso. `proximo_paso` se omite si no hay tarea aceptada. `hechos` es una lista opcional de objetos `texto` y `fuente`; no completes hechos por tu cuenta. Los textos ocupan una sola línea. El identificador se deriva del nombre; el campo opcional `id` permite una variante acordada.
+Ejemplo ficticio: calculá la fecha actual del usuario e inferí `contexto` del uso. Omití `proximo_paso` si no hay tarea aceptada; `hechos` admite objetos `texto`/`fuente`, sin inventarlos. Textos en una línea; el identificador deriva del nombre o de un `id` opcional acordado.
 
-Desde el kit de origen, ejecutá primero:
+Simulá primero:
 
 ```sh
 python crear_proyecto.py --destino "ruta-de-la-boveda" --datos "ruta-del-json-temporal" --dry-run
 ```
 
-Revisá el JSON de salida y aplicá quitando `--dry-run` dentro del alcance ya acordado. No vuelvas a pedir permiso para cada archivo del mismo plan.
+Revisá la salida y aplicá quitando `--dry-run`, sin repetir permisos del mismo alcance.
 
-El creador comprueba propiedades, nombre reservado, rutas y coincidencias por `proyecto`, también en fichas renombradas. Conserva archivos diferentes, rechaza enlaces o junctions y se detiene si el contenido de las reglas del destino difiere del kit; los saltos de línea LF/CRLF no cuentan como diferencias. Ante reglas propias, integrá según las convenciones acordadas con tus herramientas, sin forzar el script. Repetir exactamente los datos permite retomar una copia interrumpida y omite archivos idénticos; si alguien editó la ficha, retomá su versión vigente en lugar de recrearla.
+El creador verifica propiedades, nombres, rutas y coincidencias por `proyecto`, incluidas fichas renombradas. Conserva archivos diferentes y rechaza enlaces/junctions. Requiere reglas compatibles: LF/CRLF se consideran iguales; ante reglas propias, creá con herramientas de archivos según sus convenciones.
 
-La salida distingue archivos creados, archivos ya iguales, avisos e impedimentos. El comando actualiza `INDICE.md` después de crear el proyecto y conserva los comentarios fuera de su bloque automático. Un índice previo incompatible lo bloquea antes de crear archivos; si la actualización falla después, informa estado parcial y conserva los archivos completos. Releelos antes de reintentar.
+Repetir los mismos datos recupera una copia interrumpida y omite archivos idénticos. Si editaron una ficha, retomá esa versión. La salida distingue creados, iguales, avisos e impedimentos. Un índice incompatible bloquea la creación; un fallo posterior deja estado parcial y conserva archivos completos. Releé antes de reintentar.
 
-El creador no cambia reglas, ajustes de Obsidian, Panel ni configuración. Después enlazá el Panel, comprobá los destinos de enlaces y completá la nota de configuración según el protocolo; volvé a [actualizar el índice principal](indice-principal.md) después de esos cambios. `archivos-creados` no significa que toda la bóveda esté lista ni que sus hechos sean verídicos. Si creás con tus herramientas de archivos o usás las funciones internas del script, también te corresponde completar el catálogo.
+El comando crea ficha, índice y carpetas y actualiza `INDICE.md`. Luego completá Panel, configuración e inventario según el protocolo y volvé a [actualizar el catálogo](indice-principal.md). `archivos-creados` solo acredita esa etapa, sin verificar hechos ni interfaz.
 
-Sin Python, realizá vos la misma creación con tus herramientas. Mantener vacíos hechos o acciones sin datos puede generar avisos válidos; no es un error de instalación.
+Sin Python, hacé la creación con tus herramientas y mantené el mismo catálogo. Hechos o acciones vacíos pueden generar avisos válidos.

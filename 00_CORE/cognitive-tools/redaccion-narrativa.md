@@ -4,6 +4,10 @@ tipo: narrative-writing
 contexto_aplicable: ["B"]
 descripcion: Relatos, ensayos y cartas personales apoyados en experiencias reales.
 ---
+> [!info] Índice de esta nota (líneas)
+> - Líneas 1–6: Propiedades
+> - Líneas 7–10: Este índice
+> - Líneas 12–20: Redacción narrativa — B
 
 # Redacción narrativa — B
 

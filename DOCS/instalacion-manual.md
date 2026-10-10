@@ -1,3 +1,7 @@
+> [!info] Índice de esta nota (líneas)
+> - Líneas 1–3: Este índice
+> - Líneas 5–21: Agregar el kit a una bóveda sin Python
+
 # Agregar el kit a una bóveda sin Python
 
 Usá esta guía si ya tenés una bóveda. Conservá la carpeta descargada del kit separada de la bóveda de destino.

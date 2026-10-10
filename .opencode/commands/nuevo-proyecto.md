@@ -1,8 +1,5 @@
 ---
-disable-model-invocation: true
-name: nuevo-proyecto
-description: Crea las carpetas y la ficha de un proyecto mediante preguntas simples.
-argument-hint: <nombre del proyecto>
+description: Agrega un proyecto mediante preguntas simples y conserva los existentes.
 ---
 
 Leé primero `INDICE.md` completo y después `00_CORE/atoms/00_vault-rules.md`.

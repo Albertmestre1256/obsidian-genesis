@@ -3,10 +3,19 @@ level: organ
 tipo: context-injection-protocol
 descripcion: Elegir el contexto mínimo según la tarea y ampliar solo cuando haga falta.
 ---
+> [!info] Índice de esta nota (líneas)
+> - Líneas 1–5: Propiedades
+> - Líneas 6–12: Este índice
+> - Líneas 14–27: Qué darle a la IA
+> - Líneas 28–35: Guías de escritura, cuando hagan falta
+> - Líneas 36–39: Si falta contexto
+> - Líneas 40–44: Mantener la ficha útil
 
 # Qué darle a la IA
 
 Leé primero `INDICE.md`, después `00_CORE/atoms/00_vault-rules.md` y la ficha del proyecto en `00_CORE/cells/`. Buscala por su propiedad `proyecto`; el ejemplo aprender-python está en `ejemplo-context.md`. El índice principal se lee en cada inicio; el índice específico de un proyecto se carga cuando la tarea lo necesita.
+
+Si el pedido trata de un nodo, seguí la sección 7 de las reglas: índice local primero, ficha del proyecto padre si existe y solo las notas pertinentes. Una colección independiente no exige crear un proyecto.
 
 | Tarea | Qué sumar |
 |---|---|

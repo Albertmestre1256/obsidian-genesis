@@ -1,29 +1,24 @@
+> [!info] Índice de esta nota (líneas)
+> - Líneas 1–6: Este índice
+> - Líneas 8–13: Darle la carpeta a una IA
+> - Líneas 14–17: Si ya tenés notas
+> - Líneas 18–21: Si tu chat solo acepta adjuntos
+> - Líneas 22–24: Retomar
+
 # Darle la carpeta a una IA
 
-Si usás [OpenCode](opencode.md) o [ChatGPT](chatgpt.md), seguí su guía para abrir la carpeta o preparar una copia descargable. El recorrido y las reglas son los mismos.
+Para descargar, responder preguntas y abrir el resultado, seguí los tres pasos del [README](../README.md). Esta guía resuelve cómo dar acceso a los archivos; [OpenCode](opencode.md) y [ChatGPT](chatgpt.md) tienen recorridos específicos.
 
-Descargá y descomprimí el kit. Abrí la carpeta que contiene `README.md` y `AI-INSTRUCTIONS.md` como carpeta de trabajo de un asistente que pueda leer y escribir archivos. Pegá el **mensaje de inicio del [README principal](../README.md)**.
-
-La IA prepara las notas con tus respuestas: qué querés organizar, si tenés notas que conservar y cuál es tu primer objetivo. Podés decir «todavía no sé» o «no tengo fecha». No necesitás elegir carpetas, editar plantillas ni ejecutar comandos.
-
-Antes de escribir debe mostrarte dónde trabajará y qué creará. Al terminar, debe entregar el acceso a tu proyecto, comprobar los archivos y explicar cómo abrir esa carpeta en Obsidian.
-
-Si no sabés qué primera tarea elegir, decí «preparalo sin tarea por ahora». Si el asistente vuelve a pedir datos que ya diste, señalalo; debe usar tus respuestas y preguntar solo lo que falta.
-
-No necesitás tener Obsidian instalado para preparar la carpeta con la IA. Para abrirla después, instalalo desde [obsidian.md](https://obsidian.md), elegí abrir una carpeta como bóveda y seleccioná la carpeta preparada. Abrí `Panel.md`: ahí tenés el acceso a tu proyecto.
+Con acceso local, abrí como carpeta de trabajo la que contiene `README.md` e `AI-INSTRUCTIONS.md` y pegá el mensaje de inicio del README. La IA debe comprobar lectura y escritura, explicar el destino y entregar los archivos verificados. Podés pedir «preparalo sin tarea por ahora».
 
 ## Si ya tenés notas
 
-Dale acceso también a tu bóveda y señalá que esa es la carpeta de destino. La IA lee sus reglas y conserva tus notas y ajustes. Si hay archivos incompatibles, debe explicar qué integración propone antes de cambiarlos.
+Dale acceso también a tu bóveda y señalala como destino. La IA conserva reglas, notas y ajustes, y explica cómo integrar archivos incompatibles antes de cambiarlos.
 
 ## Si tu chat solo acepta adjuntos
 
-Subir un ZIP no concede acceso a tu computadora. Si el chat puede leerlo y generar archivos, puede devolverte una copia configurada para descargar, descomprimir y abrir en Obsidian. Si solo responde texto, la configuración quedará pendiente de guardar; podés usar un asistente con acceso a archivos o la [alternativa manual](primer-proyecto.md).
+Un ZIP da acceso a una copia. Si el chat puede leerlo y generar archivos, recibís otra copia configurada para descargar y abrir en Obsidian. Si solo responde texto, queda pendiente guardarla: usá un asistente con acceso local o la [alternativa manual](primer-proyecto.md).
 
 ## Retomar
 
-Si interrumpiste el inicio, decí «seguí con la configuración». Si ya está lista, decí «seguí con [proyecto]». La IA debe revisar lo guardado y continuar; no volver a preguntar todo. Los pedidos del [uso diario](usar-con-otras-ias.md) sirven para avanzar, redactar o guardar el cierre.
-
-`AGENTS.md` y `CLAUDE.md` remiten a `AI-INSTRUCTIONS.md`. En Claude Code también podés usar `/configurar`. Estas instrucciones orientan al asistente; el acceso efectivo depende de las herramientas y permisos que tenga.
-
-La entrada permanente de la IA es `INDICE.md`: primero lee qué hay en la bóveda, después las reglas y el proyecto. Al terminar de guardar, debe mantener ese catálogo actualizado.
+«Seguí con la configuración» retoma un inicio interrumpido; «seguí con [proyecto]» continúa una bóveda lista. Compartí las notas vigentes si trabajás con adjuntos. Para completar el perfil, redactar o cerrar: [uso diario](usar-con-otras-ias.md).

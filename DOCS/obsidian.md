@@ -1,3 +1,10 @@
+> [!info] Índice de esta nota (líneas)
+> - Líneas 1–6: Este índice
+> - Líneas 8–11: Plantillas y panel
+> - Líneas 12–15: Abrir la bóveda preparada
+> - Líneas 16–21: En una bóveda existente
+> - Líneas 22–26: Qué muestra el Panel
+
 # Plantillas y panel
 
 Una bóveda nueva del kit incluye ajustes para **Plantillas**, **Bases** y **Búsqueda**, todos integrados en Obsidian. La visualización se comprueba por separado en tu instalación.

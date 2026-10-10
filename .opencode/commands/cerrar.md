@@ -1,8 +1,5 @@
 ---
-disable-model-invocation: true
-name: cerrar
-description: Cierra la sesión guardando en la célula del proyecto lo que cambió hoy
-argument-hint: <nombre-del-proyecto>
+description: Propone guardar los cambios nuevos de la sesión y verifica lo aprobado.
 ---
 
 Leé primero `INDICE.md` completo y después `00_CORE/atoms/00_vault-rules.md`.

@@ -4,6 +4,10 @@ tipo: persuasive-writing
 contexto_aplicable: ["C"]
 descripcion: Propuestas, presupuestos y pedidos de apoyo con beneficios respaldados.
 ---
+> [!info] Índice de esta nota (líneas)
+> - Líneas 1–6: Propiedades
+> - Líneas 7–10: Este índice
+> - Líneas 12–21: Redacción persuasiva — C
 
 # Redacción persuasiva — C
 

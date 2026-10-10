@@ -6,12 +6,20 @@ objetivo: "[completar: qué querés lograr; la fecha del objetivo es opcional]"
 contexto: "[completar: A, B, C o D]"
 actualizado: "{{date:YYYY-MM-DD}}"
 ---
+> [!info] Índice de esta nota (líneas)
+> - Líneas 1–8: Propiedades
+> - Líneas 9–16: Este índice
+> - Líneas 18–25: Célula del proyecto
+> - Líneas 26–32: Hechos clave
+> - Líneas 33–37: Decisiones
+> - Líneas 38–44: Próximas acciones
+> - Líneas 45–47: Preguntas abiertas
 
 # Célula del proyecto
 
 %%
 La IA completa esta ficha con tus respuestas. Para crearla a mano, usá una nota vacía e insertá TEMPLATE_cell una sola vez, o duplicala y reemplazá {{date:YYYY-MM-DD}} por la fecha real.
-El archivo termina en -context.md; proyecto lleva un identificador único. Contexto: A técnico, B narrativo, C persuasivo, D operativo. La guía manual está en DOCS/primer-proyecto.md.
+El sufijo -context.md es una convención opcional; proyecto lleva un identificador único. Contexto: A técnico, B narrativo, C persuasivo, D operativo. La guía manual está en DOCS/primer-proyecto.md.
 Quitá los marcadores de ejemplo de tu copia. Las secciones sin datos pueden quedar vacías. Estos comentarios son ayuda y no forman parte del estado del proyecto.
 %%
 

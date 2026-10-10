@@ -54,18 +54,23 @@ def markdown(valor):
     return re.sub(r'([\\\[\]<>#|*_`])', r'\\\1', valor)
 
 
-def validador(origen):
-    spec = importlib.util.spec_from_file_location('validador_kit', ruta_real(origen / '00_CORE/schemas/validate.py'))
+def modulo_kit(origen, ruta, nombre):
+    spec = importlib.util.spec_from_file_location(nombre, ruta_real(origen / ruta))
     modulo = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(modulo)
     return modulo
+
+
+def validador(origen):
+    return modulo_kit(origen, '00_CORE/schemas/validate.py', 'validador_kit')
 
 
 def indexador(origen=RAIZ):
-    spec = importlib.util.spec_from_file_location('indice_kit', ruta_real(origen / 'actualizar_indice.py'))
-    modulo = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(modulo)
-    return modulo
+    return modulo_kit(origen, 'actualizar_indice.py', 'indice_kit')
+
+
+def lineador(origen=RAIZ):
+    return modulo_kit(origen, '00_CORE/schemas/note_index.py', 'lineas_creador')
 
 
 def planificar(destino, datos, origen=RAIZ):
@@ -95,8 +100,13 @@ def planificar(destino, datos, origen=RAIZ):
         texto = texto_linea(hecho.get('texto'), 'hecho')
         fuente = texto_linea(hecho.get('fuente'), 'fuente', opcional=True)
         lineas_hechos.append('- {} (fuente: {})'.format(markdown(texto), markdown(fuente)))
-    plantilla = ruta_real(origen / '00_CORE/cells/TEMPLATE_cell.md').read_text(encoding='utf-8')
-    bloque, cuerpo = revisar.separar(plantilla)
+    plantilla = ruta_real(origen / '00_CORE/cells/TEMPLATE_cell.md').read_text(encoding='utf-8-sig')
+    separado = revisar.separar(plantilla)
+    if separado is None:
+        raise ValueError('La plantilla de ficha no tiene un bloque de propiedades cerrado. '
+                         'Restaurá TEMPLATE_cell.md desde una copia íntegra del kit antes de reintentar; '
+                         'no cambies las notas existentes.')
+    bloque, cuerpo = separado
     props, error = revisar.leer_propiedades(bloque, 2)
     if error:
         raise ValueError('Plantilla de ficha inválida: ' + error)
@@ -109,11 +119,15 @@ def planificar(destino, datos, origen=RAIZ):
     cuerpo += '\n\n[[{}/00 - Índice y Contexto|Abrir el proyecto]]\n'.format(codigo)
     ficha = '---\n' + '\n'.join('{}: {}'.format(k, json.dumps(v, ensure_ascii=False)) for k, v in props.items()) + '\n---\n\n' + cuerpo
     indice = ruta_real(origen / 'PROJECT_TEMPLATE/00 - Índice y Contexto.md').read_text(encoding='utf-8')
-    indice = re.sub(r'%%.*?%%', '', indice, flags=re.S)
+    indice = re.sub(r'%%.*?%%', lambda m: m.group() if m.group() in
+                    {'%% node-index:start %%', '%% node-index:end %%'} else '', indice, flags=re.S)
     indice = indice.replace('"[completar: nombre-corto-del-proyecto]"', json.dumps(codigo))
     indice = indice.replace('"[completar: A, B, C o D]"', json.dumps(contexto))
+    indice = indice.replace('"[completar: resumen-del-nodo]"', json.dumps(descripcion, ensure_ascii=False))
     indice = indice.replace('creado:\n', 'creado: "{}"\n'.format(fecha), 1)
     indice = indice.replace('[completar: Nombre del proyecto]', markdown(nombre))
+    autor = texto_linea(datos.get('autor'), 'autor', opcional=True) or 'Sin identificar; pendiente antes de entregar.'
+    indice = indice.replace('[completar: autor del nodo]', markdown(autor))
     indice = indice.replace('[completar: de qué se trata el proyecto, en 2 o 3 líneas]', markdown(descripcion))
     indice = re.sub(r'^> \*\*Célula del proyecto:.*$', '> **Ficha:** [[00_CORE/cells/{}-context]]'.format(codigo), indice, flags=re.M)
     files = {'{}/00 - Índice y Contexto.md'.format(codigo): indice.encode('utf-8')}
@@ -124,6 +138,10 @@ def planificar(destino, datos, origen=RAIZ):
             files[codigo + '/' + actual.relative_to(template).as_posix()] = actual.read_bytes()
     cell_rel = '00_CORE/cells/{}-context.md'.format(codigo)
     files[cell_rel] = ficha.encode('utf-8')
+    lineas = lineador(origen)
+    for rel, raw in list(files.items()):
+        if rel.endswith('.md') and '01_FUENTES' not in Path(rel).parts:
+            files[rel] = lineas.contenido(raw)
     if '[completar' in ficha or '[completar' in indice or '{{date' in ficha:
         raise ValueError('La plantilla cambió o hay marcadores sin resolver; revisá antes de crear.')
     with tempfile.TemporaryDirectory(prefix='obsidian-ficha-') as carpeta:
@@ -151,6 +169,18 @@ def planificar(destino, datos, origen=RAIZ):
                 raise ValueError('El proyecto ya tiene ficha: {}. Si es propia, retomalo; si es un ejemplo ficticio, acordá otro identificador para tu proyecto sin copiar sus datos.'.format(actual))
     for rel in files:
         ruta_real(destino / rel)
+    # El bloque local se regenera después de crear: no es una edición del usuario.
+    index_rel = codigo + '/00 - Índice y Contexto.md'
+    index_path = destino / index_rel
+    if index_path.is_file():
+        actual, expected = index_path.read_bytes(), files[index_rel]
+        start, end = b'%% node-index:start %%', b'%% node-index:end %%'
+        if all(text.count(start) == text.count(end) == 1 and text.index(start) < text.index(end)
+               for text in (actual, expected)):
+            pattern = re.escape(start) + b'.*?' + re.escape(end)
+            without = lambda raw: lineas.sin_indice(re.sub(pattern, b'', raw, flags=re.S).decode('utf-8'))
+            if without(actual) == without(expected):
+                files[index_rel] = actual
     anchor = any((destino / rel).is_file() and (destino / rel).read_bytes() == files[rel]
                  for rel in [cell_rel, codigo + '/00 - Índice y Contexto.md'])
     if (destino / codigo).exists() and not anchor:
@@ -169,25 +199,10 @@ def planificar(destino, datos, origen=RAIZ):
 
 
 def aplicar(plan, creados):
+    lineas = lineador()
     for rel, data in plan['nuevos'].items():
         objetivo = ruta_real(plan['destino'] / rel)
-        objetivo.parent.mkdir(parents=True, exist_ok=True)
-        ruta_real(objetivo)
-        nuestro = None
-        try:
-            with objetivo.open('xb') as stream:
-                nuestro = os.fstat(stream.fileno())
-                stream.write(data)
-        except BaseException:
-            if nuestro is not None:
-                try:
-                    if os.path.samestat(nuestro, ruta_real(objetivo).lstat()):
-                        objetivo.unlink()
-                except (OSError, ValueError):
-                    pass  # Se conserva cualquier cambio ajeno al archivo recién creado.
-            raise
-        if objetivo.read_bytes() != data:
-            raise OSError('No coincide el archivo guardado: ' + str(objetivo))
+        lineas.guardar(objetivo, None, data)
         creados.append(rel)
 
 

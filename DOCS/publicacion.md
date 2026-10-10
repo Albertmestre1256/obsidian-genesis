@@ -1,3 +1,7 @@
+> [!info] Índice de esta nota (líneas)
+> - Líneas 1–3: Este índice
+> - Líneas 5–22: Preparar una publicación
+
 # Preparar una publicación
 
 Antes de publicar una versión del kit:
@@ -5,7 +9,7 @@ Antes de publicar una versión del kit:
 - [ ] Revisar el inicio y las reglas con lenguaje de principiante.
 - [ ] Ejecutar las pruebas automáticas y el validador.
 - [ ] Probar configuración y trabajo diario en Claude Code real.
-- [ ] Probar /configurar en OpenCode y el arranque de ChatGPT con carpeta local o copia descargable; registrar acceso y herramientas disponibles.
+- [ ] Probar configuración y trabajo diario en OpenCode y ChatGPT con carpeta local o copia descargable; registrar acceso y herramientas disponibles. En OpenCode, distinguir carga de comandos de respuesta del modelo y cambios guardados.
 - [ ] Probar bóveda existente, nombres ocupados y reanudación parcial.
 - [ ] Completar y registrar la [prueba con usuarios](prueba-con-usuarios.md).
 - [ ] Comprobar al final Panel, Plantillas y enlaces en Obsidian limpio.

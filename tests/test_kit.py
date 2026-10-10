@@ -8,7 +8,8 @@ RAIZ = Path(__file__).resolve().parent.parent
 TEXTOS = [p for p in RAIZ.rglob("*") if p.suffix in {".md", ".py", ".yaml", ".json"}
           and ".git" not in p.parts and "tests" not in p.parts]
 # Salidas personales documentadas que se crean en la bóveda del usuario.
-RUTAS_GENERADAS = {"00_CORE/configuracion.md"}
+RUTAS_GENERADAS = {"00_CORE/configuracion.md", "00_CORE/logs/registro-cambios.md",
+                   "00_CORE/logs/historial", "00_CORE/logs/.registro-cambios.lock"}
 
 
 def test_rutas_citadas_existen():

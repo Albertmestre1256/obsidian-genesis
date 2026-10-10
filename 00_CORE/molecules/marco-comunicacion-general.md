@@ -3,6 +3,10 @@ level: molecule
 tipo: communication-framework
 descripcion: Elegir destinatario, propósito y tipo de comunicación según la tarea.
 ---
+> [!info] Índice de esta nota (líneas)
+> - Líneas 1–5: Propiedades
+> - Líneas 6–9: Este índice
+> - Líneas 11–26: Marco de comunicación
 
 # Marco de comunicación
 

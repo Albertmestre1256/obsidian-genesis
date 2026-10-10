@@ -3,6 +3,10 @@ level: protocol-shell
 tipo: extraction
 descripcion: Extraer información de una fuente indicando referencias y datos faltantes.
 ---
+> [!info] Índice de esta nota (líneas)
+> - Líneas 1–5: Propiedades
+> - Líneas 6–9: Este índice
+> - Líneas 11–17: Extraer información de una fuente
 
 # Extraer información de una fuente
 

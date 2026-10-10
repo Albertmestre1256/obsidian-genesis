@@ -1,7 +1,5 @@
 ---
-name: empezar
-description: Arranca una sesión de trabajo en un proyecto cargando solo el contexto necesario
-argument-hint: <nombre-del-proyecto>
+description: Retoma un proyecto leyendo su estado vigente y propone el próximo paso.
 ---
 
 Leé primero `INDICE.md` completo y después `00_CORE/atoms/00_vault-rules.md`.

@@ -4,8 +4,12 @@ on:
   push:
   pull_request:
 
+permissions:
+  contents: read
+
 jobs:
   pruebas:
+    timeout-minutes: 15
     strategy:
       fail-fast: false
       matrix:
@@ -13,8 +17,8 @@ jobs:
         python: ["3.8", "3.13"]
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version: ${{ matrix.python }}
       - name: Instalar pytest
@@ -23,3 +27,7 @@ jobs:
         run: python -m pytest -v
       - name: El validador funciona sin dependencias sobre la célula de ejemplo
         run: python 00_CORE/schemas/validate.py
+      - name: El índice distribuido está vigente
+        run: python actualizar_indice.py --comprobar
+      - name: Los rangos de las notas están vigentes
+        run: python 00_CORE/schemas/note_index.py check --vault .
