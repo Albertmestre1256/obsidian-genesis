@@ -26,6 +26,107 @@ def comprobar_enlaces(root, indexes):
         text = re.sub(r'\A---\n.*?\n---\n', '', path.read_text(encoding='utf-8'), flags=re.S)
         for link in re.findall(r'(?<!\\)\]\(([^)]+)\)', text):
             assert (path.parent / unquote(link)).is_file(), (path, link)
+        for link in re.findall(r'\[\[([^\]|]+)', text):
+            target = link.rstrip('\\') + '.md'
+            assert (root / target).is_file(), (path, target)
+
+
+def test_grafo_conecta_raices_entrada_mapa_padres_y_notas(tmp_path):
+    guardar(tmp_path, 'LEER_PRIMERO.md', '# Leer primero\n[[INDICE]]\n')
+    parent = nodo(tmp_path, 'Estudio', 'Preparar materias.')
+    child = nodo(tmp_path, 'Estudio/Resúmenes', 'Resúmenes propios.')
+    other = nodo(tmp_path, 'Trabajo', 'Organizar un trabajo.')
+    note = guardar(tmp_path, 'Estudio/Resúmenes/Primera nota.md', '# Resumen\nTexto propio.\n')
+    original = note.read_bytes()
+    indice.actualizar(tmp_path)
+    for top in (parent, other):
+        text = top.read_text(encoding='utf-8')
+        assert '[[LEER_PRIMERO|Leer primero]]' in text
+        assert '[[INDICE|Mapa general]]' in text
+    text = child.read_text(encoding='utf-8')
+    assert '[[Estudio/00 - Índice y Contexto|Nodo padre]]' in text
+    assert '[[Estudio/Resúmenes/Primera nota\\|Primera nota.md]]' in text
+    assert 'LEER_PRIMERO' not in text  # alcanza mediante su padre y el mapa.
+    assert note.read_bytes() == original
+    comprobar_enlaces(tmp_path, [parent, child, other, tmp_path / 'INDICE.md'])
+    assert indice.actualizar(tmp_path, comprobar=True)['estado'] == 'vigente'
+
+
+def test_grafo_respeta_entrada_propia_existente(tmp_path):
+    own = guardar(tmp_path, '00 - Leer primero.md', '# Reglas propias\nNo reemplazar.\n')
+    guardar(tmp_path, 'LEER_PRIMERO.md', '# Entrada del kit\n')
+    node = nodo(tmp_path, 'Proyecto')
+    before = own.read_bytes()
+    indice.actualizar(tmp_path)
+    text = node.read_text(encoding='utf-8')
+    assert '[[00 - Leer primero|Leer primero]]' in text and '[[LEER_PRIMERO' not in text
+    assert own.read_bytes() == before
+
+
+def test_grafo_no_inventa_entrada_que_no_existe(tmp_path):
+    node = nodo(tmp_path, 'Notas')
+    indice.actualizar(tmp_path)
+    assert 'LEER_PRIMERO' not in node.read_text(encoding='utf-8')
+
+
+def test_grafo_no_mezcla_notas_con_el_mismo_nombre(tmp_path):
+    first = nodo(tmp_path, 'Materia A')
+    second = nodo(tmp_path, 'Materia B')
+    guardar(tmp_path, 'Materia A/Resumen.md', '# Tema A\n')
+    guardar(tmp_path, 'Materia B/Resumen.md', '# Tema B\n')
+    indice.actualizar(tmp_path)
+    assert '[[Materia A/Resumen\\|Resumen.md]]' in first.read_text(encoding='utf-8')
+    assert '[[Materia B/Resumen\\|Resumen.md]]' in second.read_text(encoding='utf-8')
+    comprobar_enlaces(tmp_path, [first, second])
+
+
+def test_alias_de_nodo_no_rompe_tablas_ni_oculta_vinculos(tmp_path):
+    parent = nodo(tmp_path, 'Proyecto')
+    child = nodo(tmp_path, 'Proyecto/Hijo')
+    child.write_text(child.read_text(encoding='utf-8').replace('# Hijo', '# Tema | [otro] %% oculto %% <html>'), encoding='utf-8')
+    indice.actualizar(tmp_path)
+    block = parent.read_text(encoding='utf-8').split(indice.NODO_INICIO)[1].split(indice.NODO_FIN)[0]
+    row = next(line for line in block.splitlines() if '[[Proyecto/Hijo/' in line)
+    assert 'Contexto\\|Tema' in row and '&#37;&#37; oculto &#37;&#37; &lt;html&gt;]]' in row
+    assert '[otro]' not in row and '%%' not in row and '<html>' not in row
+    assert len(re.findall(r'(?<!\\)\|', row)) == 3
+    comprobar_enlaces(tmp_path, [parent])
+
+
+@pytest.mark.parametrize('cantidad', [3, 30])
+def test_grafo_crece_conectado_sin_enlaces_entre_todas_las_notas(tmp_path, cantidad):
+    guardar(tmp_path, 'LEER_PRIMERO.md', '# Entrada\n[[INDICE]]\n')
+    roots, indexes, notes = [], [], []
+    for i in range(cantidad):
+        folder = 'Proyecto-{}'.format(i)
+        roots.append(nodo(tmp_path, folder))
+        indexes.append(nodo(tmp_path, folder + '/Temas'))
+        indexes.append(nodo(tmp_path, folder + '/Temas/Resúmenes'))
+        for j in range(10):
+            notes.append(guardar(tmp_path, folder + '/Temas/Resúmenes/Nota-{}.md'.format(j), '# Nota\n'))
+    indexes += roots
+    indice.actualizar(tmp_path)
+    # Aristas reales de los mapas locales, sin contar el catálogo redundante.
+    edges = set()
+    for path in indexes:
+        for target in re.findall(r'\[\[([^\]|]+)', path.read_text(encoding='utf-8')):
+            dest = tmp_path / (target.rstrip('\\') + '.md')
+            assert dest.is_file()
+            edges.add((path, dest))
+    assert len(edges) == cantidad * 18  # 10 notas + 3 mapas + 4 padre/hijo + entrada.
+    adjacency = {}
+    for left, right in edges:
+        adjacency.setdefault(left, set()).add(right)
+        adjacency.setdefault(right, set()).add(left)
+    seen, pending = set(), [tmp_path / 'LEER_PRIMERO.md']
+    while pending:
+        path = pending.pop()
+        if path not in seen:
+            seen.add(path)
+            pending.extend(adjacency.get(path, ()) - seen)
+    assert set(indexes + notes + [tmp_path / 'INDICE.md']) <= seen
+    assert not any(left in notes and right in notes for left, right in edges)
+    assert indice.actualizar(tmp_path, comprobar=True)['estado'] == 'vigente'
 
 
 def test_jerarquia_enlaza_todos_los_nodos_sin_duplicar_subarboles(tmp_path):

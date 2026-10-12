@@ -10,7 +10,7 @@ import sys
 
 RAIZ = Path(__file__).resolve().parent
 CARPETAS = ("00_CORE", "PROJECT_TEMPLATE", "DOCS", ".claude", ".opencode")
-ARCHIVOS = ("Panel.md", "Proyectos.base", "AI-INSTRUCTIONS.md", "AGENTS.md", "CLAUDE.md", "crear_proyecto.py", "actualizar_indice.py")
+ARCHIVOS = ("Panel.md", "Proyectos.base", "LEER_PRIMERO.md", "AI-INSTRUCTIONS.md", "AGENTS.md", "CLAUDE.md", "crear_proyecto.py", "actualizar_indice.py")
 IGNORAR = {"__pycache__", ".pytest_cache", ".DS_Store", "Thumbs.db"}
 
 
@@ -59,6 +59,10 @@ def planificar(destino, origen=RAIZ):
     nuevos, iguales, conflictos = [], [], []
     for fuente in archivos_kit(origen):
         relativa = fuente.relative_to(origen)
+        if relativa.as_posix() == 'LEER_PRIMERO.md' and comprobar_ruta(destino / '00 - Leer primero.md').is_file():
+            # La entrada propia permanece como referencia de los nodos; no crear
+            # otra puerta de entrada que pueda contradecir sus reglas.
+            continue
         objetivo = comprobar_ruta(destino / relativa)
         padres = [p for p in objetivo.parents if p != destino and destino in p.parents]
         if any(p.exists() and not p.is_dir() for p in padres):

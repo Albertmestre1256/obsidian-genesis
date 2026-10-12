@@ -14,9 +14,9 @@ descripcion: Reglas comunes para trabajar con cualquier proyecto sin mezclar dat
 > - Líneas 41–44: 4. Conservar los originales
 > - Líneas 45–48: 5. Guardar avances con claridad
 > - Líneas 49–52: 6. Hablar y escribir de forma simple
-> - Líneas 53–58: 7. Enlazar y mantener los nodos
-> - Líneas 59–62: 8. Identificar la IA y registrar cambios
-> - Líneas 63–65: 9. Mantener un índice de líneas en cada nota editable
+> - Líneas 53–60: 7. Enlazar y mantener los nodos
+> - Líneas 61–64: 8. Identificar la IA y registrar cambios
+> - Líneas 65–67: 9. Mantener un índice de líneas en cada nota editable
 
 # Reglas de la bóveda
 
@@ -53,6 +53,8 @@ Explicá el próximo paso sin exigir que el usuario conozca YAML, programación 
 ## 7. Enlazar y mantener los nodos
 
 Un nodo es una colección de notas con un propósito, como resúmenes de materias; puede contener otros nodos. Cada uno tiene un índice local con resumen, enlaces al mapa general, al padre, a sus hijos y a sus notas. `INDICE.md` enlaza todos los nodos; cada archivo figura en su nodo más cercano, evitando repetir subárboles.
+
+Los nodos generales enlazan siempre el índice general y la entrada `LEER_PRIMERO.md`, o la entrada propia acordada en una bóveda existente. Las notas pertenecen a su nodo más cercano mediante enlaces de su índice. Al crear o editar una nota, la IA añade un enlace de regreso a su nodo y enlaza otras notas solo cuando su contenido justifica la relación; no enlaza todas con todas ni reescribe fuentes originales. La red crece con esas relaciones, sin depender de etiquetas o de una imagen dibujada a mano.
 
 Para trabajar en un nodo, leé su índice tras estas reglas y la ficha del proyecto padre si existe; una colección independiente no requiere ficha de proyecto. Al crearlo o ampliarlo, seguí `DOCS/indice-principal.md`: agregá o adaptá su índice, resumí el contenido leído y actualizá los índices afectados y el general dentro del mismo trabajo. Conservá resúmenes y comentarios propios, señalá los que faltan y verificá enlaces. Los índices se mantienen sin editar fuentes originales. Estas reglas valen con cualquier IA, con Python o con herramientas de archivos; la persona no mantiene los índices a mano.
 

@@ -54,6 +54,29 @@ def test_reinstalar_es_idempotente(tmp_path):
     assert foto(tmp_path) == antes
 
 
+def test_instala_entrada_sin_configurar_el_grafo_del_usuario(tmp_path):
+    graph = tmp_path / '.obsidian/graph.json'
+    graph.parent.mkdir()
+    graph.write_bytes(b'{"search": "mi filtro", "showOrphans": false}')
+    before = graph.read_bytes()
+    assert ejecutar(tmp_path, '--yes').returncode == 0
+    assert (tmp_path / 'LEER_PRIMERO.md').read_bytes() == (RAIZ / 'LEER_PRIMERO.md').read_bytes()
+    assert graph.read_bytes() == before
+
+
+def test_respeta_lectura_propia_y_enlaza_nodo_instalado(tmp_path):
+    own = tmp_path / '00 - Leer primero.md'
+    own.write_bytes(b'# Entrada propia\r\nReglas existentes.\r\n')
+    node = tmp_path / 'Estudio/Mapa.md'
+    node.parent.mkdir()
+    node.write_text('---\ntipo: indice-nodo\n---\n# Estudio\n%% node-index:start %%\n%% node-index:end %%\n', encoding='utf-8')
+    before = own.read_bytes()
+    assert ejecutar(tmp_path, '--yes').returncode == 0
+    assert own.read_bytes() == before
+    assert not (tmp_path / 'LEER_PRIMERO.md').exists()
+    assert '[[00 - Leer primero|Leer primero]]' in node.read_text(encoding='utf-8')
+
+
 def test_no_instala_checkouts_anidados_de_claude(tmp_path):
     import shutil
     origen = tmp_path / 'kit'

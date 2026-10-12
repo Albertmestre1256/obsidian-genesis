@@ -14,6 +14,7 @@ import re
 import sys
 import unicodedata
 from pathlib import Path
+from urllib.parse import unquote
 
 # Reglas de validación
 PROPIEDADES_OBLIGATORIAS = ["tipo", "proyecto", "descripcion", "contexto", "actualizado"]
@@ -325,6 +326,70 @@ def validar(path):
     return errores, avisos
 
 
+def validar_configuracion(raiz):
+    """Comprueba el cierre básico cuando existe la configuración del kit.
+
+    No comprueba hechos, interfaz ni todos los enlaces. No escribe archivos.
+    """
+    path = Path(raiz) / '00_CORE/configuracion.md'
+    if not path.exists():
+        return []
+    texto, error = leer_nota(path)
+    if error:
+        return [f'Configuración: {error}']
+    partes = separar(texto)
+    if partes is None:
+        return ['La configuración necesita propiedades entre --- al comienzo.']
+    props, error = leer_propiedades(partes[0], 2)
+    if error:
+        return [f'Configuración: {error}']
+    errores = []
+    if props.get('estado') not in ('parcial', 'lista'):
+        errores.append('La configuración necesita estado parcial o lista.')
+    if props.get('personalizacion') not in ('abierta', 'completa'):
+        errores.append('La configuración necesita personalizacion abierta o completa.')
+    cuerpo = re.sub(r'%%.*?%%|<!--.*?-->', '', partes[1], flags=re.S)
+    cuerpo = re.sub(r'^(`{3,}|~{3,})[^\n]*\n.*?^\1\s*$', '', cuerpo, flags=re.M | re.S)
+    en_inventario = tabla = False
+    for linea in cuerpo.splitlines():
+        if re.match(r'^#{1,6} ', linea):
+            en_inventario = normalizar(linea.lstrip('#').strip()) == 'inventario de personalizacion'
+        elif en_inventario and linea.lstrip().startswith('|'):
+            clave = linea.strip().strip('|').split('|')[0].strip()
+            if clave and normalizar(clave) != 'item' and not re.fullmatch(r'[-: ]+', clave):
+                tabla = True
+    if not tabla:
+        errores.append('Falta el inventario de personalización en la configuración.')
+    panel, error = leer_nota(Path(raiz) / 'Panel.md')
+    if error:
+        return errores + [f'Panel: {error}']
+    # Un ejemplo dentro de código o comentarios no es un acceso utilizable.
+    panel = re.sub(r'%%.*?%%|<!--.*?-->', '', panel, flags=re.S)
+    panel = re.sub(r'^(`{3,}|~{3,})[^\n]*\n.*?^\1\s*$', '', panel, flags=re.M | re.S)
+    panel = re.sub(r'(`+).*?\1', '', panel)
+    rutas = re.findall(r'\[\[([^\]|]+)(?:\|[^\]]*)?\]\]|\[[^\]]*\]\(([^)]+)\)', panel)
+    relativa = path.relative_to(Path(raiz)).as_posix()
+    acceso = False
+    for wiki, markdown in rutas:
+        if markdown:
+            destino = re.fullmatch(r'''(<[^>]+>|\S+?)(?:\s+["'].*["'])?''', markdown.strip())
+            if destino is None:
+                continue
+            markdown = destino.group(1)
+        ruta = unquote(wiki.rstrip('\\') if wiki else markdown).split('#', 1)[0].strip().strip('<>')
+        ruta = re.sub(r'\\([_\[\] ()])', r'\1', ruta).replace('\\', '/')
+        while ruta.startswith('./'):
+            ruta = ruta[2:]
+        if ruta in {relativa, relativa[:-3]}:
+            acceso = True
+        elif wiki and ruta in {path.name, path.stem}:
+            # Obsidian admite nombres cortos; exigir una única nota con ese nombre.
+            acceso = acceso or list(Path(raiz).rglob(path.name)) == [path]
+    if not acceso:
+        errores.append('El Panel no da acceso al inventario: añadí un enlace a 00_CORE/configuracion.md.')
+    return errores
+
+
 def main(cells_dir=CELLS_DIR):
     # La consola de Windows a veces no muestra bien acentos y símbolos.
     try:
@@ -346,7 +411,6 @@ def main(cells_dir=CELLS_DIR):
     if not celulas:
         print("Todavía no hay células para revisar.")
         print("Creá una copiando 00_CORE/cells/TEMPLATE_cell.md como nombre-de-tu-proyecto-context.md")
-        return 0
 
     total_av = con_error = 0
     print(f"Revisando {len(celulas)} célula(s) en {cells_dir}\n")
@@ -362,11 +426,19 @@ def main(cells_dir=CELLS_DIR):
         con_error += bool(errores)
 
     print("\n" + "=" * 60)
+    if cells_dir.name.lower() == 'cells' and cells_dir.parent.name == '00_CORE':
+        configuracion = validar_configuracion(cells_dir.parent.parent)
+        for mensaje in configuracion:
+            print(f'CONFIGURACIÓN INCOMPLETA: {mensaje}')
+        if configuracion:
+            print('Conservá el estado parcial hasta completar esta integración; fichas válidas no equivalen a bóveda lista.')
+            return 1
     if con_error:
         print(f"HAY ERRORES en {con_error} célula(s). Arreglalos antes de usarlas con la IA.")
         print("¿No entendés un mensaje? Mirá DOCS/TROUBLESHOOTING.md")
         return 1
-    print("TODO BIEN — las células están listas para usar con la IA.")
+    if celulas:
+        print("TODO BIEN — las células están listas para usar con la IA; esto no comprueba la interfaz de Obsidian.")
     if total_av:
         print(f"({total_av} aviso(s): no bloquean, pero conviene revisarlos.)")
     return 0

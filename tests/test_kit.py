@@ -83,6 +83,14 @@ def test_configuraciones_json_validas():
         json.loads(archivo.read_text(encoding="utf-8"))
 
 
+def test_grafo_nativo_activo_sin_ocultar_notas_del_usuario():
+    assert 'graph' in json.loads((RAIZ / '.obsidian/core-plugins.json').read_text(encoding='utf-8'))
+    config = json.loads((RAIZ / '.obsidian/graph.json').read_text(encoding='utf-8'))
+    assert config['search'] == '' and config['showOrphans'] is True
+    assert config['hideUnresolved'] is True and config['showAttachments'] is False
+    assert (RAIZ / 'LEER_PRIMERO.md').is_file()
+
+
 def test_textos_sin_caracteres_de_control():
     for archivo in RAIZ.rglob("*.md"):
         texto = archivo.read_text(encoding="utf-8")

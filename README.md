@@ -2,21 +2,23 @@
 > [!info] Índice de esta nota (líneas)
 > - Líneas 1–1: Atribución
 > - Líneas 2–13: Este índice
-> - Líneas 15–20: Obsidian Genesis: tu bóveda, configurada por una IA
-> - Líneas 21–41: Empezar en tres pasos
-> - Líneas 42–47: Adjuntos o bóveda existente
-> - Líneas 48–55: Continuar
-> - Líneas 56–67: Qué contiene
-> - Líneas 68–76: Ayuda opcional
-> - Líneas 77–80: Privacidad
-> - Líneas 81–84: English
-> - Líneas 85–87: Licencia
+> - Líneas 15–22: Obsidian Genesis: tu bóveda, configurada por una IA
+> - Líneas 23–43: Empezar en tres pasos
+> - Líneas 44–49: Adjuntos o bóveda existente
+> - Líneas 50–57: Continuar
+> - Líneas 58–70: Qué contiene
+> - Líneas 71–79: Ayuda opcional
+> - Líneas 80–83: Privacidad
+> - Líneas 84–87: English
+> - Líneas 88–90: Licencia
 
 # Obsidian Genesis: tu bóveda, configurada por una IA
 
 Descargá el kit, dale la carpeta a una IA y respondé sus preguntas. El asistente prepara tus notas y tu primer proyecto usando las reglas del kit. No necesitás programar ni conocer Obsidian.
 
 Una **bóveda** es una carpeta de notas que abrís con [Obsidian](https://obsidian.md). El kit está en español y sirve para estudio, trabajo o cualquier proyecto personal.
+
+La entrada [Leer primero](LEER_PRIMERO.md) conecta el Panel y el índice general. El kit incluye la **Vista de gráfico** de Obsidian: abrila desde su icono lateral para explorar las notas conectadas, o usá el gráfico local desde el índice de un proyecto.
 
 ## Empezar en tres pasos
 
@@ -58,6 +60,7 @@ Claude Code y OpenCode incluyen `/configurar`, `/empezar`, `/nuevo-proyecto`, `/
 | Lugar | Uso |
 |---|---|
 | `INDICE.md` | Primera lectura: catálogo completo de archivos y proyectos |
+| `LEER_PRIMERO.md` | Entrada para la persona y conexión central de los nodos generales |
 | `Panel.md` | Acceso a proyectos y tareas |
 | `00_CORE/` | Reglas, fichas, guías y herramientas |
 | `PROJECT_TEMPLATE/` | Carpetas para fuentes, borradores, entregables e historial |

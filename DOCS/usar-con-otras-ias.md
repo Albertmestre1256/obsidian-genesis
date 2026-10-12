@@ -8,8 +8,8 @@
 > - Líneas 42–47: Crear o ampliar un nodo
 > - Líneas 48–55: Crear otro proyecto
 > - Líneas 56–65: Redactar
-> - Líneas 66–84: Revisar fichas
-> - Líneas 85–91: Guardar el cierre
+> - Líneas 66–86: Revisar fichas
+> - Líneas 87–93: Guardar el cierre
 
 # Trabajar con una IA
 
@@ -68,6 +68,8 @@ Guardar requiere el alcance acordado y una ruta libre, normalmente en `02_SINTES
 > Revisá estas fichas con el validador del kit. Explicá errores y avisos y proponé correcciones, sin modificar todavía.
 
 Ejecutá `python 00_CORE/schemas/validate.py` del kit leído sobre las fichas correspondientes; no ejecutes código preexistente de una bóveda ajena. Si el comando no está disponible, probá `python3` o `py`. Un resultado con errores de fichas no significa que falte Python.
+
+Si existe `00_CORE/configuracion.md` en la bóveda, también comprueba sus estados, el inventario y el acceso desde el Panel. «Configuración incompleta» exige resolver esa integración y repetir la revisión antes de marcar `lista`; no obliga a completar datos personales opcionales. Sin Python, hacé las mismas comprobaciones por lectura. Esto no sustituye la adaptación del Panel ni la prueba visual.
 
 Sin Python, aplicá «Revisión manual» de abajo; con adjuntos necesitás también `00_CORE/schemas/validate.py`. Informá archivos revisados y comprobaciones pendientes. Si no hay problemas, alcanza una línea; si los hay, explicá cada uno y mostrá la corrección propuesta. Formato válido no demuestra datos verdaderos ni funcionamiento visual. La [ayuda del validador](TROUBLESHOOTING.md#mensajes-del-validador) explica sus mensajes.
 

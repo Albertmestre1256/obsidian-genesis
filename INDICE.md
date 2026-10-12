@@ -6,22 +6,22 @@
 > - Líneas 48–53: Ejemplos ficticios
 > - Líneas 54–57: Mapa de nodos
 > - Líneas 58–61: Catálogo completo de archivos
-> - Líneas 62–69: Ajustes de Obsidian
-> - Líneas 70–88: Ayuda
-> - Líneas 89–103: Desarrollo
-> - Líneas 104–122: Entrada y herramientas
-> - Líneas 123–129: Fichas y plantillas de proyecto
-> - Líneas 130–135: Guías de comunicación
-> - Líneas 136–144: Guías de redacción
-> - Líneas 145–157: Integración Claude
-> - Líneas 158–168: Integración OpenCode
-> - Líneas 169–178: Plantilla de carpetas
-> - Líneas 179–184: Plantillas de nodos
-> - Líneas 185–193: Protocolos
-> - Líneas 194–202: Recursos opcionales de davidkimai
-> - Líneas 203–208: Reglas compartidas
-> - Líneas 209–216: Validación
-> - Líneas 217–225: Alcance del catálogo
+> - Líneas 62–70: Ajustes de Obsidian
+> - Líneas 71–89: Ayuda
+> - Líneas 90–104: Desarrollo
+> - Líneas 105–124: Entrada y herramientas
+> - Líneas 125–131: Fichas y plantillas de proyecto
+> - Líneas 132–137: Guías de comunicación
+> - Líneas 138–146: Guías de redacción
+> - Líneas 147–159: Integración Claude
+> - Líneas 160–170: Integración OpenCode
+> - Líneas 171–180: Plantilla de carpetas
+> - Líneas 181–186: Plantillas de nodos
+> - Líneas 187–195: Protocolos
+> - Líneas 196–204: Recursos opcionales de davidkimai
+> - Líneas 205–210: Reglas compartidas
+> - Líneas 211–218: Validación
+> - Líneas 219–227: Alcance del catálogo
 
 # Índice principal de la bóveda
 
@@ -37,7 +37,7 @@ Podés agregar presentación y comentarios antes o después del bloque automáti
 
 ## Panorama
 
-- Archivos catalogados: 80. Proyectos propios identificados: 0. Ejemplos ficticios: 1.
+- Archivos catalogados: 82. Proyectos propios identificados: 0. Ejemplos ficticios: 1.
 - Configuración: todavía no existe una nota de configuración del kit.
 - El estado detallado y las tareas se leen en cada ficha; este catálogo no los reemplaza.
 
@@ -65,6 +65,7 @@ Cada fila enlaza un archivo. Las carpetas se representan mediante sus archivos; 
 |---|---|
 | [app.json](.obsidian/app.json) | JSON |
 | [core-plugins.json](.obsidian/core-plugins.json) | JSON |
+| [graph.json](.obsidian/graph.json) | JSON |
 | [templates.json](.obsidian/templates.json) | JSON |
 
 ### Ayuda
@@ -115,6 +116,7 @@ Cada fila enlaza un archivo. Las carpetas se representan mediante sus archivos; 
 | [crear\_proyecto.py](crear_proyecto.py) | PY |
 | [INDICE.md](INDICE.md) | Índice principal de la bóveda |
 | [instalar.py](instalar.py) | PY |
+| [LEER\_PRIMERO.md](LEER_PRIMERO.md) | Puerta de entrada a los proyectos, las reglas y el mapa de esta bóveda. |
 | [LICENSE](LICENSE) | Archivo sin extensión |
 | [Panel.md](Panel.md) | Mis proyectos |
 | [Proyectos.base](Proyectos.base) | BASE |

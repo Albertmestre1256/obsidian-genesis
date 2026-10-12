@@ -5,6 +5,86 @@ from pathlib import Path
 import pytest
 
 
+def preparar_configuracion(tmp_path, panel):
+    core = tmp_path / '00_CORE'
+    (core / 'cells').mkdir(parents=True)
+    (core / 'configuracion.md').write_text(
+        '---\ntipo: configuracion\nestado: lista\npersonalizacion: abierta\n---\n'
+        '\n## Inventario de personalización\n\n'
+        '| Ítem | Estado |\n|---|---|\n| documento-perfil | omitido |\n', encoding='utf-8')
+    (tmp_path / 'Panel.md').write_text(panel, encoding='utf-8')
+    return core / 'cells'
+
+
+def test_fichas_validas_no_ocultan_panel_sin_inventario(validador, tmp_path, ejemplo, capsys):
+    cells = preparar_configuracion(tmp_path, '# Mis proyectos\n\n![[Proyectos.base]]\n')
+    (cells / 'propio-context.md').write_text(ejemplo, encoding='utf-8')
+    assert validador.main(cells) == 1
+    output = capsys.readouterr().out
+    assert 'CONFIGURACIÓN INCOMPLETA' in output and 'TODO BIEN' not in output
+
+
+@pytest.mark.parametrize('link', ['[[00_CORE/configuracion#Inventario de personalización|Completar después]]',
+                                '[Personalizar](00_CORE/configuracion.md#inventario)',
+                                '[[configuracion]]'])
+def test_inventario_abierto_no_exige_cv_para_validar(validador, tmp_path, link):
+    preparar_configuracion(tmp_path, '# Mi bóveda\n\n'+link+'\n')
+    assert validador.validar_configuracion(tmp_path) == []
+
+
+@pytest.mark.parametrize('panel', ['```md\n[[00_CORE/configuracion]]\n```\n',
+                                 '%% [[00_CORE/configuracion]] %%\n',
+                                 '[Perfil](https://example.com/00_CORE/configuracion.md)\n'])
+def test_ejemplos_y_enlaces_externos_no_integran_el_panel(validador, tmp_path, panel):
+    preparar_configuracion(tmp_path, panel)
+    assert any('Panel no da acceso' in error for error in validador.validar_configuracion(tmp_path))
+
+
+def test_configuracion_incompleta_sin_fichas_no_pasa(validador, tmp_path, capsys):
+    cells = preparar_configuracion(tmp_path, '# Sin acceso\n')
+    assert validador.main(cells) == 1
+    assert 'CONFIGURACIÓN INCOMPLETA' in capsys.readouterr().out
+
+
+def test_configuracion_ilegible_se_conserva(validador, tmp_path):
+    preparar_configuracion(tmp_path, '[[00_CORE/configuracion]]\n')
+    config = tmp_path / '00_CORE/configuracion.md'
+    config.write_bytes(b'\xff datos originales')
+    assert validador.validar_configuracion(tmp_path)
+    assert config.read_bytes() == b'\xff datos originales'
+
+
+def test_tabla_sin_datos_no_es_inventario(validador, tmp_path):
+    preparar_configuracion(tmp_path, '[[00_CORE/configuracion]]\n')
+    path = tmp_path / '00_CORE/configuracion.md'
+    path.write_text(path.read_text(encoding='utf-8').replace('| documento-perfil | omitido |\n', ''), encoding='utf-8')
+    assert any('inventario' in mensaje for mensaje in validador.validar_configuracion(tmp_path))
+
+
+@pytest.mark.parametrize('campo', ['estado', 'personalizacion'])
+def test_estados_complejos_se_informan_sin_abortar(validador, tmp_path, campo):
+    preparar_configuracion(tmp_path, '[[00_CORE/configuracion]]\n')
+    path = tmp_path / '00_CORE/configuracion.md'
+    before = path.read_text(encoding='utf-8')
+    path.write_text(re.sub(r'^'+campo+r':.*$', campo+': [valor]', before, flags=re.M), encoding='utf-8')
+    assert any(campo in mensaje for mensaje in validador.validar_configuracion(tmp_path))
+
+
+@pytest.mark.parametrize('panel,duplicado,correcto', [
+    ('| Perfil | [[00_CORE/configuracion\\|Completar]] |\n', False, True),
+    ('[Perfil](00_CORE/configuracion.md "Más adelante")\n', False, True),
+    ('[Perfil](configuracion.md)\n', False, False),
+    ('[[configuracion]]\n', True, False),
+    ('`[[00_CORE/configuracion]]`\n', False, False),
+    ('``[[00_CORE/configuracion]]``\n', False, False)])
+def test_enlaces_del_panel_se_resuelven_sin_falsos_resultados(validador, tmp_path, panel, duplicado, correcto):
+    preparar_configuracion(tmp_path, panel)
+    if duplicado:
+        (tmp_path / 'configuracion.md').write_text('# Otra nota\n', encoding='utf-8')
+    errores = validador.validar_configuracion(tmp_path)
+    assert (not errores) == correcto
+
+
 def reemplazar(texto, viejo, nuevo):
     assert viejo in texto, f"el ejemplo ya no contiene {viejo!r}"
     return texto.replace(viejo, nuevo, 1)

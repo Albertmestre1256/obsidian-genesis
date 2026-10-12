@@ -1,12 +1,14 @@
 > [!info] Índice de esta nota (líneas)
 > - Líneas 1–5: Este índice
-> - Líneas 7–12: Entrada para la IA
-> - Líneas 13–24: Elegir el recorrido
-> - Líneas 25–40: Herramientas opcionales
+> - Líneas 7–14: Entrada para la IA
+> - Líneas 15–28: Elegir el recorrido
+> - Líneas 29–44: Herramientas opcionales
 
 # Entrada para la IA
 
 Leé primero `INDICE.md` completo y después `00_CORE/atoms/00_vault-rules.md`. Este kit prepara una bóveda mediante preguntas simples; la persona no necesita editar plantillas ni conocer YAML.
+
+Si recibiste la carpeta exterior de un ZIP, ubicá su raíz real: la que contiene `INDICE.md` y estas instrucciones. Si hay varias bóvedas posibles, preguntá cuál usar.
 
 El índice muestra lo disponible; contrastalo con la carpeta real al iniciar y mantenelo después de guardar, según `DOCS/indice-principal.md`. Con una copia adjunta, aclarás qué no podés verificar. En una bóveda existente, respetá su entrada y sus reglas sin sustituirlas. Después del mapa, cargá solo el contexto necesario.
 
@@ -20,7 +22,9 @@ El índice muestra lo disponible; contrastalo con la carpeta real al iniciar y m
 | Retomar, crear otro proyecto, redactar, revisar o cerrar | `DOCS/usar-con-otras-ias.md` |
 | Desarrollar o revisar el kit | Atendé ese pedido; no personalices el repositorio ni inicies la entrevista. |
 
-`00_CORE/configuracion.md` se crea durante la configuración, con el inventario de personalización; su ausencia no demuestra una bóveda vacía. Estado parcial: retomá pendientes conservando lo creado. Estado lista: continuá el proyecto sin reiniciar preguntas opcionales. Para completar el perfil, seguí su guía aunque la bóveda esté lista. Buscá fichas por `proyecto`; ante ambigüedad, preguntá.
+**Leé la referencia elegida antes de escribir.** Para configurar, acordá los datos indispensables que falten y guardá la configuración parcial con su inventario **antes de crear el proyecto**. Derivar un nombre no permite confirmar un objetivo propuesto ni inventar una primera tarea. El creador de proyectos no sustituye este recorrido.
+
+`00_CORE/configuracion.md` se crea durante la configuración, con el inventario de personalización; su ausencia no demuestra una bóveda vacía. Estado parcial: retomá pendientes conservando lo creado. Estado lista: continuá el proyecto sin reiniciar preguntas opcionales. Para completar el perfil, seguí su guía aunque la bóveda esté lista. Buscá fichas por `proyecto`; ante ambigüedad, preguntá. Declarar la bóveda lista exige comprobar también el Panel adaptado y su acceso al inventario; un validador de fichas correcto no comprueba esa integración.
 
 ## Herramientas opcionales
 

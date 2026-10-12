@@ -216,24 +216,32 @@ def resumen(record):
         (meta.get('titulo') or 'archivo ' + Path(record['ruta']).suffix.lstrip('.').upper()))
 
 
-def bloque_nodo(folder, hierarchy):
+def bloque_nodo(folder, hierarchy, lectura=None):
     nodes, parents, files, children = hierarchy
-    def local(path, label=None):
+    def local(path, label=None, tabla=False):
+        # Relaciones de notas con ruta completa desde la raíz: Obsidian las
+        # reconoce en el gráfico y nombres repetidos no mezclan sus destinos.
+        if path.lower().endswith('.md') and not re.search(r'[#|^:\[\]]|%%', path):
+            alias = re.sub(r'[\r\n\t|\[\]\\]', ' ', str(label or Path(path).name)).strip()
+            alias = alias.replace('<', '&lt;').replace('>', '&gt;').replace('%', '&#37;')
+            return '[[{}{}{}]]'.format(path[:-3], '\\|' if tabla else '|', alias)
         return link(Path(os.path.relpath(path, folder)).as_posix(), label)
     navigation = local('INDICE.md', 'Mapa general')
     if parents[folder]:
         navigation += ' · ' + local(nodes[parents[folder]]['ruta'], 'Nodo padre')
+    elif lectura:
+        navigation += ' · ' + local(lectura, 'Leer primero')
     lines = [NODO_INICIO, '', navigation,
              '', '## Nodos hijos', '', '| Nodo | Qué contiene |', '|---|---|']
     for child in sorted(children[folder], key=str.casefold):
         r = nodes[child]
-        lines.append('| {} | {} |'.format(local(r['ruta'], r['meta'].get('titulo') or Path(child).name), esc(resumen(r)[:180])))
+        lines.append('| {} | {} |'.format(local(r['ruta'], r['meta'].get('titulo') or Path(child).name, tabla=True), esc(resumen(r)[:180])))
     if not children[folder]:
         lines.append('| — | Todavía sin nodos hijos. |')
     lines += ['', '## Notas y archivos de este nodo', '', '| Archivo | Resumen |', '|---|---|']
     for r in sorted(files[folder], key=lambda r: r['ruta'].casefold()):
         label = Path(r['ruta']).relative_to(folder).as_posix()
-        lines.append('| {} | {} |'.format(local(r['ruta'], label), esc(resumen(r)[:180])))
+        lines.append('| {} | {} |'.format(local(r['ruta'], label, tabla=True), esc(resumen(r)[:180])))
     if not files[folder]:
         lines.append('| — | Todavía sin notas ni archivos. |')
     return '\n'.join(lines + ['', NODO_FIN])
@@ -333,6 +341,9 @@ def planificar(raiz):
     if not raiz.is_dir():
         raise ValueError('La carpeta de bóveda debe existir.')
     records = catalogo(raiz)
+    paths = {record['ruta'] for record in records}
+    # Una entrada propia de la bóveda prevalece sobre la del kit.
+    lectura = next((name for name in ('00 - Leer primero.md', 'LEER_PRIMERO.md') if name in paths), None)
     hierarchy = organizar_nodos(records)
     plan = plan_documento(raiz / 'INDICE.md', bloque(records), INICIO, FIN, cabecera(raiz))
     plan['nodos'], plan['manuales'] = [], []
@@ -342,7 +353,7 @@ def planificar(raiz):
         if lineador().protegida(path) or (NODO_INICIO not in text and NODO_FIN not in text):
             plan['manuales'].append(node['ruta'])
         else:
-            plan['nodos'].append(plan_documento(path, bloque_nodo(folder, hierarchy), NODO_INICIO, NODO_FIN))
+            plan['nodos'].append(plan_documento(path, bloque_nodo(folder, hierarchy, lectura), NODO_INICIO, NODO_FIN))
     return plan
 
 
