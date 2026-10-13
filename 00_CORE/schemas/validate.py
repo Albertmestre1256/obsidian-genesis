@@ -8,7 +8,10 @@ Errores: formato que corregir. Avisos: datos que revisar, sin bloquear.
 Ignora ayuda entre %%...%%. Python estándar 3.8+; ver DOCS/TROUBLESHOOTING.md.
 """
 
+import argparse
 import datetime
+import hashlib
+import importlib.util
 import json
 import re
 import sys
@@ -23,7 +26,24 @@ CONTEXTOS = {"A": "técnico", "B": "narrativo", "C": "persuasivo", "D": "operati
 MARCA_PENDIENTE = "[completar"
 MAX_TOKENS_CELULA = 3000  # ver davidkimai-resources/evaluation/token_budgeting.md
 
+# El inventario de personalización: cabecera canónica de 6 columnas
+INVENTARIO_CABECERA = ["Ítem", "Alcance", "Estado", "Dato o referencia", "Origen y fecha", "Para retomar"]
+INVENTARIO_ESTADOS_VALIDOS = {"confirmado", "pendiente", "omitido", "propuesto", "no-aplica"}
+
 CELLS_DIR = Path(__file__).resolve().parent.parent / "cells"
+
+# Cargar módulos de confianza desde la raíz del kit (no de la bóveda destino)
+_KIT_ROOT = Path(__file__).resolve().parent.parent.parent
+def _cargar_modulo(nombre, relativo):
+    spec = importlib.util.spec_from_file_location(nombre, _KIT_ROOT / relativo)
+    modulo = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(modulo)
+    return modulo
+
+_lineas = None
+# registrar_cambios y actualizar_indice se cargan perezosamente en validar_cierre para evitar ciclo de importación
+_registro = None
+_mapas = None
 
 RE_VINETA = re.compile(r"^[-*+] +(.*)$")                 # viñeta de primer nivel
 RE_TAREA = re.compile(r"^[-*+] \[( |x|X)\] +\S")         # - [ ] tarea / - [x] tarea
@@ -178,32 +198,31 @@ def leer_nota(path):
                       'que siga disponible antes de volver a revisarlo.')
 
 
-def buscar_celulas(cells_dir):
-    """Reconoce fichas por propiedades; conserva la detección de nombres convencionales rotos."""
-    celulas = []
-    for path in sorted(Path(cells_dir).iterdir()):
-        if path.suffix.lower() != '.md' or path.name.lower() == 'template_cell.md' or not path.is_file():
-            continue
-        if path.name.lower().endswith('-context.md'):
-            celulas.append(path)
-            continue
-        text, error = leer_nota(path)
-        if error:
-            celulas.append(path)  # No ocultar posibles fichas que no pudimos clasificar.
-            continue
-        partes = separar(text)
-        if partes is None:
-            continue
+def es_celula(path):
+    """La misma clasificación para buscar fichas y verificar una ficha tocada."""
+    path = Path(path)
+    if path.suffix.lower() != '.md' or path.name.lower() == 'template_cell.md' or not path.is_file():
+        return False
+    if path.name.lower().endswith('-context.md'):
+        return True
+    text, error = leer_nota(path)
+    if error:
+        return True  # No ocultar posibles fichas que no pudimos clasificar.
+    partes = separar(text)
+    if partes is not None:
         for linea in partes[0].splitlines():
             if re.match(r'^proyecto\s*:', linea):
-                celulas.append(path)
-                break
+                return True
             if re.match(r'^tipo\s*:', linea):
                 props, error = leer_propiedades(linea, primera_linea=2)
                 if not error and normalizar(props.get('tipo', '')) == 'celula':
-                    celulas.append(path)
-                    break
-    return celulas
+                    return True
+    return False
+
+
+def buscar_celulas(cells_dir):
+    """Reconoce fichas por propiedades; conserva nombres convencionales rotos."""
+    return [path for path in sorted(Path(cells_dir).iterdir()) if es_celula(path)]
 
 
 def secciones(cuerpo):
@@ -226,6 +245,157 @@ def recortar(texto, n=45):
 
 def contenido(vineta):
     return RE_VINETA.match(vineta).group(1)
+
+
+def _parsear_fila_tabla(linea):
+    """Divide celdas por barras no escapadas, según paridad de backslashes."""
+    linea = linea.strip()
+    if not linea.startswith('|') or not linea.endswith('|'):
+        return None
+    contenido = linea[1:-1]
+    celdas = []
+    actual = []
+    i = 0
+    while i < len(contenido):
+        if contenido[i] == '\\':
+            cuenta = 0
+            while i + cuenta < len(contenido) and contenido[i + cuenta] == '\\':
+                cuenta += 1
+            if i + cuenta < len(contenido) and contenido[i + cuenta] == '|':
+                if cuenta % 2 == 1:
+                    actual.append('\\' * (cuenta // 2))
+                    actual.append('|')
+                    i += cuenta + 1
+                    continue
+                else:
+                    actual.append('\\' * (cuenta // 2))
+                    i += cuenta
+                    continue
+            else:
+                actual.append('\\' * cuenta)
+                i += cuenta
+                continue
+        elif contenido[i] == '|':
+            celdas.append(''.join(actual))
+            actual = []
+            i += 1
+        else:
+            actual.append(contenido[i])
+            i += 1
+    celdas.append(''.join(actual))
+    return [c.strip() for c in celdas]
+
+
+def _es_cabecera_inventario(celdas):
+    """Comprueba las seis columnas en su orden canónico."""
+    if len(celdas) != 6:
+        return False
+    return all(normalizar(c.strip()) == normalizar(e) for c, e in zip(celdas, INVENTARIO_CABECERA))
+
+
+def _es_separador_valido(celdas):
+    """Comprueba un separador Markdown de seis columnas."""
+    if len(celdas) != 6:
+        return False
+    patron = re.compile(r'^:?-+:?$')
+    return all(patron.match(c.strip()) for c in celdas)
+
+
+def _extraer_seccion_inventario(cuerpo):
+    """Extrae el inventario sin ejemplos en comentarios o código."""
+    cuerpo = re.sub(r'<!--.*?-->', '', cuerpo, flags=re.DOTALL)
+    cuerpo = re.sub(r'%%.*?%%', '', cuerpo, flags=re.DOTALL)
+    cuerpo = re.sub(r'^(`{3,}|~{3,})[^\n]*\n.*?^\1\s*$', '', cuerpo, flags=re.M | re.S)
+    lineas = cuerpo.splitlines()
+    en_inventario = False
+    lineas_inventario = []
+    for linea in lineas:
+        if linea.startswith('## '):
+            titulo = normalizar(linea[3:].strip())
+            if titulo == 'inventario de personalizacion':
+                en_inventario = True
+                continue
+            elif en_inventario:
+                break
+        if en_inventario:
+            lineas_inventario.append(linea)
+    return lineas_inventario
+
+
+def _validar_tabla_inventario(lineas_inventario):
+    """Valida estructura, estados, alcances y duplicados sin escribir."""
+    errores = []
+    filas_datos = []
+    if not lineas_inventario:
+        errores.append('El inventario de personalización: falta la tabla (cabecera, separador y filas).')
+        return errores, filas_datos
+    idx_tabla = None
+    for i, linea in enumerate(lineas_inventario):
+        if linea.strip().startswith('|'):
+            idx_tabla = i
+            break
+    if idx_tabla is None:
+        errores.append('El inventario de personalización: no se encuentra tabla markdown.')
+        return errores, filas_datos
+    if idx_tabla + 2 >= len(lineas_inventario):
+        errores.append('El inventario de personalización: tabla incompleta (falta separador o filas de datos).')
+        return errores, filas_datos
+    cabecera = _parsear_fila_tabla(lineas_inventario[idx_tabla])
+    if cabecera is None:
+        errores.append('El inventario de personalización: la cabecera no es una fila de tabla válida.')
+        return errores, filas_datos
+    if not _es_cabecera_inventario(cabecera):
+        errores.append('El inventario de personalización: la cabecera no coincide con la canónica (Ítem | Alcance | Estado | Dato o referencia | Origen y fecha | Para retomar).')
+        return errores, filas_datos
+    separador = _parsear_fila_tabla(lineas_inventario[idx_tabla + 1])
+    if separador is None:
+        errores.append('El inventario de personalización: falta el separador markdown tras la cabecera.')
+        return errores, filas_datos
+    if not _es_separador_valido(separador):
+        errores.append('El inventario de personalización: el separador debe tener 6 columnas (formato |---|---|---|---|---|---|).')
+        return errores, filas_datos
+    vistas = set()  # para detectar duplicados (item + alcance)
+    tiene_filas = False
+    for i in range(idx_tabla + 2, len(lineas_inventario)):
+        linea = lineas_inventario[i].strip()
+        if not linea:
+            continue
+        if not linea.startswith('|'):
+            break
+        celdas = _parsear_fila_tabla(linea)
+        if celdas is None or len(celdas) != 6:
+            errores.append(f'El inventario de personalización: fila {i - idx_tabla - 1} malformada (se esperan 6 columnas, pipes no escapados en celdas).')
+            continue
+        item, alcance, estado, dato, origen, retomar = celdas
+        if not item.strip():
+            errores.append(f'El inventario de personalización: fila {i - idx_tabla - 1}: "Ítem" no puede estar vacío.')
+        alcance_norm = alcance.strip().lower()
+        if alcance_norm != 'boveda':
+            if not alcance_norm.startswith('proyecto:'):
+                errores.append(f'El inventario de personalización: fila {i - idx_tabla - 1}: "Alcance" debe ser "boveda" o "proyecto:identificador" (recibido: {alcance!r}).')
+            else:
+                proj_id = alcance_norm[len('proyecto:'):]
+                if not proj_id or not re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*', proj_id):
+                    errores.append(f'El inventario de personalización: fila {i - idx_tabla - 1}: identificador de proyecto inválido en "Alcance" (usá minúsculas, números y guiones simples: proyecto:mi-proyecto).')
+        estado_norm = estado.strip().lower()
+        if estado_norm not in INVENTARIO_ESTADOS_VALIDOS:
+            errores.append(f'El inventario de personalización: fila {i - idx_tabla - 1}: "Estado" inválido {estado!r}. Valores: confirmado, pendiente, omitido, propuesto, no-aplica.')
+        clave = (item.strip().lower(), alcance_norm)
+        if clave in vistas:
+            errores.append(f'El inventario de personalización: fila {i - idx_tabla - 1}: duplicado "Ítem + Alcance" ({item} / {alcance}).')
+        vistas.add(clave)
+        filas_datos.append({
+            'item': item.strip(),
+            'alcance': alcance.strip(),
+            'estado': estado_norm,
+            'dato': dato.strip(),
+            'origen': origen.strip(),
+            'retomar': retomar.strip()
+        })
+        tiene_filas = True
+    if not tiene_filas:
+        errores.append('El inventario de personalización: no hay filas de datos (se requiere al menos una).')
+    return errores, filas_datos
 
 
 def validar(path):
@@ -327,7 +497,7 @@ def validar(path):
 
 
 def validar_configuracion(raiz):
-    """Comprueba el cierre básico cuando existe la configuración del kit.
+    """Comprueba el cierre básico y el inventario de personalización cuando existe la configuración del kit.
 
     No comprueba hechos, interfaz ni todos los enlaces. No escribe archivos.
     """
@@ -348,25 +518,26 @@ def validar_configuracion(raiz):
         errores.append('La configuración necesita estado parcial o lista.')
     if props.get('personalizacion') not in ('abierta', 'completa'):
         errores.append('La configuración necesita personalizacion abierta o completa.')
-    cuerpo = re.sub(r'%%.*?%%|<!--.*?-->', '', partes[1], flags=re.S)
-    cuerpo = re.sub(r'^(`{3,}|~{3,})[^\n]*\n.*?^\1\s*$', '', cuerpo, flags=re.M | re.S)
-    en_inventario = tabla = False
-    for linea in cuerpo.splitlines():
-        if re.match(r'^#{1,6} ', linea):
-            en_inventario = normalizar(linea.lstrip('#').strip()) == 'inventario de personalizacion'
-        elif en_inventario and linea.lstrip().startswith('|'):
-            clave = linea.strip().strip('|').split('|')[0].strip()
-            if clave and normalizar(clave) != 'item' and not re.fullmatch(r'[-: ]+', clave):
-                tabla = True
-    if not tabla:
-        errores.append('Falta el inventario de personalización en la configuración.')
+    
+    # Validar inventario de personalización
+    cuerpo = partes[1]
+    lineas_inventario = _extraer_seccion_inventario(cuerpo)
+    errores_inventario, filas = _validar_tabla_inventario(lineas_inventario)
+    errores.extend(errores_inventario)
+    
+    # Validar coherencia personalizacion: completa con filas pendiente/propuesto
+    if not errores_inventario and props.get('personalizacion') == 'completa':
+        for fila in filas:
+            if fila['estado'] in ('pendiente', 'propuesto'):
+                errores.append('El inventario de personalización: "personalizacion: completa" no permite filas "pendiente" ni "propuesto" (item: {}).'.format(fila['item']))
+                break
+    
+    # Panel: verificar acceso al inventario
     panel, error = leer_nota(Path(raiz) / 'Panel.md')
     if error:
         return errores + [f'Panel: {error}']
     # Un ejemplo dentro de código o comentarios no es un acceso utilizable.
-    panel = re.sub(r'%%.*?%%|<!--.*?-->', '', panel, flags=re.S)
-    panel = re.sub(r'^(`{3,}|~{3,})[^\n]*\n.*?^\1\s*$', '', panel, flags=re.M | re.S)
-    panel = re.sub(r'(`+).*?\1', '', panel)
+    panel = _texto_visible(panel)
     rutas = re.findall(r'\[\[([^\]|]+)(?:\|[^\]]*)?\]\]|\[[^\]]*\]\(([^)]+)\)', panel)
     relativa = path.relative_to(Path(raiz)).as_posix()
     acceso = False
@@ -390,14 +561,171 @@ def validar_configuracion(raiz):
     return errores
 
 
-def main(cells_dir=CELLS_DIR):
-    # La consola de Windows a veces no muestra bien acentos y símbolos.
+def _texto_visible(texto):
+    texto = re.sub(r'%%.*?%%|<!--.*?-->', '', texto, flags=re.S)
+    texto = re.sub(r'^(`{3,}|~{3,})[^\n]*\n.*?^\1\s*$', '', texto, flags=re.M | re.S)
+    return re.sub(r'(`+).*?\1', '', texto)
+
+
+def validar_cierre(raiz, operacion):
+    """Validación de cierre: comprueba configuración, mapas, rangos, registro y fichas.
+    No escribe ni repara nada. Devuelve lista de errores en español (vacía = ok)."""
+    global _registro, _mapas, _lineas
     try:
-        sys.stdout.reconfigure(encoding="utf-8")
+        if _lineas is None:
+            _lineas = _cargar_modulo('lineas_cierre', '00_CORE/schemas/note_index.py')
+        if _registro is None:
+            _registro = _cargar_modulo('registro_cierre', '00_CORE/schemas/registrar_cambios.py')
+        if _mapas is None:
+            _mapas = _cargar_modulo('mapas_cierre', 'actualizar_indice.py')
+    except (OSError, ValueError, ImportError) as error:
+        return [f'Herramientas de cierre no disponibles: {error}']
+    
+    raiz = Path(raiz)
+    errores = []
+
+    # 1. Configuración debe existir y pasar validación existente
+    config_path = raiz / '00_CORE' / 'configuracion.md'
+    if not config_path.is_file():
+        errores.append('Falta 00_CORE/configuracion.md.')
+    else:
+        config_errores = validar_configuracion(raiz)
+        if config_errores:
+            errores.extend(f'Configuración: {e}' for e in config_errores)
+
+    # 2. Panel: aviso inicial "Para empezar:" debe estar adaptado (no ejemplo)
+    panel_path = raiz / 'Panel.md'
+    if panel_path.is_file():
+        texto, error = leer_nota(panel_path)
+        if error:
+            errores.append(f'Panel: {error}')
+        else:
+            if re.search(r'\*\*Para empezar:\*\*.*(?:Dale la carpeta a tu IA|respondé sus preguntas)', _texto_visible(texto)):
+                errores.append('Panel: aviso inicial "Para empezar:" aún contiene el texto de ejemplo.')
+    else:
+        errores.append('Falta Panel.md.')
+
+    # 3. Mapas actualizados (actualizar_indice.actualizar con comprobar=True)
+    try:
+        resultado_mapas = _mapas.actualizar(raiz, comprobar=True)
+    except (OSError, ValueError) as e:
+        errores.append(f'Mapas: {e}')
+    else:
+        if resultado_mapas.get('estado') != 'vigente':
+            errores.append('Mapas desactualizados (general o nodos).')
+        indices_manuales = resultado_mapas.get('indices_manuales', [])
+        if indices_manuales:
+            for idx in indices_manuales:
+                errores.append(f'Índice manual pendiente de revisión: {idx}')
+
+    # 4. Rangos de líneas en notas editables (note_index.archivos + contenido)
+    try:
+        for nota in _lineas.archivos(raiz):
+            if _lineas.protegida(nota):
+                continue
+            raw = nota.read_bytes()
+            esperado = _lineas.contenido(raw)
+            if raw != esperado:
+                errores.append(f'Rangos desactualizados: {nota.relative_to(raiz)}')
+    except (OSError, ValueError) as e:
+        errores.append(f'Rangos: {e}')
+
+    # 5. Fichas (células) válidas según pipeline existente
+    try:
+        cells_dir = raiz / '00_CORE' / 'cells'
+        if not cells_dir.is_dir():
+            errores.append('Falta la carpeta de fichas: 00_CORE/cells.')
+        else:
+            for ficha in buscar_celulas(cells_dir):
+                ficha_errores, _ = validar(ficha)
+                if ficha_errores:
+                    for e in ficha_errores:
+                        errores.append(f'Ficha {ficha.name}: {e}')
+    except (OSError, ValueError) as e:
+        errores.append(f'Fichas: {e}')
+
+    # 6. Registro de cambios: operación exacta, verificada, fecha válida, config hash coincide
+    try:
+        # Leer registro activo e histórico
+        registro_path = raiz / _registro.REGISTRO
+        if not registro_path.is_file():
+            errores.append('Falta registro activo (00_CORE/logs/registro-cambios.md).')
+        else:
+            raw_registro = registro_path.read_bytes()
+            inicio, actuales = _registro.entradas(raw_registro)
+
+            # Histórico
+            historicos = []
+            historial_dir = raiz / _registro.ARCHIVO
+            if historial_dir.is_dir():
+                for arch in sorted(historial_dir.glob('*.md')):
+                    try:
+                        raw = _lineas.ruta_real(arch).read_bytes()
+                        _, prev = _registro.entradas(raw)
+                        historicos.extend(prev)
+                    except (OSError, ValueError) as e:
+                        errores.append(f'Historial incompatible: {arch.name} ({e})')
+
+            all_entries = historicos + actuales
+            matches = [e for e in all_entries if e.get('id') == operacion]
+            if not matches:
+                errores.append(f'Operación "{operacion}" no encontrada en registro activo ni histórico.')
+            elif len(matches) > 1:
+                errores.append(f'Operación "{operacion}" ambigua: varias entradas con ese id.')
+            else:
+                entry = matches[0]
+                if not entry.get('verificado'):
+                    errores.append(f'Operación "{operacion}" no verificada (verificado: false).')
+                # Fecha aware y no futura
+                try:
+                    fecha_op = _registro.momento(entry['fecha'])
+                    if fecha_op > datetime.datetime.now().astimezone():
+                        errores.append(f'Operación "{operacion}": fecha en el futuro.')
+                except (KeyError, ValueError):
+                    errores.append(f'Operación "{operacion}": fecha inválida o ausente.')
+
+                # Cambio no borrado para 00_CORE/configuracion.md con sha256 actual
+                config_changes = [c for c in entry.get('cambios', []) if c.get('ruta') == '00_CORE/configuracion.md' and c.get('accion') != 'borrar']
+                if not config_changes:
+                    errores.append(f'Operación "{operacion}": sin cambio de configuración (crear/editar 00_CORE/configuracion.md).')
+                else:
+                    # Verificar hash actual
+                    if not config_path.is_file():
+                        errores.append(f'Operación "{operacion}": configuración no existe para verificar hash.')
+                    else:
+                        actual_hash = hashlib.sha256(config_path.read_bytes()).hexdigest()
+                        for cambio in config_changes:
+                            guardado = cambio.get('sha256')
+                            if guardado is None:
+                                errores.append(f'Operación "{operacion}": hash de configuración ausente en el registro.')
+                                break
+                            if not isinstance(guardado, str):
+                                errores.append(f'Operación "{operacion}": hash de configuración inválido (tipo {type(guardado).__name__}).')
+                                break
+                            if guardado != actual_hash:
+                                errores.append(f'Operación "{operacion}": hash de configuración no coincide (guardado: {guardado[:12]}..., actual: {actual_hash[:12]}...).')
+                                break
+
+    except (OSError, ValueError) as e:
+        errores.append(f'Registro: {e}')
+
+    # 7. Bloqueo de registro concurrente
+    lock_path = raiz / '00_CORE' / 'logs' / '.registro-cambios.lock'
+    if lock_path.exists():
+        errores.append('Registro bloqueado por otra operación (.registro-cambios.lock).')
+
+    return errores
+
+
+def main(cells_dir=CELLS_DIR):
+    """API diaria preservada: main(cells_dir=CELLS_DIR) para revisión de fichas."""
+    cells_dir = Path(cells_dir)
+    try:
+        sys.stdout.reconfigure(encoding='utf-8')
     except Exception:
         pass
-
-    cells_dir = Path(cells_dir)
+    if (cells_dir / '00_CORE').is_dir():
+        cells_dir = cells_dir / '00_CORE' / 'cells'
     if not cells_dir.is_dir():
         print(f"No encuentro la carpeta de células: {cells_dir}")
         print("Corré este script desde la raíz de tu vault:  python 00_CORE/schemas/validate.py")
@@ -444,5 +772,48 @@ def main(cells_dir=CELLS_DIR):
     return 0
 
 
+def _main_cli(argv=None):
+    """CLI separado para cierre y modo diario desde raíz."""
+    parser = argparse.ArgumentParser(description=__doc__, add_help=False)
+    parser.add_argument('ruta', nargs='?', default=str(CELLS_DIR))
+    parser.add_argument('--cierre', action='store_true', help='Modo cierre: validar operación de cierre')
+    parser.add_argument('--operacion', help='ID de operación para --cierre (obligatorio)')
+    parser.add_argument('-h', '--help', action='help', help='Mostrar esta ayuda')
+    args = parser.parse_args(argv)
+
+    # La consola de Windows a veces no muestra bien acentos y símbolos.
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")
+    except Exception:
+        pass
+
+    # Validar combinaciones de flags
+    if args.operacion is not None and not args.cierre:
+        print('Error: --operacion requiere --cierre', file=sys.stderr)
+        return 2
+
+    # Modo cierre
+    if args.cierre:
+        if not args.operacion:
+            print('Error: --cierre requiere --operacion ID', file=sys.stderr)
+            return 2
+        raiz = Path(args.ruta)
+        if raiz.name.lower() == 'cells' and raiz.parent.name == '00_CORE':
+            raiz = raiz.parent.parent
+        if not raiz.is_dir():
+            print(f'Error: ruta no es un directorio: {raiz}', file=sys.stderr)
+            return 2
+        errores = validar_cierre(raiz, args.operacion)
+        if errores:
+            for e in errores:
+                print(f'ERROR: {e}')
+            return 1
+        print(f'CIERRE VERIFICADO — operación: {args.operacion} (fichas, configuración, mapas, rangos y registro).')
+        print('Comprueba archivos y la operación declarada; no la verdad de los datos ni la interfaz de Obsidian.')
+        return 0
+
+    return main(args.ruta)
+
+
 if __name__ == "__main__":
-    sys.exit(main(sys.argv[1] if len(sys.argv) > 1 else CELLS_DIR))
+    sys.exit(_main_cli())

@@ -7,21 +7,21 @@
 > - Líneas 54–57: Mapa de nodos
 > - Líneas 58–61: Catálogo completo de archivos
 > - Líneas 62–70: Ajustes de Obsidian
-> - Líneas 71–89: Ayuda
-> - Líneas 90–104: Desarrollo
-> - Líneas 105–124: Entrada y herramientas
-> - Líneas 125–131: Fichas y plantillas de proyecto
-> - Líneas 132–137: Guías de comunicación
-> - Líneas 138–146: Guías de redacción
-> - Líneas 147–159: Integración Claude
-> - Líneas 160–170: Integración OpenCode
-> - Líneas 171–180: Plantilla de carpetas
-> - Líneas 181–186: Plantillas de nodos
-> - Líneas 187–195: Protocolos
-> - Líneas 196–204: Recursos opcionales de davidkimai
-> - Líneas 205–210: Reglas compartidas
-> - Líneas 211–218: Validación
-> - Líneas 219–227: Alcance del catálogo
+> - Líneas 71–90: Ayuda
+> - Líneas 91–105: Desarrollo
+> - Líneas 106–125: Entrada y herramientas
+> - Líneas 126–132: Fichas y plantillas de proyecto
+> - Líneas 133–138: Guías de comunicación
+> - Líneas 139–147: Guías de redacción
+> - Líneas 148–160: Integración Claude
+> - Líneas 161–171: Integración OpenCode
+> - Líneas 172–181: Plantilla de carpetas
+> - Líneas 182–188: Plantillas de organización
+> - Líneas 189–197: Protocolos
+> - Líneas 198–206: Recursos opcionales de davidkimai
+> - Líneas 207–212: Reglas compartidas
+> - Líneas 213–220: Validación
+> - Líneas 221–229: Alcance del catálogo
 
 # Índice principal de la bóveda
 
@@ -37,7 +37,7 @@ Podés agregar presentación y comentarios antes o después del bloque automáti
 
 ## Panorama
 
-- Archivos catalogados: 82. Proyectos propios identificados: 0. Ejemplos ficticios: 1.
+- Archivos catalogados: 84. Proyectos propios identificados: 0. Ejemplos ficticios: 1.
 - Configuración: todavía no existe una nota de configuración del kit.
 - El estado detallado y las tareas se leen en cada ficha; este catálogo no los reemplaza.
 
@@ -78,6 +78,7 @@ Cada fila enlaza un archivo. Las carpetas se representan mediante sus archivos; 
 | [indice-principal.md](DOCS/indice-principal.md) | Mantener el mapa general y los índices de nodos |
 | [instalacion-manual.md](DOCS/instalacion-manual.md) | Agregar el kit a una bóveda sin Python |
 | [mantenimiento.md](DOCS/mantenimiento.md) | Mantener notas, mapas y registro |
+| [mcp-claude.md](DOCS/mcp-claude.md) | Si Claude no conecta con el MCP |
 | [obsidian.md](DOCS/obsidian.md) | Plantillas y panel |
 | [opencode.md](DOCS/opencode.md) | Empezar con OpenCode |
 | [primer-proyecto.md](DOCS/primer-proyecto.md) | Tu primer proyecto a mano |
@@ -178,10 +179,11 @@ Cada fila enlaza un archivo. Las carpetas se representan mediante sus archivos; 
 | [03\_ENTREGABLES/README.md](PROJECT_TEMPLATE/03_ENTREGABLES/README.md) | 03\_ENTREGABLES — Resultados finales |
 | [\_archivo/README.md](PROJECT_TEMPLATE/_archivo/README.md) | \_archivo — Historial del proyecto |
 
-### Plantillas de nodos
+### Plantillas de organización
 
 | Archivo | Qué contiene |
 |---|---|
+| [TEMPLATE\_configuracion.md](00_CORE/templates/TEMPLATE_configuracion.md) | Punto de partida e inventario reanudable de una bóveda, sin datos personales. |
 | [TEMPLATE\_nodo.md](00_CORE/templates/TEMPLATE_nodo.md) | \[completar: resumen-del-nodo\] |
 
 ### Protocolos

@@ -5,16 +5,17 @@ descripcion: Conversación de inicio para que una IA configure la bóveda con la
 ---
 > [!info] Índice de esta nota (líneas)
 > - Líneas 1–5: Propiedades
-> - Líneas 6–17: Este índice
-> - Líneas 19–22: Configurar una bóveda conversando
-> - Líneas 23–30: 1. Leer y comprobar el punto de partida
-> - Líneas 31–44: 2. Conversar, de a poco
-> - Líneas 45–52: 3. Acordar destino y alcance
-> - Líneas 53–60: 4. Hacer la configuración
-> - Líneas 61–68: Guardar el punto de partida
-> - Líneas 69–84: Crear el proyecto
-> - Líneas 85–92: 5. Verificar y entregar
-> - Líneas 93–97: Si no podés escribir en la carpeta
+> - Líneas 6–18: Este índice
+> - Líneas 20–23: Configurar una bóveda conversando
+> - Líneas 24–31: 1. Leer y comprobar el punto de partida
+> - Líneas 32–45: 2. Conversar, de a poco
+> - Líneas 46–53: 3. Acordar destino y alcance
+> - Líneas 54–61: 4. Hacer la configuración
+> - Líneas 62–71: Guardar el punto de partida
+> - Líneas 72–87: Crear el proyecto
+> - Líneas 88–95: 5. Verificar, entregar y cerrar
+> - Líneas 96–107: Secuencia de cierre compartida
+> - Líneas 108–112: Si no podés escribir en la carpeta
 
 # Configurar una bóveda conversando
 
@@ -24,7 +25,7 @@ Usá este recorrido para iniciar o adaptar una bóveda. Desarrollar el kit o con
 
 Leé `INDICE.md` completo y después `00_CORE/atoms/00_vault-rules.md`. Comprobá qué carpeta podés leer y escribir: adjuntos, enlaces y archivos visibles no prueban acceso al original.
 
-Revisá configuración y fichas vigentes según `AI-INSTRUCTIONS.md`; conservá lo creado y retomá solo lo pendiente. Consultá [Personalizar la bóveda](personalizar-vault.md) para el catálogo, inventario y datos omitidos. Completar el perfil puede hacerse con una bóveda lista.
+Revisá configuración y fichas vigentes según `AI-INSTRUCTIONS.md`; conservá lo creado y retomá solo lo pendiente. Antes de escribir, leé [Personalizar la bóveda](personalizar-vault.md) para el inventario y datos omitidos, y [Mantenimiento](../../DOCS/mantenimiento.md) para guardar y verificar esa operación. Completar el perfil puede hacerse con una bóveda lista.
 
 En una bóveda existente, leé su índice y reglas antes de elegir dónde escribir. Si no tiene índice, revisá su estructura y proponé integrarlo. Respetá sus convenciones y acordá cualquier incompatibilidad puntual; no sustituyas sus reglas o entrada.
 
@@ -62,7 +63,9 @@ Mostrá destino, proyecto, objetivo, próximo paso aceptado o pendiente y archiv
 
 Con destino disponible y reglas leídas o integradas, guardá las respuestas **antes de crear el primer proyecto** en `00_CORE/configuracion.md` o equivalente acordado. Si existe, releela y actualizá solo lo nuevo, conservando preferencias y otros proyectos. Al preparar otra bóveda, no personalices el kit de origen.
 
-Registrá estado `parcial`, fecha, nombre e identificador, inventario según la guía de personalización y archivos completados o pendientes. Actualizá el avance tras cada grupo para retomar interrupciones, distinguiendo enlaces previstos de comprobados.
+Si todavía no existe, usá [la plantilla de configuración](../templates/TEMPLATE_configuracion.md): en la copia, cambiá `tipo` a `configuracion`, completá la fecha real y adaptá los marcadores y enlaces al proyecto y destino acordados. Guardá lo respondido con su origen; lo desconocido sigue pendiente y lo saltado se marca omitido. La plantilla no autoriza reemplazar una configuración existente.
+
+Conservá estado `parcial` hasta verificar la integración. Actualizá el avance de archivos tras cada grupo para retomar interrupciones, distinguiendo enlaces previstos de comprobados.
 
 Usá referencias relativas; para un ZIP identificá su carpeta raíz, sin guardar rutas temporales como ubicación personal. La persona elige dónde descomprimirlo.
 
@@ -82,13 +85,25 @@ Si la ficha ya existe o fue editada, completá los pendientes desde esa versión
 
 Mantené `INDICE.md` según `DOCS/indice-principal.md`: notas reales del destino, configuración y nuevo proyecto. El catálogo copiado del kit no basta. Este recorrido con herramientas de archivos no requiere cuentas nuevas, plugins comunitarios ni sincronización. No publiques ni hagas push de la bóveda personalizada.
 
-## 5. Verificar y entregar
+## 5. Verificar, entregar y cerrar
 
 Releé lo creado: sin duplicados ni marcadores, enlaces existentes, Panel integrado y ficha válida según «Revisar fichas» de `DOCS/usar-con-otras-ias.md`. Sin Python, declaralo revisión manual. Completá `DOCS/mantenimiento.md`, que verifica rangos, registra operaciones y mantiene los mapas; el principiante no hace esos pasos.
 
 Marcá `lista` solo con los archivos e integración comprobados. Ante fallo, conservá `parcial`, lo completado y el impedimento; releé ese estado al retomar. El inventario sigue su propia guía: puede quedar abierto con la bóveda lista. Ofrecé «qué falta para personalizar mi bóveda» para completarlo después.
 
 Mostrá carpeta y acceso a la ficha. Explicá cómo abrir esa carpeta como bóveda y entrar al Panel; si falta Obsidian, indicá `https://obsidian.md`. Separá comprobación de archivos de prueba visual: no afirmes haber abierto Obsidian sin hacerlo. Ofrecé empezar la tarea aceptada o elegirla; completá vos las operaciones técnicas dentro del alcance disponible.
+
+### Secuencia de cierre compartida
+
+Para cerrar una sesión de trabajo (referencia: `DOCS/mantenimiento.md`):
+
+1. **Chequeo parcial**: ejecutá `python 00_CORE/schemas/validate.py --cierre --operacion <ID-parcial>` con el ID de la operación que registró los avances actuales. Esta validación no escribe nada; solo confirma configuración, mapas, rangos y registro.
+2. **Estado final `lista`**: si la bóveda pasa a `estado: lista`, actualizá `00_CORE/configuracion.md` (cambiar `estado` y `fecha`).
+3. **Mantenimiento de rangos y mapas**: corré `python 00_CORE/schemas/note_index.py apply --vault <raíz>` y `python actualizar_indice.py <raíz>` para refrescar índices de líneas y mapas.
+4. **Registrar edición final**: registrá ese cambio de configuración como **nueva operación real** (nuevo ID, `verificado: true`, fecha actual con zona). No reutilicés el ID del chequeo parcial.
+5. **Refrescar y volver a chequear**: corré `actualizar_indice.py` otra vez (el registro ya existe) y luego `validate.py --cierre --operacion <ID-final>` con el nuevo ID. El chequeo anterior no sirve para la edición final.
+
+La IA gestiona los IDs y pasos técnicos; la persona no los proporciona. Índices manuales o logs incompatibles generan error explícito de «revisión manual pendiente», sin reescritura ni aprobación automática.
 
 ## Si no podés escribir en la carpeta
 

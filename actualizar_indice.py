@@ -149,7 +149,7 @@ def categoria(ruta):
     parts = Path(ruta).parts
     if parts[0] == '00_CORE':
         groups = {'cells': 'Fichas y plantillas de proyecto', 'atoms': 'Reglas compartidas',
-                  'templates': 'Plantillas de nodos',
+                  'templates': 'Plantillas de organización',
                   'protocols': 'Protocolos', 'molecules': 'Guías de comunicación',
                   'cognitive-tools': 'Guías de redacción', 'schemas': 'Validación',
                   'davidkimai-resources': 'Recursos opcionales de davidkimai'}

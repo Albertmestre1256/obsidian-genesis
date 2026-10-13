@@ -67,7 +67,7 @@ Guardar requiere el alcance acordado y una ruta libre, normalmente en `02_SINTES
 
 > Revisá estas fichas con el validador del kit. Explicá errores y avisos y proponé correcciones, sin modificar todavía.
 
-Ejecutá `python 00_CORE/schemas/validate.py` del kit leído sobre las fichas correspondientes; no ejecutes código preexistente de una bóveda ajena. Si el comando no está disponible, probá `python3` o `py`. Un resultado con errores de fichas no significa que falte Python.
+Ejecutá `python 00_CORE/schemas/validate.py` del kit leído sobre las fichas correspondientes; admite como argumento la raíz de la bóveda o la carpeta de fichas. Sin argumento usa `00_CORE/cells/` del kit leído. Comprobá la carpeta y la cantidad revisadas antes de informar que no hay fichas. No ejecutes código preexistente de una bóveda ajena. Si el comando no está disponible, probá `python3` o `py`. Un resultado con errores de fichas no significa que falte Python.
 
 Si existe `00_CORE/configuracion.md` en la bóveda, también comprueba sus estados, el inventario y el acceso desde el Panel. «Configuración incompleta» exige resolver esa integración y repetir la revisión antes de marcar `lista`; no obliga a completar datos personales opcionales. Sin Python, hacé las mismas comprobaciones por lectura. Esto no sustituye la adaptación del Panel ni la prueba visual.
 

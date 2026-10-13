@@ -45,7 +45,7 @@ Antes de crear el primer proyecto, guardá **Inventario de personalización** en
 
 La tabla usa estas columnas: **Ítem | Alcance | Estado | Dato o referencia | Origen y fecha | Para retomar**. Alcance es `boveda` o `proyecto:identificador-real`; dato es un resumen o enlace relativo; origen distingue usuario, documento, comprobación o IA, con fecha real. Para retomar indica una pregunta o comprobación. Usá `—` cuando no corresponda contenido.
 
-Una fila por ítem y alcance, en una línea y con barras verticales escapadas. Incluí todos los ítems aplicables y agregá otros solo si afectan el uso. Conservá lo sabido de respuestas parciales y señalá la duda.
+Una fila por ítem y alcance, en una línea y con barras verticales escapadas. Incluí todos los ítems aplicables y agregá otros solo si afectan el uso. Conservá lo sabido de respuestas parciales y señalá la duda. [La plantilla de configuración](../templates/TEMPLATE_configuracion.md) aporta esa estructura para una nota nueva; al retomar, editá la versión vigente sin sustituir sus datos ni repetir el inventario en la ficha.
 
 | Estado | Significado |
 |---|---|
@@ -69,6 +69,6 @@ Una bóveda puede estar `lista` con personalización `abierta`. Recalculá el es
 2. «Saltá esta parte» omite solo los ítems de esa pregunta. «Rellenalo vos» permite propuestas con motivo y origen IA; nunca inventar CV, formación ni experiencia. Con los requisitos básicos resueltos, prepará la bóveda.
 3. Continuar un proyecto no reinicia la personalización ni bloquea tareas independientes de los pendientes.
 4. «Qué falta» consulta pendientes, propuestas y omisiones sin escribir. «Completemos mi perfil» retoma las preguntas pertinentes; las omisiones no se preguntan cada sesión y las de privacidad se completan solo si el usuario lo elige.
-5. Al guardar, releé la versión actual y cambiá solo filas respondidas y datos afectados de la ficha. Conservá preferencias y otros proyectos; comprobá referencias, fecha, origen e índice y explicá lo pendiente.
+5. Antes de guardar, leé [Mantenimiento](../../DOCS/mantenimiento.md), releé la versión actual y cambiá solo filas respondidas y datos afectados de la ficha. Conservá preferencias y otros proyectos; comprobá referencias, fecha, origen e índice y explicá lo pendiente.
 
 Si falta el inventario en una configuración existente, agregalo desde sus datos dentro del pedido de completarla, conservando documento y convenciones. No reinstales ni recrees proyectos. Sin escritura, entregá filas y destino como pendientes.

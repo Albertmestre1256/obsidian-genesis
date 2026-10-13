@@ -1,16 +1,23 @@
 > [!info] Índice de esta nota (líneas)
-> - Líneas 1–5: Este índice
-> - Líneas 7–14: Entrada para la IA
-> - Líneas 15–28: Elegir el recorrido
-> - Líneas 29–44: Herramientas opcionales
+> - Líneas 1–6: Este índice
+> - Líneas 8–13: Entrada para la IA
+> - Líneas 14–21: Antes de trabajar
+> - Líneas 22–35: Elegir el recorrido
+> - Líneas 36–53: Herramientas opcionales
 
 # Entrada para la IA
 
-Leé primero `INDICE.md` completo y después `00_CORE/atoms/00_vault-rules.md`. Este kit prepara una bóveda mediante preguntas simples; la persona no necesita editar plantillas ni conocer YAML.
+Este kit prepara una bóveda mediante preguntas simples; la persona no necesita editar plantillas ni conocer YAML.
 
 Si recibiste la carpeta exterior de un ZIP, ubicá su raíz real: la que contiene `INDICE.md` y estas instrucciones. Si hay varias bóvedas posibles, preguntá cuál usar.
 
-El índice muestra lo disponible; contrastalo con la carpeta real al iniciar y mantenelo después de guardar, según `DOCS/indice-principal.md`. Con una copia adjunta, aclarás qué no podés verificar. En una bóveda existente, respetá su entrada y sus reglas sin sustituirlas. Después del mapa, cargá solo el contexto necesario.
+## Antes de trabajar
+
+1. Abrí `INDICE.md` y leelo completo, continuando las páginas si la herramienta recorta la salida. Listar carpetas, buscar palabras o ejecutar el actualizador no completa esta lectura.
+2. Leé `00_CORE/atoms/00_vault-rules.md`; ubicá desde el catálogo la ficha del proyecto y el índice del nodo solicitado, si corresponde. Contrastá esas rutas con los archivos reales.
+3. Elegí el recorrido de abajo y leé su referencia antes de escribir. Si falta alguna lectura, completala primero; no crees carpetas ni notas todavía.
+
+Al guardar, mantené el mapa según `DOCS/indice-principal.md`. Con una copia adjunta, aclarás qué no podés verificar. En una bóveda existente, respetá su entrada y sus reglas sin sustituirlas. Después de este recorrido, cargá solo el contexto necesario.
 
 ## Elegir el recorrido
 
@@ -40,5 +47,7 @@ Usá los scripts del kit leído, no código preexistente de una bóveda ajena. P
 | `00_CORE/schemas/registrar_cambios.py` | Misma guía; registra identidad y cambios, renovando el activo a los cinco días con historial archivado. |
 
 Cada escritura autorizada incluye el mantenimiento de notas, mapas y registro definido en `DOCS/mantenimiento.md`. La IA se identifica y realiza esas operaciones; no las delega al principiante. Al desarrollar este kit, guarda evidencia de desarrollo fuera del contenido distribuible, sin crear un registro personal en el repositorio.
+
+Si una herramienta impide leer o guardar, consultá el mensaje en `DOCS/TROUBLESHOOTING.md` y su guía específica antes de repetirla. Para errores MCP de Claude, usá `DOCS/mcp-claude.md`; si esa conexión impide leer la guía, explicá el límite y pedí el documento o acceso por otra herramienta autorizada, sin fingir una reparación.
 
 `AGENTS.md` y `CLAUDE.md` remiten acá. Claude Code y OpenCode ofrecen `/configurar`, `/empezar`, `/nuevo-proyecto`, `/redactar`, `/validar` y `/cerrar`. En Claude, crear otro proyecto y cerrar conservan invocación manual. Para acceso y arranque: `DOCS/opencode.md` y `DOCS/chatgpt.md`. Los pedidos comunes funcionan con cualquier IA que pueda leer el contexto.

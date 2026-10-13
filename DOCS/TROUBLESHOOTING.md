@@ -1,19 +1,20 @@
 > [!info] Índice de esta nota (líneas)
-> - Líneas 1–16: Este índice
-> - Líneas 18–21: Solución de problemas
-> - Líneas 22–25: La IA no puede guardar en mi carpeta
-> - Líneas 26–29: Vuelve a preguntarme lo que ya respondí
-> - Líneas 30–33: Todavía no tengo fecha, fuentes ni primera tarea
-> - Líneas 34–37: Python no está disponible
-> - Líneas 38–43: El instalador informa conflictos o se interrumpió
-> - Líneas 44–47: El creador informa un proyecto existente
-> - Líneas 48–53: No aparece el Panel o la fecha automática
-> - Líneas 54–57: Claude Code no reconoce un comando
-> - Líneas 58–61: OpenCode no muestra los comandos del kit
-> - Líneas 62–65: OpenCode muestra un error del proveedor o modelo
-> - Líneas 66–69: ChatGPT ve los adjuntos pero no mi carpeta
-> - Líneas 70–90: Mensajes del validador
-> - Líneas 91–93: La IA no encuentra una nota nueva
+> - Líneas 1–17: Este índice
+> - Líneas 19–22: Solución de problemas
+> - Líneas 23–26: La IA no puede guardar en mi carpeta
+> - Líneas 27–30: Vuelve a preguntarme lo que ya respondí
+> - Líneas 31–34: Todavía no tengo fecha, fuentes ni primera tarea
+> - Líneas 35–38: Python no está disponible
+> - Líneas 39–44: El instalador informa conflictos o se interrumpió
+> - Líneas 45–48: El creador informa un proyecto existente
+> - Líneas 49–54: No aparece el Panel o la fecha automática
+> - Líneas 55–58: Claude Code no reconoce un comando
+> - Líneas 59–62: Claude no conecta al MCP o rechaza sus herramientas
+> - Líneas 63–66: OpenCode no muestra los comandos del kit
+> - Líneas 67–70: OpenCode muestra un error del proveedor o modelo
+> - Líneas 71–74: ChatGPT ve los adjuntos pero no mi carpeta
+> - Líneas 75–95: Mensajes del validador
+> - Líneas 96–98: La IA no encuentra una nota nueva
 
 # Solución de problemas
 
@@ -54,6 +55,10 @@ El ejemplo ficticio se abre desde la ayuda del Panel; está excluido de sus proy
 ## Claude Code no reconoce un comando
 
 Abrilo en la raíz de la bóveda. Las skills están en `.claude/skills/`; si acabás de agregarlas, reiniciá la sesión. Conservá y compará cualquier comando previo del mismo nombre. Los permisos para leer o escribir dependen de tu configuración; el kit no los concede por sí mismo.
+
+## Claude no conecta al MCP o rechaza sus herramientas
+
+Pasale a la IA el error y pedile que siga [el diagnóstico de MCP en Claude](mcp-claude.md). Cubre `tools/list`, esquemas de entrada/salida incompatibles, carpetas fuera del alcance y conexión HTTP. La IA comprueba el conector y sus versiones antes de adaptar la conexión; no reinstala tu bóveda ni da por hecha una reparación solo por reiniciar.
 
 ## OpenCode no muestra los comandos del kit
 

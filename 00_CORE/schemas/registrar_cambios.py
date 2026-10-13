@@ -13,6 +13,9 @@ import sys
 spec = importlib.util.spec_from_file_location('lineas_kit', Path(__file__).with_name('note_index.py'))
 lineas = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(lineas)
+spec = importlib.util.spec_from_file_location('fichas_kit', Path(__file__).with_name('validate.py'))
+fichas = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(fichas)
 REGISTRO = '00_CORE/logs/registro-cambios.md'
 ARCHIVO = '00_CORE/logs/historial'
 MARCA = re.compile(r'^%% cambio: (.+) %%$', re.M)
@@ -98,6 +101,11 @@ def evento(root, data, comprobar=True):
             if not path.is_file():
                 raise ValueError('No existe el resultado del cambio: ' + item['ruta'])
             item['sha256'] = hashlib.sha256(path.read_bytes()).hexdigest()
+            if result['verificado'] and Path(item['ruta']).parent == Path('00_CORE/cells') and fichas.es_celula(path):
+                errores, _ = fichas.validar(path)
+                if errores:
+                    raise ValueError('Ficha inválida: ' + item['ruta'] + '. ' + ' '.join(errores)
+                                     + ' Corregí la ficha o registrá verificado:false con sus pendientes.')
         if item['accion'] in {'mover', 'renombrar', 'archivar'}:
             item['desde'] = relativa(change.get('desde'))
             if root is not None:
@@ -197,6 +205,8 @@ def main(argv=None):
     parser.add_argument('--dry-run', action='store_true')
     args = parser.parse_args(argv)
     try:
+        if args.fecha and momento(args.fecha) > datetime.now().astimezone():
+            raise ValueError('La fecha del registro no puede estar en el futuro. Usá la hora real, no una estimación.')
         data = json.loads(Path(args.datos).read_text(encoding='utf-8-sig'))
         print(json.dumps(registrar(Path(args.destino), data, args.fecha, args.dry_run), ensure_ascii=False))
         return 0

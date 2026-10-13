@@ -242,6 +242,99 @@ def test_movimiento_registra_origen_y_hash_sin_mover_notas(tmp_path):
     assert not (tmp_path/'Antes').exists()
 
 
+def evento_ficha(root, contenido, nombre='estudio-context.md', verificado=True):
+    path = root / '00_CORE/cells' / nombre
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(contenido, encoding='utf-8')
+    return path, {'id': 'ficha-estudio', 'ia': 'Prueba', 'herramienta': 'pytest',
+                  'resumen': 'Ficha de prueba.', 'verificado': verificado,
+                  'cambios': [{'accion': 'editar', 'ruta': path.relative_to(root).as_posix()}]}
+
+
+@pytest.mark.parametrize('nombre', ['estudio-context.md', 'Ficha personal.MD'])
+def test_registro_no_declara_verificada_ficha_invalida(tmp_path, ejemplo, nombre):
+    path, data = evento_ficha(tmp_path, ejemplo.replace('contexto: D', 'contexto: E'), nombre)
+    before = path.read_bytes()
+    with pytest.raises(ValueError, match='[Ff]icha'):
+        log.registrar(tmp_path, data)
+    assert path.read_bytes() == before and not (tmp_path / log.REGISTRO).exists()
+
+
+def test_registro_admite_ficha_incompleta_como_pendiente(tmp_path):
+    _, data = evento_ficha(tmp_path, '# Ficha incompleta\n', verificado=False)
+    log.registrar(tmp_path, data)
+    assert log.entradas((tmp_path / log.REGISTRO).read_bytes())[1][0]['verificado'] is False
+
+
+def test_registro_detecta_propuesta_sin_casilla_del_ensayo(tmp_path, ejemplo):
+    accion = '- [x] Instalar Python y un editor'
+    assert accion in ejemplo
+    _, data = evento_ficha(tmp_path, ejemplo.replace(accion, '- Propuesta: estudiar planetas.'))
+    with pytest.raises(ValueError, match='acción'):
+        log.registrar(tmp_path, data)
+    assert not (tmp_path / log.REGISTRO).exists()
+
+
+def test_registro_verifica_solo_fichas_tocadas_y_admite_avisos(tmp_path, ejemplo):
+    path, data = evento_ficha(tmp_path, ejemplo.replace('## Hechos clave', '## Hechos clave\n\n- Sin fuente.'))
+    (path.parent / 'ajena-context.md').write_text('# No editar ni validar\n', encoding='utf-8')
+    log.registrar(tmp_path, data)
+    assert log.entradas((tmp_path / log.REGISTRO).read_bytes())[1][0]['verificado'] is True
+
+
+@pytest.mark.parametrize('nombre', ['TEMPLATE_cell.md', 'README.md'])
+def test_registro_no_confunde_plantillas_y_ayuda_con_fichas(tmp_path, plantilla, nombre):
+    _, data = evento_ficha(tmp_path, plantilla if nombre == 'TEMPLATE_cell.md' else '# Ayuda\n', nombre)
+    assert log.registrar(tmp_path, data)['estado'] == 'registrado'
+
+
+def test_reintento_ficha_no_valida_ni_reescribe_resultado_futuro(tmp_path, ejemplo):
+    path, data = evento_ficha(tmp_path, ejemplo)
+    log.registrar(tmp_path, data)
+    before = (tmp_path / log.REGISTRO).read_bytes()
+    path.write_text('# Modificación posterior\n', encoding='utf-8')
+    assert log.registrar(tmp_path, data)['estado'] == 'ya-registrado'
+    assert (tmp_path / log.REGISTRO).read_bytes() == before
+
+
+def test_registro_ficha_borrada_no_intenta_validarla(tmp_path):
+    _, data = evento_ficha(tmp_path, '# Ficha rota\n')
+    (tmp_path / data['cambios'][0]['ruta']).unlink()
+    data['cambios'][0]['accion'] = 'borrar'
+    assert log.registrar(tmp_path, data)['estado'] == 'registrado'
+
+
+@pytest.mark.parametrize('fecha', ['2026-10-12T19:20:00-03:00', '2026-10-13T00:10:00+02:00'])
+def test_cli_registro_rechaza_fecha_futura_sin_escribir(tmp_path, monkeypatch, fecha):
+    class Reloj(datetime):
+        @classmethod
+        def now(cls, tz=None):
+            return datetime.fromisoformat('2026-10-12T19:03:00-03:00')
+    monkeypatch.setattr(log, 'datetime', Reloj)
+    data = event(tmp_path)
+    payload = tmp_path / 'evento.json'
+    payload.write_text(json.dumps(data), encoding='utf-8')
+    assert log.main(['--destino', str(tmp_path), '--datos', str(payload), '--fecha', fecha]) == 2
+    assert not (tmp_path / log.REGISTRO).exists()
+
+
+def test_api_registro_conserva_simulacion_con_fechas_explicitas(tmp_path):
+    assert log.registrar(tmp_path, event(tmp_path), '2099-10-12T19:20:00-03:00')['estado'] == 'registrado'
+
+
+@pytest.mark.parametrize('fecha', ['2026-10-12T19:00:00-03:00', '2026-10-13T00:03:00+02:00'])
+def test_cli_registro_admite_pasado_y_hora_actual_en_otra_zona(tmp_path, monkeypatch, fecha):
+    class Reloj(datetime):
+        @classmethod
+        def now(cls, tz=None):
+            return datetime.fromisoformat('2026-10-12T19:03:00-03:00')
+    monkeypatch.setattr(log, 'datetime', Reloj)
+    data = event(tmp_path)
+    payload = tmp_path / 'evento.json'
+    payload.write_text(json.dumps(data), encoding='utf-8')
+    assert log.main(['--destino', str(tmp_path), '--datos', str(payload), '--fecha', fecha]) == 0
+
+
 def test_registro_propio_o_bloqueo_ajeno_se_conserva(tmp_path):
     data = event(tmp_path)
     path = tmp_path/log.REGISTRO

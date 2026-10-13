@@ -15,7 +15,7 @@ La IA realiza este mantenimiento dentro del pedido autorizado; la persona no pre
 1. Identificarse con nombre de IA, herramienta y modelo conocido; declarar lo desconocido. Al crear un nodo, dejar «Creado por» en su índice.
 2. Releer y editar los destinos acordados, conservando cambios ajenos. Recalcular el índice de cada nota editable: sección y líneas inicial/final del archivo completo, incluidas propiedades e índice. La atribución del README conserva la primera línea.
 3. Actualizar resúmenes y enlaces de los [mapas del nodo y general](indice-principal.md). Para originales existentes, describir contenido y líneas en el índice del nodo; no reescribirlos. Las fuentes Markdown nuevas elaboradas por la IA llevan su índice antes de guardarse. Históricos e integraciones de herramientas conservan su formato.
-4. Verificar archivos, rangos y enlaces; registrar cambios reales, origen y destino de movimientos y resultados parciales. No guardar credenciales ni afirmar comprobaciones que no ocurrieron.
+4. Verificar archivos, rangos y enlaces. Si cambió una ficha, aplicar [Revisar fichas](usar-con-otras-ias.md#revisar-fichas) antes de declarar el trabajo verificado; corregir errores o guardar el resultado como pendiente. Registrar cambios reales, incluidos `INDICE.md` y cada índice local que cambió, origen y destino de movimientos y resultados parciales. Cada evento enumera los archivos de esa operación: una fila anterior no registra su nueva edición. No guardar credenciales ni afirmar comprobaciones que no ocurrieron.
 5. Refrescar el mapa tras crear registros o históricos. Los hashes describen el momento del registro; las regeneraciones auxiliares forman parte de la misma operación.
 
 ## Índices de líneas con Python
@@ -35,7 +35,7 @@ El actualizador de mapas refresca los rangos de índices que ya los tienen. El c
 
 `00_CORE/logs/registro-cambios.md` nace en la bóveda configurada cuando hay cambios que registrar. No se distribuye con actividad personal. Su propiedad `inicio`, con zona horaria, inicia un período de cinco días; editar el archivo no reinicia el plazo.
 
-En el primer guardado tras cinco días, conservar el registro íntegro en `00_CORE/logs/historial/` y comenzar uno nuevo. El historial no se purga ni se reindexa; sin modificaciones no hace falta rotar ni programar tareas. La herramienta usa la zona local del equipo; pasar `--fecha` con zona explícita si difiere de la del usuario. Prevalece la política de una bóveda existente.
+En el primer guardado tras cinco días, conservar el registro íntegro en `00_CORE/logs/historial/` y comenzar uno nuevo. El historial no se purga ni se reindexa; sin modificaciones no hace falta rotar ni programar tareas. La herramienta toma la hora real con la zona local del equipo. Si difiere de la del usuario, obtener la misma hora del reloj en su zona y pasar `--fecha` con ese valor explícito; no estimarla. La CLI rechaza fechas futuras. Prevalece la política de una bóveda existente.
 
 La IA prepara un evento JSON fuera del kit distribuible. Ejemplo ficticio:
 
@@ -50,7 +50,7 @@ La IA prepara un evento JSON fuera del kit distribuible. Ejemplo ficticio:
 }
 ```
 
-Usar un id estable por operación; `modelo` es opcional. Acciones: `crear`, `editar`, `mover`, `renombrar`, `archivar`, `borrar`. Registrar no autoriza ejecutarlas. Los movimientos requieren `desde`; un archivo declarado borrado debe estar ausente. El script comprueba rutas y hashes de resultados presentes. `verificado` declara la revisión de la IA; no prueba la verdad del contenido.
+Usar un id estable por operación; `modelo` es opcional. Acciones: `crear`, `editar`, `mover`, `renombrar`, `archivar`, `borrar`. Registrar no autoriza ejecutarlas. Los movimientos requieren `desde`; un archivo declarado borrado debe estar ausente. El script comprueba rutas y hashes de resultados presentes. Con `verificado: true`, también rechaza errores de formato de las fichas modificadas en `00_CORE/cells/`; admite avisos y conserva plantillas e históricos. Con `false`, permite registrar trabajo incompleto. Ese campo declara la revisión de la IA, no prueba la verdad del contenido ni valida todos los archivos del vault.
 
 ```sh
 python 00_CORE/schemas/registrar_cambios.py --destino "ruta-de-la-boveda" --datos "evento-temporal.json" --dry-run
