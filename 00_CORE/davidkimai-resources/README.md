@@ -1,4 +1,4 @@
-> [!info] Índice de esta nota (líneas)
+> [!info]- Índice de esta nota (líneas)
 > - Líneas 1–3: Este índice
 > - Líneas 5–17: Recursos opcionales sobre contexto para IA
 
@@ -6,7 +6,7 @@
 
 Esta carpeta contiene adaptaciones de ideas del repositorio [Context Engineering](https://github.com/davidkimai/Context-Engineering) de **davidkimai** (licencia MIT, © 2025 davidkimai). Conserva su nombre para identificar el origen; este kit es un trabajo derivado e independiente.
 
-El contexto es la información que le das a una IA para resolver una tarea. Estos recursos ayudan a seleccionar la información pertinente sin cargar todos los proyectos a la vez. No necesitás leerlos ni editar archivos YAML para comenzar: seguí el [README principal](../../README.md) y respondé las preguntas del asistente.
+El contexto es la información que le das a una IA para resolver una tarea. Estos recursos ayudan a seleccionar la información pertinente sin cargar todos los proyectos a la vez. No necesitás leerlos ni editar archivos YAML para comenzar: seguí el [README principal](../../README.md), que incluye el estado del kit y las validaciones pendientes, y respondé las preguntas del asistente.
 
 | Recurso | Para qué sirve |
 |---|---|

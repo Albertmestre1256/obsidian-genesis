@@ -1,4 +1,4 @@
-> [!info] Índice de esta nota (líneas)
+> [!info]- Índice de esta nota (líneas)
 > - Líneas 1–17: Este índice
 > - Líneas 19–22: Solución de problemas
 > - Líneas 23–26: La IA no puede guardar en mi carpeta

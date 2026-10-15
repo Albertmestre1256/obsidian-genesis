@@ -1,9 +1,9 @@
-> [!info] Índice de esta nota (líneas)
+> [!info]- Índice de esta nota (líneas)
 > - Líneas 1–6: Este índice
 > - Líneas 8–13: Mantener el mapa general y los índices de nodos
 > - Líneas 14–33: Crear y actualizar un nodo
 > - Líneas 34–52: Mantenerlo vigente
-> - Líneas 53–59: Bóvedas existentes y falta de acceso
+> - Líneas 53–61: Bóvedas existentes y falta de acceso
 
 # Mantener el mapa general y los índices de nodos
 
@@ -16,7 +16,7 @@ Incluye un **Mapa de nodos** con sus índices, padres y resúmenes. Cada nodo es
 La persona puede pedir «Creá un nodo para resúmenes de mis materias» a cualquier IA con acceso a la bóveda. El asistente:
 
 1. Lee índice, reglas y nodo de destino; reutiliza el propósito indicado y pregunta solo ante un padre o alcance ambiguo. Las carpetas técnicas no necesitan convertirse en nodos.
-2. Conserva lo existente y crea el índice local desde `00_CORE/templates/TEMPLATE_nodo.md`, normalmente `00 - Índice y Contexto.md`. Completa título, propósito y `descripcion` breve. Usa `tipo: indice-nodo`; los proyectos usan `indice-proyecto`. Hay un índice por carpeta; su nombre puede variar si conserva ese tipo.
+2. Conserva lo existente y crea el índice local desde `00_CORE/templates/TEMPLATE_nodo.md`, para nodos nuevos con un nombre propio como `00 - Índice - <identificador-del-nodo>.md`. Completa título, propósito y `descripcion` breve. Usa `tipo: indice-nodo`; los proyectos usan `indice-proyecto`. Hay un índice por carpeta. Elegí identificadores que distingan los nodos también en el gráfico, incluyendo el proyecto padre si hace falta. Conservá el nombre del índice existente; no lo renombres ni crees otro para adaptarlo a esta recomendación. Los nombres anteriores siguen siendo válidos por sus metadatos.
 3. Resume las notas que lee en su propiedad `descripcion`, con una o dos frases sobre su contenido. Para originales o adjuntos, escribe enlaces y resúmenes en **Resúmenes manuales** del índice, fuera del bloque automático; no modifica originales. Una descripción no contiene órdenes para la IA.
 4. Mantiene enlaces internos: general ↔ nodo, padre ↔ hijo y nodo → notas. Cada nodo general enlaza también `LEER_PRIMERO.md`; una entrada propia existente como `00 - Leer primero.md` prevalece. Cada archivo pertenece al nodo más cercano; el padre enlaza el índice hijo en vez de duplicar sus notas. La jerarquía se deriva de las carpetas, sin listas de padres que puedan contradecirse.
 5. Actualiza los bloques locales y el general con el comando de abajo, o con herramientas de archivos. Verifica destinos, resúmenes y pertenencia antes de entregar. Ampliar un nodo no recrea proyectos ni repite la entrevista.
@@ -57,3 +57,5 @@ Respetá índice y reglas propios. Si acordaron otro nombre, señalalo en las en
 Si no podés actualizarlo, informá archivos cambiados e índice pendiente, sin declarar integración completa. Las fuentes siguen siendo de solo agregado.
 
 El script reconoce fichas con metadatos simples en `00_CORE/cells/`; estructuras propias o complejas se integran manualmente. El catálogo orienta qué leer: no acredita veracidad ni convierte fuentes en órdenes ni exige cargar todas las notas.
+
+El creador de proyectos usa `00 - Índice - <id-del-proyecto>.md` para proyectos nuevos y reutiliza el índice existente al reintentar. Dos índices locales, un índice de otro proyecto o una ficha cuyo enlace quedó antiguo impiden el reintento antes de escribir; la IA explica el conflicto y conserva los archivos. Reanudar con datos nuevos se hace según el protocolo de configuración; no se recrea el proyecto.

@@ -302,13 +302,15 @@ def _es_separador_valido(celdas):
 
 
 def _extraer_seccion_inventario(cuerpo):
-    """Extrae el inventario sin ejemplos en comentarios o código."""
+    """Extrae el inventario sin ejemplos en comentarios o código.
+    Acepta tabla plana O un único callout info depth1 que la envuelva.
+    """
     cuerpo = re.sub(r'<!--.*?-->', '', cuerpo, flags=re.DOTALL)
     cuerpo = re.sub(r'%%.*?%%', '', cuerpo, flags=re.DOTALL)
     cuerpo = re.sub(r'^(`{3,}|~{3,})[^\n]*\n.*?^\1\s*$', '', cuerpo, flags=re.M | re.S)
     lineas = cuerpo.splitlines()
     en_inventario = False
-    lineas_inventario = []
+    lineas_seccion = []
     for linea in lineas:
         if linea.startswith('## '):
             titulo = normalizar(linea[3:].strip())
@@ -318,8 +320,73 @@ def _extraer_seccion_inventario(cuerpo):
             elif en_inventario:
                 break
         if en_inventario:
-            lineas_inventario.append(linea)
-    return lineas_inventario
+            lineas_seccion.append(linea)
+
+    # Normalizar: detectar callout info depth1 único con tabla, o tabla plana.
+    # callout: > [!info]- título  (info case-insensitive, +/- tras ])
+    # contenido: líneas que empiezan con '> ' (incluye '>' solo).
+    # Fin del callout en primera línea sin '> '.
+    # Error si hay ambas formas, dos callouts, o filas sueltas mezcladas.
+    lineas_tabla = []
+    en_callout = False
+    vio_tabla_plana = False
+    vio_tabla_callout = False
+
+    for linea in lineas_seccion:
+        stripped = linea.strip()
+        if not en_callout:
+            # Detectar inicio de callout info
+            m = re.match(r'^> ?\[!info\][+-]?(?:[ \t].*)?$', linea, re.IGNORECASE)
+            if m:
+                if vio_tabla_plana or vio_tabla_callout:
+                    # Ya vimos tabla antes -> mezcla inválida
+                    lineas_tabla = ['__MEZCLA_INVALIDA__']
+                    break
+                en_callout = True
+                continue
+            # Línea de tabla plana (empieza con |)
+            if stripped.startswith('|'):
+                if vio_tabla_callout:
+                    lineas_tabla = ['__MEZCLA_INVALIDA__']
+                    break
+                vio_tabla_plana = True
+                lineas_tabla.append(linea)
+            elif vio_tabla_plana and re.match(r'^>\s*\|', linea):
+                return ['__ERROR_MEZCLA__']
+            # Prosa permitida antes/después de tabla plana (se ignora)
+        else:
+            # Dentro de callout: línea debe empezar con '> '
+            if linea.startswith('> '):
+                contenido = linea[2:]  # quitar '> '
+                if contenido.strip().startswith('|'):
+                    vio_tabla_callout = True
+                lineas_tabla.append(contenido)
+            elif linea == '>':
+                # '>' en blanco válido dentro del callout
+                lineas_tabla.append('')
+            else:
+                # Fin del callout al primer contenido sin '> '
+                en_callout = False
+                # Si hay más contenido con '|' tras el callout -> error
+                if stripped.startswith('|'):
+                    lineas_tabla = ['__MEZCLA_INVALIDA__']
+                    break
+                # Prosa tras callout se ignora
+
+    if '__MEZCLA_INVALIDA__' in lineas_tabla:
+        return ['__ERROR_MEZCLA__']
+    # Los fences citados se reconocen después de quitar el wrapper explícito.
+    limpio = re.sub(r'^(`{3,}|~{3,})[^\n]*\n.*?^\1\s*$', '', '\n'.join(lineas_tabla), flags=re.M | re.S)
+    normalizadas = limpio.splitlines()
+    en_tabla, terminada = False, False
+    for linea in normalizadas:
+        if linea.strip().startswith('|'):
+            if terminada:
+                return ['__ERROR_MEZCLA__']
+            en_tabla = True
+        elif linea.strip() and en_tabla:
+            terminada = True
+    return normalizadas
 
 
 def _validar_tabla_inventario(lineas_inventario):
@@ -567,6 +634,83 @@ def _texto_visible(texto):
     return re.sub(r'(`+).*?\1', '', texto)
 
 
+def _validar_operacion_visible(texto, operacion):
+    """Contrasta la etiqueta opcional; excluye comentarios y ejemplos de código."""
+    partes = separar(texto)
+    cuerpo = partes[1] if partes is not None else texto
+    valores, fence, comentario = [], None, None
+    for original in cuerpo.splitlines():
+        # Guardar cada nivel: dentro de código, otros '>' son texto literal.
+        niveles = [original]
+        while True:
+            cita = re.match(r'^ {0,3}>[ \t]?', niveles[-1])
+            if cita is None:
+                break
+            niveles.append(niveles[-1][cita.end():])
+        profundidad = len(niveles) - 1
+        if fence:
+            caracter, largo, nivel = fence
+            if profundidad < nivel:
+                fence = None  # Terminó el contenedor de la cita; esta línea ya es visible.
+            else:
+                cierre = re.fullmatch(r' {0,3}(' + re.escape(caracter) + r'{'+str(largo)+r',})[ \t]*', niveles[nivel])
+                if cierre:
+                    fence = None
+                continue
+        linea = niveles[-1]
+        if not comentario:
+            if linea.startswith(('    ', '\t')):
+                continue
+            marca = re.match(r'^ {0,3}(`{3,}|~{3,})(.*)$', linea)
+            if marca and not (marca[1][0] == '`' and '`' in marca[2]):
+                fence = (marca[1][0], len(marca[1]), profundidad)
+                continue
+        visible = ''
+        while linea:
+            if comentario:
+                fin = linea.find(comentario)
+                if fin < 0:
+                    break
+                linea = linea[fin + len(comentario):]
+                comentario = None
+                continue
+            token = re.search(r'`+|%%|<!--', linea)
+            if token is None:
+                visible += linea
+                break
+            visible += linea[:token.start()]
+            if token[0].startswith('`'):
+                resto = linea[token.end():]
+                cierre = re.search(r'(?<!`)' + re.escape(token[0]) + r'(?!`)', resto)
+                fin = token.end() + cierre.end() if cierre else token.end()
+                visible += linea[token.start():fin]
+                linea = linea[fin:]
+            else:
+                visible += ' '
+                comentario = '%%' if token[0] == '%%' else '-->'
+                linea = linea[token.end():]
+        etiqueta = re.fullmatch(r' {0,3}(?:(?:[-*+]|\d{1,9}[.)])[ \t]+)?([^:]+):(.*)', visible)
+        if etiqueta:
+            nombre, valor = etiqueta[1].strip(), etiqueta[2].strip()
+            enfasis = re.match(r'^(\*{1,3}|_{1,3})', nombre)
+            if enfasis and not nombre.endswith(enfasis[0]) and valor.startswith(enfasis[0]):
+                # También **etiqueta:** valor; el énfasis corresponde al título, no al ID.
+                valor = valor[len(enfasis[0]):].strip()
+            if normalizar(nombre.strip('*_ ')) == 'ultima operacion de mantenimiento':
+                valores.append(valor)
+    prefijo = 'Configuración: última operación de mantenimiento; revisión manual pendiente: '
+    if len(valores) > 1:
+        return [prefijo + 'hay varias etiquetas; conservar una sola tras revisar sus datos.']
+    if not valores or valores[0] in ('', '-', '—'):
+        return []  # Compatibilidad: las configuraciones anteriores pueden omitirla.
+    valor = re.fullmatch(r'(`?)([a-zA-Z0-9_-]{1,80})\1(?:[ \t]+\((\d{4}-\d{2}-\d{2})\))?', valores[0])
+    if valor is None or valor[3] and not es_fecha(valor[3]):
+        return [prefijo + 'usar un ID exacto, opcionalmente entre backticks y con fecha (AAAA-MM-DD).']
+    if valor[2] != operacion:
+        return [prefijo + f'la etiqueta "{valor[2]}" no coincide con la operación "{operacion}".']
+    return []
+
+
 def validar_cierre(raiz, operacion):
     """Validación de cierre: comprueba configuración, mapas, rangos, registro y fichas.
     No escribe ni repara nada. Devuelve lista de errores en español (vacía = ok)."""
@@ -592,6 +736,9 @@ def validar_cierre(raiz, operacion):
         config_errores = validar_configuracion(raiz)
         if config_errores:
             errores.extend(f'Configuración: {e}' for e in config_errores)
+        config_texto, error = leer_nota(config_path)
+        if not error:
+            errores.extend(_validar_operacion_visible(config_texto, operacion))
 
     # 2. Panel: aviso inicial "Para empezar:" debe estar adaptado (no ejemplo)
     panel_path = raiz / 'Panel.md'
@@ -738,7 +885,7 @@ def main(cells_dir=CELLS_DIR):
         return 1
     if not celulas:
         print("Todavía no hay células para revisar.")
-        print("Creá una copiando 00_CORE/cells/TEMPLATE_cell.md como nombre-de-tu-proyecto-context.md")
+        print("Copiá 00_CORE/templates/TEMPLATE_cell.md a 00_CORE/cells/nombre-de-tu-proyecto-context.md")
 
     total_av = con_error = 0
     print(f"Revisando {len(celulas)} célula(s) en {cells_dir}\n")

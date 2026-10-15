@@ -28,7 +28,7 @@ def ejemplo():
 
 @pytest.fixture(scope="session")
 def plantilla():
-    return (CELLS / "TEMPLATE_cell.md").read_text(encoding="utf-8")
+    return (RAIZ / "00_CORE/templates/TEMPLATE_cell.md").read_text(encoding="utf-8")
 
 
 @pytest.fixture

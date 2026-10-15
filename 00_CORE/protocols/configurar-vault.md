@@ -3,7 +3,7 @@ level: organ
 tipo: setup-protocol
 descripcion: Conversación de inicio para que una IA configure la bóveda con las respuestas del usuario.
 ---
-> [!info] Índice de esta nota (líneas)
+> [!info]- Índice de esta nota (líneas)
 > - Líneas 1–5: Propiedades
 > - Líneas 6–18: Este índice
 > - Líneas 20–23: Configurar una bóveda conversando
@@ -76,7 +76,7 @@ Esta sección también agrega proyectos a una bóveda lista: conservá su config
 Con Python y reglas compatibles, usá `crear_proyecto.py` según `DOCS/creacion-para-asistentes.md`. Produce ficha, índice y carpetas; releé su resultado y completá Panel y configuración. Sin Python o con organización propia, hacé esos pasos con herramientas de archivos:
 
 1. Derivá un identificador corto válido, sin tildes y con guiones; ante nombre reservado o coincidencia, acordá una variante.
-2. Creá la carpeta desde `PROJECT_TEMPLATE/` y la ficha desde `00_CORE/cells/TEMPLATE_cell.md`, adaptándolas al destino acordado. Completá identificador, descripción, contexto, objetivo y fecha real.
+2. Creá la carpeta desde `PROJECT_TEMPLATE/` y la ficha desde `00_CORE/templates/TEMPLATE_cell.md`, adaptándolas al destino acordado. Guardá la ficha en `00_CORE/cells/`. Completá identificador, descripción, contexto, objetivo y fecha real.
 3. Quitá ejemplos y marcadores de la copia. Hechos con fuente; intenciones atribuidas al usuario, sin presentarlas como logros. Acciones solo aceptadas; dejá vacías las secciones sin datos.
 4. Enlazá ficha e índice y agregá acceso en el Panel, además del inventario en la configuración. En copia nueva, reemplazá el aviso inicial por bienvenida y próximo paso; en existente, adaptá solo el bloque acordado. Conservá el ejemplo con `ejemplo: true`, separado de proyectos propios.
 5. Actualizá configuración, inventario y avance; las preferencias personales van allí, no en las reglas compartidas.
@@ -97,10 +97,10 @@ Mostrá carpeta y acceso a la ficha. Explicá cómo abrir esa carpeta como bóve
 
 Para cerrar una sesión de trabajo (referencia: `DOCS/mantenimiento.md`):
 
-1. **Chequeo parcial**: ejecutá `python 00_CORE/schemas/validate.py --cierre --operacion <ID-parcial>` con el ID de la operación que registró los avances actuales. Esta validación no escribe nada; solo confirma configuración, mapas, rangos y registro.
-2. **Estado final `lista`**: si la bóveda pasa a `estado: lista`, actualizá `00_CORE/configuracion.md` (cambiar `estado` y `fecha`).
+1. **Chequeo parcial**: para registrar avances actuales, elegí su ID y actualizá «Última operación de mantenimiento» si esa etiqueta existe en la configuración. Recalculá rangos y mapas, registrá los cambios y refrescá el mapa. Después ejecutá `python 00_CORE/schemas/validate.py --cierre --operacion <ID-parcial>`. Si esa operación ya estaba registrada, verificá su estado sin editarla. Este chequeo no escribe.
+2. **Estado final `lista`**: si la bóveda pasa a `estado: lista`, actualizá `00_CORE/configuracion.md` (cambiar `estado` y `fecha`). Elegí un nuevo ID para esa operación final y actualizá la etiqueta existente antes de calcular su huella.
 3. **Mantenimiento de rangos y mapas**: corré `python 00_CORE/schemas/note_index.py apply --vault <raíz>` y `python actualizar_indice.py <raíz>` para refrescar índices de líneas y mapas.
-4. **Registrar edición final**: registrá ese cambio de configuración como **nueva operación real** (nuevo ID, `verificado: true`, fecha actual con zona). No reutilicés el ID del chequeo parcial.
+4. **Registrar edición final**: registrá ese cambio de configuración como **nueva operación real** (ID elegido en el paso 2, `verificado: true`, fecha actual con zona). No reutilicés el ID del chequeo parcial ni edites la configuración después de registrar su huella.
 5. **Refrescar y volver a chequear**: corré `actualizar_indice.py` otra vez (el registro ya existe) y luego `validate.py --cierre --operacion <ID-final>` con el nuevo ID. El chequeo anterior no sirve para la edición final.
 
 La IA gestiona los IDs y pasos técnicos; la persona no los proporciona. Índices manuales o logs incompatibles generan error explícito de «revisión manual pendiente», sin reescritura ni aprobación automática.

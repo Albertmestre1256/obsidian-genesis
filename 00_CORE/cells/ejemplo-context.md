@@ -7,7 +7,7 @@ objetivo: Poder escribir por mi cuenta un script que limpie y resuma una planill
 contexto: D
 actualizado: 2026-09-27
 ---
-> [!info] Índice de esta nota (líneas)
+> [!info]- Índice de esta nota (líneas)
 > - Líneas 1–9: Propiedades
 > - Líneas 10–17: Este índice
 > - Líneas 19–24: Célula de ejemplo — datos ficticios

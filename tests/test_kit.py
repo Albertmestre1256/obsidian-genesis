@@ -35,7 +35,7 @@ def test_archivos_esenciales():
                  "00_CORE/protocols/configurar-vault.md", ".claude/skills/configurar/SKILL.md",
                  "DOCS/empezar-con-ia.md", "DOCS/creacion-para-asistentes.md", "crear_proyecto.py",
                  ".opencode/commands/configurar.md", "DOCS/opencode.md", "DOCS/chatgpt.md",
-                 "00_CORE/atoms/00_vault-rules.md", "00_CORE/cells/TEMPLATE_cell.md",
+                 "00_CORE/atoms/00_vault-rules.md", "00_CORE/templates/TEMPLATE_cell.md",
                  "00_CORE/cells/ejemplo-context.md", "00_CORE/schemas/validate.py",
                  ".claude/settings.json", ".obsidian/app.json", "Panel.md", "Proyectos.base", "instalar.py", ".github/workflows/tests.yml"]:
         assert (RAIZ / ruta).exists(), ruta
@@ -81,6 +81,17 @@ def test_enlaces_markdown_locales():
 def test_configuraciones_json_validas():
     for archivo in list((RAIZ / ".obsidian").glob("*.json")) + list((RAIZ / ".claude").glob("*.json")):
         json.loads(archivo.read_text(encoding="utf-8"))
+
+
+def test_selector_plantillas_no_incluye_fichas_existentes():
+    settings = json.loads((RAIZ/'.obsidian/templates.json').read_text(encoding='utf-8'))
+    folder = RAIZ/settings['folder']
+    candidates = list(folder.rglob('*.md'))
+    assert folder.is_dir() and candidates
+    assert folder != RAIZ/'00_CORE/cells'
+    assert (folder/'TEMPLATE_cell.md').is_file()
+    assert all(p.name.startswith('TEMPLATE_') for p in candidates)
+    assert not (RAIZ/'00_CORE/cells/TEMPLATE_cell.md').exists()
 
 
 def test_grafo_nativo_activo_sin_ocultar_notas_del_usuario():

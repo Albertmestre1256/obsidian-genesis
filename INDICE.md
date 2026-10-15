@@ -1,4 +1,4 @@
-> [!info] Índice de esta nota (líneas)
+> [!info]- Índice de esta nota (líneas)
 > - Líneas 1–24: Este índice
 > - Líneas 26–37: Índice principal de la bóveda
 > - Líneas 38–43: Panorama
@@ -10,13 +10,13 @@
 > - Líneas 71–90: Ayuda
 > - Líneas 91–105: Desarrollo
 > - Líneas 106–125: Entrada y herramientas
-> - Líneas 126–132: Fichas y plantillas de proyecto
-> - Líneas 133–138: Guías de comunicación
-> - Líneas 139–147: Guías de redacción
-> - Líneas 148–160: Integración Claude
-> - Líneas 161–171: Integración OpenCode
-> - Líneas 172–181: Plantilla de carpetas
-> - Líneas 182–188: Plantillas de organización
+> - Líneas 126–131: Fichas y plantillas de proyecto
+> - Líneas 132–137: Guías de comunicación
+> - Líneas 138–146: Guías de redacción
+> - Líneas 147–159: Integración Claude
+> - Líneas 160–170: Integración OpenCode
+> - Líneas 171–180: Plantilla de carpetas
+> - Líneas 181–188: Plantillas de organización
 > - Líneas 189–197: Protocolos
 > - Líneas 198–206: Recursos opcionales de davidkimai
 > - Líneas 207–212: Reglas compartidas
@@ -128,7 +128,6 @@ Cada fila enlaza un archivo. Las carpetas se representan mediante sus archivos; 
 | Archivo | Qué contiene |
 |---|---|
 | [ejemplo-context.md](00_CORE/cells/ejemplo-context.md) | Aprender Python desde cero para automatizar tareas repetitivas del trabajo (planillas y reportes). |
-| [TEMPLATE\_cell.md](00_CORE/cells/TEMPLATE_cell.md) | \[completar: qué es este proyecto, en 1 a 3 oraciones\] |
 
 ### Guías de comunicación
 
@@ -183,6 +182,7 @@ Cada fila enlaza un archivo. Las carpetas se representan mediante sus archivos; 
 
 | Archivo | Qué contiene |
 |---|---|
+| [TEMPLATE\_cell.md](00_CORE/templates/TEMPLATE_cell.md) | \[completar: qué es este proyecto, en 1 a 3 oraciones\] |
 | [TEMPLATE\_configuracion.md](00_CORE/templates/TEMPLATE_configuracion.md) | Punto de partida e inventario reanudable de una bóveda, sin datos personales. |
 | [TEMPLATE\_nodo.md](00_CORE/templates/TEMPLATE_nodo.md) | \[completar: resumen-del-nodo\] |
 

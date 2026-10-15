@@ -5,7 +5,7 @@ descripcion: "[completar: resumen-del-nodo]"
 contexto: "[completar: A, B, C o D]"
 creado:
 ---
-> [!info] Índice de esta nota (líneas)
+> [!info]- Índice de esta nota (líneas)
 > - Líneas 1–7: Propiedades
 > - Líneas 8–14: Este índice
 > - Líneas 16–24: [completar: Nombre del proyecto]

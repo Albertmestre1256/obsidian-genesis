@@ -1,4 +1,4 @@
-> [!info] Índice de esta nota (líneas)
+> [!info]- Índice de esta nota (líneas)
 > - Líneas 1–7: Este índice
 > - Líneas 9–12: Si Claude no conecta con el MCP
 > - Líneas 13–24: Identificar el fallo

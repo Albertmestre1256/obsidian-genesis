@@ -330,7 +330,7 @@ def plan_documento(path, generated, start, end, header=''):
     generated = generated.replace('\n', newline)
     text = prefix + generated + suffix
     # Conservar documentos manuales; mantener los rangos de mapas ya integrados.
-    if before is None or '> [!info] Índice de esta nota (líneas)' in text:
+    if before is None or any(header in text for header in lineador().HEADERS):
         text = lineador().render(text, reubicar=True)
     content = (b'\xef\xbb\xbf' if before and before.startswith(b'\xef\xbb\xbf') else b'') + text.encode('utf-8')
     return {'ruta': path, 'antes': before, 'contenido': content, 'cambia': before != content}

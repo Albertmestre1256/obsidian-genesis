@@ -3,7 +3,7 @@ level: organ
 tipo: context-injection-protocol
 descripcion: Elegir el contexto mínimo según la tarea y ampliar solo cuando haga falta.
 ---
-> [!info] Índice de esta nota (líneas)
+> [!info]- Índice de esta nota (líneas)
 > - Líneas 1–5: Propiedades
 > - Líneas 6–12: Este índice
 > - Líneas 14–27: Qué darle a la IA

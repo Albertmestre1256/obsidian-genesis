@@ -1,4 +1,4 @@
-> [!info] Índice de esta nota (líneas)
+> [!info]- Índice de esta nota (líneas)
 > - Líneas 1–6: Este índice
 > - Líneas 8–11: Empezar con ChatGPT
 > - Líneas 12–21: Con la carpeta en la app de escritorio

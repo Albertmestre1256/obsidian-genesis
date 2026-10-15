@@ -4,7 +4,7 @@ tipo: technical-writing
 contexto_aplicable: ["A"]
 descripcion: Informes, documentación y análisis técnicos con evidencia verificable.
 ---
-> [!info] Índice de esta nota (líneas)
+> [!info]- Índice de esta nota (líneas)
 > - Líneas 1–6: Propiedades
 > - Líneas 7–10: Este índice
 > - Líneas 12–21: Redacción técnica — A

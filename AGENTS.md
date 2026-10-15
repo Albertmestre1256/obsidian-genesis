@@ -1,4 +1,4 @@
-> [!info] Índice de esta nota (líneas)
+> [!info]- Índice de esta nota (líneas)
 > - Líneas 1–3: Este índice
 > - Líneas 5–11: Instrucciones para asistentes
 

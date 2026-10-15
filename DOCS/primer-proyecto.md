@@ -1,4 +1,4 @@
-> [!info] Índice de esta nota (líneas)
+> [!info]- Índice de esta nota (líneas)
 > - Líneas 1–10: Este índice
 > - Líneas 12–19: Tu primer proyecto a mano
 > - Líneas 20–25: 1. Elegí algo pequeño

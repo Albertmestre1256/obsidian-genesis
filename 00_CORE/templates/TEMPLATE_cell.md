@@ -6,7 +6,7 @@ objetivo: "[completar: qué querés lograr; la fecha del objetivo es opcional]"
 contexto: "[completar: A, B, C o D]"
 actualizado: "{{date:YYYY-MM-DD}}"
 ---
-> [!info] Índice de esta nota (líneas)
+> [!info]- Índice de esta nota (líneas)
 > - Líneas 1–8: Propiedades
 > - Líneas 9–16: Este índice
 > - Líneas 18–25: Célula del proyecto

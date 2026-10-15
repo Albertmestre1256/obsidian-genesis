@@ -4,7 +4,7 @@ tipo: operational-writing
 contexto_aplicable: ["D"]
 descripcion: Mensajes, avisos, coordinación y preparación de reuniones.
 ---
-> [!info] Índice de esta nota (líneas)
+> [!info]- Índice de esta nota (líneas)
 > - Líneas 1–6: Propiedades
 > - Líneas 7–10: Este índice
 > - Líneas 12–20: Redacción operativa — D

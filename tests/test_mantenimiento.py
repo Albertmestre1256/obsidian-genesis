@@ -52,6 +52,51 @@ def test_atribucion_primera_y_fences_tilde():
     assert not re.search(r'> - Líneas .+: Código', result)
 
 
+@pytest.mark.parametrize('marker', ['', '-'])
+@pytest.mark.parametrize('eol,bom', [('\n', b''), ('\r\n', b''), ('\n', b'\xef\xbb\xbf')])
+def test_formato_anterior_y_plegable_conservan_contenido(marker, eol, bom):
+    body = '# Nota\n## Tema\nContenido propio.\n> [!warning] Aviso propio\n> No modificar este aviso.\n'
+    text = ('---\ntipo: apunte\n---\n> [!info]'+marker+' Índice de esta nota (líneas)\n'
+            '> - Líneas 1–1: Rango anterior\n\n'+body).replace('\n', eol)
+    out = lines.contenido(bom+text.encode('utf-8'))
+    rendered = out.decode('utf-8-sig')
+    assert rendered.startswith('---'+eol+'tipo: apunte'+eol+'---'+eol+'> [!info]- Índice de esta nota (líneas)'+eol)
+    assert rendered.endswith(body.replace('\n', eol))
+    assert rendered.count('Índice de esta nota (líneas)')==1
+    assert out.startswith(bom) and lines.contenido(out)==out
+    entry = next(lines.ENTRY.fullmatch(s) for s in rendered.splitlines() if s.endswith(': Tema'))
+    assert rendered.splitlines()[int(entry[1])-1]=='## Tema'
+    assert int(entry[2])==len(rendered.splitlines())
+
+
+@pytest.mark.parametrize('headers', [('', '-'), ('-', '')])
+def test_indices_duplicados_de_ambos_formatos_impiden_el_lote(tmp_path, headers):
+    valid = tmp_path/'Valida.md'
+    valid.write_bytes(b'# Nota\nTexto conservado.\n')
+    broken = tmp_path/'Duplicada.md'
+    broken.write_text('\n'.join('> [!info]'+s+' Índice de esta nota (líneas)' for s in headers)+'\n# Nota\n', encoding='utf-8')
+    before = {p:p.read_bytes() for p in (valid, broken)}
+    assert lines.main(['apply', str(valid), str(broken)])==2
+    assert all(p.read_bytes()==raw for p,raw in before.items())
+
+
+@pytest.mark.parametrize('marker', ['', '-'])
+def test_actualizador_refresca_rangos_de_mapas_de_ambos_formatos(tmp_path, marker):
+    from test_indice import indice
+    indice.actualizar(tmp_path)
+    general = tmp_path/'INDICE.md'
+    raw = general.read_text(encoding='utf-8')
+    general.write_text(raw.replace('> [!info]-', '> [!info]'+marker), encoding='utf-8')
+    note = tmp_path/'Nueva.md'
+    note.write_bytes(b'# Nota nueva\nContenido conservado.\n')
+    indice.actualizar(tmp_path)
+    assert 'Nueva.md' in general.read_text(encoding='utf-8')
+    assert lines.contenido(general.read_bytes())==general.read_bytes()
+    assert general.read_text(encoding='utf-8').startswith('> [!info]-')
+    assert note.read_bytes()==b'# Nota nueva\nContenido conservado.\n'
+    assert indice.actualizar(tmp_path, comprobar=True)['estado']=='vigente'
+
+
 @pytest.mark.parametrize('text', ['---\npropiedad: sin cierre\n', '# Nota\n' + lines.HEADER,
     lines.HEADER + '\n> lista propia\n# Nota\n', lines.HEADER + '\n' + lines.HEADER])
 def test_indices_incompatibles_no_se_reemplazan(text):
@@ -379,7 +424,7 @@ def test_creador_y_mapa_recalculan_rangos_al_crecer(tmp_path):
     for _ in range(2):
         result = subprocess.run(command,capture_output=True,text=True,encoding='utf-8')
         assert result.returncode == 0, result.stdout
-    local = vault/'estudio/00 - Índice y Contexto.md'
+    local = vault/'estudio/00 - Índice - estudio.md'
     assert 'Creado por: IA de prueba' in local.read_text(encoding='utf-8')
     (vault/'estudio/02_SINTESIS/Apunte.md').write_text('# Apunte\n',encoding='utf-8')
     result = subprocess.run([sys.executable,'-B',str(ROOT/'actualizar_indice.py'),str(vault)],capture_output=True,text=True,encoding='utf-8')

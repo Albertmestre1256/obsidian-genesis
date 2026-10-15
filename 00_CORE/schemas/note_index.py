@@ -10,7 +10,8 @@ import stat
 import sys
 import tempfile
 
-HEADER = '> [!info] Índice de esta nota (líneas)'
+HEADER = '> [!info]- Índice de esta nota (líneas)'
+HEADERS = (HEADER, '> [!info] Índice de esta nota (líneas)')
 ENTRY = re.compile(r'^> - Líneas (\d+)–(\d+): (.+)$')
 IGNORAR = {'.git', '.obsidian', '.obsidian-mcp', '.claude', '.opencode', '.github',
            '__pycache__', '.pytest_cache', '.trash', 'node_modules', '.venv', 'venv', '_archivo'}
@@ -97,11 +98,11 @@ def separar(text, reubicar=False):
     start = first
     while start < len(clean) and not clean[start].strip():
         start += 1
-    count = sum(line == HEADER for line in clean)
+    count = sum(line in HEADERS for line in clean)
     if count:
         if reubicar and count == 1:
-            start = clean.index(HEADER)
-        if count != 1 or start < first or start >= len(clean) or clean[start] != HEADER:
+            start = next(i for i, line in enumerate(clean) if line in HEADERS)
+        if count != 1 or start < first or start >= len(clean) or clean[start] not in HEADERS:
             raise ValueError('Índice duplicado o fuera del comienzo; revisar sin reemplazarlo.')
         end = start + 1
         while end < len(clean) and clean[end].startswith('>'):

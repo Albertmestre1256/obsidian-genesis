@@ -249,7 +249,7 @@ def test_proyecto_es_nodo_y_reintento_conserva_indice_generado(tmp_path):
     command = [sys.executable, '-B', str(ROOT / 'crear_proyecto.py'), '--destino', str(vault), '--datos', str(payload)]
     result = subprocess.run(command, capture_output=True, text=True, encoding='utf-8')
     assert result.returncode == 0, result.stdout + result.stderr
-    path = vault / 'estudio/00 - Índice y Contexto.md'
+    path = vault / 'estudio/00 - Índice - estudio.md'
     assert '01_FUENTES/README.md' in path.read_text(encoding='utf-8')
     assert indice.metadatos(path)['descripcion'] == data['descripcion']
     before = foto(vault)

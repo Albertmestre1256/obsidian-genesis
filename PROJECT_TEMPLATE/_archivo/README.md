@@ -6,4 +6,4 @@
 
 Conservá material que dejó de estar vigente cuando decidas archivarlo. La IA propone antes de mover o borrar. Los originales de [01_FUENTES](../01_FUENTES/) permanecen allí.
 
-Indicá qué cambió y por qué; comprobá enlaces si movés notas. La ficha mantiene el estado actual: el historial no representa decisiones vigentes.
+Indicá qué cambió y por qué; comprobá enlaces si movés notas y registrá origen y destino. La ficha mantiene el estado actual: el historial no representa decisiones vigentes ni se purga al renovar el registro de cambios.

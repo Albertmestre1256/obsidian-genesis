@@ -3,7 +3,7 @@ level: organ
 tipo: personalizacion-protocol
 descripcion: Inventario de datos aportados, pendientes u omitidos para personalizar y completar la bóveda sin repetir la entrevista.
 ---
-> [!info] Índice de esta nota (líneas)
+> [!info]- Índice de esta nota (líneas)
 > - Líneas 1–5: Propiedades
 > - Líneas 6–12: Este índice
 > - Líneas 14–17: Personalizar la bóveda y retomar lo que falta
@@ -45,7 +45,7 @@ Antes de crear el primer proyecto, guardá **Inventario de personalización** en
 
 La tabla usa estas columnas: **Ítem | Alcance | Estado | Dato o referencia | Origen y fecha | Para retomar**. Alcance es `boveda` o `proyecto:identificador-real`; dato es un resumen o enlace relativo; origen distingue usuario, documento, comprobación o IA, con fecha real. Para retomar indica una pregunta o comprobación. Usá `—` cuando no corresponda contenido.
 
-Una fila por ítem y alcance, en una línea y con barras verticales escapadas. Incluí todos los ítems aplicables y agregá otros solo si afectan el uso. Conservá lo sabido de respuestas parciales y señalá la duda. [La plantilla de configuración](../templates/TEMPLATE_configuracion.md) aporta esa estructura para una nota nueva; al retomar, editá la versión vigente sin sustituir sus datos ni repetir el inventario en la ficha.
+Una fila por ítem y alcance, en una línea y con barras verticales escapadas. En notas nuevas, la plantilla deja la tabla en un bloque plegable «Respuestas y pendientes para retomar», debajo de los datos iniciales y del avance. Conservá el prefijo `>` de sus filas al editarla. Una tabla plana existente sigue siendo válida; no copies el inventario ni conviertas un perfil anterior solo por su presentación. Incluí todos los ítems aplicables y agregá otros solo si afectan el uso. Conservá lo sabido de respuestas parciales y señalá la duda. [La plantilla de configuración](../templates/TEMPLATE_configuracion.md) aporta esa estructura para una nota nueva; al retomar, editá la versión vigente sin sustituir sus datos ni repetir el inventario en la ficha.
 
 | Estado | Significado |
 |---|---|

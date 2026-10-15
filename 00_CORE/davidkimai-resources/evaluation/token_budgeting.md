@@ -3,7 +3,7 @@ level: resource
 tipo: token-budgeting
 descripcion: Seleccionar contexto suficiente para la tarea sin cargar archivos irrelevantes.
 ---
-> [!info] Índice de esta nota (líneas)
+> [!info]- Índice de esta nota (líneas)
 > - Líneas 1–5: Propiedades
 > - Líneas 6–9: Este índice
 > - Líneas 11–19: Presupuesto de contexto

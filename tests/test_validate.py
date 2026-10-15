@@ -564,7 +564,7 @@ def test_cierre_incompleto_falla_sin_reparar(validador, boveda_cierre, fallo):
     elif fallo == 'mapa-general':
         (vault / 'Apunte.md').write_bytes(lines.contenido(b'# Apunte\n'))
     elif fallo == 'mapa-nodo':
-        node = next(p for p in vault.rglob('00 - Índice y Contexto.md') if 'PROJECT_TEMPLATE' not in p.parts)
+        node = vault / 'estudio/00 - Índice - estudio.md'
         note = node.parent / 'Nota nueva.md'
         note.write_bytes(lines.contenido(b'# Nota\n'))
     elif fallo == 'rango':
@@ -670,7 +670,7 @@ def test_cierre_historico_incompatible_no_se_ignora(validador, boveda_cierre):
 
 def test_cierre_indice_manual_exige_revision_explicita(validador, boveda_cierre):
     vault, maps, lines, _ = boveda_cierre()
-    node = next(p for p in vault.rglob('00 - Índice y Contexto.md') if 'PROJECT_TEMPLATE' not in p.parts)
+    node = vault / 'estudio/00 - Índice - estudio.md'
     head, _ = lines.separar(node.read_text(encoding='utf-8'))
     node.write_bytes(lines.contenido((''.join(head)+'\n# Índice propio\nContenido conservado.\n').encode('utf-8')))
     maps.actualizar(vault)
@@ -811,4 +811,279 @@ def test_cierre_sin_carpeta_fichas_es_incompleto(validador,boveda_cierre):
     maps.actualizar(vault)
     before = foto_cierre(vault)
     assert validador.validar_cierre(vault,'cierre-final')
+    assert foto_cierre(vault)==before
+
+
+@pytest.mark.parametrize('etiqueta,extra,ok', [
+    ('- Última operación de mantenimiento: visible-final', '', True),
+    ('- Última operación de mantenimiento: `visible-final`', '', True),
+    ('- **Última operación de mantenimiento:** `visible-final`', '', True),
+    ('- Última operación de mantenimiento: visible-final (2026-10-14)', '', True),
+    ('- Última operación de mantenimiento: anterior', '', False),
+    ('- Última operación de mantenimiento: registro del martes', '', False),
+    ('- Última operación de mantenimiento: `visible-final', '', False),
+    ('- Última operación de mantenimiento: visible-final otra', '', False),
+    ('- Última operación de mantenimiento: visible-final (2026-02-31)', '', False),
+    ('- Última operación de mantenimiento: —', '', True),
+    ('- Última operación de mantenimiento: -', '', True),
+    ('- Última operación de mantenimiento: ', '', True),
+    ('', '', True),
+    ('- Última operación de mantenimiento: visible-final',
+     '\n- Última operación de mantenimiento: visible-final\n', False),
+    ('- Última operación de mantenimiento: visible-final',
+     '\n%%\n- Última operación de mantenimiento: falso\n%%\n'
+     '<!--\n- Última operación de mantenimiento: falso\n-->\n', True),
+    ('- Última operación de mantenimiento: visible-final',
+     '\n```md\n- Última operación de mantenimiento: falso\n```\n', True),
+    ('- Última operación de mantenimiento: visible-final',
+     '\n> ```md\n> - Última operación de mantenimiento: falso\n> ```\n', True),
+    ('- Última operación de mantenimiento: visible-final',
+     '\n  ~~~~md\n- Última operación de mantenimiento: falso\n  ~~~~~\n', True),
+    ('- Última operación de mantenimiento: visible-final',
+     '\n    - Última operación de mantenimiento: ejemplo indentado\n', True),
+])
+def test_cierre_contrasta_operacion_visible_sin_reparar(
+        validador, boveda_cierre, etiqueta, extra, ok):
+    vault, maps, lines, registry = boveda_cierre()
+    config = vault / '00_CORE/configuracion.md'
+    text = config.read_text(encoding='utf-8').replace(
+        '- Última operación de mantenimiento: —', etiqueta) + extra
+    config.write_bytes(lines.contenido(text.encode('utf-8')))
+    maps.actualizar(vault)
+    registry.registrar(vault, {'id':'visible-final', 'ia':'Prueba', 'herramienta':'fixture',
+        'resumen':'Comprobar coherencia del avance.', 'verificado':True,
+        'cambios':[{'accion':'editar','ruta':'00_CORE/configuracion.md'}]})
+    maps.actualizar(vault)
+    before = foto_cierre(vault)
+    errors = validador.validar_cierre(vault, 'visible-final')
+    assert (errors == []) is ok, errors
+    if not ok:
+        assert all('última operación de mantenimiento; revisión manual pendiente' in e for e in errors)
+    assert foto_cierre(vault) == before
+
+
+def test_cierre_etiqueta_editada_despues_del_registro_no_elude_hash(validador, boveda_cierre):
+    vault, maps, lines, _ = boveda_cierre()
+    config = vault / '00_CORE/configuracion.md'
+    text = config.read_text(encoding='utf-8').replace(
+        '- Última operación de mantenimiento: —',
+        '- Última operación de mantenimiento: cierre-final')
+    config.write_bytes(lines.contenido(text.encode('utf-8')))
+    maps.actualizar(vault)
+    before = foto_cierre(vault)
+    errors = validador.validar_cierre(vault, 'cierre-final')
+    assert errors and all('hash de configuración no coincide' in e for e in errors), errors
+    assert foto_cierre(vault) == before
+
+
+# Contrato independiente de presentación; datos ficticios, no notas personales.
+"""Contrato independiente: presentación sin perder filas o validar ejemplos."""
+import importlib.util
+import os
+from pathlib import Path
+import pytest
+
+_PERFIL_DEFAULT = Path(__file__).resolve().parents[1]/'00_CORE/schemas/validate.py'
+_PERFIL_HEADER = '| Ítem | Alcance | Estado | Dato o referencia | Origen y fecha | Para retomar |\n|---|---|---|---|---|---|\n'
+_PERFIL_ROWS = ['| objetivo | proyecto:frances | confirmado | Leer francés. | usuario, 2026-10-13 | — |',
+        '| documento-perfil | boveda | omitido | Prefiero no compartir. | usuario, 2026-10-13 | Solo si lo pide. |',
+        r'| materiales | proyecto:frances | pendiente | [[Notas/Indice\|Resumen]] y A\|B | documento, 2026-10-13 | Revisar. |']
+_PERFIL_TABLE = _PERFIL_HEADER+'\n'.join(_PERFIL_ROWS)+'\n'
+
+
+@pytest.fixture
+def perfil_validador():
+    path=Path(os.environ.get('GENESIS_VALIDATOR_PATH',str(_PERFIL_DEFAULT)))
+    spec=importlib.util.spec_from_file_location('perfil_independiente',path)
+    mod=importlib.util.module_from_spec(spec);spec.loader.exec_module(mod)
+    return mod
+
+
+def _perfil_plegable(table=_PERFIL_TABLE, header='> [!info]- Datos para retomar'):
+    return header+'\n>\n'+'\n'.join('> '+x for x in table.rstrip().splitlines())+'\n'
+
+
+def _perfil_comprobar(perfil_validador, tmp_path, block, profile='abierta'):
+    root=tmp_path/'Bóveda ficticia';(root/'00_CORE/cells').mkdir(parents=True)
+    path=root/'00_CORE/configuracion.md'
+    text='---\ntipo: configuracion\nestado: lista\npersonalizacion: '+profile+'\n---\n\n## Inventario de personalización\n\n'+block+'\n\n## Avance\nPendiente.\n'
+    path.write_text(text,encoding='utf-8');(root/'Panel.md').write_text('[[00_CORE/configuracion]]\n',encoding='utf-8')
+    before=path.read_bytes()
+    errors=perfil_validador.validar_configuracion(root)
+    table_errors, rows=perfil_validador._validar_tabla_inventario(perfil_validador._extraer_seccion_inventario(text))
+    assert path.read_bytes()==before
+    return errors,table_errors,rows
+
+
+@pytest.mark.parametrize('header',[None,'> [!info]- Datos para retomar','> [!info]+ Datos para retomar','> [!INFO]- Mis respuestas'])
+def test_perfil_presentacion_conserva_todos_los_datos(perfil_validador,tmp_path,header):
+    block=_PERFIL_TABLE if header is None else _perfil_plegable(header=header)
+    errors, table_errors, rows=_perfil_comprobar(perfil_validador,tmp_path,block)
+    assert errors==table_errors==[]
+    assert len(rows)==3
+    assert [r['estado'] for r in rows]==['confirmado','omitido','pendiente']
+    assert rows[2]['dato']=='[[Notas/Indice|Resumen]] y A|B'
+
+
+@pytest.mark.parametrize('name,block',[
+    ('cita-sin-callout','\n'.join('> '+x for x in _PERFIL_TABLE.splitlines())),
+    ('otro-callout',_perfil_plegable(header='> [!example]- Ejemplo')),
+    ('codigo-citado',_perfil_plegable('```md\n'+_PERFIL_TABLE+'```')),
+    ('comentario-citado',_perfil_plegable('<!--\n'+_PERFIL_TABLE+'-->')),
+    ('comentario-obsidian-citado',_perfil_plegable('%%\n'+_PERFIL_TABLE+'%%')),
+    ('codigo-externo','```md\n'+_perfil_plegable()+'```'),
+    ('info-anidado',_perfil_plegable('> [!info]- Anidado\n>\n'+'\n'.join('> '+x for x in _PERFIL_TABLE.splitlines()))),
+    ('fila-fuera',_perfil_plegable().replace('> '+_PERFIL_ROWS[-1],_PERFIL_ROWS[-1])),
+    ('fila-no-citada-intermedia',_perfil_plegable().replace('> '+_PERFIL_ROWS[1],_PERFIL_ROWS[1])),
+    ('tabla-plana-interrumpida',_PERFIL_HEADER+_PERFIL_ROWS[0]+'\n> '+_PERFIL_ROWS[1]+'\n> '+_PERFIL_ROWS[2]),
+    ('dos-plegables',_perfil_plegable()+'\n'+_perfil_plegable()),
+    ('plana-y-plegable',_PERFIL_TABLE+'\n'+_perfil_plegable()),
+    ('dos-planas',_PERFIL_TABLE+'\n'+_PERFIL_TABLE),
+    ('dos-tablas-en-info',_perfil_plegable(_PERFIL_TABLE+'\n'+_PERFIL_TABLE)),
+])
+def test_perfil_ejemplos_y_tablas_cortadas_no_declaran_lista(perfil_validador,tmp_path,name,block):
+    errors,_,_=_perfil_comprobar(perfil_validador,tmp_path,block)
+    assert errors, name
+
+
+@pytest.mark.parametrize('malformed',[_PERFIL_TABLE.replace('pendiente','completado'),_PERFIL_TABLE.replace('| documento-perfil | boveda |','| documento-perfil | |'),_PERFIL_TABLE.replace('| Revisar. |','|'),_PERFIL_HEADER+'\n'])
+def test_perfil_plegable_mantiene_controles_de_tabla(perfil_validador,tmp_path,malformed):
+    errors,_,_=_perfil_comprobar(perfil_validador,tmp_path,_perfil_plegable(malformed))
+    assert errors
+
+
+def test_perfil_plegable_no_confirma_personalizacion_con_pendientes(perfil_validador,tmp_path):
+    errors,table_errors,rows=_perfil_comprobar(perfil_validador,tmp_path,_perfil_plegable(),'completa')
+    assert not table_errors and len(rows)==3
+    assert any('completa' in error for error in errors)
+
+
+def test_perfil_plegable_excluye_codigo_y_comentarios_previos(perfil_validador,tmp_path):
+    decoy='```md\n'+_PERFIL_TABLE+'```\n\n<!--\n'+_PERFIL_TABLE+'-->\n'
+    errors,table_errors,rows=_perfil_comprobar(perfil_validador,tmp_path,decoy+_perfil_plegable())
+    assert errors==table_errors==[] and len(rows)==3
+
+
+def test_perfil_plantilla_actual_se_instancia_sin_perder_filas(perfil_validador, tmp_path):
+    root=tmp_path/'Bóveda nueva'
+    (root/'00_CORE/cells').mkdir(parents=True)
+    source=Path(__file__).resolve().parents[1]/'00_CORE/templates/TEMPLATE_configuracion.md'
+    text=source.read_text(encoding='utf-8').replace('tipo: plantilla-configuracion','tipo: configuracion').replace('proyecto:[completar: identificador]','proyecto:frances')
+    path=root/'00_CORE/configuracion.md';path.write_text(text,encoding='utf-8')
+    (root/'Panel.md').write_text('[[00_CORE/configuracion]]\n',encoding='utf-8')
+    before=path.read_bytes()
+    errors=perfil_validador.validar_configuracion(root)
+    table_errors,rows=perfil_validador._validar_tabla_inventario(perfil_validador._extraer_seccion_inventario(text))
+    assert errors==table_errors==[] and len(rows)==15
+    assert all(row['estado']=='pendiente' for row in rows)
+    assert path.read_bytes()==before
+
+
+"""Dos tablas en el mismo bloque no deben permitir aceptar solo la primera."""
+import importlib.util
+from pathlib import Path
+import pytest
+
+
+@pytest.mark.parametrize('between',['Detalle después de la tabla.','[!info]- Otro inventario'])
+def test_perfil_no_omite_tabla_despues_de_prosa_o_segundo_titulo(tmp_path,between):
+    path=Path(__file__).resolve().parents[1]/'00_CORE/schemas/validate.py'
+    spec=importlib.util.spec_from_file_location('perfil_tabla_completa',path)
+    mod=importlib.util.module_from_spec(spec);spec.loader.exec_module(mod)
+    table='| Ítem | Alcance | Estado | Dato o referencia | Origen y fecha | Para retomar |\n|---|---|---|---|---|---|\n| rutina | boveda | pendiente | — | — | Revisar. |\n'
+    body='## Inventario de personalización\n\n> [!info]- Datos\n>\n'+'\n'.join('> '+x for x in table.splitlines())+'\n> '+between+'\n>\n'+'\n'.join('> '+x for x in table.splitlines())+'\n'
+    p=tmp_path/'Perfil.md';p.write_text(body,encoding='utf-8');before=p.read_bytes()
+    errors,_=mod._validar_tabla_inventario(mod._extraer_seccion_inventario(body))
+    assert errors
+    assert p.read_bytes()==before
+
+
+@pytest.mark.parametrize('prefix,label,ok', [
+    ('', '- Ultima operacion de mantenimiento: anterior', False),
+    ('', '- Ultima operacion de mantenimiento: opus-final', True),
+    ('', '1. Última operación de mantenimiento: anterior', False),
+    ('', '1. Última operación de mantenimiento: opus-final', True),
+    ('', '2) Última operación de mantenimiento: anterior', False),
+    ('', '*Última operación de mantenimiento*: anterior', False),
+    ('', '*Última operación de mantenimiento*: opus-final', True),
+    ('', 'Última operación de mantenimiento: anterior', False),
+    ('', 'Última operación de mantenimiento: opus-final', True),
+    ('', '> - Última operación de mantenimiento: anterior', False),
+    ('```md\n%% comentario de ejemplo sin cerrar\n```\n\n',
+     '- Última operación de mantenimiento: anterior', False),
+    ('Objetivo: aprender a usar `%%` en una nota.\n\n',
+     '- Última operación de mantenimiento: anterior', False),
+    ('Objetivo: aprender a usar `<!--` en una nota.\n\n',
+     '- Última operación de mantenimiento: anterior', False),
+    ('> ```md\n> ejemplo\n\n', '- Última operación de mantenimiento: anterior', False),
+    ('> > ~~~md\n> > ejemplo\n\n', '- Última operación de mantenimiento: anterior', False),
+    ('> > ```md\n> > ejemplo\n', '> - Última operación de mantenimiento: anterior', False),
+    ('```md\n> ```\n- Última operación de mantenimiento: falso-ejemplo\n```\n\n',
+     '- Última operación de mantenimiento: opus-final', True),
+    ('<!-- comentario\n- Última operación de mantenimiento: falso-ejemplo\n-->\n\n',
+     '- Última operación de mantenimiento: opus-final', True),
+])
+def test_cierre_regresiones_opus_markdown(validador,boveda_cierre,prefix,label,ok):
+    vault,maps,lines,registry=boveda_cierre()
+    config=vault/'00_CORE/configuracion.md'
+    text=config.read_text(encoding='utf-8').replace(
+        '- Última operación de mantenimiento: —',label)
+    text=text.replace('## Avance de archivos y comprobaciones',
+        prefix+'## Avance de archivos y comprobaciones',1)
+    config.write_bytes(lines.contenido(text.encode('utf-8')))
+    maps.actualizar(vault)
+    registry.registrar(vault,{'id':'opus-final','ia':'Prueba','herramienta':'Regresión tras Opus',
+        'resumen':'Comprobar etiqueta Markdown y su operación real.','verificado':True,
+        'cambios':[{'accion':'editar','ruta':'00_CORE/configuracion.md'}]})
+    maps.actualizar(vault)
+    before=foto_cierre(vault)
+    errors=validador.validar_cierre(vault,'opus-final')
+    assert (errors==[]) is ok,errors
+    if not ok:
+        assert any('última operación de mantenimiento' in e for e in errors),errors
+    assert foto_cierre(vault)==before
+
+
+def test_cierre_opus_conserva_mayusculas_del_id(validador,boveda_cierre):
+    vault,maps,lines,registry=boveda_cierre()
+    config=vault/'00_CORE/configuracion.md'
+    text=config.read_text(encoding='utf-8').replace(
+        '- Última operación de mantenimiento: —',
+        '- Última operación de mantenimiento: OPUS-Final')
+    config.write_bytes(lines.contenido(text.encode('utf-8')))
+    maps.actualizar(vault)
+    registry.registrar(vault,{'id':'OPUS-Final','ia':'Prueba','herramienta':'Regresión de ID exacto',
+        'resumen':'El estilo de la etiqueta no modifica el ID.','verificado':True,
+        'cambios':[{'accion':'editar','ruta':'00_CORE/configuracion.md'}]})
+    maps.actualizar(vault)
+    before=foto_cierre(vault)
+    assert validador.validar_cierre(vault,'OPUS-Final')==[]
+    assert any('no coincide' in e for e in validador.validar_cierre(vault,'opus-final'))
+    assert foto_cierre(vault)==before
+
+
+def test_operacion_visible_opus_no_abre_comentarios_en_codigo_indentado(validador):
+    for opener in ('%%','<!--'):
+        text='    '+opener+' ejemplo literal\n\n- Última operación de mantenimiento: anterior\n'
+        assert validador._validar_operacion_visible(text,'actual')
+
+
+@pytest.mark.parametrize('example', [
+    '```ejemplo``` de comillas\n- Última operación de mantenimiento: anterior\n',
+    '> > ```md\n> > ejemplo\n> - Última operación de mantenimiento: anterior\n',
+])
+def test_cierre_opus_extremos_de_cercas_y_citas(validador,boveda_cierre,example):
+    vault,maps,lines,registry=boveda_cierre()
+    config=vault/'00_CORE/configuracion.md'
+    text=config.read_text(encoding='utf-8').replace('- Última operación de mantenimiento: —','')
+    # Sin título intermedio de profundidad0: el segundo caso prueba realmente2→1.
+    text+='\n'+example
+    config.write_bytes(lines.contenido(text.encode('utf-8')))
+    maps.actualizar(vault)
+    registry.registrar(vault,{'id':'opus-extremo','ia':'Prueba','herramienta':'Regresión de citas/cercas',
+        'resumen':'No ocultar la etiqueta visible detrás de código aparente.','verificado':True,
+        'cambios':[{'accion':'editar','ruta':'00_CORE/configuracion.md'}]})
+    maps.actualizar(vault)
+    before=foto_cierre(vault)
+    assert any('última operación de mantenimiento' in e for e in validador.validar_cierre(vault,'opus-extremo'))
     assert foto_cierre(vault)==before

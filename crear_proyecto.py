@@ -15,6 +15,55 @@ RAIZ = Path(__file__).resolve().parent
 SUBCARPETAS = ('01_FUENTES', '02_SINTESIS', '03_ENTREGABLES', '_archivo')
 
 
+def nombre_indice_proyecto(codigo):
+    """Nombre portátil para índice de proyecto NUEVO: 00 - Índice - <id>.md"""
+    nombre = '00 - Índice - {}.md'.format(codigo)
+    if len(nombre.encode('utf-8')) > 255:
+        raise ValueError('El identificador produce un nombre de índice demasiado largo; acordá uno más corto.')
+    return nombre
+
+
+def encontrar_indice_existente(origen, destino, codigo):
+    """
+    Busca el índice de proyecto existente en la carpeta del proyecto.
+    Usa indexador(origen).metadatos() y .tipo(); valida con ruta_real antes de abrir.
+    Cuenta TODOS los índices locales tipo indice-proyecto/indice-nodo para ambigüedad.
+    Retorna el nombre si hay EXACTAMENTE UNO y su proyecto coincide con codigo.
+    Lanza ValueError si hay múltiples índices locales, o si el único no coincide proyecto.
+    """
+    idx_kit = indexador(origen)
+    proyecto_dir = ruta_real(destino / codigo)
+    if not proyecto_dir.is_dir():
+        return None
+    
+    indices_locales = []
+    for archivo in proyecto_dir.iterdir():
+        if archivo.suffix.lower() != '.md':
+            continue
+        ruta_real(archivo)
+        if not archivo.is_file():
+            continue
+        meta = idx_kit.metadatos(archivo)
+        if idx_kit.tipo(meta) in {'indice-proyecto', 'indice-nodo'}:
+            indices_locales.append((archivo.name, meta))
+    
+    if len(indices_locales) > 1:
+        raise ValueError('Hay varios índices de nodo/proyecto en {}. Elegí uno antes de continuar.'.format(proyecto_dir))
+    
+    if len(indices_locales) == 1:
+        nombre, meta = indices_locales[0]
+        proyecto_val = meta.get('proyecto', '')
+        if proyecto_val != codigo:
+            raise ValueError('El índice existente en {} tiene proyecto "{}", no "{}". No se sobrescribe.'.format(proyecto_dir, proyecto_val, codigo))
+        if len(nombre.encode('utf-8')) > 255:
+            raise ValueError('El nombre del índice existente supera 255 bytes.')
+        if re.search(r'[|#^\[\]:]|%%', nombre):
+            raise ValueError('El nombre del índice existente "{}" rompe el wikilink; acordá otro identificador.'.format(nombre))
+        return nombre
+    
+    return None
+
+
 def ruta_real(ruta):
     ruta = Path(os.path.abspath(str(ruta)))
     for parte in (ruta,) + tuple(ruta.parents):
@@ -100,7 +149,7 @@ def planificar(destino, datos, origen=RAIZ):
         texto = texto_linea(hecho.get('texto'), 'hecho')
         fuente = texto_linea(hecho.get('fuente'), 'fuente', opcional=True)
         lineas_hechos.append('- {} (fuente: {})'.format(markdown(texto), markdown(fuente)))
-    plantilla = ruta_real(origen / '00_CORE/cells/TEMPLATE_cell.md').read_text(encoding='utf-8-sig')
+    plantilla = ruta_real(origen / '00_CORE/templates/TEMPLATE_cell.md').read_text(encoding='utf-8-sig')
     separado = revisar.separar(plantilla)
     if separado is None:
         raise ValueError('La plantilla de ficha no tiene un bloque de propiedades cerrado. '
@@ -116,7 +165,12 @@ def planificar(destino, datos, origen=RAIZ):
     cuerpo = cuerpo.replace('- [completar: algo concreto y verdadero sobre el proyecto] (fuente: [completar: dónde se puede comprobar])', '\n'.join(lineas_hechos))
     cuerpo = cuerpo.replace('- [ ] [completar: próximo paso concreto]', '- [ ] ' + markdown(paso) if paso else '')
     cuerpo = re.sub(r'\n{3,}', '\n\n', cuerpo).strip()
-    cuerpo += '\n\n[[{}/00 - Índice y Contexto|Abrir el proyecto]]\n'.format(codigo)
+    # Determinar nombre del índice: existente (legacy o renombrado) o nuevo formato
+    nombre_indice = encontrar_indice_existente(origen, destino, codigo)
+    if nombre_indice is None:
+        nombre_indice = nombre_indice_proyecto(codigo)
+    
+    cuerpo += '\n\n[[{}/{}|Abrir el proyecto]]\n'.format(codigo, nombre_indice[:-3])
     ficha = '---\n' + '\n'.join('{}: {}'.format(k, json.dumps(v, ensure_ascii=False)) for k, v in props.items()) + '\n---\n\n' + cuerpo
     indice = ruta_real(origen / 'PROJECT_TEMPLATE/00 - Índice y Contexto.md').read_text(encoding='utf-8')
     indice = re.sub(r'%%.*?%%', lambda m: m.group() if m.group() in
@@ -130,7 +184,7 @@ def planificar(destino, datos, origen=RAIZ):
     indice = indice.replace('[completar: autor del nodo]', markdown(autor))
     indice = indice.replace('[completar: de qué se trata el proyecto, en 2 o 3 líneas]', markdown(descripcion))
     indice = re.sub(r'^> \*\*Célula del proyecto:.*$', '> **Ficha:** [[00_CORE/cells/{}-context]]'.format(codigo), indice, flags=re.M)
-    files = {'{}/00 - Índice y Contexto.md'.format(codigo): indice.encode('utf-8')}
+    files = {'{}/{}'.format(codigo, nombre_indice): indice.encode('utf-8')}
     template = ruta_real(origen / 'PROJECT_TEMPLATE')
     for actual in sorted(template.rglob('*')):
         ruta_real(actual)
@@ -170,7 +224,7 @@ def planificar(destino, datos, origen=RAIZ):
     for rel in files:
         ruta_real(destino / rel)
     # El bloque local se regenera después de crear: no es una edición del usuario.
-    index_rel = codigo + '/00 - Índice y Contexto.md'
+    index_rel = '{}/{}'.format(codigo, nombre_indice)
     index_path = destino / index_rel
     if index_path.is_file():
         actual, expected = index_path.read_bytes(), files[index_rel]
@@ -182,7 +236,7 @@ def planificar(destino, datos, origen=RAIZ):
             if without(actual) == without(expected):
                 files[index_rel] = actual
     anchor = any((destino / rel).is_file() and (destino / rel).read_bytes() == files[rel]
-                 for rel in [cell_rel, codigo + '/00 - Índice y Contexto.md'])
+                 for rel in [cell_rel, index_rel])
     if (destino / codigo).exists() and not anchor:
         raise ValueError('La carpeta del proyecto ya está ocupada; acordá retomar o usar otro identificador.')
     nuevos, iguales = {}, []
@@ -194,11 +248,15 @@ def planificar(destino, datos, origen=RAIZ):
             iguales.append(rel)
         else:
             nuevos[rel] = data
-    return {'destino': destino, 'id': codigo, 'ficha': cell_rel,
+    return {'destino': destino, 'id': codigo, 'ficha': cell_rel, 'indice': index_rel,
             'nuevos': nuevos, 'iguales': iguales, 'avisos': avisos}
 
 
 def aplicar(plan, creados):
+    if 'indice' in plan:
+        existente = encontrar_indice_existente(RAIZ, plan['destino'], plan['id'])
+        if existente is not None and Path(plan['indice']).name != existente:
+            raise ValueError('La carpeta del proyecto ya está ocupada por otro índice; releé antes de aplicar el plan.')
     lineas = lineador()
     for rel, data in plan['nuevos'].items():
         objetivo = ruta_real(plan['destino'] / rel)

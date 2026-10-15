@@ -54,7 +54,8 @@ def test_crea_con_datos_reales_sin_inventar_y_conserva_originales(vault, datos, 
     assert props['actualizado'] == datos['fecha']
     assert '[completar' not in text and '{{date' not in text
     assert text.count('- [ ] ') == 1
-    index = vault / 'preparar-dos-materias/00 - Índice y Contexto.md'
+    # Nuevo formato: 00 - Índice - <id>.md
+    index = vault / 'preparar-dos-materias/00 - Índice - preparar-dos-materias.md'
     assert index.is_file() and '[completar' not in index.read_text(encoding='utf-8')
     assert all((index.parent / name).is_dir() for name in crear.SUBCARPETAS)
     assert not (vault / '00_CORE/configuracion.md').exists()
@@ -166,11 +167,13 @@ def test_ficha_sin_identificador_no_oculta_posible_coincidencia(vault, datos):
 
 def test_cambio_despues_del_plan_se_conserva(vault, datos):
     plan = crear.planificar(vault, datos)
-    index = vault / 'preparar-dos-materias/00 - Índice y Contexto.md'
-    index.parent.mkdir()
-    index.write_bytes(b'Creado por otra persona')
+    # Simular índice legacy con metadata correcta para probar preservación
+    index_dir = vault / 'preparar-dos-materias'
+    index_dir.mkdir()
+    legacy_index = index_dir / '00 - Índice y Contexto.md'
+    legacy_index.write_text('---\ntipo: indice-proyecto\nproyecto: preparar-dos-materias\n---\n# Legacy\n', encoding='utf-8')
     before = foto(vault)
-    with pytest.raises(FileExistsError):
+    with pytest.raises(ValueError, match='ya está ocupada'):
         crear.aplicar(plan, [])
     assert foto(vault) == before
 
@@ -230,7 +233,7 @@ def test_junction_no_escribe_fuera(vault, datos, tmp_path):
 def test_plantilla_danada_informa_bloqueo_sin_traceback(vault, datos, tmp_path, monkeypatch, capsys, template):
     kit = tmp_path/'kit'
     shutil.copytree(RAIZ/'00_CORE', kit/'00_CORE', ignore=shutil.ignore_patterns('__pycache__'))
-    (kit/'00_CORE/cells/TEMPLATE_cell.md').write_text(template, encoding='utf-8')
+    (kit/'00_CORE/templates/TEMPLATE_cell.md').write_text(template, encoding='utf-8')
     original = crear.planificar
     monkeypatch.setattr(crear, 'planificar', lambda destino, data: original(destino, data, origen=kit))
     payload = tmp_path/'datos.json'
@@ -262,7 +265,7 @@ def test_retoma_archivos_creados_si_falla_mapa_sin_repetir_perfil(vault, datos, 
         raise OSError('Mapa ocupado durante la prueba')
     with monkeypatch.context() as patch:
         patch.setattr(index, 'actualizar', fail)
-        patch.setattr(crear, 'indexador', lambda: index)
+        patch.setattr(crear, 'indexador', lambda origen=RAIZ: index)
         assert crear.main(['--destino', str(vault), '--datos', str(payload)]) == 1
     partial = json.loads(capsys.readouterr().out)
     assert partial['estado'] == 'parcial' and partial['creados']
@@ -279,4 +282,132 @@ def test_retoma_archivos_creados_si_falla_mapa_sin_repetir_perfil(vault, datos, 
     assert not errors and any('no bloquea' in w for w in warnings)
     assert crear.indexador().actualizar(vault, comprobar=True)['estado'] == 'vigente'
     assert crear.lineador().main(['check', str(vault/result['ficha']),
-                                 str(vault/'preparar-dos-materias/00 - Índice y Contexto.md')]) == 0
+                                  str(vault/'preparar-dos-materias/00 - Índice - preparar-dos-materias.md')]) == 0
+
+
+# Regresiones de nombres propios de índices — 13/10/2026
+import hashlib
+import re
+from urllib.parse import quote as _nombres_quote
+_nombres_maps=crear.indexador(RAIZ)
+_nombres_lines=crear.lineador(RAIZ)
+
+def _nombres_foto(v):return {p.relative_to(v).as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in v.rglob('*') if p.is_file()}
+
+def _nombres_datos(code='proyecto-uno',title='Proyecto uno'):
+    return {'id':code,'nombre':title,'descripcion':'Caso ficticio de nombres propios.','objetivo':'Ordenar apuntes ficticios.','contexto':'D','fecha':'2026-10-13','autor':'IA:ChatGPT (Codex), prueba de archivos'}
+
+def _nombres_crear(v,d):
+    crear.aplicar(crear.planificar(v,d,origen=RAIZ),[])
+    _nombres_maps.actualizar(v)
+
+def _nombres_indice(v,code):
+    records=[r for r in _nombres_maps.catalogo(v) if Path(r['ruta']).parent.as_posix()==code and _nombres_maps.tipo(r['meta']) in ('indice-nodo','indice-proyecto')]
+    assert len(records)==1
+    return v/records[0]['ruta']
+
+def _nombres_renombrar(v,name,fix_link=True):
+    old=_nombres_indice(v,'proyecto-uno');new=old.with_name(name);old.rename(new)
+    if fix_link:
+        cell=v/'00_CORE/cells/proyecto-uno-context.md';raw=cell.read_bytes();s=raw.decode('utf-8')
+        # Tanto wikilinks como un eventual enlace Markdown relativo del creador.
+        s=s.replace(old.stem,new.stem).replace(_nombres_quote(old.name),_nombres_quote(new.name))
+        assert s!=raw.decode('utf-8') or old.name==new.name
+        cell.write_bytes(_nombres_lines.contenido(s.encode('utf-8')))
+    _nombres_maps.actualizar(v)
+    return new
+
+def test_new_project_names_differ_and_all_links_resolve(vault):
+    _nombres_crear(vault,_nombres_datos());_nombres_crear(vault,_nombres_datos('proyecto-dos','Proyecto dos'))
+    a=_nombres_indice(vault,'proyecto-uno');b=_nombres_indice(vault,'proyecto-dos')
+    assert a.name!=b.name
+    assert 'proyecto-uno' in a.name and 'proyecto-dos' in b.name
+    assert _nombres_maps.actualizar(vault,comprobar=True)['estado']=='vigente'
+    for code,idx in [('proyecto-uno',a),('proyecto-dos',b)]:
+        s=(vault/('00_CORE/cells/'+code+'-context.md')).read_text(encoding='utf-8')
+        assert code+'/'+idx.stem in s or _nombres_quote(idx.name) in s
+        assert idx.is_file()
+
+@pytest.mark.parametrize('name',['00 - Índice y Contexto.md','Guía principal.md'])
+def test_legacy_and_named_generated_index_retries_are_byte_idempotent(vault,name):
+    _nombres_crear(vault,_nombres_datos());expected=_nombres_renombrar(vault,name)
+    before=_nombres_foto(vault);plan=crear.planificar(vault,_nombres_datos(),origen=RAIZ)
+    assert not plan['nuevos']
+    crear.aplicar(plan,[])
+    assert _nombres_foto(vault)==before and _nombres_indice(vault,'proyecto-uno')==expected
+
+def test_stale_ficha_link_does_not_propose_duplicate_or_modify(vault):
+    _nombres_crear(vault,_nombres_datos());_nombres_renombrar(vault,'Guía principal.md',fix_link=False)
+    before=_nombres_foto(vault)
+    with pytest.raises(ValueError):crear.planificar(vault,_nombres_datos(),origen=RAIZ)
+    assert _nombres_foto(vault)==before
+    assert len(list((vault/'proyecto-uno').glob('00 - Índice*.md')))==0
+
+def test_ambiguous_local_indexes_are_rejected_in_planning(vault):
+    _nombres_crear(vault,_nombres_datos())
+    other=vault/'proyecto-uno/Otro índice.md'
+    other.write_text('---\ntipo: indice-nodo\ndescripcion: Otra entrada local.\n---\n# Otra entrada\n',encoding='utf-8')
+    before=_nombres_foto(vault)
+    with pytest.raises(ValueError):crear.planificar(vault,_nombres_datos(),origen=RAIZ)
+    assert _nombres_foto(vault)==before
+
+def test_human_title_is_not_a_filename(vault):
+    _nombres_crear(vault,_nombres_datos(title='Estudio [corazón] | # : ¿ensayo?'))
+    idx=_nombres_indice(vault,'proyecto-uno')
+    assert not re.search(r'[<>:"/\\|?*]',idx.name)
+    assert _nombres_maps.actualizar(vault,comprobar=True)['estado']=='vigente'
+
+def test_handwritten_index_is_not_overwritten_on_retry(vault):
+    _nombres_crear(vault,_nombres_datos());idx=_nombres_indice(vault,'proyecto-uno')
+    idx.write_bytes(idx.read_bytes()+b'\n## Contenido propio\nNo sobrescribir.\n')
+    before=_nombres_foto(vault)
+    with pytest.raises(ValueError):crear.planificar(vault,_nombres_datos(),origen=RAIZ)
+    assert _nombres_foto(vault)==before
+
+def test_redirected_local_note_is_rejected_before_metadata_read(vault,monkeypatch):
+    _nombres_crear(vault,_nombres_datos())
+    redirect=vault/'proyecto-uno/Enlace redirigido.md'
+    redirect.write_text('# Archivo que debe quedar protegido\n',encoding='utf-8')
+    original=crear.ruta_real
+    def checked(path):
+        if Path(path)==redirect:raise ValueError('ruta redirigida: no leer')
+        return original(path)
+    monkeypatch.setattr(crear,'ruta_real',checked)
+    before=_nombres_foto(vault)
+    with pytest.raises(ValueError,match='redirigida'):crear.planificar(vault,_nombres_datos(),origen=RAIZ)
+    assert _nombres_foto(vault)==before
+
+
+def test_nombre_de_indice_nuevo_no_supera_limite_portable():
+    with pytest.raises(ValueError,match='demasiado largo'):
+        crear.nombre_indice_proyecto('a' * 240)
+
+
+def test_indice_roto_se_comprueba_antes_de_is_file(vault,monkeypatch):
+    _nombres_crear(vault,_nombres_datos())
+    bad=vault/'proyecto-uno/Enlace roto.md'
+    bad.write_text('# Simulación de enlace roto\n',encoding='utf-8')
+    raw=bad.read_bytes()
+    original=crear.ruta_real
+    original_is_file=type(bad).is_file
+    def checked(path):
+        if Path(path)==bad:raise ValueError('ruta redirigida: no leer')
+        return original(path)
+    monkeypatch.setattr(crear,'ruta_real',checked)
+    monkeypatch.setattr(type(bad),'is_file',lambda path:False if path==bad else original_is_file(path))
+    before=_nombres_foto(vault)
+    with pytest.raises(ValueError,match='redirigida'):
+        crear.planificar(vault,_nombres_datos(),origen=RAIZ)
+    assert _nombres_foto(vault)==before and bad.read_bytes()==raw
+
+
+
+def test_destino_planificado_creado_por_otro_editor_se_conserva(vault,datos):
+    plan=crear.planificar(vault,datos)
+    target=vault/plan['indice']
+    target.parent.mkdir()
+    target.write_bytes(b'# Contenido ajeno posterior al plan\n')
+    before=foto(vault)
+    with pytest.raises(FileExistsError):
+        crear.aplicar(plan,[])
+    assert foto(vault)==before

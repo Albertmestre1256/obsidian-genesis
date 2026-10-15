@@ -1,10 +1,10 @@
-> [!info] Índice de esta nota (líneas)
+> [!info]- Índice de esta nota (líneas)
 > - Líneas 1–7: Este índice
 > - Líneas 9–12: Mantener notas, mapas y registro
 > - Líneas 13–20: Al crear o editar notas
-> - Líneas 21–33: Índices de líneas con Python
-> - Líneas 34–61: Registro identificado y períodos de cinco días
-> - Líneas 62–66: Sin Python o con archivos adjuntos
+> - Líneas 21–35: Índices de líneas con Python
+> - Líneas 36–65: Registro identificado y períodos de cinco días
+> - Líneas 66–70: Sin Python o con archivos adjuntos
 
 # Mantener notas, mapas y registro
 
@@ -15,7 +15,7 @@ La IA realiza este mantenimiento dentro del pedido autorizado; la persona no pre
 1. Identificarse con nombre de IA, herramienta y modelo conocido; declarar lo desconocido. Al crear un nodo, dejar «Creado por» en su índice.
 2. Releer y editar los destinos acordados, conservando cambios ajenos. Recalcular el índice de cada nota editable: sección y líneas inicial/final del archivo completo, incluidas propiedades e índice. La atribución del README conserva la primera línea.
 3. Actualizar resúmenes y enlaces de los [mapas del nodo y general](indice-principal.md). Para originales existentes, describir contenido y líneas en el índice del nodo; no reescribirlos. Las fuentes Markdown nuevas elaboradas por la IA llevan su índice antes de guardarse. Históricos e integraciones de herramientas conservan su formato.
-4. Verificar archivos, rangos y enlaces. Si cambió una ficha, aplicar [Revisar fichas](usar-con-otras-ias.md#revisar-fichas) antes de declarar el trabajo verificado; corregir errores o guardar el resultado como pendiente. Registrar cambios reales, incluidos `INDICE.md` y cada índice local que cambió, origen y destino de movimientos y resultados parciales. Cada evento enumera los archivos de esa operación: una fila anterior no registra su nueva edición. No guardar credenciales ni afirmar comprobaciones que no ocurrieron.
+4. Elegir el ID de esta operación real. Si se edita la configuración y tiene «Última operación de mantenimiento», actualizar esa etiqueta con el ID exacto **antes** de recalcular rangos y registrar: forma parte de la huella del archivo. Verificar archivos, rangos y enlaces. Si cambió una ficha, aplicar [Revisar fichas](usar-con-otras-ias.md#revisar-fichas) antes de declarar el trabajo verificado; corregir errores o guardar el resultado como pendiente. Registrar cambios reales, incluidos `INDICE.md` y cada índice local que cambió, origen y destino de movimientos y resultados parciales. Cada evento enumera los archivos de esa operación: una fila anterior no registra su nueva edición. No guardar credenciales ni afirmar comprobaciones que no ocurrieron.
 5. Refrescar el mapa tras crear registros o históricos. Los hashes describen el momento del registro; las regeneraciones auxiliares forman parte de la misma operación.
 
 ## Índices de líneas con Python
@@ -30,6 +30,8 @@ python 00_CORE/schemas/note_index.py check "ruta/Nota.md"
 `--vault "ruta-de-la-boveda"` procesa notas editables en lote; requiere ese alcance acordado. Excluye `01_FUENTES/`, `_archivo/`, `00_CORE/logs/historial/` e integraciones; rechaza enlaces/junctions en el material a procesar. `check` no escribe: 0 vigente, 1 pendiente, 2 impedido. `apply` valida antes de escribir; ante un fallo, releer las salidas e informar lo parcial. Los títulos dan las descripciones; el script no resume cuerpos ni verifica hechos.
 
 El actualizador de mapas refresca los rangos de índices que ya los tienen. El creador genera ficha e índice con rangos y los recalcula después de llenar las plantillas. No conservar números de una plantilla al copiarla o ampliar el bloque de un nodo.
+
+El índice usa `> [!info]- Índice de esta nota (líneas)`: está plegado al leer en Obsidian y se abre al pulsar su título. Los rangos siguen presentes en el archivo para la IA. La herramienta admite el encabezado anterior y lo convierte al mantener una nota autorizada, sin tocar originales, históricos ni integraciones. Sin Python, usar el mismo encabezado y comprobar los rangos como siempre.
 
 ## Registro identificado y períodos de cinco días
 
@@ -51,6 +53,8 @@ La IA prepara un evento JSON fuera del kit distribuible. Ejemplo ficticio:
 ```
 
 Usar un id estable por operación; `modelo` es opcional. Acciones: `crear`, `editar`, `mover`, `renombrar`, `archivar`, `borrar`. Registrar no autoriza ejecutarlas. Los movimientos requieren `desde`; un archivo declarado borrado debe estar ausente. El script comprueba rutas y hashes de resultados presentes. Con `verificado: true`, también rechaza errores de formato de las fichas modificadas en `00_CORE/cells/`; admite avisos y conserva plantillas e históricos. Con `false`, permite registrar trabajo incompleto. Ese campo declara la revisión de la IA, no prueba la verdad del contenido ni valida todos los archivos del vault.
+
+El cierre compartido contrasta el ID registrado con la etiqueta de la configuración cuando contiene un valor. Reconoce la etiqueta con o sin tildes, énfasis o lista numerada. Admite el ID solo, entre backticks o seguido de `(AAAA-MM-DD)`. Una etiqueta anterior, varias etiquetas o texto ambiguo requieren revisión manual; el chequeo no los corrige. Las configuraciones anteriores sin etiqueta, con valor vacío, «-» o «—» siguen siendo compatibles. Si se modifica la configuración después de registrarla, hace falta una nueva operación real con su nueva huella; no basta cambiar la etiqueta para hacer pasar el cierre.
 
 ```sh
 python 00_CORE/schemas/registrar_cambios.py --destino "ruta-de-la-boveda" --datos "evento-temporal.json" --dry-run

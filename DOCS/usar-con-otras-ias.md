@@ -1,4 +1,4 @@
-> [!info] Índice de esta nota (líneas)
+> [!info]- Índice de esta nota (líneas)
 > - Líneas 1–12: Este índice
 > - Líneas 14–17: Trabajar con una IA
 > - Líneas 18–23: Contexto y archivos

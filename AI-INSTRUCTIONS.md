@@ -1,4 +1,4 @@
-> [!info] Índice de esta nota (líneas)
+> [!info]- Índice de esta nota (líneas)
 > - Líneas 1–6: Este índice
 > - Líneas 8–13: Entrada para la IA
 > - Líneas 14–21: Antes de trabajar

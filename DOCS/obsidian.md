@@ -1,4 +1,4 @@
-> [!info] Índice de esta nota (líneas)
+> [!info]- Índice de esta nota (líneas)
 > - Líneas 1–7: Este índice
 > - Líneas 9–12: Plantillas y panel
 > - Líneas 13–16: Abrir la bóveda preparada
@@ -20,7 +20,7 @@ El instalador conserva `.obsidian/`. Para usar estas funciones, activá Plantill
 
 Si querés el gráfico en una bóveda existente, activá también **Vista de gráfico**. La IA conserva tus ajustes; no reemplaza `.obsidian/` por los del kit.
 
-En los ajustes de Plantillas, indicá `00_CORE/cells` como carpeta de plantillas y `YYYY-MM-DD` como formato de fecha. Si creás la ficha con una IA, ella completa los archivos; la [guía manual](primer-proyecto.md) explica cómo insertarla por tu cuenta.
+En los ajustes de Plantillas, indicá `00_CORE/templates` como carpeta de plantillas y `YYYY-MM-DD` como formato de fecha. Allí están las plantillas; las fichas creadas se guardan en `00_CORE/cells/`, para que no aparezcan como opciones para insertar. Si creás la ficha con una IA, ella completa los archivos; la [guía manual](primer-proyecto.md) explica cómo insertarla por tu cuenta.
 
 ## Qué muestra el Panel
 

@@ -1,4 +1,4 @@
-> [!info] Índice de esta nota (líneas)
+> [!info]- Índice de esta nota (líneas)
 > - Líneas 1–6: Este índice
 > - Líneas 8–15: Prueba del kit con personas nuevas
 > - Líneas 16–25: Tareas

@@ -3,7 +3,7 @@ level: atom
 tipo: regla-transversal
 descripcion: Reglas comunes para trabajar con cualquier proyecto sin mezclar datos ni cargar contexto innecesario.
 ---
-> [!info] Índice de esta nota (líneas)
+> [!info]- Índice de esta nota (líneas)
 > - Líneas 1–5: Propiedades
 > - Líneas 6–19: Este índice
 > - Líneas 21–24: Reglas de la bóveda

@@ -1,4 +1,4 @@
-> [!info] Índice de esta nota (líneas)
+> [!info]- Índice de esta nota (líneas)
 > - Líneas 1–6: Este índice
 > - Líneas 8–13: Darle la carpeta a una IA
 > - Líneas 14–17: Si ya tenés notas

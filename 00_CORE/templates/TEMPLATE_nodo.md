@@ -2,7 +2,7 @@
 tipo: indice-nodo
 descripcion: "[completar: resumen-del-nodo]"
 ---
-> [!info] Índice de esta nota (líneas)
+> [!info]- Índice de esta nota (líneas)
 > - Líneas 1–4: Propiedades
 > - Líneas 5–9: Este índice
 > - Líneas 11–19: [completar: Nombre del nodo]

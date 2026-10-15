@@ -3,7 +3,7 @@ tipo: entrada-vault
 descripcion: Puerta de entrada a los proyectos, las reglas y el mapa de esta bóveda.
 aliases: [Leer primero]
 ---
-> [!info] Índice de esta nota (líneas)
+> [!info]- Índice de esta nota (líneas)
 > - Líneas 1–5: Propiedades
 > - Líneas 6–9: Este índice
 > - Líneas 11–21: Leer primero
