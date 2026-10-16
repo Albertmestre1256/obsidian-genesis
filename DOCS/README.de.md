@@ -133,12 +133,12 @@ Python automatisiert Aufgaben. Mit einer KI, die Dateien verwalten kann, brauchs
 
 ## Beim Verwenden erzeugte Dateien
 
-Diese Dateien entstehen erst aus deinen Antworten und liegen dem Kit nicht als persönliche Dateien bei. Die Projektnamen unten sind Beispielpfade; du musst diese Dateien nicht von Hand anlegen.
+Diese Dateien entstehen erst aus deinen Antworten und liegen dem Kit nicht als persönliche Dateien bei. Die Projektnamen unten sind Beispielpfade; du musst diese Dateien nicht von Hand anlegen. In Beispielpfaden steht `{ID}` oder `ID` für die gewählte Projektkennung; es ist kein wörtlicher Name.
 
 | Dokument oder Werkzeug | Zweck |
 |---|---|
 | `00_CORE/configuracion.md` | Antworten, übersprungene Angaben und Einrichtungsstand; ermöglicht Fortsetzen ohne erneute Befragung. |
-| `00_CORE/cells/ID-context.md` | Kontextnotiz je Projekt mit Ziel, Fakten, Entscheidungen und nächsten Aufgaben. |
+| `00_CORE/cells/{ID}-context.md` | Kontextnotiz je Projekt mit Ziel, Fakten, Entscheidungen und nächsten Aufgaben. |
 | `ID/00 - Índice - ID.md` | Eigener Projektindex mit Verbindungen zu Notizen und Unterknoten. Auch ein unabhängiger Knoten hat einen Index. |
 | `ID/01_FUENTES/ · ID/02_SINTESIS/ · ID/03_ENTREGABLES/ · ID/_archivo/` | Originalmaterial, laufende Arbeit, Ergebnisse und Historie im vereinbarten Umfang. |
 | `00_CORE/logs/registro-cambios.md · 00_CORE/logs/historial/` | Änderungsprotokoll mit Urheberschaft; bei Erneuerung nach fünf Tagen bleibt das vorherige archiviert. |

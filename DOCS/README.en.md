@@ -133,12 +133,12 @@ Python automates tasks; you do not need to program to use the kit with an AI tha
 
 ## Files created during use
 
-These files do not ship with personal data: the AI creates them from your answers. Project names below are example paths, not files you need to create by hand.
+These files do not ship with personal data: the AI creates them from your answers. Project names below are example paths, not files you need to create by hand. In example paths, `{ID}` or `ID` stands for the chosen project identifier; it is not a literal name.
 
 | Document or tool | Purpose |
 |---|---|
 | `00_CORE/configuracion.md` | Answers, skipped details and setup status; supports resuming without repeating questions. |
-| `00_CORE/cells/ID-context.md` | Each project’s context note: goal, facts, decisions and next actions. |
+| `00_CORE/cells/{ID}-context.md` | Each project’s context note: goal, facts, decisions and next actions. |
 | `ID/00 - Índice - ID.md` | The project’s own index, connecting its notes and child nodes. An independent node also has an index. |
 | `ID/01_FUENTES/ · ID/02_SINTESIS/ · ID/03_ENTREGABLES/ · ID/_archivo/` | Original material, work in progress, outputs and historical material within the agreed scope. |
 | `00_CORE/logs/registro-cambios.md · 00_CORE/logs/historial/` | Identified change log; renewal after five days preserves the previous log in the archive. |

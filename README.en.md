@@ -124,4 +124,4 @@ For questions, ideas and experiences, use the [community discussions](https://gi
 
 ## About the development
 
-Albert Mestre develops this adaptation with the help of AI assistants, including Codex (OpenAI), for programming, documentation and testing. Proposals are reviewed and results are verified before they are integrated; using AI does not replace tests with people and does not by itself show that the kit is easy to use.
+Albert Mestre develops this adaptation with substantial contributions from **OpenCode, Claude and Codex (OpenAI)**, which helped build an important part of the code and supported documentation and testing. They are credited here as contributing AI tools. Proposals are reviewed and results are verified before they are integrated; using AI does not replace tests with people and does not by itself show that the kit is easy to use.

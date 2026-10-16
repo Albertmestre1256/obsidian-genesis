@@ -124,4 +124,4 @@ Für Fragen, Ideen und Erfahrungen gibt es die [Community-Diskussionen](https://
 
 ## Über die Entwicklung
 
-Albert Mestre entwickelt diese Adaption mit Hilfe von KI-Assistenten, darunter Codex (OpenAI), für Programmierung, Dokumentation und Tests. Vorschläge werden geprüft und Ergebnisse vor der Integration verifiziert; der Einsatz von KI ersetzt keine Tests mit Menschen und belegt für sich allein nicht, dass das Kit einfach zu benutzen ist.
+Albert Mestre entwickelt diese Adaption mit wesentlichen Beiträgen von **OpenCode, Claude und Codex (OpenAI)**. Diese KI-Werkzeuge halfen, einen wichtigen Teil des Codes zu erstellen, und unterstützten Dokumentation und Tests; sie werden hier als Mitwirkende gewürdigt. Vorschläge werden geprüft und Ergebnisse vor der Integration verifiziert; der Einsatz von KI ersetzt keine Tests mit Menschen und belegt für sich allein nicht, dass das Kit einfach zu benutzen ist.

@@ -122,4 +122,4 @@ Para dudas, ideas y experiencias, usá las [discusiones de la comunidad](https:/
 
 ## Sobre el desarrollo
 
-Albert Mestre desarrolla esta adaptación con ayuda de asistentes de IA, incluido Codex (OpenAI), para programación, documentación y pruebas. Las propuestas se revisan y los resultados se verifican antes de integrarlos; el uso de IA no sustituye las pruebas con personas ni acredita por sí solo que el kit sea fácil de usar.
+Albert Mestre desarrolla esta adaptación con contribuciones importantes de **OpenCode, Claude y Codex (OpenAI)**, que ayudaron a construir una parte sustancial del código y apoyaron la documentación y las pruebas. Se los reconoce aquí como herramientas de IA contribuidoras al proyecto. Las propuestas se revisan y los resultados se verifican antes de integrarlos; el uso de IA no sustituye las pruebas con personas ni acredita por sí solo que el kit sea fácil de usar.

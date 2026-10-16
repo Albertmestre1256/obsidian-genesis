@@ -133,12 +133,12 @@ Python automatiza tareas; no hace falta programar para usar el kit con una IA qu
 
 ## Archivos creados durante el uso
 
-Estos archivos no vienen personalizados en el kit: la IA los crea con tus respuestas. Los nombres de proyectos son ejemplos de rutas, no archivos que debas crear a mano.
+Estos archivos no vienen personalizados en el kit: la IA los crea con tus respuestas. Los nombres de proyectos son ejemplos de rutas, no archivos que debas crear a mano. En las rutas de ejemplo, `{ID}` o `ID` representa el identificador elegido para el proyecto; no es un nombre literal.
 
 | Documento o herramienta | Función |
 |---|---|
 | `00_CORE/configuracion.md` | Respuestas, datos omitidos y estado de la configuración; permite retomar sin repetir preguntas. |
-| `00_CORE/cells/ID-context.md` | Ficha de cada proyecto: objetivo, hechos, decisiones y próximas acciones. |
+| `00_CORE/cells/{ID}-context.md` | Ficha de cada proyecto: objetivo, hechos, decisiones y próximas acciones. |
 | `ID/00 - Índice - ID.md` | Índice propio del proyecto; conecta sus notas y subnodos. Un nodo independiente también tiene índice. |
 | `ID/01_FUENTES/ · ID/02_SINTESIS/ · ID/03_ENTREGABLES/ · ID/_archivo/` | Originales, trabajo en curso, resultados y material histórico, según el alcance acordado. |
 | `00_CORE/logs/registro-cambios.md · 00_CORE/logs/historial/` | Registro identificado de cambios; al renovarlo después de cinco días, conserva el anterior archivado. |
