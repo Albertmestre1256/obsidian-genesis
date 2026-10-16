@@ -225,7 +225,7 @@ Cada fila enlaza un archivo. Las carpetas se representan mediante sus archivos; 
 
 Incluye notas, fuentes, adjuntos, guías y herramientas, además de .claude, .opencode, .obsidian y .github cuando existen. No lee el cuerpo completo de las notas ni los archivos de ajustes para elaborar descripciones.
 
-Excluye Git, papelera, registro interno del MCP, cachés, dependencias, checkouts de .claude/worktrees, sesiones workspace de Obsidian, otros archivos ocultos y nombres habituales de credenciales o claves. No sigue enlaces ni junctions; si los encuentra en el material a catalogar, informa el impedimento y conserva el índice anterior.
+Excluye Git, papelera, registro interno del MCP, cachés, dependencias, checkouts de .claude/worktrees, ajustes que Obsidian crea al usarse (solo cataloga los del kit), otros archivos ocultos y nombres habituales de credenciales o claves. No sigue enlaces ni junctions; si los encuentra en el material a catalogar, informa el impedimento y conserva el índice anterior.
 
 Los metadatos reconocidos son campos escalares simples del comienzo de notas Markdown; estructuras complejas no se interpretan como proyectos. Todas las notas visibles siguen apareciendo en el catálogo aunque no tengan esos metadatos.
 

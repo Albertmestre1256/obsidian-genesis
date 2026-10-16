@@ -1,19 +1,24 @@
 > [!info]- Índice de esta nota (líneas)
-> - Líneas 1–14: Este índice
-> - Líneas 16–17: Cambios
-> - Líneas 18–21: 16/10/2026 — instalar desde un kit abierto con OpenCode
-> - Líneas 22–25: 16/10/2026 — README en cuatro idiomas
-> - Líneas 26–29: 16/10/2026 — sin carpetas __pycache__ en la bóveda
-> - Líneas 30–33: 15/10/2026 — próximo paso solo en la ficha
-> - Líneas 34–37: 15/10/2026 — destino visible al comprobar el cierre
-> - Líneas 38–41: 15/10/2026 — conservar cambios posteriores al plan
-> - Líneas 42–45: 15/10/2026 — cierre coherente con el proyecto inicial
-> - Líneas 46–49: 14/10/2026 — operación visible coherente con el registro
-> - Líneas 50–53: 14/10/2026 — inventario de perfil plegable
-> - Líneas 54–57: 13/10/2026 — índices de proyectos con nombres propios
-> - Líneas 58–79: Sin publicar — candidata a v0.1.0
+> - Líneas 1–15: Este índice
+> - Líneas 17–18: Cambios
+> - Líneas 19–22: 16/10/2026 — abrir la bóveda en Obsidian no desactualiza el índice
+> - Líneas 23–26: 16/10/2026 — instalar desde un kit abierto con OpenCode
+> - Líneas 27–30: 16/10/2026 — README en cuatro idiomas
+> - Líneas 31–34: 16/10/2026 — sin carpetas __pycache__ en la bóveda
+> - Líneas 35–38: 15/10/2026 — próximo paso solo en la ficha
+> - Líneas 39–42: 15/10/2026 — destino visible al comprobar el cierre
+> - Líneas 43–46: 15/10/2026 — conservar cambios posteriores al plan
+> - Líneas 47–50: 15/10/2026 — cierre coherente con el proyecto inicial
+> - Líneas 51–54: 14/10/2026 — operación visible coherente con el registro
+> - Líneas 55–58: 14/10/2026 — inventario de perfil plegable
+> - Líneas 59–62: 13/10/2026 — índices de proyectos con nombres propios
+> - Líneas 63–84: Sin publicar — candidata a v0.1.0
 
 # Cambios
+
+## 16/10/2026 — abrir la bóveda en Obsidian no desactualiza el índice
+
+Al abrir la bóveda, Obsidian crea ajustes propios en `.obsidian/` (apariencia, atajos, marcadores, plugins, temas). El índice principal ahora cataloga solo los cuatro ajustes que trae el kit, así un cierre verificado no pasa a «Mapas desactualizados» solo por abrir la bóveda o cambiar su aspecto. Las notas, adjuntos y carpetas `.obsidian` dentro de subcarpetas siguen controlados. Observado en la prueba con ChatGPT.
 
 ## 16/10/2026 — instalar desde un kit abierto con OpenCode
 
