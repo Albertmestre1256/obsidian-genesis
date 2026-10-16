@@ -1,6 +1,6 @@
 > [!info]- Índice de esta nota (líneas)
 > - Líneas 1–3: Este índice
-> - Líneas 5–40: Crear los archivos de un proyecto
+> - Líneas 5–42: Crear los archivos de un proyecto
 
 # Crear los archivos de un proyecto
 
@@ -33,7 +33,9 @@ Revisá la salida y aplicá quitando `--dry-run`, sin repetir permisos del mismo
 
 El creador verifica propiedades, nombres, rutas y coincidencias por `proyecto`, incluidas fichas renombradas. Conserva archivos diferentes y rechaza enlaces/junctions. Requiere reglas compatibles: LF/CRLF se consideran iguales; ante reglas propias, creá con herramientas de archivos según sus convenciones.
 
-Repetir los mismos datos recupera una copia interrumpida y omite archivos idénticos. Si editaron una ficha, retomá esa versión. La salida distingue creados, iguales, avisos e impedimentos. Un índice incompatible bloquea la creación; un fallo posterior deja estado parcial y conserva archivos completos. Releé antes de reintentar.
+Los planes del creador se vuelven a comprobar antes de guardar: si cambiaron reglas, fichas, índices o destinos, se bloquean sin aplicar el plan anterior. La salida distingue ese bloqueo de una fase de escritura iniciada que terminó parcial; en este último caso puede haber archivos o carpetas que deban revisarse aunque la lista de archivos completos esté vacía. Releé antes de reintentar.
+
+Repetir los datos acordados prepara un plan nuevo, recupera una copia interrumpida y omite archivos idénticos. Si editaron una ficha, retomá esa versión. Cada archivo se crea sin reemplazar uno existente; la comprobación previa no es una transacción frente a editores que actúen después, ni autoriza borrar lo creado para reintentar.
 
 El comando crea ficha, índice y carpetas y actualiza `INDICE.md`. Luego completá Panel, configuración e inventario según el protocolo y volvé a [actualizar el catálogo](indice-principal.md). `archivos-creados` solo acredita esa etapa, sin verificar hechos ni interfaz.
 

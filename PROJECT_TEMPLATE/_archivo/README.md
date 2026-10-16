@@ -1,6 +1,11 @@
-> [!info] Índice de esta nota (líneas)
-> - Líneas 1–3: Este índice
-> - Líneas 5–9: _archivo — Historial del proyecto
+---
+tipo: guia-carpeta
+descripcion: "Material que dejó de estar vigente y se conserva por decisión del usuario; no describe el estado actual."
+---
+> [!info]- Índice de esta nota (líneas)
+> - Líneas 1–4: Propiedades
+> - Líneas 5–8: Este índice
+> - Líneas 10–14: _archivo — Historial del proyecto
 
 # _archivo — Historial del proyecto
 

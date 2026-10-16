@@ -173,10 +173,10 @@ Cada fila enlaza un archivo. Las carpetas se representan mediante sus archivos; 
 | Archivo | Qué contiene |
 |---|---|
 | [00 - Índice y Contexto.md](PROJECT_TEMPLATE/00%20-%20%C3%8Dndice%20y%20Contexto.md) | \[completar: resumen-del-nodo\] |
-| [01\_FUENTES/README.md](PROJECT_TEMPLATE/01_FUENTES/README.md) | 01\_FUENTES — Material original |
-| [02\_SINTESIS/README.md](PROJECT_TEMPLATE/02_SINTESIS/README.md) | 02\_SINTESIS — Notas y borradores |
-| [03\_ENTREGABLES/README.md](PROJECT_TEMPLATE/03_ENTREGABLES/README.md) | 03\_ENTREGABLES — Resultados finales |
-| [\_archivo/README.md](PROJECT_TEMPLATE/_archivo/README.md) | \_archivo — Historial del proyecto |
+| [01\_FUENTES/README.md](PROJECT_TEMPLATE/01_FUENTES/README.md) | Material original del proyecto; se conserva sin editar y se analiza en una nota aparte. |
+| [02\_SINTESIS/README.md](PROJECT_TEMPLATE/02_SINTESIS/README.md) | Resúmenes, planes y borradores en preparación, con referencias a sus fuentes. |
+| [03\_ENTREGABLES/README.md](PROJECT_TEMPLATE/03_ENTREGABLES/README.md) | Resultados revisados y aceptados, conservados por versión. |
+| [\_archivo/README.md](PROJECT_TEMPLATE/_archivo/README.md) | Material que dejó de estar vigente y se conserva por decisión del usuario; no describe el estado actual. |
 
 ### Plantillas de organización
 

@@ -3,16 +3,16 @@
 > - Líneas 1–1: Atribución
 > - Líneas 2–15: Este índice
 > - Líneas 17–24: Obsidian Genesis: tu bóveda, configurada por una IA
-> - Líneas 25–42: Estado del proyecto — 14/10/2026
-> - Líneas 43–63: Empezar en tres pasos
-> - Líneas 64–69: Adjuntos o bóveda existente
-> - Líneas 70–77: Continuar
-> - Líneas 78–90: Qué contiene
-> - Líneas 91–99: Ayuda opcional
-> - Líneas 100–103: Privacidad
-> - Líneas 104–107: English
-> - Líneas 108–111: Licencia
-> - Líneas 112–114: Sobre el desarrollo
+> - Líneas 25–46: Estado del proyecto — 15/10/2026
+> - Líneas 47–67: Empezar en tres pasos
+> - Líneas 68–73: Adjuntos o bóveda existente
+> - Líneas 74–81: Continuar
+> - Líneas 82–94: Qué contiene
+> - Líneas 95–103: Ayuda opcional
+> - Líneas 104–107: Privacidad
+> - Líneas 108–111: English
+> - Líneas 112–115: Licencia
+> - Líneas 116–118: Sobre el desarrollo
 
 # Obsidian Genesis: tu bóveda, configurada por una IA
 
@@ -22,7 +22,7 @@ Una **bóveda** es una carpeta de notas que abrís con [Obsidian](https://obsidi
 
 La entrada [Leer primero](LEER_PRIMERO.md) conecta el Panel y el índice general. En una bóveda nueva, el kit activa la **Vista de gráfico** de Obsidian: abrila desde su icono lateral para explorar las notas conectadas, o usá el gráfico local desde el índice de un proyecto.
 
-## Estado del proyecto — 14/10/2026
+## Estado del proyecto — 15/10/2026
 
 **Candidato local en validación; todavía no es una release estable.** El foco sigue siendo iniciar una bóveda con preguntas simples, sin pedirle a la persona que programe ni mantenga los índices.
 
@@ -31,10 +31,14 @@ La entrada [Leer primero](LEER_PRIMERO.md) conecta el Panel y el índice general
 | Configuración conversacional | Guardar respuestas antes del primer proyecto y retomar lo que quedó pendiente. |
 | Perfil opcional y reanudable | Mantener un único inventario plegable; conservar datos omitidos y completar solo lo que la persona elija. |
 | Nodos e índices conectados | Cada colección enlaza su padre, hijos y notas; los nodos generales enlazan el mapa y Leer primero. Los proyectos nuevos tienen índices con nombres propios. |
-| Mantenimiento y cierre | Identificar al asistente, registrar cambios con historial conservado y comprobar fichas, Panel, perfil, mapas y rangos de líneas. |
+| Mantenimiento y cierre | Identificar al asistente, registrar cambios con historial conservado y comprobar fichas, Panel, perfil, mapas, rangos y coherencia del proyecto inicial. |
 | Accesos para distintas IA | Guías para Claude Code, OpenCode, ChatGPT y otros asistentes con herramientas de archivos; alternativa manual disponible. |
 
-Las últimas pruebas automáticas locales dieron **434 correctas y 1 omitida en cada versión, Python 3.8 y 3.13, en Windows**. Las simulaciones propias comprobaron conservación del perfil y crecimiento de nodos. Un ensayo independiente conservó el perfil y registró su reanudación, pero mostró una etiqueta de operación anterior: su cierre se rechaza hasta revisar esa incoherencia. Las guías indican cómo evitarla. Ese caso acotado no acredita una conversación completa de configuración.
+El creador vuelve a comprobar el estado antes de guardar un proyecto y distingue los bloqueos previos de los fallos parciales; cada archivo se crea sin reemplazar uno existente.
+
+El cierre muestra qué carpeta revisó; la guía usa su ruta explícita para distinguir la copia descargada de tu bóveda.
+
+Las últimas pruebas automáticas locales dieron **499 correctas y 1 omitida en cada versión, Python 3.8 y 3.13, en Windows**. Las simulaciones propias comprobaron conservación del perfil y crecimiento de nodos. Un ensayo independiente conservó el perfil y registró su reanudación, pero mostró una etiqueta de operación anterior: su cierre se rechaza hasta revisar esa incoherencia. Las guías indican cómo evitarla. Ese caso acotado no acredita una conversación completa de configuración.
 
 Faltan conversaciones completas en los clientes, pruebas con principiantes y las comprobaciones visuales restantes de Obsidian. Algunas interacciones ya se observaron en copias anteriores; eso no valida la presentación de todos los cambios actuales. Los cambios locales y la matriz remota de GitHub Actions siguen pendientes de publicación autorizada.
 

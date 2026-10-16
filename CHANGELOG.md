@@ -1,12 +1,27 @@
 > [!info]- Índice de esta nota (líneas)
-> - Líneas 1–7: Este índice
-> - Líneas 9–10: Cambios
-> - Líneas 11–14: 14/10/2026 — operación visible coherente con el registro
-> - Líneas 15–18: 14/10/2026 — inventario de perfil plegable
-> - Líneas 19–22: 13/10/2026 — índices de proyectos con nombres propios
-> - Líneas 23–44: Sin publicar — candidata a v0.1.0
+> - Líneas 1–10: Este índice
+> - Líneas 12–13: Cambios
+> - Líneas 14–17: 15/10/2026 — destino visible al comprobar el cierre
+> - Líneas 18–21: 15/10/2026 — conservar cambios posteriores al plan
+> - Líneas 22–25: 15/10/2026 — cierre coherente con el proyecto inicial
+> - Líneas 26–29: 14/10/2026 — operación visible coherente con el registro
+> - Líneas 30–33: 14/10/2026 — inventario de perfil plegable
+> - Líneas 34–37: 13/10/2026 — índices de proyectos con nombres propios
+> - Líneas 38–59: Sin publicar — candidata a v0.1.0
 
 # Cambios
+
+## 15/10/2026 — destino visible al comprobar el cierre
+
+El cierre muestra la ruta absoluta de la bóveda revisada antes de informar el resultado. Las guías usan una raíz explícita y explican que, sin ella, se revisa la bóveda donde está el script, no la carpeta actual. Se conserva esa selección y la API diaria; mover una copia no exige recrear sus notas.
+
+## 15/10/2026 — conservar cambios posteriores al plan
+
+Los planes del creador vuelven a comprobar reglas, fichas, índices y nombres ocupados antes de la primera escritura. Conservan los datos y el origen con los que se prepararon, evitan duplicar una ficha aparecida después y mantienen la creación exclusiva por archivo. La salida distingue una guardia que bloqueó de una fase de escritura iniciada que exige releer el estado; admite recuperación con un plan nuevo sin reemplazar archivos idénticos. No agrega transacciones globales ni deshace cambios automáticamente.
+
+## 15/10/2026 — cierre coherente con el proyecto inicial
+
+En la sección canónica de configuración, el cierre contrasta el identificador con una ficha propia incluida en la revisión diaria y un índice del mismo proyecto. Detecta identidades repetidas, coincidencias con ejemplos y referencias ausentes, ambiguas o externas en los formatos admitidos. Conserva nombres propios, proyectos adicionales, la configuración parcial sin archivos todavía y el formato anterior sin esa sección. No exige completar el perfil ni repara datos automáticamente; la guía de mantenimiento detalla el alcance.
 
 ## 14/10/2026 — operación visible coherente con el registro
 

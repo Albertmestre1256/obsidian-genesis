@@ -1,6 +1,11 @@
+---
+tipo: guia-carpeta
+descripcion: "Resultados revisados y aceptados, conservados por versión."
+---
 > [!info]- Índice de esta nota (líneas)
-> - Líneas 1–3: Este índice
-> - Líneas 5–9: 03_ENTREGABLES — Resultados finales
+> - Líneas 1–4: Propiedades
+> - Líneas 5–8: Este índice
+> - Líneas 10–14: 03_ENTREGABLES — Resultados finales
 
 # 03_ENTREGABLES — Resultados finales
 

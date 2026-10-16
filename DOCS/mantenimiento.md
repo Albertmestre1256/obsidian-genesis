@@ -1,10 +1,12 @@
 > [!info]- Índice de esta nota (líneas)
-> - Líneas 1–7: Este índice
-> - Líneas 9–12: Mantener notas, mapas y registro
-> - Líneas 13–20: Al crear o editar notas
-> - Líneas 21–35: Índices de líneas con Python
-> - Líneas 36–65: Registro identificado y períodos de cinco días
-> - Líneas 66–70: Sin Python o con archivos adjuntos
+> - Líneas 1–9: Este índice
+> - Líneas 11–14: Mantener notas, mapas y registro
+> - Líneas 15–22: Al crear o editar notas
+> - Líneas 23–37: Índices de líneas con Python
+> - Líneas 38–75: Registro identificado y períodos de cinco días
+> - Líneas 76–77: Cierre de la operación
+> - Líneas 78–92: Secuencia de cierre compartida
+> - Líneas 93–97: Sin Python o con archivos adjuntos
 
 # Mantener notas, mapas y registro
 
@@ -56,12 +58,37 @@ Usar un id estable por operación; `modelo` es opcional. Acciones: `crear`, `edi
 
 El cierre compartido contrasta el ID registrado con la etiqueta de la configuración cuando contiene un valor. Reconoce la etiqueta con o sin tildes, énfasis o lista numerada. Admite el ID solo, entre backticks o seguido de `(AAAA-MM-DD)`. Una etiqueta anterior, varias etiquetas o texto ambiguo requieren revisión manual; el chequeo no los corrige. Las configuraciones anteriores sin etiqueta, con valor vacío, «-» o «—» siguen siendo compatibles. Si se modifica la configuración después de registrarla, hace falta una nueva operación real con su nueva huella; no basta cambiar la etiqueta para hacer pasar el cierre.
 
+En configuraciones con `## Proyecto inicial`, el cierre también comprueba la coherencia del proyecto declarado:
+
+- Con `estado: lista`, el Identificador debe corresponder a una ficha propia incluida en la revisión diaria y a un único índice de ese proyecto, reconocidos por sus propiedades. No puede compartir identidad con una ficha de ejemplo. Se conservan los nombres propios de archivos; una ficha en subcarpetas o llamada `TEMPLATE_cell.md` queda pendiente porque el revisor diario no la incluye.
+- Si «Ficha e índice» contiene referencias, deben enlazar ambos archivos. Admite wikilinks con rutas desde la raíz o nombres cortos únicos, alias y fragmentos, y enlaces Markdown relativos a la configuración. Rechaza destinos ausentes, ambiguos, ajenos o externos reconocidos, incluidas URL con esquema y autolinks. Un enlace escrito como código inline no cuenta como referencia.
+- Con `estado: parcial`, el proyecto acordado puede esperar su creación y conservar marcadores o referencias vacías. Las referencias concretas siguen requiriendo comprobación. No hace falta aportar CV, plazo, tareas ni cerrar el inventario opcional.
+
+Se conserva compatibilidad con el formato anterior sin esa sección y con «Ficha e índice» ausente, vacía, «-» o «—»; en este último caso se comprueba la identidad por propiedades. Los campos o secciones canónicos repetidos requieren revisión manual. El chequeo interpreta los formatos anunciados, no cualquier presentación de Markdown ni la verdad de las notas. Ante un impedimento, releer lo guardado y explicar el pendiente; no mover ni recrear una ficha para eludirlo.
+
 ```sh
 python 00_CORE/schemas/registrar_cambios.py --destino "ruta-de-la-boveda" --datos "evento-temporal.json" --dry-run
 python 00_CORE/schemas/registrar_cambios.py --destino "ruta-de-la-boveda" --datos "evento-temporal.json"
 ```
 
 El script escribe solo registros e históricos. Archiva antes de renovar, conserva registros incompatibles y bloquea escrituras concurrentes. Si aparece `.registro-cambios.lock`, releer y resolver la operación, sin quitarlo por iniciativa propia. Tras un fallo, puede existir el histórico y seguir vigente el activo anterior; reintentar conserva ambas copias. Un id ya registrado devuelve `ya-registrado` aunque la nota haya cambiado después; datos distintos con ese id se rechazan.
+
+## Cierre de la operación
+
+### Secuencia de cierre compartida
+
+Para cerrar una sesión de trabajo (referencia: `DOCS/mantenimiento.md`):
+
+Indicá la raíz de la bóveda en los comandos y contrastala con «Bóveda revisada» antes de informar el resultado. Sin ese argumento, el validador usa la bóveda donde está el script, aunque la carpeta actual sea otra. Si moviste o extrajiste el ZIP en otro lugar, usá su ruta actual; no recrees las notas para corregir una ruta.
+
+1. **Chequeo parcial**: para registrar avances actuales, elegí su ID y actualizá «Última operación de mantenimiento» si esa etiqueta existe en la configuración. Recalculá rangos y mapas, registrá los cambios y refrescá el mapa. Después ejecutá `python 00_CORE/schemas/validate.py "<raíz-de-la-bóveda>" --cierre --operacion <ID-parcial>`. Si esa operación ya estaba registrada, verificá su estado sin editarla. Este chequeo no escribe.
+2. **Estado final `lista`**: si la bóveda pasa a `estado: lista`, actualizá `00_CORE/configuracion.md` (cambiar `estado` y `fecha`). Elegí un nuevo ID para esa operación final y actualizá la etiqueta existente antes de calcular su huella.
+3. **Mantenimiento de rangos y mapas**: corré `python 00_CORE/schemas/note_index.py apply --vault <raíz>` y `python actualizar_indice.py <raíz>` para refrescar índices de líneas y mapas.
+4. **Registrar edición final**: registrá ese cambio de configuración como **nueva operación real** (ID elegido en el paso 2, `verificado: true`, fecha actual con zona). No reutilicés el ID del chequeo parcial ni edites la configuración después de registrar su huella.
+5. **Refrescar y volver a chequear**: corré `actualizar_indice.py` otra vez (el registro ya existe) y luego `validate.py "<raíz-de-la-bóveda>" --cierre --operacion <ID-final>` con el nuevo ID. El chequeo anterior no sirve para la edición final.
+
+La IA gestiona los IDs y pasos técnicos; la persona no los proporciona. Índices manuales o logs incompatibles generan error explícito de «revisión manual pendiente», sin reescritura ni aprobación automática.
+
 
 ## Sin Python o con archivos adjuntos
 

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Crea un proyecto acordado en una bóveda con las reglas del kit. Python 3.8+."""
 import argparse
+import copy
 import importlib.util
 import json
 import os
@@ -249,15 +250,28 @@ def planificar(destino, datos, origen=RAIZ):
         else:
             nuevos[rel] = data
     return {'destino': destino, 'id': codigo, 'ficha': cell_rel, 'indice': index_rel,
-            'nuevos': nuevos, 'iguales': iguales, 'avisos': avisos}
+            'nuevos': nuevos, 'iguales': iguales, 'avisos': avisos,
+            'origen': origen, 'datos': copy.deepcopy(datos)}
 
 
-def aplicar(plan, creados):
+def aplicar(plan, creados, iniciado=None):
+    origen = plan.get('origen', RAIZ)
     if 'indice' in plan:
-        existente = encontrar_indice_existente(RAIZ, plan['destino'], plan['id'])
+        existente = encontrar_indice_existente(origen, plan['destino'], plan['id'])
         if existente is not None and Path(plan['indice']).name != existente:
             raise ValueError('La carpeta del proyecto ya está ocupada por otro índice; releé antes de aplicar el plan.')
-    lineas = lineador()
+    if 'datos' in plan:
+        # Conservar el contrato de creación exclusiva ante destinos ya ocupados.
+        for rel in plan['nuevos']:
+            objetivo = ruta_real(plan['destino'] / rel)
+            if objetivo.exists():
+                raise FileExistsError('El destino apareció después del plan; releé antes de guardar: ' + str(objetivo))
+        vigente = planificar(plan['destino'], plan['datos'], origen=origen)
+        if any(vigente[campo] != plan[campo] for campo in ('id', 'ficha', 'indice', 'nuevos', 'iguales')):
+            raise ValueError('El estado cambió desde el plan; volvé a planificar antes de escribir.')
+    lineas = lineador(origen)
+    if iniciado is not None:
+        iniciado.append(True)
     for rel, data in plan['nuevos'].items():
         objetivo = ruta_real(plan['destino'] / rel)
         lineas.guardar(objetivo, None, data)
@@ -270,7 +284,7 @@ def main(argv=None):
     parser.add_argument('--datos', required=True, help='JSON con las respuestas ya acordadas')
     parser.add_argument('--dry-run', action='store_true')
     args = parser.parse_args(argv)
-    creados, intento_aplicar = [], False
+    creados, iniciado = [], []
     try:
         datos = json.loads(Path(args.datos).read_text(encoding='utf-8-sig'))
         plan = planificar(Path(args.destino), datos)
@@ -278,8 +292,7 @@ def main(argv=None):
         indice.planificar(plan['destino'])  # Comprobar compatibilidad sin escribir.
         resultado_indice = {'estado': 'pendiente-de-aplicar', 'modificado': False}
         if not args.dry_run:
-            intento_aplicar = True
-            aplicar(plan, creados)
+            aplicar(plan, creados, iniciado)
             resultado_indice = indice.actualizar(plan['destino'])
         print(json.dumps({'estado': 'plan' if args.dry_run else 'archivos-creados',
                           'id': plan['id'], 'ficha': plan['ficha'], 'creados': creados,
@@ -289,7 +302,8 @@ def main(argv=None):
                           'pendiente': 'Enlazar el Panel y verificar la configuración completa.'}, ensure_ascii=False))
         return 0
     except (OSError, ValueError, KeyboardInterrupt) as error:
-        print(json.dumps({'estado': 'parcial' if intento_aplicar else 'bloqueado',
+        parcial = bool(creados) or bool(iniciado)
+        print(json.dumps({'estado': 'parcial' if parcial else 'bloqueado',
                           'creados': creados, 'error': str(error),
                           'pendiente': 'Releer antes de reintentar; no reemplazar archivos diferentes.'}, ensure_ascii=False))
         return 1
