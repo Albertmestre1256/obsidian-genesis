@@ -1,6 +1,7 @@
 """Comprueba conservación de datos y comportamiento de la instalación real."""
 import importlib.util
 import os
+import shutil
 import subprocess
 import sys
 from pathlib import Path
@@ -255,3 +256,36 @@ def test_junction_en_destino_se_rechaza(tmp_path):
         assert foto(externo) == {}
     finally:
         os.rmdir(str(enlace))  # Retira la junction, conserva el directorio externo.
+
+
+def test_no_copia_dependencias_que_opencode_instala_en_el_kit(tmp_path):
+    origen = tmp_path / "kit"
+    shutil.copytree(str(RAIZ), str(origen), ignore=shutil.ignore_patterns("tests", "__pycache__", ".git"))
+    generados = (".opencode/node_modules/@opencode-ai/plugin/README.md", ".opencode/package.json",
+                 ".opencode/package-lock.json", ".opencode/bun.lock", ".opencode/.gitignore")
+    for ruta in generados:
+        (origen / ruta).parent.mkdir(parents=True, exist_ok=True)
+        (origen / ruta).write_text("generado por OpenCode\n", encoding="utf-8")
+    copiados = {p.relative_to(origen).as_posix() for p in instalar.archivos_kit(origen)}
+    assert ".opencode/commands/configurar.md" in copiados
+    assert not copiados & set(generados)
+
+
+def test_kit_abierto_con_opencode_no_choca_con_el_opencode_de_la_boveda(tmp_path):
+    origen = tmp_path / "kit"
+    shutil.copytree(str(RAIZ), str(origen), ignore=shutil.ignore_patterns("tests", "__pycache__", ".git"))
+    for ruta in (".opencode/package.json", ".opencode/node_modules/paquete/README.md",
+                 ".opencode/commands/package.json"):
+        (origen / ruta).parent.mkdir(parents=True, exist_ok=True)
+        (origen / ruta).write_text("del kit\n", encoding="utf-8")
+    vault = tmp_path / "vault"
+    (vault / ".opencode").mkdir(parents=True)
+    (vault / ".opencode/package.json").write_bytes(b'{"dependencies": {"mi-plugin": "1.0.0"}}')
+    antes = foto(vault)
+    resultado = subprocess.run([sys.executable, str(origen / "instalar.py"), str(vault), "--yes"],
+                               capture_output=True, input="", text=True, encoding="utf-8")
+    assert resultado.returncode == 0, resultado.stdout + resultado.stderr
+    despues = foto(vault)
+    assert all(despues[ruta] == contenido for ruta, contenido in antes.items())
+    assert not (vault / ".opencode/node_modules").exists()
+    assert (vault / ".opencode/commands/package.json").is_file()  # el filtro se limita a .opencode/

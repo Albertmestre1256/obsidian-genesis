@@ -1,18 +1,23 @@
 > [!info]- Índice de esta nota (líneas)
-> - Líneas 1–13: Este índice
-> - Líneas 15–16: Cambios
-> - Líneas 17–20: 16/10/2026 — README en cuatro idiomas
-> - Líneas 21–24: 16/10/2026 — sin carpetas __pycache__ en la bóveda
-> - Líneas 25–28: 15/10/2026 — próximo paso solo en la ficha
-> - Líneas 29–32: 15/10/2026 — destino visible al comprobar el cierre
-> - Líneas 33–36: 15/10/2026 — conservar cambios posteriores al plan
-> - Líneas 37–40: 15/10/2026 — cierre coherente con el proyecto inicial
-> - Líneas 41–44: 14/10/2026 — operación visible coherente con el registro
-> - Líneas 45–48: 14/10/2026 — inventario de perfil plegable
-> - Líneas 49–52: 13/10/2026 — índices de proyectos con nombres propios
-> - Líneas 53–74: Sin publicar — candidata a v0.1.0
+> - Líneas 1–14: Este índice
+> - Líneas 16–17: Cambios
+> - Líneas 18–21: 16/10/2026 — instalar desde un kit abierto con OpenCode
+> - Líneas 22–25: 16/10/2026 — README en cuatro idiomas
+> - Líneas 26–29: 16/10/2026 — sin carpetas __pycache__ en la bóveda
+> - Líneas 30–33: 15/10/2026 — próximo paso solo en la ficha
+> - Líneas 34–37: 15/10/2026 — destino visible al comprobar el cierre
+> - Líneas 38–41: 15/10/2026 — conservar cambios posteriores al plan
+> - Líneas 42–45: 15/10/2026 — cierre coherente con el proyecto inicial
+> - Líneas 46–49: 14/10/2026 — operación visible coherente con el registro
+> - Líneas 50–53: 14/10/2026 — inventario de perfil plegable
+> - Líneas 54–57: 13/10/2026 — índices de proyectos con nombres propios
+> - Líneas 58–79: Sin publicar — candidata a v0.1.0
 
 # Cambios
+
+## 16/10/2026 — instalar desde un kit abierto con OpenCode
+
+Al abrir la carpeta del kit, OpenCode instala sus dependencias dentro de `.opencode/`. El instalador ya no las copia a la bóveda: omite `node_modules` y los archivos que OpenCode genera en esa carpeta, de modo que una bóveda con su propio `.opencode/package.json` no queda bloqueada por un conflicto. La guía de personalización aclara que un pedido puntual ya atendido, como un mail, se marca hecho en las acciones de la ficha y no cuenta como el primer paso elegido por el usuario.
 
 ## 16/10/2026 — README en cuatro idiomas
 

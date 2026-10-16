@@ -35,7 +35,7 @@ Conservá estos identificadores. `boveda` es información compartida; los ítems
 | `rutina` | boveda | Opcional | Cómo consultar, agregar y revisar notas. |
 | `preferencias` | boveda | Opcional | Idioma, detalle, forma de trabajar y datos que no guardar o compartir. |
 | `plazo` | proyecto | Opcional | Fecha o disponibilidad; «sin fecha» resuelve el ítem. |
-| `primer-paso` | proyecto | Opcional | Acción aceptada; distinguirla de una sugerencia. |
+| `primer-paso` | proyecto | Opcional | Acción que el usuario eligió para empezar; distinguirla de una sugerencia y de un pedido puntual ya atendido, que se marca hecho (`- [x]`) en «Próximas acciones» de la ficha. |
 
 Si una tarea necesita un dato opcional, explicá por qué y preguntalo; su ausencia no invalida la configuración básica.
 

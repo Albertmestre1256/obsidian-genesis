@@ -12,7 +12,9 @@ sys.dont_write_bytecode = True  # no dejar __pycache__ dentro de la bóveda
 RAIZ = Path(__file__).resolve().parent
 CARPETAS = ("00_CORE", "PROJECT_TEMPLATE", "DOCS", ".claude", ".opencode")
 ARCHIVOS = ("Panel.md", "Proyectos.base", "LEER_PRIMERO.md", "AI-INSTRUCTIONS.md", "AGENTS.md", "CLAUDE.md", "crear_proyecto.py", "actualizar_indice.py")
-IGNORAR = {"__pycache__", ".pytest_cache", ".DS_Store", "Thumbs.db"}
+IGNORAR = {"__pycache__", ".pytest_cache", ".DS_Store", "Thumbs.db", "node_modules"}
+# OpenCode instala aquí sus dependencias al abrir el kit; no forman parte de él.
+GENERADOS_OPENCODE = {"package.json", "package-lock.json", "bun.lock", ".gitignore"}
 
 
 def comprobar_ruta(path):
@@ -45,8 +47,9 @@ def archivos_kit(origen):
                                  and (Path(base).relative_to(origen).as_posix(), c) != ('.claude', 'worktrees'))
             for carpeta in carpetas:
                 comprobar_ruta(Path(base) / carpeta)
+            generados = GENERADOS_OPENCODE if Path(base) == origen / ".opencode" else ()
             for archivo in sorted(archivos):
-                if archivo not in IGNORAR and not archivo.endswith((".pyc", ".pyo")):
+                if archivo not in IGNORAR and archivo not in generados and not archivo.endswith((".pyc", ".pyo")):
                     yield comprobar_ruta(Path(base) / archivo)
 
 
