@@ -15,6 +15,8 @@ ARCHIVOS = ("Panel.md", "Proyectos.base", "LEER_PRIMERO.md", "AI-INSTRUCTIONS.md
 IGNORAR = {"__pycache__", ".pytest_cache", ".DS_Store", "Thumbs.db", "node_modules"}
 # OpenCode instala aquí sus dependencias al abrir el kit; no forman parte de él.
 GENERADOS_OPENCODE = {"package.json", "package-lock.json", "bun.lock", ".gitignore"}
+# Describen el repositorio completo, incluidos README y tests que no se instalan.
+GUIAS_REPOSITORIO = {"README.md", "README.en.md", "README.de.md", "README.zh.md"}
 
 
 def comprobar_ruta(path):
@@ -47,9 +49,11 @@ def archivos_kit(origen):
                                  and (Path(base).relative_to(origen).as_posix(), c) != ('.claude', 'worktrees'))
             for carpeta in carpetas:
                 comprobar_ruta(Path(base) / carpeta)
-            generados = GENERADOS_OPENCODE if Path(base) == origen / ".opencode" else ()
+            omitidos = GENERADOS_OPENCODE if Path(base) == origen / ".opencode" else ()
+            if Path(base) == origen / "DOCS":
+                omitidos = GUIAS_REPOSITORIO
             for archivo in sorted(archivos):
-                if archivo not in IGNORAR and archivo not in generados and not archivo.endswith((".pyc", ".pyo")):
+                if archivo not in IGNORAR and archivo not in omitidos and not archivo.endswith((".pyc", ".pyo")):
                     yield comprobar_ruta(Path(base) / archivo)
 
 

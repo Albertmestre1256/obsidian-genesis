@@ -7,21 +7,21 @@
 > - Líneas 54–57: Mapa de nodos
 > - Líneas 58–61: Catálogo completo de archivos
 > - Líneas 62–70: Ajustes de Obsidian
-> - Líneas 71–90: Ayuda
-> - Líneas 91–105: Desarrollo
-> - Líneas 106–128: Entrada y herramientas
-> - Líneas 129–134: Fichas y plantillas de proyecto
-> - Líneas 135–140: Guías de comunicación
-> - Líneas 141–149: Guías de redacción
-> - Líneas 150–162: Integración Claude
-> - Líneas 163–173: Integración OpenCode
-> - Líneas 174–183: Plantilla de carpetas
-> - Líneas 184–191: Plantillas de organización
-> - Líneas 192–200: Protocolos
-> - Líneas 201–209: Recursos opcionales de davidkimai
-> - Líneas 210–215: Reglas compartidas
-> - Líneas 216–223: Validación
-> - Líneas 224–232: Alcance del catálogo
+> - Líneas 71–94: Ayuda
+> - Líneas 95–109: Desarrollo
+> - Líneas 110–132: Entrada y herramientas
+> - Líneas 133–138: Fichas y plantillas de proyecto
+> - Líneas 139–144: Guías de comunicación
+> - Líneas 145–153: Guías de redacción
+> - Líneas 154–166: Integración Claude
+> - Líneas 167–177: Integración OpenCode
+> - Líneas 178–187: Plantilla de carpetas
+> - Líneas 188–195: Plantillas de organización
+> - Líneas 196–204: Protocolos
+> - Líneas 205–213: Recursos opcionales de davidkimai
+> - Líneas 214–219: Reglas compartidas
+> - Líneas 220–227: Validación
+> - Líneas 228–236: Alcance del catálogo
 
 # Índice principal de la bóveda
 
@@ -37,7 +37,7 @@ Podés agregar presentación y comentarios antes o después del bloque automáti
 
 ## Panorama
 
-- Archivos catalogados: 87. Proyectos propios identificados: 0. Ejemplos ficticios: 1.
+- Archivos catalogados: 91. Proyectos propios identificados: 0. Ejemplos ficticios: 1.
 - Configuración: todavía no existe una nota de configuración del kit.
 - El estado detallado y las tareas se leen en cada ficha; este catálogo no los reemplaza.
 
@@ -85,6 +85,10 @@ Cada fila enlaza un archivo. Las carpetas se representan mediante sus archivos; 
 | [prueba-con-usuarios.md](DOCS/prueba-con-usuarios.md) | Prueba del kit con personas nuevas |
 | [publicacion.md](DOCS/publicacion.md) | Preparar una publicación |
 | [QUICKSTART.md](DOCS/QUICKSTART.md) | Inicio rápido |
+| [README.de.md](DOCS/README.de.md) | Inhalt und Zweck der Kit-Dokumente und wann sie hilfreich sind. |
+| [README.en.md](DOCS/README.en.md) | What each kit document contains, what it does and when to consult it. |
+| [README.md](DOCS/README.md) | Qué contiene cada documento del kit, para qué sirve y cuándo consultarlo. |
+| [README.zh.md](DOCS/README.zh.md) | 各文档的内容、用途以及适合查阅的时机。 |
 | [TROUBLESHOOTING.md](DOCS/TROUBLESHOOTING.md) | Solución de problemas |
 | [usar-con-otras-ias.md](DOCS/usar-con-otras-ias.md) | Trabajar con una IA |
 

@@ -254,38 +254,20 @@ def _parsear_fila_tabla(linea):
     linea = linea.strip()
     if not linea.startswith('|') or not linea.endswith('|'):
         return None
-    contenido = linea[1:-1]
-    celdas = []
-    actual = []
-    i = 0
-    while i < len(contenido):
-        if contenido[i] == '\\':
-            cuenta = 0
-            while i + cuenta < len(contenido) and contenido[i + cuenta] == '\\':
-                cuenta += 1
-            if i + cuenta < len(contenido) and contenido[i + cuenta] == '|':
-                if cuenta % 2 == 1:
-                    actual.append('\\' * (cuenta // 2))
-                    actual.append('|')
-                    i += cuenta + 1
-                    continue
-                else:
-                    actual.append('\\' * (cuenta // 2))
-                    i += cuenta
-                    continue
-            else:
-                actual.append('\\' * cuenta)
-                i += cuenta
-                continue
-        elif contenido[i] == '|':
-            celdas.append(''.join(actual))
-            actual = []
-            i += 1
+    contenido, inicio = linea[1:-1], 0
+    celdas, actual = [], []
+    for barra in re.finditer(r'(\\*)\|', contenido):
+        cuenta = len(barra[1])
+        actual.extend((contenido[inicio:barra.start()], '\\' * (cuenta // 2)))
+        if cuenta % 2:
+            actual.append('|')
         else:
-            actual.append(contenido[i])
-            i += 1
-    celdas.append(''.join(actual))
-    return [c.strip() for c in celdas]
+            celdas.append(''.join(actual).strip())
+            actual = []
+        inicio = barra.end()
+    actual.append(contenido[inicio:])
+    celdas.append(''.join(actual).strip())
+    return celdas
 
 
 def _es_cabecera_inventario(celdas):

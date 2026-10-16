@@ -1,18 +1,19 @@
 > **主要致谢：[davidkimai](https://github.com/davidkimai)。** 本工具包基于其作品 [Context Engineering](https://github.com/davidkimai/Context-Engineering)。Obsidian Genesis 改编了这项工作，借助 AI 来创建和整理 Obsidian 仓库（vault）。
 > [!info]- Índice de esta nota (líneas)
 > - Líneas 1–1: Atribución
-> - Líneas 2–15: Este índice
-> - Líneas 17–18: Introducción
-> - Líneas 19–26: Obsidian Genesis：由 AI 为你配置的仓库
-> - Líneas 27–48: 项目状态 — 2026 年 10 月 16 日
-> - Líneas 49–69: 三步开始
-> - Líneas 70–75: 附件或已有仓库
-> - Líneas 76–83: 继续
-> - Líneas 84–96: 包含内容
-> - Líneas 97–107: 可选帮助
-> - Líneas 108–111: 隐私
-> - Líneas 112–115: 许可证
-> - Líneas 116–118: 关于开发
+> - Líneas 2–16: Este índice
+> - Líneas 18–19: Introducción
+> - Líneas 20–27: Obsidian Genesis：由 AI 为你配置的仓库
+> - Líneas 28–51: 项目状态 — 2026 年 10 月 16 日
+> - Líneas 52–72: 三步开始
+> - Líneas 73–78: 附件或已有仓库
+> - Líneas 79–86: 继续
+> - Líneas 87–101: 包含内容
+> - Líneas 102–112: 可选帮助
+> - Líneas 113–116: 隐私
+> - Líneas 117–120: 许可证
+> - Líneas 121–124: 社区与支持
+> - Líneas 125–127: 关于开发
 
 **语言：** [Español](README.md) · [English](README.en.md) · [Deutsch](README.de.md) · 中文
 
@@ -40,11 +41,13 @@
 
 收尾检查会显示它检查的是哪个文件夹；指南使用明确的路径，以区分下载的副本和你的仓库。
 
-最近的本地自动化测试结果为：**在 Windows 上，Python 3.8 和 3.13 每个版本均为 509 项通过、1 项跳过**。在两次使用 Claude Code 和虚构人物的测试对话中，AI 配置了仓库，通过了经过验证的收尾检查，并在继续时没有重复提问；其中一次是从新的对话中继续的。这些测试带来了两项调整，但尚未在对话中测试：面板不再保存下一步的固定副本（下一步保留在项目卡片中），脚本也不再在仓库中留下技术性的 `__pycache__` 文件夹。这些并不是与真正初学者进行的测试。
+近期代码变更已在 Windows 上进行了针对性检查：**信息清单与索引的 129 个测试用例通过；安装器的 25 个用例通过、1 个跳过，分别使用 Python 3.8 和 3.13**。这些结果仅覆盖具体变更，并未在当前版本上重新运行完整测试套件。
+
+在两次使用 Claude Code 和虚构人物的测试对话中，AI 配置了仓库，通过了经过验证的收尾检查，并在继续时没有重复提问；其中一次是从新的对话中继续的。这些测试带来了两项调整，但尚未在对话中测试：面板不再保存下一步的固定副本（下一步保留在项目卡片中），脚本也不再在仓库中留下技术性的 `__pycache__` 文件夹。这些并不是与真正初学者进行的测试。
 
 尚未完成：在 OpenCode 和 ChatGPT 中的完整对话、与初学者的测试，以及 Obsidian 中其余的视觉检查。部分交互已在早期副本中观察到，但这并不能证明所有当前更改的显示效果。本地更改和远程 GitHub Actions 矩阵仍在等待获准发布。
 
-Discussions 和赞助仍有待准备。调整和优化现有仓库将是后续阶段。[更新日志](CHANGELOG.md) · [如何贡献](CONTRIBUTING.md)（均为西班牙语）。
+社区讨论现已开放；赞助渠道仍待确定。README 与文档指南提供西班牙语、英语、德语和中文版本；工具包的通用操作说明仍使用西班牙语。调整和优化现有仓库将是后续阶段。[更新日志](CHANGELOG.md) · [如何贡献](CONTRIBUTING.md)（均为西班牙语）。
 
 ## 三步开始
 
@@ -83,6 +86,8 @@ Claude Code 和 OpenCode 包含 `/configurar`、`/empezar`、`/nuevo-proyecto`�
 
 ## 包含内容
 
+各文件的用途与查阅时机，请参阅[文档与工具指南](DOCS/README.zh.md)。
+
 | 位置 | 用途 |
 |---|---|
 | `INDICE.md` | 首先阅读：文件和项目的完整目录 |
@@ -113,6 +118,10 @@ Python 3.8 或更高版本可以借助标准库自动完成安装、创建、验
 
 [MIT](LICENSE)，署名 davidkimai 和 Albert Mestre。这是 Context Engineering 的独立改编版本，与原项目无隶属关系。
 
+## 社区与支持
+
+如有问题、想法或使用经验，可以参加[社区讨论](https://github.com/Albertmestre1256/obsidian-genesis/discussions)。如果遇到故障，请通过[问题报告](https://github.com/Albertmestre1256/obsidian-genesis/issues)使用“No me funciona”模板，并提供使用虚构数据的简短示例。[如何贡献](CONTRIBUTING.md)（西班牙语）。
+
 ## 关于开发
 
-Albert Mestre 在 AI 助手的帮助下开发这一改编版本，用于编程、文档和测试。各项提议都会经过审阅，结果在整合前都会经过验证；使用 AI 不能取代与真人的测试，也不能单凭这一点证明工具包易于使用。
+Albert Mestre 在包括 Codex（OpenAI）在内的 AI 助手帮助下开发这一改编版本，用于编程、文档和测试。各项提议都会经过审阅，结果在整合前都会经过验证；使用 AI 不能取代与真人的测试，也不能单凭这一点证明工具包易于使用。

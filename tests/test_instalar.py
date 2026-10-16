@@ -55,6 +55,28 @@ def test_reinstalar_es_idempotente(tmp_path):
     assert foto(tmp_path) == antes
 
 
+@pytest.mark.parametrize('documentacion_propia', [False, True])
+def test_instalacion_separa_guia_del_repo_y_ayuda_del_vault(tmp_path, documentacion_propia):
+    guias = ('README.md', 'README.en.md', 'README.de.md', 'README.zh.md')
+    if documentacion_propia:
+        (tmp_path / 'DOCS').mkdir()
+        for nombre in guias:
+            (tmp_path / 'DOCS' / nombre).write_bytes(b'Documentacion propia\r\n')
+            (tmp_path / nombre).write_bytes(b'Entrada propia\r\n')
+    antes = foto(tmp_path)
+    originales = {nombre: (RAIZ / 'DOCS' / nombre).read_bytes() for nombre in guias}
+    resultado = ejecutar(tmp_path, '--yes')
+    assert resultado.returncode == 0, resultado.stdout + resultado.stderr
+    assert all((tmp_path / ruta).read_bytes() == contenido for ruta, contenido in antes.items())
+    for nombre in guias:
+        if not documentacion_propia:
+            assert not (tmp_path / 'DOCS' / nombre).exists()
+        assert (RAIZ / 'DOCS' / nombre).read_bytes() == originales[nombre]
+    for ruta in ('DOCS/mantenimiento.md', 'DOCS/obsidian.md',
+                 'PROJECT_TEMPLATE/01_FUENTES/README.md', '00_CORE/davidkimai-resources/README.md'):
+        assert (tmp_path / ruta).read_bytes() == (RAIZ / ruta).read_bytes()
+
+
 def test_instala_entrada_sin_configurar_el_grafo_del_usuario(tmp_path):
     graph = tmp_path / '.obsidian/graph.json'
     graph.parent.mkdir()

@@ -4,7 +4,7 @@
 
 # Inicio rápido
 
-El inicio conversacional está en el [README principal](../README.md). Si necesitás entender cómo darle acceso a la carpeta, consultá [Empezar con una IA](empezar-con-ia.md).
+Para configurar esta carpeta, pedile a tu IA: «Configurá esta bóveda con preguntas simples siguiendo AI-INSTRUCTIONS.md». La [entrada para asistentes](../AI-INSTRUCTIONS.md) indica el recorrido. Si necesitás entender cómo darle acceso a la carpeta, consultá [Empezar con una IA](empezar-con-ia.md).
 
 Acceso según tu asistente: [OpenCode](opencode.md) o [ChatGPT](chatgpt.md). Ambos usan las mismas reglas y preguntas del kit.
 

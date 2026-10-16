@@ -12,11 +12,11 @@ OpenCode puede configurar tu bóveda desde la carpeta descargada. El kit ya trae
 
 ## Abrir y configurar
 
-1. Descomprimí el kit y abrí en OpenCode la carpeta que contiene `README.md`, `INDICE.md` y `AGENTS.md`. Si usás la terminal, abrila en esa carpeta y ejecutá `opencode`.
+1. Descomprimí el kit y abrí en OpenCode la carpeta que contiene `INDICE.md` y `AGENTS.md`. Si usás la terminal, abrila en esa carpeta y ejecutá `opencode`.
 2. Escribí **`/configurar`**. También podés agregar tu idea, por ejemplo `/configurar quiero organizar mi estudio`.
 3. Respondé las preguntas. El asistente debe mostrarte dónde guardará la bóveda y qué creará, conservar tus notas y preparar el primer proyecto.
 
-Si tu versión no muestra el comando, pegá el [mensaje de inicio del README](../README.md). El comando es un acceso al mismo protocolo, no un requisito para usar el kit.
+Si tu versión no muestra el comando, usá el pedido del [inicio rápido](QUICKSTART.md). El comando es un acceso al mismo protocolo, no un requisito para usar el kit.
 
 Elegí un modo que permita editar archivos cuando vayas a configurar; si estás en un modo de planificación, el asistente puede preparar la propuesta y necesitar cambiar de modo para guardarla. Los permisos y el proveedor de IA son los que tengas en OpenCode. El kit no cambia tu modelo ni instala servicios.
 

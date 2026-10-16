@@ -7,9 +7,9 @@
 
 # Darle la carpeta a una IA
 
-Para descargar, responder preguntas y abrir el resultado, seguí los tres pasos del [README](../README.md). Esta guía resuelve cómo dar acceso a los archivos; [OpenCode](opencode.md) y [ChatGPT](chatgpt.md) tienen recorridos específicos.
+Para configurar esta carpeta, seguí el [inicio rápido](QUICKSTART.md). Esta guía resuelve cómo dar acceso a los archivos; [OpenCode](opencode.md) y [ChatGPT](chatgpt.md) tienen recorridos específicos.
 
-Con acceso local, abrí como carpeta de trabajo la que contiene `README.md` e `AI-INSTRUCTIONS.md` y pegá el mensaje de inicio del README. La IA debe comprobar lectura y escritura, explicar el destino y entregar los archivos verificados. Podés pedir «preparalo sin tarea por ahora».
+Con acceso local, abrí como carpeta de trabajo la que contiene `INDICE.md` e `AI-INSTRUCTIONS.md` y usá el pedido del inicio rápido. La IA debe comprobar lectura y escritura, explicar el destino y entregar los archivos verificados. Podés pedir «preparalo sin tarea por ahora».
 
 ## Si ya tenés notas
 

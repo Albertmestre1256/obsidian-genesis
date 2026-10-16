@@ -254,7 +254,7 @@ def bloque_nodo(folder, hierarchy, lectura=None):
     return '\n'.join(lines + ['', NODO_FIN])
 
 
-def bloque(records):
+def bloque(records, hierarchy=None):
     own, examples, notices = [], [], []
     project_indexes = {}
     for r in records:
@@ -286,7 +286,7 @@ def bloque(records):
         lines += ['**Hay identificadores repetidos.** Elegí la ficha correcta antes de trabajar; no mezcles sus datos.', '']
     lines += ['## Ejemplos ficticios', '']
     lines += proyectos(examples) if examples else ['No hay ejemplos identificados.', '']
-    nodes, parents, _, _ = organizar_nodos(records)
+    nodes, parents, _, _ = organizar_nodos(records) if hierarchy is None else hierarchy
     lines += ['## Mapa de nodos', '']
     if nodes:
         lines += ['| Nodo | Dentro de | Qué contiene |', '|---|---|---|']
@@ -352,7 +352,7 @@ def planificar(raiz):
     # Una entrada propia de la bóveda prevalece sobre la del kit.
     lectura = next((name for name in ('00 - Leer primero.md', 'LEER_PRIMERO.md') if name in paths), None)
     hierarchy = organizar_nodos(records)
-    plan = plan_documento(raiz / 'INDICE.md', bloque(records), INICIO, FIN, cabecera(raiz))
+    plan = plan_documento(raiz / 'INDICE.md', bloque(records, hierarchy), INICIO, FIN, cabecera(raiz))
     plan['nodos'], plan['manuales'] = [], []
     for folder, node in hierarchy[0].items():
         path = ruta_real(raiz / node['ruta'])

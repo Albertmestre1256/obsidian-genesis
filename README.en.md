@@ -1,18 +1,19 @@
 > **Main credit to [davidkimai](https://github.com/davidkimai):** this kit is based on their work [Context Engineering](https://github.com/davidkimai/Context-Engineering). Obsidian Genesis adapts that work to start and organize Obsidian vaults with the help of an AI.
 > [!info]- Índice de esta nota (líneas)
 > - Líneas 1–1: Atribución
-> - Líneas 2–15: Este índice
-> - Líneas 17–18: Introducción
-> - Líneas 19–26: Obsidian Genesis: your vault, set up by an AI
-> - Líneas 27–48: Project status — October 16, 2026
-> - Líneas 49–69: Get started in three steps
-> - Líneas 70–75: Attachments or an existing vault
-> - Líneas 76–83: Continue
-> - Líneas 84–96: What it contains
-> - Líneas 97–107: Optional help
-> - Líneas 108–111: Privacy
-> - Líneas 112–115: License
-> - Líneas 116–118: About the development
+> - Líneas 2–16: Este índice
+> - Líneas 18–19: Introducción
+> - Líneas 20–27: Obsidian Genesis: your vault, set up by an AI
+> - Líneas 28–51: Project status — October 16, 2026
+> - Líneas 52–72: Get started in three steps
+> - Líneas 73–78: Attachments or an existing vault
+> - Líneas 79–86: Continue
+> - Líneas 87–101: What it contains
+> - Líneas 102–112: Optional help
+> - Líneas 113–116: Privacy
+> - Líneas 117–120: License
+> - Líneas 121–124: Community and support
+> - Líneas 125–127: About the development
 
 **Language:** [Español](README.md) · English · [Deutsch](README.de.md) · [中文](README.zh.md)
 
@@ -40,11 +41,13 @@ The project creator checks the state again before saving a project and tells blo
 
 The closing check shows which folder it reviewed; the guide uses its explicit path to tell the downloaded copy apart from your vault.
 
-The latest local automated tests gave **509 passed and 1 skipped on each version, Python 3.8 and 3.13, on Windows**. In two test conversations with Claude Code and fictional people, the AI set up the vault, passed the verified closing check and, when resuming, continued without repeating questions; in one of them it did so from a new conversation. Those tests led to two adjustments that have not yet been tested in a conversation: the Panel no longer keeps a fixed copy of the next step (it stays in the project card) and the scripts no longer leave technical `__pycache__` folders inside the vault. These are not tests with real beginners.
+Recent code changes were checked with focused tests on Windows: **129 passing cases for the profile inventory and indexes, and 25 passing cases with 1 skipped for the installer, separately on Python 3.8 and 3.13**. These results cover specific changes; the full suite was not rerun on this version.
+
+In two test conversations with Claude Code and fictional people, the AI set up the vault, passed the verified closing check and, when resuming, continued without repeating questions; in one of them it did so from a new conversation. Those tests led to two adjustments that have not yet been tested in a conversation: the Panel no longer keeps a fixed copy of the next step (it stays in the project card) and the scripts no longer leave technical `__pycache__` folders inside the vault. These are not tests with real beginners.
 
 Still missing: complete conversations in OpenCode and ChatGPT, tests with beginners and the remaining visual checks in Obsidian. Some interactions were already observed in earlier copies; that does not validate how all current changes look. The local changes and the remote GitHub Actions matrix are still waiting for authorized publication.
 
-Discussions and sponsorship are still to be prepared. Adapting and optimizing existing vaults will be a later phase. [Changelog](CHANGELOG.md) · [How to contribute](CONTRIBUTING.md) (both in Spanish).
+Community discussions are available; sponsorship is still pending. The README and document guide are available in Spanish, English, German and Chinese; shared kit instructions remain in Spanish. Adapting and optimizing existing vaults will be a later phase. [Changelog](CHANGELOG.md) · [How to contribute](CONTRIBUTING.md) (both in Spanish).
 
 ## Get started in three steps
 
@@ -83,6 +86,8 @@ Claude Code and OpenCode include `/configurar`, `/empezar`, `/nuevo-proyecto`, `
 
 ## What it contains
 
+To understand what each file does and when to use it, open the [guide to documents and tools](DOCS/README.en.md).
+
 | Place | Use |
 |---|---|
 | `INDICE.md` | First read: complete catalog of files and projects |
@@ -113,6 +118,10 @@ The kit stores local files and does not install synchronization. The AI processe
 
 [MIT](LICENSE), with credits to davidkimai and Albert Mestre. Independent adaptation of Context Engineering, not affiliated with the original project.
 
+## Community and support
+
+For questions, ideas and experiences, use the [community discussions](https://github.com/Albertmestre1256/obsidian-genesis/discussions). If something fails, open a [bug report](https://github.com/Albertmestre1256/obsidian-genesis/issues) using the “No me funciona” template and a small example with fictional data. [How to contribute](CONTRIBUTING.md) (in Spanish).
+
 ## About the development
 
-Albert Mestre develops this adaptation with the help of AI assistants for programming, documentation and testing. Proposals are reviewed and results are verified before they are integrated; using AI does not replace tests with people and does not by itself show that the kit is easy to use.
+Albert Mestre develops this adaptation with the help of AI assistants, including Codex (OpenAI), for programming, documentation and testing. Proposals are reviewed and results are verified before they are integrated; using AI does not replace tests with people and does not by itself show that the kit is easy to use.

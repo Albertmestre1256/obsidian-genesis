@@ -1,20 +1,35 @@
 > [!info]- Índice de esta nota (líneas)
-> - Líneas 1–15: Este índice
-> - Líneas 17–18: Cambios
-> - Líneas 19–22: 16/10/2026 — abrir la bóveda en Obsidian no desactualiza el índice
-> - Líneas 23–26: 16/10/2026 — instalar desde un kit abierto con OpenCode
-> - Líneas 27–30: 16/10/2026 — README en cuatro idiomas
-> - Líneas 31–34: 16/10/2026 — sin carpetas __pycache__ en la bóveda
-> - Líneas 35–38: 15/10/2026 — próximo paso solo en la ficha
-> - Líneas 39–42: 15/10/2026 — destino visible al comprobar el cierre
-> - Líneas 43–46: 15/10/2026 — conservar cambios posteriores al plan
-> - Líneas 47–50: 15/10/2026 — cierre coherente con el proyecto inicial
-> - Líneas 51–54: 14/10/2026 — operación visible coherente con el registro
-> - Líneas 55–58: 14/10/2026 — inventario de perfil plegable
-> - Líneas 59–62: 13/10/2026 — índices de proyectos con nombres propios
-> - Líneas 63–84: Sin publicar — candidata a v0.1.0
+> - Líneas 1–18: Este índice
+> - Líneas 20–21: Cambios
+> - Líneas 22–25: 16/10/2026 — guía de los documentos en cuatro idiomas
+> - Líneas 26–29: 16/10/2026 — simplificación de herramientas Python
+> - Líneas 30–33: 16/10/2026 — comunidad y soporte accesibles desde los README
+> - Líneas 34–37: 16/10/2026 — abrir la bóveda en Obsidian no desactualiza el índice
+> - Líneas 38–41: 16/10/2026 — instalar desde un kit abierto con OpenCode
+> - Líneas 42–45: 16/10/2026 — README en cuatro idiomas
+> - Líneas 46–49: 16/10/2026 — sin carpetas __pycache__ en la bóveda
+> - Líneas 50–53: 15/10/2026 — próximo paso solo en la ficha
+> - Líneas 54–57: 15/10/2026 — destino visible al comprobar el cierre
+> - Líneas 58–61: 15/10/2026 — conservar cambios posteriores al plan
+> - Líneas 62–65: 15/10/2026 — cierre coherente con el proyecto inicial
+> - Líneas 66–69: 14/10/2026 — operación visible coherente con el registro
+> - Líneas 70–73: 14/10/2026 — inventario de perfil plegable
+> - Líneas 74–77: 13/10/2026 — índices de proyectos con nombres propios
+> - Líneas 78–99: Sin publicar — candidata a v0.1.0
 
 # Cambios
+
+## 16/10/2026 — guía de los documentos en cuatro idiomas
+
+DOCS/README.md y sus versiones en inglés, alemán y chino explican la función de los documentos, integraciones, ajustes, scripts y pruebas. Incluyen un índice de secciones y enlaces a los cuatro README principales y entre sus idiomas. Cada README principal enlaza su guía. Los archivos creados durante el uso se distinguen de los distribuidos; no se duplican las instrucciones comunes ni se cambian las reglas de inicio. Al instalar en otra bóveda, las cuatro guías del repositorio permanecen en el kit fuente para evitar enlaces a README y pruebas ausentes; la copia manual sigue el mismo criterio. La ayuda de uso remite a un inicio rápido disponible también en la bóveda instalada, sin depender del README del repositorio. Los cuatro README distinguen los resultados focales recientes de una suite completa que no se volvió a ejecutar sobre esta versión. La declaración final de ayuda de IA identifica a Codex (OpenAI), sin alterar los créditos originales.
+
+## 16/10/2026 — simplificación de herramientas Python
+
+El lector de filas del inventario mantiene barras escapadas y columnas vacías con menos código. El actualizador reutiliza la jerarquía de nodos ya calculada, sin cambiar el contenido de los índices. Se quitaron cinco importaciones repetidas de las pruebas y se añadieron cuatro casos de escapes. Se conservan las seis herramientas, los formatos y los controles de conservación y concurrencia.
+
+## 16/10/2026 — comunidad y soporte accesibles desde los README
+
+Los cuatro README enlazan las discusiones de la comunidad ya habilitadas y los reportes de errores. CONTRIBUTING distingue dudas, propuestas y fallos, reutiliza la plantilla existente y pide comprobaciones proporcionales al cambio. El patrocinio sigue pendiente; no se habilitaron servicios ni se añadieron enlaces de cobro.
 
 ## 16/10/2026 — abrir la bóveda en Obsidian no desactualiza el índice
 

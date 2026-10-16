@@ -12,7 +12,7 @@ ChatGPT puede hacer la misma entrevista y preparar los archivos del kit. Elegí 
 ## Con la carpeta en la app de escritorio
 
 1. Descomprimí el kit. En ChatGPT, abrí o agregá como proyecto local la carpeta que contiene `README.md` e `INDICE.md`. Si tu interfaz permite elegir carpeta principal, usá esa carpeta.
-2. Abrí un chat de **ChatGPT Work** dentro de ese proyecto y pegá el [mensaje de inicio del README](../README.md).
+2. Abrí un chat de **ChatGPT Work** dentro de ese proyecto y usá el pedido del [inicio rápido](QUICKSTART.md).
 3. Respondé las preguntas. ChatGPT debe comprobar que puede leer y guardar archivos, mostrarte el destino y preparar la bóveda con tus respuestas.
 
 Si tu app no ofrece acceso a carpetas o no puede escribir ahí, usá el recorrido con archivos adjuntos de abajo. La disponibilidad de herramientas y permisos depende de tu entorno.
