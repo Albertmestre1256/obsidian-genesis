@@ -112,3 +112,26 @@ def test_instrucciones_livianas_y_sin_codigo_duplicado():
     archivo = RAIZ / "AI-INSTRUCTIONS.md"
     assert archivo.stat().st_size < 10000
     assert "def validar(" not in archivo.read_text(encoding="utf-8")
+
+
+def test_scripts_no_dejan_pycache_en_la_boveda(tmp_path):
+    """Usar los scripts dentro de la bóveda no debe dejar carpetas __pycache__."""
+    import os
+    import shutil
+    import subprocess
+    import sys
+    boveda = tmp_path / "boveda"
+    shutil.copytree(RAIZ, boveda, ignore=shutil.ignore_patterns(
+        ".git", "tests", "__pycache__", ".pytest_cache", ".agents"))
+    entorno = {k: v for k, v in os.environ.items() if k not in ("PYTHONDONTWRITEBYTECODE", "PYTHONPYCACHEPREFIX")}
+    entorno["PYTHONIOENCODING"] = "utf-8"
+    destino = tmp_path / "otra-boveda"
+    destino.mkdir()
+    for argumentos in (["00_CORE/schemas/validate.py", ".", "--cierre", "--operacion", "prueba-pycache"],
+                       ["actualizar_indice.py", "--comprobar"],
+                       ["00_CORE/schemas/registrar_cambios.py", "--help"],
+                       ["instalar.py", str(destino), "--dry-run"]):
+        resultado = subprocess.run([sys.executable, *argumentos], cwd=boveda, env=entorno,
+                                   capture_output=True, text=True, encoding="utf-8")
+        assert resultado.returncode in (0, 1) and "Traceback" not in resultado.stderr, resultado.stderr
+    assert not list(boveda.rglob("__pycache__"))

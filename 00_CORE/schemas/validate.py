@@ -13,8 +13,10 @@ import datetime
 import hashlib
 import importlib.util
 import json
+import posixpath
 import re
 import sys
+sys.dont_write_bytecode = True  # no dejar __pycache__ dentro de la bóveda
 import unicodedata
 from pathlib import Path
 from urllib.parse import unquote
@@ -634,11 +636,11 @@ def _texto_visible(texto):
     return re.sub(r'(`+).*?\1', '', texto)
 
 
-def _validar_operacion_visible(texto, operacion):
-    """Contrasta la etiqueta opcional; excluye comentarios y ejemplos de código."""
+def _lineas_visibles(texto):
+    """Líneas fuera de comentarios y bloques de código; conserva valores inline."""
     partes = separar(texto)
     cuerpo = partes[1] if partes is not None else texto
-    valores, fence, comentario = [], None, None
+    fence, comentario = None, None
     for original in cuerpo.splitlines():
         # Guardar cada nivel: dentro de código, otros '>' son texto literal.
         niveles = [original]
@@ -689,6 +691,13 @@ def _validar_operacion_visible(texto, operacion):
                 visible += ' '
                 comentario = '%%' if token[0] == '%%' else '-->'
                 linea = linea[token.end():]
+        yield visible
+
+
+def _validar_operacion_visible(texto, operacion):
+    """Contrasta la etiqueta opcional con la operación, sin alterar el ID."""
+    valores = []
+    for visible in _lineas_visibles(texto):
         etiqueta = re.fullmatch(r' {0,3}(?:(?:[-*+]|\d{1,9}[.)])[ \t]+)?([^:]+):(.*)', visible)
         if etiqueta:
             nombre, valor = etiqueta[1].strip(), etiqueta[2].strip()
@@ -708,6 +717,114 @@ def _validar_operacion_visible(texto, operacion):
         return [prefijo + 'usar un ID exacto, opcionalmente entre backticks y con fecha (AAAA-MM-DD).']
     if valor[2] != operacion:
         return [prefijo + f'la etiqueta "{valor[2]}" no coincide con la operación "{operacion}".']
+    return []
+
+
+def _validar_proyecto_inicial(texto, raiz):
+    """Contrasta la declaración canónica con fichas e índices reales, sin escribir."""
+    prefijo = 'Configuración: proyecto inicial; revisión manual pendiente: '
+    partes = separar(texto)
+    if partes is None:
+        return []  # La validación de configuración informa las propiedades inválidas.
+    props, error = leer_propiedades(partes[0], 2)
+    if error:
+        return []
+    campos, secciones, dentro = {}, 0, False
+    for visible in _lineas_visibles(texto):
+        titulo = re.fullmatch(r' {0,3}(#{1,6})[ \t]+(.+?)(?:[ \t]+#+)?[ \t]*', visible)
+        if titulo:
+            dentro = len(titulo[1]) == 2 and normalizar(titulo[2].strip('*_ ')) == 'proyecto inicial'
+            if dentro:
+                secciones += 1
+            continue
+        if not dentro:
+            continue
+        campo = re.fullmatch(r' {0,3}(?:(?:[-*+]|\d{1,9}[.)])[ \t]+)?([^:]+):(.*)', visible)
+        if not campo:
+            continue
+        etiqueta, valor = campo[1].strip(), campo[2].strip()
+        enfasis = re.match(r'^(\*{1,3}|_{1,3})', etiqueta)
+        if enfasis and not etiqueta.endswith(enfasis[0]) and valor.startswith(enfasis[0]):
+            valor = valor[len(enfasis[0]):].strip()
+        nombre = normalizar(etiqueta.strip('*_ '))
+        if nombre in {'identificador', 'ficha e indice'}:
+            campos.setdefault(nombre, []).append(valor)
+    if not secciones:
+        return []  # El formato anterior sin esta sección sigue siendo compatible.
+    if secciones > 1 or any(len(v) > 1 for v in campos.values()):
+        return [prefijo + 'hay secciones o campos repetidos; revisar y conservar una declaración inequívoca.']
+    parcial = props.get('estado') == 'parcial'
+    codigo = campos.get('identificador', [''])[0]
+    referencias = campos.get('ficha e indice', [''])[0]
+    vacios = {'', '-', '—'}
+    sin_codigo = codigo in vacios or codigo.startswith(MARCA_PENDIENTE)
+    sin_referencias = referencias in vacios or parcial and referencias.startswith(MARCA_PENDIENTE)
+    if sin_codigo and parcial and sin_referencias:
+        return []
+    identificador = re.fullmatch(r'(`?)([a-z0-9]+(?:-[a-z0-9]+)*)\1', codigo)
+    if identificador is None:
+        return [prefijo + 'falta un Identificador concreto con minúsculas, números y guiones simples.']
+    if parcial and sin_referencias:
+        return []  # Un proyecto acordado puede esperar su creación durante la entrevista.
+    codigo = identificador[2]
+    try:
+        registros = _mapas.catalogo(raiz)
+        cells = Path(raiz) / '00_CORE/cells'
+        diarias = {p.relative_to(raiz).as_posix() for p in buscar_celulas(cells)} if cells.is_dir() else set()
+    except (OSError, ValueError) as error:
+        return [prefijo + f'no se pudo comprobar el catálogo: {error}']
+    fichas, indices = [], []
+    for registro in registros:
+        ruta, meta = registro['ruta'], registro['meta']
+        tipo = _mapas.tipo(meta)
+        if ruta.startswith(('PROJECT_TEMPLATE/', '00_CORE/templates/')):
+            continue
+        if meta.get('aviso') and tipo in {'celula', 'indice-proyecto'}:
+            return [prefijo + f'metadatos ambiguos en {ruta}; revisarlos antes de elegir proyecto.']
+        if (tipo == 'celula' and ruta.startswith('00_CORE/cells/')
+                and meta.get('proyecto') == codigo and str(meta.get('ejemplo')).lower() == 'true'):
+            return [prefijo + 'el Identificador coincide con una ficha de ejemplo; acordar otro sin mezclar sus datos.']
+        if meta.get('proyecto') != codigo or str(meta.get('ejemplo')).lower() == 'true':
+            continue
+        if tipo == 'celula' and ruta.startswith('00_CORE/cells/') and ruta not in diarias:
+            return [prefijo + 'la ficha no está incluida en la revisión diaria de 00_CORE/cells; revisar su nombre y ubicación.']
+        if tipo == 'celula' and ruta.startswith('00_CORE/cells/'):
+            fichas.append(ruta)
+        elif tipo == 'indice-proyecto':
+            indices.append(ruta)
+    if len(fichas) != 1 or len(indices) != 1:
+        return [prefijo + f'para {codigo} se necesita una ficha propia y un índice de proyecto inequívocos '
+                f'(encontrados: {len(fichas)} fichas y {len(indices)} índices); comprobar sus propiedades proyecto y tipo.']
+    if sin_referencias:
+        return []  # Compatibilidad de la ficha/índice no enlazados explícitamente.
+    rutas = {r['ruta'] for r in registros if r['ruta'].lower().endswith('.md')}
+    # Resolver solo contra el catálogo: nunca abrir un destino aportado por el usuario.
+    def resolver(destino, wiki):
+        destino = unquote(destino.strip('<>')).split('#', 1)[0].strip()
+        destino = re.sub(r'\\([_\[\] ()])', r'\1', destino).replace('\\', '/')
+        if not destino or re.match(r'^/|^[A-Za-z][A-Za-z0-9+.-]*:', destino):
+            return None
+        if wiki and '/' not in destino:
+            candidatos = [r for r in rutas if Path(r).name == destino or Path(r).stem == destino]
+        else:
+            ruta = posixpath.normpath(destino if wiki else posixpath.join('00_CORE', destino))
+            if ruta == '..' or ruta.startswith('../'):
+                return None
+            candidatos = [r for r in rutas if r == ruta or wiki and r == ruta + '.md']
+        return candidatos[0] if len(candidatos) == 1 else None
+    visibles = _texto_visible(referencias)
+    if re.search(r'[A-Za-z][A-Za-z0-9+.-]*://|<[A-Za-z][A-Za-z0-9+.-]*:', visibles):
+        return [prefijo + 'Ficha e índice contiene un enlace externo; usar los enlaces internos de la ficha y su índice.']
+    encontrados = set()
+    enlaces = re.findall(r'''\[\[([^\]\n]+)\]\]|\[[^\]\n]*\]\((<[^>\n]+>|[^\s)]+)(?:[ \t]+["'][^"']*["'])?\)''',
+                         visibles)
+    for wiki, markdown in enlaces:
+        ruta = resolver(wiki.split('|', 1)[0] if wiki else markdown, bool(wiki))
+        if ruta not in fichas + indices:
+            return [prefijo + 'Ficha e índice contiene un enlace ausente, ambiguo, externo o de otro destino; revisar sus referencias.']
+        encontrados.add(ruta)
+    if encontrados != set(fichas + indices):
+        return [prefijo + 'Ficha e índice debe enlazar la ficha propia y el índice de ese proyecto mediante enlaces utilizables.']
     return []
 
 
@@ -739,6 +856,7 @@ def validar_cierre(raiz, operacion):
         config_texto, error = leer_nota(config_path)
         if not error:
             errores.extend(_validar_operacion_visible(config_texto, operacion))
+            errores.extend(_validar_proyecto_inicial(config_texto, raiz))
 
     # 2. Panel: aviso inicial "Para empezar:" debe estar adaptado (no ejemplo)
     panel_path = raiz / 'Panel.md'
@@ -922,7 +1040,8 @@ def main(cells_dir=CELLS_DIR):
 def _main_cli(argv=None):
     """CLI separado para cierre y modo diario desde raíz."""
     parser = argparse.ArgumentParser(description=__doc__, add_help=False)
-    parser.add_argument('ruta', nargs='?', default=str(CELLS_DIR))
+    parser.add_argument('ruta', nargs='?', default=str(CELLS_DIR),
+                        help='Raíz de la bóveda o carpeta cells. Sin argumento usa la bóveda donde está este script, no la carpeta actual.')
     parser.add_argument('--cierre', action='store_true', help='Modo cierre: validar operación de cierre')
     parser.add_argument('--operacion', help='ID de operación para --cierre (obligatorio)')
     parser.add_argument('-h', '--help', action='help', help='Mostrar esta ayuda')
@@ -944,12 +1063,13 @@ def _main_cli(argv=None):
         if not args.operacion:
             print('Error: --cierre requiere --operacion ID', file=sys.stderr)
             return 2
-        raiz = Path(args.ruta)
+        raiz = Path(args.ruta).absolute()
         if raiz.name.lower() == 'cells' and raiz.parent.name == '00_CORE':
             raiz = raiz.parent.parent
         if not raiz.is_dir():
             print(f'Error: ruta no es un directorio: {raiz}', file=sys.stderr)
             return 2
+        print(f'Bóveda revisada: {raiz.absolute()}')
         errores = validar_cierre(raiz, args.operacion)
         if errores:
             for e in errores:

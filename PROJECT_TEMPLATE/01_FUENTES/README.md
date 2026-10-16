@@ -1,6 +1,11 @@
+---
+tipo: guia-carpeta
+descripcion: "Material original del proyecto; se conserva sin editar y se analiza en una nota aparte."
+---
 > [!info]- Índice de esta nota (líneas)
-> - Líneas 1–3: Este índice
-> - Líneas 5–9: 01_FUENTES — Material original
+> - Líneas 1–4: Propiedades
+> - Líneas 5–8: Este índice
+> - Líneas 10–14: 01_FUENTES — Material original
 
 # 01_FUENTES — Material original
 

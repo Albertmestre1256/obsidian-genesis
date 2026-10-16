@@ -1,20 +1,21 @@
 > [!info]- Índice de esta nota (líneas)
-> - Líneas 1–17: Este índice
-> - Líneas 19–22: Solución de problemas
-> - Líneas 23–26: La IA no puede guardar en mi carpeta
-> - Líneas 27–30: Vuelve a preguntarme lo que ya respondí
-> - Líneas 31–34: Todavía no tengo fecha, fuentes ni primera tarea
-> - Líneas 35–38: Python no está disponible
-> - Líneas 39–44: El instalador informa conflictos o se interrumpió
-> - Líneas 45–48: El creador informa un proyecto existente
-> - Líneas 49–54: No aparece el Panel o la fecha automática
-> - Líneas 55–58: Claude Code no reconoce un comando
-> - Líneas 59–62: Claude no conecta al MCP o rechaza sus herramientas
-> - Líneas 63–66: OpenCode no muestra los comandos del kit
-> - Líneas 67–70: OpenCode muestra un error del proveedor o modelo
-> - Líneas 71–74: ChatGPT ve los adjuntos pero no mi carpeta
-> - Líneas 75–95: Mensajes del validador
-> - Líneas 96–98: La IA no encuentra una nota nueva
+> - Líneas 1–18: Este índice
+> - Líneas 20–23: Solución de problemas
+> - Líneas 24–27: La IA no puede guardar en mi carpeta
+> - Líneas 28–31: Vuelve a preguntarme lo que ya respondí
+> - Líneas 32–35: Todavía no tengo fecha, fuentes ni primera tarea
+> - Líneas 36–45: El cierre revisa otra bóveda
+> - Líneas 46–49: Python no está disponible
+> - Líneas 50–55: El instalador informa conflictos o se interrumpió
+> - Líneas 56–59: El creador informa un proyecto existente
+> - Líneas 60–65: No aparece el Panel o la fecha automática
+> - Líneas 66–69: Claude Code no reconoce un comando
+> - Líneas 70–73: Claude no conecta al MCP o rechaza sus herramientas
+> - Líneas 74–77: OpenCode no muestra los comandos del kit
+> - Líneas 78–81: OpenCode muestra un error del proveedor o modelo
+> - Líneas 82–85: ChatGPT ve los adjuntos pero no mi carpeta
+> - Líneas 86–106: Mensajes del validador
+> - Líneas 107–109: La IA no encuentra una nota nueva
 
 # Solución de problemas
 
@@ -31,6 +32,16 @@ Pedile que relea `00_CORE/configuracion.md` y la ficha de tu proyecto. Si la con
 ## Todavía no tengo fecha, fuentes ni primera tarea
 
 Podés comenzar con un objetivo. Las secciones sin datos quedan vacías y sus avisos no bloquean la configuración. La fecha de actualización refleja cuándo cambió la ficha; no es un plazo del proyecto.
+
+## El cierre revisa otra bóveda
+
+La salida «Bóveda revisada» indica la carpeta comprobada, tanto si el cierre pasa como si encuentra errores. Sin una ruta explícita, usa la bóveda donde está el script; cambiar la carpeta actual no cambia ese destino. Pedile a la IA que use la ruta actual de tu bóveda y la contraste con la salida:
+
+```sh
+python "ruta-del-kit/00_CORE/schemas/validate.py" "ruta-de-la-bóveda" --cierre --operacion ID
+```
+
+También admite su carpeta `00_CORE/cells`. Si moviste o volviste a extraer el ZIP, actualizá la ruta; no reemplaces las notas ni registres otra operación solo por haber revisado otra carpeta.
 
 ## Python no está disponible
 

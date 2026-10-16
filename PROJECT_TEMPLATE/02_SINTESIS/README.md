@@ -1,6 +1,11 @@
+---
+tipo: guia-carpeta
+descripcion: "Resúmenes, planes y borradores en preparación, con referencias a sus fuentes."
+---
 > [!info]- Índice de esta nota (líneas)
-> - Líneas 1–3: Este índice
-> - Líneas 5–9: 02_SINTESIS — Notas y borradores
+> - Líneas 1–4: Propiedades
+> - Líneas 5–8: Este índice
+> - Líneas 10–14: 02_SINTESIS — Notas y borradores
 
 # 02_SINTESIS — Notas y borradores
 

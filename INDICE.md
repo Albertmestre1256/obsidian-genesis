@@ -9,19 +9,19 @@
 > - Líneas 62–70: Ajustes de Obsidian
 > - Líneas 71–90: Ayuda
 > - Líneas 91–105: Desarrollo
-> - Líneas 106–125: Entrada y herramientas
-> - Líneas 126–131: Fichas y plantillas de proyecto
-> - Líneas 132–137: Guías de comunicación
-> - Líneas 138–146: Guías de redacción
-> - Líneas 147–159: Integración Claude
-> - Líneas 160–170: Integración OpenCode
-> - Líneas 171–180: Plantilla de carpetas
-> - Líneas 181–188: Plantillas de organización
-> - Líneas 189–197: Protocolos
-> - Líneas 198–206: Recursos opcionales de davidkimai
-> - Líneas 207–212: Reglas compartidas
-> - Líneas 213–220: Validación
-> - Líneas 221–229: Alcance del catálogo
+> - Líneas 106–128: Entrada y herramientas
+> - Líneas 129–134: Fichas y plantillas de proyecto
+> - Líneas 135–140: Guías de comunicación
+> - Líneas 141–149: Guías de redacción
+> - Líneas 150–162: Integración Claude
+> - Líneas 163–173: Integración OpenCode
+> - Líneas 174–183: Plantilla de carpetas
+> - Líneas 184–191: Plantillas de organización
+> - Líneas 192–200: Protocolos
+> - Líneas 201–209: Recursos opcionales de davidkimai
+> - Líneas 210–215: Reglas compartidas
+> - Líneas 216–223: Validación
+> - Líneas 224–232: Alcance del catálogo
 
 # Índice principal de la bóveda
 
@@ -37,7 +37,7 @@ Podés agregar presentación y comentarios antes o después del bloque automáti
 
 ## Panorama
 
-- Archivos catalogados: 84. Proyectos propios identificados: 0. Ejemplos ficticios: 1.
+- Archivos catalogados: 87. Proyectos propios identificados: 0. Ejemplos ficticios: 1.
 - Configuración: todavía no existe una nota de configuración del kit.
 - El estado detallado y las tareas se leen en cada ficha; este catálogo no los reemplaza.
 
@@ -121,7 +121,10 @@ Cada fila enlaza un archivo. Las carpetas se representan mediante sus archivos; 
 | [LICENSE](LICENSE) | Archivo sin extensión |
 | [Panel.md](Panel.md) | Mis proyectos |
 | [Proyectos.base](Proyectos.base) | BASE |
+| [README.de.md](README.de.md) | Obsidian Genesis: dein Vault, eingerichtet von einer KI |
+| [README.en.md](README.en.md) | Obsidian Genesis: your vault, set up by an AI |
 | [README.md](README.md) | Obsidian Genesis: tu bóveda, configurada por una IA |
+| [README.zh.md](README.zh.md) | Obsidian Genesis：由 AI 为你配置的仓库 |
 
 ### Fichas y plantillas de proyecto
 
@@ -173,10 +176,10 @@ Cada fila enlaza un archivo. Las carpetas se representan mediante sus archivos; 
 | Archivo | Qué contiene |
 |---|---|
 | [00 - Índice y Contexto.md](PROJECT_TEMPLATE/00%20-%20%C3%8Dndice%20y%20Contexto.md) | \[completar: resumen-del-nodo\] |
-| [01\_FUENTES/README.md](PROJECT_TEMPLATE/01_FUENTES/README.md) | 01\_FUENTES — Material original |
-| [02\_SINTESIS/README.md](PROJECT_TEMPLATE/02_SINTESIS/README.md) | 02\_SINTESIS — Notas y borradores |
-| [03\_ENTREGABLES/README.md](PROJECT_TEMPLATE/03_ENTREGABLES/README.md) | 03\_ENTREGABLES — Resultados finales |
-| [\_archivo/README.md](PROJECT_TEMPLATE/_archivo/README.md) | \_archivo — Historial del proyecto |
+| [01\_FUENTES/README.md](PROJECT_TEMPLATE/01_FUENTES/README.md) | Material original del proyecto; se conserva sin editar y se analiza en una nota aparte. |
+| [02\_SINTESIS/README.md](PROJECT_TEMPLATE/02_SINTESIS/README.md) | Resúmenes, planes y borradores en preparación, con referencias a sus fuentes. |
+| [03\_ENTREGABLES/README.md](PROJECT_TEMPLATE/03_ENTREGABLES/README.md) | Resultados revisados y aceptados, conservados por versión. |
+| [\_archivo/README.md](PROJECT_TEMPLATE/_archivo/README.md) | Material que dejó de estar vigente y se conserva por decisión del usuario; no describe el estado actual. |
 
 ### Plantillas de organización
 
@@ -222,7 +225,7 @@ Cada fila enlaza un archivo. Las carpetas se representan mediante sus archivos; 
 
 Incluye notas, fuentes, adjuntos, guías y herramientas, además de .claude, .opencode, .obsidian y .github cuando existen. No lee el cuerpo completo de las notas ni los archivos de ajustes para elaborar descripciones.
 
-Excluye Git, papelera, registro interno del MCP, cachés, dependencias, checkouts de .claude/worktrees, sesiones workspace de Obsidian, otros archivos ocultos y nombres habituales de credenciales o claves. No sigue enlaces ni junctions; si los encuentra en el material a catalogar, informa el impedimento y conserva el índice anterior.
+Excluye Git, papelera, registro interno del MCP, cachés, dependencias, checkouts de .claude/worktrees, ajustes que Obsidian crea al usarse (solo cataloga los del kit), otros archivos ocultos y nombres habituales de credenciales o claves. No sigue enlaces ni junctions; si los encuentra en el material a catalogar, informa el impedimento y conserva el índice anterior.
 
 Los metadatos reconocidos son campos escalares simples del comienzo de notas Markdown; estructuras complejas no se interpretan como proyectos. Todas las notas visibles siguen apareciendo en el catálogo aunque no tengan esos metadatos.
 

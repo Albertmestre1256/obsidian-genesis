@@ -1087,3 +1087,291 @@ def test_cierre_opus_extremos_de_cercas_y_citas(validador,boveda_cierre,example)
     before=foto_cierre(vault)
     assert any('última operación de mantenimiento' in e for e in validador.validar_cierre(vault,'opus-extremo'))
     assert foto_cierre(vault)==before
+
+
+# Coherencia del proyecto inicial: casos ficticios, independientes de nombres de archivo.
+@pytest.mark.parametrize('caso,ok,detalle', [
+    ('coherente', True, ''), ('id-ajeno', False, 'una ficha propia'),
+    ('id-no-portable', False, 'Identificador'), ('referencias-ausentes', False, 'enlace ausente'),
+    ('sin-ficha-inicial', False, '0 fichas'), ('indice-otro-proyecto', False, '0 índices'),
+    ('ficha-renombrada', True, ''), ('indice-renombrado', True, ''),
+    ('dos-proyectos', True, ''), ('formato-heredado', True, ''),
+    ('parcial-planificado', True, ''), ('parcial-placeholder', True, ''),
+    ('parcial-referencia-ausente', False, '0 fichas'), ('lista-sin-id', False, 'Identificador'),
+    ('id-repetido', False, 'repetidos'), ('seccion-repetida', False, 'repetidos'),
+    ('referencias-repetidas', False, 'repetidos'), ('solo-ficha-ejemplo', False, 'ejemplo'),
+    ('ficha-ambigua', False, '2 fichas'), ('indice-ambiguo', False, '2 índices'),
+    ('wiki-corto', True, ''), ('wiki-corto-ambiguo', False, 'enlace ausente'),
+    ('markdown-relativo', True, ''), ('referencias-ajenas', False, 'otro destino'),
+    ('referencia-externa', False, 'externo'), ('referencia-fuera-raiz', False, 'enlace ausente'),
+    ('ejemplos-ocultos', True, ''), ('enlaces-en-codigo-inline', False, 'enlaces utilizables'),
+    ('id-backticks', True, ''), ('id-con-mayusculas', False, 'Identificador'),
+    ('id-otra-seccion', True, ''), ('id-oculto', False, 'Identificador'),
+    ('referencias-vacias', True, ''), ('etiquetas-enfasis', True, ''),
+    ('referencias-prosa', False, 'enlaces utilizables'), ('choque-con-ejemplo', False, 'ejemplo'),
+    ('ficha-anidada-invalida', False, 'revisión diaria'), ('ficha-anidada-valida', False, 'revisión diaria'),
+    ('url-suelta', False, 'externo'), ('autolink', False, 'externo'),
+    ('parcial-enlace-extra-roto', False, 'enlace ausente'), ('url-solo-en-codigo', True, ''),
+    ('ficha-excluida-invalida', False, 'revisión diaria'), ('ficha-excluida-valida', False, 'revisión diaria'),
+])
+def test_cierre_coherencia_proyecto_inicial(validador, boveda_cierre, caso, ok, detalle):
+    import importlib.util
+    from datetime import datetime
+    from urllib.parse import quote
+    vault, maps, lines, registry = boveda_cierre()
+    before = foto_cierre(vault)
+    config = vault/'00_CORE/configuracion.md'
+    text = config.read_text(encoding='utf-8')
+    refs = '- Ficha e índice: [[00_CORE/cells/estudio-context|Ficha]] · [[estudio/00 - Índice - estudio|Proyecto]]'
+    assert '- Ficha e índice: —' in text
+    text = text.replace('- Ficha e índice: —', refs)
+    cell = vault/'00_CORE/cells/estudio-context.md'
+    index = vault/'estudio/00 - Índice - estudio.md'
+    moves = {}
+
+    def mover(origen, destino):
+        nonlocal text
+        origen.resolve().relative_to(vault.resolve())
+        destino.resolve().relative_to(vault.resolve())
+        desde, hasta = origen.relative_to(vault).as_posix(), destino.relative_to(vault).as_posix()
+        destino.parent.mkdir(parents=True, exist_ok=True)
+        origen.rename(destino)
+        moves[hasta] = desde
+        text = text.replace(desde[:-3], hasta[:-3])
+        for path in vault.rglob('*.md'):
+            if path == config or lines.protegida(path):
+                continue
+            body = path.read_text(encoding='utf-8')
+            changed = body.replace(desde[:-3], hasta[:-3])
+            if changed != body:
+                path.write_bytes(lines.contenido(changed.encode('utf-8')))
+
+    def quitar(path):
+        path.resolve().relative_to(vault.resolve())
+        path.unlink()
+
+    if caso == 'id-ajeno': text = text.replace('- Identificador: estudio', '- Identificador: otro-proyecto')
+    elif caso == 'id-no-portable': text = text.replace('- Identificador: estudio', '- Identificador: ../otra')
+    elif caso == 'referencias-ausentes': text = text.replace(refs, '- Ficha e índice: [[ausente]] · [[tambien-ausente]]')
+    elif caso == 'sin-ficha-inicial': quitar(cell)
+    elif caso == 'indice-otro-proyecto':
+        body = index.read_text(encoding='utf-8'); assert 'proyecto: "estudio"' in body
+        index.write_text(body.replace('proyecto: "estudio"', 'proyecto: "otro-proyecto"', 1), encoding='utf-8')
+    elif caso == 'ficha-renombrada': mover(cell, cell.with_name('Ficha propia.md'))
+    elif caso == 'indice-renombrado': mover(index, index.with_name('00 - Índice - Mi estudio.md'))
+    elif caso == 'dos-proyectos':
+        root = Path(validador.__file__).resolve().parents[2]
+        spec = importlib.util.spec_from_file_location('creador_coherencia_publica', root/'crear_proyecto.py')
+        creator = importlib.util.module_from_spec(spec); spec.loader.exec_module(creator)
+        plan = creator.planificar(vault, {'nombre':'Otro estudio ficticio', 'id':'otro-estudio',
+            'objetivo':'Ordenar otra materia', 'descripcion':'Control de proyectos independientes.',
+            'contexto':'D', 'fecha':datetime.now().date().isoformat()})
+        creator.aplicar(plan, [])
+    elif caso == 'formato-heredado':
+        start = text.index('## Proyecto inicial'); end = text.index('## Avance de archivos y comprobaciones', start)
+        text = text[:start] + text[end:]
+    elif caso.startswith('parcial-') and caso != 'parcial-enlace-extra-roto':
+        text = text.replace('estado: lista', 'estado: parcial')
+        quitar(cell); quitar(index)
+        if caso == 'parcial-planificado':
+            text = text.replace('- Identificador: estudio', '- Identificador: nuevo-proyecto').replace(refs, '- Ficha e índice: —')
+        elif caso == 'parcial-placeholder':
+            text = text.replace('- Identificador: estudio', '- Identificador: [completar: identificador]').replace(refs, '- Ficha e índice: —')
+    elif caso == 'lista-sin-id': text = text.replace('- Identificador: estudio', '- Identificador: —')
+    elif caso == 'id-repetido': text = text.replace('- Identificador: estudio', '- Identificador: estudio\n- Identificador: estudio')
+    elif caso == 'seccion-repetida': text += '\n## Proyecto inicial\n- Identificador: otro\n'
+    elif caso == 'referencias-repetidas': text = text.replace(refs, refs+'\n'+refs)
+    elif caso == 'solo-ficha-ejemplo':
+        body = cell.read_text(encoding='utf-8'); assert 'tipo: "celula"' in body and 'ejemplo:' not in body
+        cell.write_text(body.replace('tipo: "celula"', 'tipo: "celula"\nejemplo: true', 1), encoding='utf-8')
+    elif caso == 'ficha-ambigua': cell.with_name('Ficha duplicada.md').write_bytes(cell.read_bytes())
+    elif caso == 'indice-ambiguo':
+        other = vault/'indice alternativo/Índice.md'; other.parent.mkdir(); other.write_bytes(index.read_bytes())
+    elif caso == 'wiki-corto': text = text.replace(refs, '- Ficha e índice: [[estudio-context.md#Hechos clave|Ficha]] · [[00 - Índice - estudio|Proyecto]]')
+    elif caso == 'wiki-corto-ambiguo':
+        text = text.replace(refs, '- Ficha e índice: [[estudio-context|Ficha]] · [[00 - Índice - estudio|Proyecto]]')
+        other = vault/'Notas/estudio-context.md'; other.parent.mkdir(); other.write_text('# Otra nota\n', encoding='utf-8')
+    elif caso == 'markdown-relativo':
+        target = quote('../estudio/00 - Índice - estudio.md')
+        text = text.replace(refs, '- Ficha e índice: [Ficha](cells/estudio-context.md) · [Proyecto](<'+target+'#Resumen>)')
+    elif caso == 'referencias-ajenas': text = text.replace(refs, '- Ficha e índice: [[Panel]] · [[INDICE]]')
+    elif caso == 'referencia-externa': text = text.replace(refs, refs+' · [Ejemplo](https://example.invalid/no-leer)')
+    elif caso == 'referencia-fuera-raiz': text = text.replace(refs, refs+' · [Fuera](../../fuera.md)')
+    elif caso == 'ejemplos-ocultos':
+        decoy = '## Proyecto inicial\n- Identificador: falso\n- Ficha e índice: [[no-existe]]\n'
+        text = text.replace('## Proyecto inicial', '```md\n'+decoy+'```\n\n%%\n'+decoy+'%%\n\n<!--\n'+decoy+'-->\n\n## Proyecto inicial', 1)
+    elif caso == 'enlaces-en-codigo-inline': text = text.replace(refs, '- Ficha e índice: `[[00_CORE/cells/estudio-context]]` · `[[estudio/00 - Índice - estudio]]`')
+    elif caso == 'id-backticks': text = text.replace('- Identificador: estudio', '- Identificador: `estudio`')
+    elif caso == 'id-con-mayusculas': text = text.replace('- Identificador: estudio', '- Identificador: Estudio')
+    elif caso == 'id-otra-seccion': text += '\n## Historial de una idea\n- Identificador: otro-proyecto\n'
+    elif caso == 'id-oculto': text = text.replace('- Identificador: estudio', '<!-- - Identificador: estudio -->')
+    elif caso == 'referencias-vacias': text = text.replace(refs, '- Ficha e índice: —')
+    elif caso == 'etiquetas-enfasis':
+        text = text.replace('## Proyecto inicial', '## **Proyecto inicial**').replace('- Identificador: estudio', '1. **Identificador:** `estudio`').replace('- Ficha e índice:', '- **Ficha e índice:**')
+    elif caso == 'referencias-prosa': text = text.replace(refs, '- Ficha e índice: pendiente de ubicar')
+    elif caso == 'choque-con-ejemplo':
+        example = vault/'00_CORE/cells/ejemplo-context.md'; body = example.read_text(encoding='utf-8')
+        assert 'proyecto: aprender-python' in body and 'ejemplo: true' in body
+        example.write_text(body.replace('proyecto: aprender-python', 'proyecto: estudio', 1), encoding='utf-8')
+    elif caso.startswith(('ficha-anidada-', 'ficha-excluida-')):
+        new = cell.parent/'activos/estudio-context.md' if caso.startswith('ficha-anidada-') else cell.with_name('TEMPLATE_cell.md')
+        mover(cell, new)
+        assert new not in validador.buscar_celulas(cell.parent)
+        if caso.endswith('invalida'):
+            body = new.read_text(encoding='utf-8')
+            changed = re.sub(r'^## Próximas acciones\n.*?(?=^## |\Z)', '', body, flags=re.M | re.S)
+            assert changed != body; new.write_text(changed, encoding='utf-8')
+            assert any('Próximas acciones' in e for e in validador.validar(new)[0])
+        else:
+            assert validador.validar(new)[0] == []
+    elif caso == 'url-suelta': text = text.replace(refs, refs+' · https://example.invalid/no-leer')
+    elif caso == 'autolink': text = text.replace(refs, refs+' · <https://example.invalid/no-leer>')
+    elif caso == 'parcial-enlace-extra-roto': text = text.replace('estado: lista', 'estado: parcial').replace(refs, refs+' · [[ausente]]')
+    elif caso == 'url-solo-en-codigo': text = text.replace(refs, refs+' · `https://example.invalid/no-leer`')
+    elif caso != 'coherente': raise AssertionError('Caso sin preparación: '+caso)
+
+    config.write_bytes(lines.contenido(text.replace('- Última operación de mantenimiento: —',
+        '- Última operación de mantenimiento: coherencia-proyecto').encode('utf-8')))
+    for path in lines.archivos(vault):
+        if not lines.protegida(path): path.write_bytes(lines.contenido(path.read_bytes()))
+    maps.actualizar(vault)
+    after = foto_cierre(vault); changes = []
+    for name in sorted(before.keys() | after.keys()):
+        if name in moves.values() or before.get(name) == after.get(name): continue
+        if name in moves: changes.append({'accion':'renombrar', 'ruta':name, 'desde':moves[name]})
+        else: changes.append({'accion':'borrar' if name not in after else 'crear' if name not in before else 'editar', 'ruta':name})
+    registry.registrar(vault, {'id':'coherencia-proyecto', 'ia':'Prueba', 'herramienta':'Regresión de cierre',
+        'resumen':'Caso ficticio: '+caso, 'verificado':True, 'cambios':changes})
+    maps.actualizar(vault)
+    snapshot = foto_cierre(vault)
+    errors = validador.validar_cierre(vault, 'coherencia-proyecto')
+    assert foto_cierre(vault) == snapshot
+    assert (errors == []) is ok, errors
+    if not ok:
+        assert any('proyecto inicial' in e and detalle in e for e in errors), errors
+
+
+# Raíz del cierre: indicar el destino real sin alterar selección ni API diaria.
+def _raiz_cierre_ejecutar(script, cwd, *args):
+    return subprocess.run([sys.executable, '-B', str(script), *map(str,args)],
+                          cwd=cwd, capture_output=True, text=True, encoding='utf-8')
+
+
+def _raiz_cierre_mostrada(vault):
+    return 'Bóveda revisada: '+str(vault.absolute())
+
+
+@pytest.mark.parametrize('form',['root','cells'])
+def test_raiz_cierre_explicita_desde_otro_directorio(validador,boveda_cierre,tmp_path,form):
+    vault,_,_,_ = boveda_cierre()
+    before = foto_cierre(vault)
+    target = vault if form == 'root' else vault/'00_CORE/cells'
+    p = _raiz_cierre_ejecutar(validador.__file__,tmp_path,target,'--cierre','--operacion','cierre-final')
+    assert p.returncode == 0 and 'CIERRE VERIFICADO' in p.stdout
+    assert _raiz_cierre_mostrada(vault) in p.stdout and foto_cierre(vault) == before
+
+
+def test_raiz_cierre_implicita_usa_script_y_no_carpeta_actual(validador,boveda_cierre):
+    vault,_,_,_ = boveda_cierre()
+    root = Path(validador.__file__).resolve().parents[2]
+    before,source_before = foto_cierre(vault),foto_cierre(root)
+    p = _raiz_cierre_ejecutar(validador.__file__,vault,'--cierre','--operacion','cierre-final')
+    assert p.returncode == 1 and 'CIERRE VERIFICADO' not in p.stdout
+    assert _raiz_cierre_mostrada(root) in p.stdout and _raiz_cierre_mostrada(vault) not in p.stdout
+    assert foto_cierre(vault) == before and foto_cierre(root) == source_before
+
+
+def test_raiz_cierre_boveda_movida_conserva_archivos(validador,boveda_cierre,tmp_path):
+    vault,_,_,_ = boveda_cierre()
+    before = foto_cierre(vault)
+    moved = tmp_path/'Bóveda movida con espacios'
+    assert tmp_path.resolve() in vault.resolve().parents and tmp_path.resolve() in moved.resolve().parents
+    vault.rename(moved)
+    assert foto_cierre(moved) == before
+    p = _raiz_cierre_ejecutar(moved/'00_CORE/schemas/validate.py',tmp_path,'--cierre','--operacion','cierre-final')
+    assert p.returncode == 0 and 'CIERRE VERIFICADO' in p.stdout
+    assert _raiz_cierre_mostrada(moved) in p.stdout and _raiz_cierre_mostrada(vault) not in p.stdout
+    assert foto_cierre(moved) == before
+
+
+def test_raiz_cierre_dos_bovedas_identifica_la_que_aprueba(validador,boveda_cierre,tmp_path):
+    import shutil
+    vault,_,_,_ = boveda_cierre()
+    other = tmp_path/'Otra bóveda válida'
+    shutil.copytree(vault,other)
+    config = vault/'00_CORE/configuracion.md'
+    config.write_bytes(config.read_bytes()+b'\nCambio sin nueva operacion.\n')
+    before,other_before = foto_cierre(vault),foto_cierre(other)
+    script = other/'00_CORE/schemas/validate.py'
+    implicit = _raiz_cierre_ejecutar(script,vault,'--cierre','--operacion','cierre-final')
+    explicit = _raiz_cierre_ejecutar(script,tmp_path,vault,'--cierre','--operacion','cierre-final')
+    assert implicit.returncode == 0 and explicit.returncode == 1
+    assert 'CIERRE VERIFICADO' in implicit.stdout and 'CIERRE VERIFICADO' not in explicit.stdout
+    assert _raiz_cierre_mostrada(other) in implicit.stdout and _raiz_cierre_mostrada(vault) not in implicit.stdout
+    assert _raiz_cierre_mostrada(vault) in explicit.stdout
+    assert foto_cierre(vault) == before and foto_cierre(other) == other_before
+
+
+def test_raiz_cierre_destino_inexistente_no_se_crea(validador,boveda_cierre,tmp_path):
+    vault,_,_,_ = boveda_cierre()
+    target = tmp_path/'No existe'
+    before = foto_cierre(vault)
+    p = _raiz_cierre_ejecutar(validador.__file__,tmp_path,target,'--cierre','--operacion','cierre-final')
+    assert p.returncode == 2 and str(target) in p.stderr
+    assert not target.exists() and 'CIERRE VERIFICADO' not in p.stdout and foto_cierre(vault) == before
+
+
+def test_raiz_cierre_diario_y_api_mantienen_contrato(validador,boveda_cierre):
+    vault,_,_,_ = boveda_cierre()
+    root = Path(validador.__file__).resolve().parents[2]
+    before,source_before = foto_cierre(vault),foto_cierre(root)
+    p = _raiz_cierre_ejecutar(validador.__file__,vault)
+    assert p.returncode == 0 and str(root/'00_CORE/cells') in p.stdout
+    assert 'CIERRE VERIFICADO' not in p.stdout and validador.validar_cierre(vault,'cierre-final') == []
+    assert foto_cierre(vault) == before and foto_cierre(root) == source_before
+
+
+# Regresión CLI: rutas relativas del cierre, conservando la bóveda y sus comprobaciones.
+@pytest.mark.parametrize('forma', ['cells-desde-core', 'punto-desde-cells', 'cells-desde-raiz', 'raiz-punto'])
+def test_cierre_rutas_relativas_usan_la_boveda_correcta(validador,boveda_cierre,forma):
+    vault,_,_,_ = boveda_cierre()
+    cwd,ruta = {
+        'cells-desde-core': (vault/'00_CORE','cells'),
+        'punto-desde-cells': (vault/'00_CORE/cells','.'),
+        'cells-desde-raiz': (vault,'00_CORE/cells'),
+        'raiz-punto': (vault,'.'),
+    }[forma]
+    before = foto_cierre(vault)
+    result = _raiz_cierre_ejecutar(validador.__file__,cwd,ruta,'--cierre','--operacion','cierre-final')
+    assert result.returncode == 0 and 'CIERRE VERIFICADO' in result.stdout
+    assert _raiz_cierre_mostrada(vault) in result.stdout.splitlines()
+    assert foto_cierre(vault) == before
+
+
+def test_cierre_cells_relativa_rechaza_configuracion_modificada(validador,boveda_cierre):
+    from hashlib import sha256
+    vault,_,_,_ = boveda_cierre()
+    config = vault/'00_CORE/configuracion.md'
+    guardado = sha256(config.read_bytes()).hexdigest()
+    config.write_bytes(config.read_bytes()+b'\nCambio posterior al registro.\n')
+    actual = sha256(config.read_bytes()).hexdigest()
+    before = foto_cierre(vault)
+    result = _raiz_cierre_ejecutar(validador.__file__,vault/'00_CORE','cells','--cierre','--operacion','cierre-final')
+    assert result.returncode == 1 and 'CIERRE VERIFICADO' not in result.stdout
+    assert _raiz_cierre_mostrada(vault) in result.stdout.splitlines()
+    error = ('ERROR: Operación "cierre-final": hash de configuración no coincide '
+             f'(guardado: {guardado[:12]}..., actual: {actual[:12]}...).')
+    assert error in result.stdout.splitlines()
+    assert foto_cierre(vault) == before
+
+
+def test_cierre_cells_relativa_ajena_no_se_confunde_con_boveda(validador,boveda_cierre,tmp_path):
+    vault,_,_,_ = boveda_cierre()
+    other = tmp_path/'Otra carpeta/cells'
+    other.mkdir(parents=True)
+    (other/'original.bin').write_bytes(b'\x00Conservar\r\n')
+    before = foto_cierre(tmp_path)
+    result = _raiz_cierre_ejecutar(validador.__file__,other.parent,'cells','--cierre','--operacion','cierre-final')
+    assert result.returncode == 1 and 'CIERRE VERIFICADO' not in result.stdout
+    assert _raiz_cierre_mostrada(other) in result.stdout.splitlines()
+    assert foto_cierre(tmp_path) == before

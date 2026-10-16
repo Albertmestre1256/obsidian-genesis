@@ -330,3 +330,28 @@ def test_indice_del_proyecto_normaliza_tipo_como_la_ficha(tmp_path):
     own = text.split('## Proyectos propios\n', 1)[1].split('## Ejemplos ficticios', 1)[0]
     assert 'Estudio/Entrada.md' in own
     assert 'Sin índice identificado' not in own
+
+
+def test_ajustes_que_obsidian_crea_al_usarse_no_desactualizan_el_indice(tmp_path):
+    guardar(tmp_path, 'apunte.md', '# Apunte\n')
+    for nombre in ('app.json', 'core-plugins.json', 'graph.json', 'templates.json'):
+        guardar(tmp_path, '.obsidian/' + nombre, '{}')
+    indice.actualizar(tmp_path)
+    assert run(tmp_path, '--comprobar').returncode == 0
+    for rel in ('.obsidian/appearance.json', '.obsidian/hotkeys.json', '.obsidian/bookmarks.json',
+                '.obsidian/plugins/calendario/manifest.json', '.obsidian/themes/Tema/theme.css',
+                '.obsidian/snippets/estilo.css', '.obsidian/workspace.json'):
+        guardar(tmp_path, rel, '{}')
+    resultado = run(tmp_path, '--comprobar')
+    assert resultado.returncode == 0, resultado.stdout + resultado.stderr
+    rutas = {r['ruta'] for r in indice.catalogo(tmp_path)}
+    assert '.obsidian/app.json' in rutas and '.obsidian/appearance.json' not in rutas
+    guardar(tmp_path, 'viaje/.obsidian/apariencia.json', '{}')  # solo se filtra la carpeta de la raíz
+    assert 'viaje/.obsidian/apariencia.json' in {r['ruta'] for r in indice.catalogo(tmp_path)}
+    guardar(tmp_path, 'nueva nota.md', '# Nueva\n')
+    assert run(tmp_path, '--comprobar').returncode == 1  # el contenido sigue controlado
+
+
+def test_obsidian_del_kit_contiene_solo_los_ajustes_catalogados():
+    # Lo que Obsidian cree al abrir el kit no se cataloga; tampoco debe colarse en el paquete.
+    assert {p.name for p in (ROOT / '.obsidian').iterdir()} == indice.AJUSTES_KIT

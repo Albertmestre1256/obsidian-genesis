@@ -411,3 +411,206 @@ def test_destino_planificado_creado_por_otro_editor_se_conserva(vault,datos):
     with pytest.raises(FileExistsError):
         crear.aplicar(plan,[])
     assert foto(vault)==before
+
+
+@pytest.fixture
+def _contexto_conservacion(vault, datos):
+    return crear, vault, dict(datos, id="estudio-ficticio", autor="IA de prueba ficticia")
+
+@pytest.mark.parametrize('different',[False,True],ids=['identica','con-avance-propio'])
+def test_conservacion_same_project_cell_appearing_after_plan_blocks(_contexto_conservacion,different):
+    c,v,d = _contexto_conservacion
+    plan = c.planificar(v,d)
+    raw = plan['nuevos'][plan['ficha']]
+    if different:
+        raw = c.lineador().contenido(raw+b'\n## Mi avance\nContenido propio nuevo.\n')
+    other = v/'00_CORE/cells/Ficha propia del usuario.md'
+    other.write_bytes(raw)
+    assert not c.validador(RAIZ).validar(other)[0]
+    before = foto(v)
+    written = []
+    with pytest.raises(ValueError):
+        c.aplicar(plan,written)
+    assert not written and foto(v)==before
+
+def test_conservacion_occupied_folder_after_plan_blocks_before_writing(_contexto_conservacion):
+    c,v,d = _contexto_conservacion
+    plan = c.planificar(v,d)
+    folder = v/d['id']
+    folder.mkdir()
+    (folder/'nota-personal.md').write_bytes(b'Contenido ajeno posterior al plan.\n')
+    before = foto(v)
+    written = []
+    with pytest.raises(ValueError):
+        c.aplicar(plan,written)
+    assert not written and foto(v)==before
+
+def test_conservacion_changed_rules_after_plan_block_without_replacing(_contexto_conservacion):
+    c,v,d = _contexto_conservacion
+    plan = c.planificar(v,d)
+    rules = v/'00_CORE/atoms/00_vault-rules.md'
+    rules.write_bytes(rules.read_bytes()+b'\n## Regla propia nueva\nNo mezclar proyectos.\n')
+    before = foto(v)
+    written = []
+    with pytest.raises(ValueError):
+        c.aplicar(plan,written)
+    assert not written and foto(v)==before
+
+def test_conservacion_edited_cell_after_noop_plan_blocks(_contexto_conservacion):
+    c,v,d = _contexto_conservacion
+    c.aplicar(c.planificar(v,d),[])
+    c.indexador().actualizar(v)
+    plan = c.planificar(v,d)
+    assert not plan['nuevos']
+    cell = v/plan['ficha']
+    cell.write_bytes(c.lineador().contenido(cell.read_bytes()+b'\n## Avance propio\nNo reemplazar.\n'))
+    before = foto(v)
+    written = []
+    with pytest.raises(ValueError):
+        c.aplicar(plan,written)
+    assert not written and foto(v)==before
+
+def test_conservacion_explicit_origin_is_used_during_apply(_contexto_conservacion,tmp_path,monkeypatch):
+    c,v,d = _contexto_conservacion
+    origin = tmp_path/'otro-kit'
+    shutil.copytree(RAIZ,origin)
+    plan = c.planificar(v,d,origen=origin)
+    monkeypatch.setattr(c,'RAIZ',tmp_path/'no-es-el-origen')
+    before = foto(v)
+    written = []
+    c.aplicar(plan,written)
+    assert written and all(foto(v).get(p)==raw for p,raw in before.items())
+
+def test_conservacion_input_data_mutated_after_plan_does_not_change_approved_output(_contexto_conservacion):
+    c,v,d = _contexto_conservacion
+    plan = c.planificar(v,d)
+    expected = plan['nuevos'][plan['ficha']]
+    d['objetivo']='Otro objetivo no aprobado para este plan.'
+    written = []
+    c.aplicar(plan,written)
+    assert written and (v/plan['ficha']).read_bytes()==expected
+
+def test_conservacion_cli_reports_blocked_when_guard_stops_before_first_write(_contexto_conservacion,tmp_path,monkeypatch,capsys):
+    c,v,d = _contexto_conservacion
+    datafile = tmp_path/'datos.json'
+    datafile.write_text(json.dumps(d),encoding='utf-8')
+    index = c.indexador()
+    original = index.planificar
+    snapshots = []
+    def occupied_after_plan(dest):
+        result = original(dest)
+        if not snapshots:
+            rules = v/'00_CORE/atoms/00_vault-rules.md'
+            rules.write_bytes(rules.read_bytes()+b'\n## Regla nueva\nRespetar notas propias.\n')
+            snapshots.append(foto(v))
+        return result
+    monkeypatch.setattr(index,'planificar',occupied_after_plan)
+    monkeypatch.setattr(c,'indexador',lambda origen=RAIZ:index)
+    assert c.main(['--destino',str(v),'--datos',str(datafile)])==1
+    result = json.loads(capsys.readouterr().out)
+    assert result['estado']=='bloqueado' and result['creados']==[]
+    assert foto(v)==snapshots[0]
+
+def test_conservacion_cli_first_write_oserror_still_reports_partial(_contexto_conservacion,tmp_path,monkeypatch,capsys):
+    c,v,d = _contexto_conservacion
+    payload = tmp_path/'datos.json'
+    payload.write_text(json.dumps(d),encoding='utf-8')
+    lines = c.lineador()
+    remnants = []
+    def partial_write(path,before,after):
+        path.parent.mkdir(parents=True,exist_ok=True)
+        path.write_bytes(after[:8])
+        remnants.append(path)
+        raise OSError('Fallo de disco simulado después de comenzar la escritura.')
+    monkeypatch.setattr(lines,'guardar',partial_write)
+    monkeypatch.setattr(c,'lineador',lambda origen=None:lines)
+    assert c.main(['--destino',str(v),'--datos',str(payload)])==1
+    result = json.loads(capsys.readouterr().out)
+    assert remnants and remnants[0].is_file()
+    assert result['creados']==[]  # Ningún archivo completo acreditado.
+    assert result['estado']=='parcial'
+
+@pytest.mark.parametrize('artifact',['ficha','indice'])
+def test_conservacion_cli_planned_file_appeared_identical_blocks_and_fresh_plan_resumes(_contexto_conservacion,tmp_path,monkeypatch,capsys,artifact):
+    c,v,d = _contexto_conservacion
+    approved = c.planificar(v,d)
+    rel = approved[artifact]
+    data = approved['nuevos'][rel]
+    payload = tmp_path/'datos.json'
+    payload.write_text(json.dumps(d),encoding='utf-8')
+    idx = c.indexador()
+    original = idx.planificar
+    snapshots = []
+    def appeared(dest):
+        result = original(dest)
+        if not snapshots:
+            path = v/rel
+            path.parent.mkdir(parents=True,exist_ok=True)
+            path.write_bytes(data)
+            snapshots.append(foto(v))
+        return result
+    with monkeypatch.context() as patch:
+        patch.setattr(idx,'planificar',appeared)
+        patch.setattr(c,'indexador',lambda origen=None:idx)
+        assert c.main(['--destino',str(v),'--datos',str(payload)])==1
+    result = json.loads(capsys.readouterr().out)
+    assert result['estado']=='bloqueado' and not result['creados']
+    assert foto(v)==snapshots[0]
+    fresh = c.planificar(v,d)
+    assert rel in fresh['iguales'] and rel not in fresh['nuevos']
+    written = []
+    c.aplicar(fresh,written)
+    assert written and rel not in written and (v/rel).read_bytes()==data
+
+def test_conservacion_cli_keyboard_interrupt_inside_revalidation_is_blocked(_contexto_conservacion,tmp_path,monkeypatch,capsys):
+    c,v,d = _contexto_conservacion
+    payload = tmp_path/'datos.json'
+    payload.write_text(json.dumps(d),encoding='utf-8')
+    original = c.planificar
+    calls = []
+    def interrupted(*args,**kwargs):
+        calls.append(True)
+        if len(calls)==2:
+            raise KeyboardInterrupt()
+        return original(*args,**kwargs)
+    before = foto(v)
+    monkeypatch.setattr(c,'planificar',interrupted)
+    assert c.main(['--destino',str(v),'--datos',str(payload)])==1
+    result = json.loads(capsys.readouterr().out)
+    assert len(calls)==2 and result['estado']=='bloqueado' and not result['creados']
+    assert foto(v)==before
+
+def test_conservacion_cli_value_error_after_writer_created_directory_is_partial(_contexto_conservacion,tmp_path,monkeypatch,capsys):
+    c,v,d = _contexto_conservacion
+    payload = tmp_path/'datos.json'
+    payload.write_text(json.dumps(d),encoding='utf-8')
+    lines = c.lineador()
+    directories = []
+    def interrupted(path,before,after):
+        path.parent.mkdir(parents=True,exist_ok=True)
+        directories.append(path.parent)
+        raise ValueError('Bloqueo ocupado durante la escritura simulada.')
+    monkeypatch.setattr(lines,'guardar',interrupted)
+    monkeypatch.setattr(c,'lineador',lambda origen=None:lines)
+    assert c.main(['--destino',str(v),'--datos',str(payload)])==1
+    result = json.loads(capsys.readouterr().out)
+    assert directories and directories[0].is_dir()
+    assert result['estado']=='parcial' and not result['creados']
+
+def test_conservacion_cli_keyboard_interrupt_after_first_guardar_is_partial(_contexto_conservacion,tmp_path,monkeypatch,capsys):
+    c,v,d = _contexto_conservacion
+    payload = tmp_path/'datos.json'
+    payload.write_text(json.dumps(d),encoding='utf-8')
+    lines = c.lineador()
+    original = lines.guardar
+    written = []
+    def interrupted(path,before,after):
+        original(path,before,after)
+        written.append(path)
+        raise KeyboardInterrupt()
+    monkeypatch.setattr(lines,'guardar',interrupted)
+    monkeypatch.setattr(c,'lineador',lambda origen=None:lines)
+    assert c.main(['--destino',str(v),'--datos',str(payload)])==1
+    result = json.loads(capsys.readouterr().out)
+    assert written and written[0].is_file()
+    assert result['estado']=='parcial'
