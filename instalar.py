@@ -7,6 +7,7 @@ from pathlib import Path
 import shutil
 import stat
 import sys
+sys.dont_write_bytecode = True  # no dejar __pycache__ dentro de la bóveda
 
 RAIZ = Path(__file__).resolve().parent
 CARPETAS = ("00_CORE", "PROJECT_TEMPLATE", "DOCS", ".claude", ".opencode")

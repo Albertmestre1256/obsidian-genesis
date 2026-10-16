@@ -13,6 +13,8 @@ import tempfile
 HEADER = '> [!info]- Índice de esta nota (líneas)'
 HEADERS = (HEADER, '> [!info] Índice de esta nota (líneas)')
 ENTRY = re.compile(r'^> - Líneas (\d+)–(\d+): (.+)$')
+# Primera línea de atribución del README y sus traducciones.
+ATRIBUCIONES = ('> **Crédito principal', '> **Main credit', '> **Besonderer Dank', '> **主要致谢')
 IGNORAR = {'.git', '.obsidian', '.obsidian-mcp', '.claude', '.opencode', '.github',
            '__pycache__', '.pytest_cache', '.trash', 'node_modules', '.venv', 'venv', '_archivo'}
 
@@ -93,7 +95,7 @@ def separar(text, reubicar=False):
         first = next((i + 1 for i in range(1, len(clean)) if clean[i] == '---'), 0)
         if not first:
             raise ValueError('Propiedades sin cierre; no se modifica la nota.')
-    elif clean and clean[0].startswith('> **Crédito principal'):
+    elif clean and clean[0].startswith(ATRIBUCIONES):
         first = 1  # La atribución del README permanece siempre primera.
     start = first
     while start < len(clean) and not clean[start].strip():

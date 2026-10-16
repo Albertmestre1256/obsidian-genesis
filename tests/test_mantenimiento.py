@@ -45,6 +45,17 @@ def test_rangos_apuntan_a_secciones_y_respetan_cuerpo(eol, bom):
     assert not any(e and e[3] == 'No es sección' for e in entries)
 
 
+@pytest.mark.parametrize('atribucion', ['> **Main credit to davidkimai.**', '> **Besonderer Dank an davidkimai.**',
+                                        '> **主要致谢：davidkimai。**'])
+def test_atribucion_traducida_queda_primera(atribucion):
+    text = atribucion + '\n\n# Kit\n## Uso\nHola\n'
+    result = lines.render(text)
+    assert result.splitlines()[0] == atribucion
+    assert result.splitlines()[1].startswith('> [!info]')
+    assert result.splitlines()[2] == '> - Líneas 1–1: Atribución'
+    assert lines.render(result) == result
+
+
 def test_atribucion_primera_y_fences_tilde():
     text = '> **Crédito principal a davidkimai.**\n\n# Kit\n~~~md\n## Código\n~~~\n## Uso\nHola\n'
     result = lines.render(text)

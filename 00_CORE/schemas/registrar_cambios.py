@@ -9,6 +9,7 @@ import os
 from pathlib import Path
 import re
 import sys
+sys.dont_write_bytecode = True  # no dejar __pycache__ dentro de la bóveda
 
 spec = importlib.util.spec_from_file_location('lineas_kit', Path(__file__).with_name('note_index.py'))
 lineas = importlib.util.module_from_spec(spec)

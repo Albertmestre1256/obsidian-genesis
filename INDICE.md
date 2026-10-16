@@ -9,19 +9,19 @@
 > - Líneas 62–70: Ajustes de Obsidian
 > - Líneas 71–90: Ayuda
 > - Líneas 91–105: Desarrollo
-> - Líneas 106–125: Entrada y herramientas
-> - Líneas 126–131: Fichas y plantillas de proyecto
-> - Líneas 132–137: Guías de comunicación
-> - Líneas 138–146: Guías de redacción
-> - Líneas 147–159: Integración Claude
-> - Líneas 160–170: Integración OpenCode
-> - Líneas 171–180: Plantilla de carpetas
-> - Líneas 181–188: Plantillas de organización
-> - Líneas 189–197: Protocolos
-> - Líneas 198–206: Recursos opcionales de davidkimai
-> - Líneas 207–212: Reglas compartidas
-> - Líneas 213–220: Validación
-> - Líneas 221–229: Alcance del catálogo
+> - Líneas 106–128: Entrada y herramientas
+> - Líneas 129–134: Fichas y plantillas de proyecto
+> - Líneas 135–140: Guías de comunicación
+> - Líneas 141–149: Guías de redacción
+> - Líneas 150–162: Integración Claude
+> - Líneas 163–173: Integración OpenCode
+> - Líneas 174–183: Plantilla de carpetas
+> - Líneas 184–191: Plantillas de organización
+> - Líneas 192–200: Protocolos
+> - Líneas 201–209: Recursos opcionales de davidkimai
+> - Líneas 210–215: Reglas compartidas
+> - Líneas 216–223: Validación
+> - Líneas 224–232: Alcance del catálogo
 
 # Índice principal de la bóveda
 
@@ -37,7 +37,7 @@ Podés agregar presentación y comentarios antes o después del bloque automáti
 
 ## Panorama
 
-- Archivos catalogados: 84. Proyectos propios identificados: 0. Ejemplos ficticios: 1.
+- Archivos catalogados: 87. Proyectos propios identificados: 0. Ejemplos ficticios: 1.
 - Configuración: todavía no existe una nota de configuración del kit.
 - El estado detallado y las tareas se leen en cada ficha; este catálogo no los reemplaza.
 
@@ -121,7 +121,10 @@ Cada fila enlaza un archivo. Las carpetas se representan mediante sus archivos; 
 | [LICENSE](LICENSE) | Archivo sin extensión |
 | [Panel.md](Panel.md) | Mis proyectos |
 | [Proyectos.base](Proyectos.base) | BASE |
+| [README.de.md](README.de.md) | Obsidian Genesis: dein Vault, eingerichtet von einer KI |
+| [README.en.md](README.en.md) | Obsidian Genesis: your vault, set up by an AI |
 | [README.md](README.md) | Obsidian Genesis: tu bóveda, configurada por una IA |
+| [README.zh.md](README.zh.md) | Obsidian Genesis：由 AI 为你配置的仓库 |
 
 ### Fichas y plantillas de proyecto
 

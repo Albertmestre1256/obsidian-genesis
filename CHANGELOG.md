@@ -1,15 +1,30 @@
 > [!info]- Índice de esta nota (líneas)
-> - Líneas 1–10: Este índice
-> - Líneas 12–13: Cambios
-> - Líneas 14–17: 15/10/2026 — destino visible al comprobar el cierre
-> - Líneas 18–21: 15/10/2026 — conservar cambios posteriores al plan
-> - Líneas 22–25: 15/10/2026 — cierre coherente con el proyecto inicial
-> - Líneas 26–29: 14/10/2026 — operación visible coherente con el registro
-> - Líneas 30–33: 14/10/2026 — inventario de perfil plegable
-> - Líneas 34–37: 13/10/2026 — índices de proyectos con nombres propios
-> - Líneas 38–59: Sin publicar — candidata a v0.1.0
+> - Líneas 1–13: Este índice
+> - Líneas 15–16: Cambios
+> - Líneas 17–20: 16/10/2026 — README en cuatro idiomas
+> - Líneas 21–24: 16/10/2026 — sin carpetas __pycache__ en la bóveda
+> - Líneas 25–28: 15/10/2026 — próximo paso solo en la ficha
+> - Líneas 29–32: 15/10/2026 — destino visible al comprobar el cierre
+> - Líneas 33–36: 15/10/2026 — conservar cambios posteriores al plan
+> - Líneas 37–40: 15/10/2026 — cierre coherente con el proyecto inicial
+> - Líneas 41–44: 14/10/2026 — operación visible coherente con el registro
+> - Líneas 45–48: 14/10/2026 — inventario de perfil plegable
+> - Líneas 49–52: 13/10/2026 — índices de proyectos con nombres propios
+> - Líneas 53–74: Sin publicar — candidata a v0.1.0
 
 # Cambios
+
+## 16/10/2026 — README en cuatro idiomas
+
+El README tiene versiones completas en inglés, alemán y chino, con un selector de idioma al comienzo de cada una; se quitó el resumen en inglés que estaba al final del README en español. Las guías, reglas e instrucciones para asistentes siguen en español. El índice de líneas reconoce la atribución inicial traducida y la mantiene como primera línea.
+
+## 16/10/2026 — sin carpetas __pycache__ en la bóveda
+
+Los scripts del kit ya no dejan carpetas `__pycache__` dentro de la bóveda al cargar sus módulos internos, como ocurría al validar o cerrar una sesión. Una prueba nueva lo comprueba ejecutando validación, cierre, catálogo, registro e instalación en una copia. Si una IA importa un script desde otro programa o usa `python -m`, ese módulo todavía puede dejar su propia caché.
+
+## 15/10/2026 — próximo paso solo en la ficha
+
+Al configurar, el Panel ya no copia el próximo paso como texto fijo: muestra la bienvenida y el acceso al proyecto y al inventario, y remite a «Acciones pendientes», que lee las tareas de las fichas y se actualiza sola. Así el Panel no queda desfasado cuando cambian las tareas. Las bóvedas ya configuradas conservan su línea anterior; el cierre no la edita.
 
 ## 15/10/2026 — destino visible al comprobar el cierre
 

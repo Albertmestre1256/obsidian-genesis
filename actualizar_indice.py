@@ -9,6 +9,7 @@ from pathlib import Path
 import re
 import stat
 import sys
+sys.dont_write_bytecode = True  # no dejar __pycache__ dentro de la bóveda
 import unicodedata
 from urllib.parse import quote
 
