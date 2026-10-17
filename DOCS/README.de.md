@@ -94,7 +94,7 @@ Du musst zum Start nicht alles lesen: Folge dem Haupt-README und beantworte die 
 | [`.claude/skills/validar/SKILL.md`](../.claude/skills/validar/SKILL.md) · [`.opencode/commands/validar.md`](../.opencode/commands/validar.md) | /validar: Kontextnotizen prüfen und Fehler oder Hinweise erklären. |
 | [`.claude/skills/cerrar/SKILL.md`](../.claude/skills/cerrar/SKILL.md) · [`.opencode/commands/cerrar.md`](../.opencode/commands/cerrar.md) | /cerrar: Speichern von Änderungen vorschlagen und Freigegebenes prüfen. |
 | [`.claude/skills/vault-manager/SKILL.md`](../.claude/skills/vault-manager/SKILL.md) · [`.claude/settings.json`](../.claude/settings.json) | Orientierung zur Vault-Nutzung und Einstellungen der Claude-Integration. |
-| [`.obsidian/app.json`](../.obsidian/app.json) · [`.obsidian/core-plugins.json`](../.obsidian/core-plugins.json) · [`.obsidian/graph.json`](../.obsidian/graph.json) · [`.obsidian/templates.json`](../.obsidian/templates.json) | Grundeinstellungen für neue Vaults; eigene Einstellungen beim Integrieren erhalten. |
+| [`.obsidian/app.json`](../.obsidian/app.json) · [`.obsidian/core-plugins.json`](../.obsidian/core-plugins.json) · [`.obsidian/graph.json`](../.obsidian/graph.json) · [`.obsidian/templates.json`](../.obsidian/templates.json) · [`.obsidian/appearance.json`](../.obsidian/appearance.json) · [`.obsidian/snippets/genesis-vista-simple.css`](../.obsidian/snippets/genesis-vista-simple.css) | Grundeinstellungen und aktivierte einfache Ansicht für neue Vaults; eigene Einstellungen beim Integrieren erhalten. |
 | [`Proyectos.base`](../Proyectos.base) | Projekttabelle des Panels; weder Notiz noch Skript. |
 
 ## Python und Tests

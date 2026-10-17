@@ -352,6 +352,7 @@ def test_ajustes_que_obsidian_crea_al_usarse_no_desactualizan_el_indice(tmp_path
     assert run(tmp_path, '--comprobar').returncode == 1  # el contenido sigue controlado
 
 
-def test_obsidian_del_kit_contiene_solo_los_ajustes_catalogados():
+def test_obsidian_del_kit_contiene_solo_ajustes_y_vista_simple_distribuibles():
     # Lo que Obsidian cree al abrir el kit no se cataloga; tampoco debe colarse en el paquete.
-    assert {p.name for p in (ROOT / '.obsidian').iterdir()} == indice.AJUSTES_KIT
+    assert {p.name for p in (ROOT / '.obsidian').iterdir()} == indice.AJUSTES_KIT | {'appearance.json', 'snippets'}
+    assert {p.name for p in (ROOT / '.obsidian/snippets').iterdir()} == {'genesis-vista-simple.css'}

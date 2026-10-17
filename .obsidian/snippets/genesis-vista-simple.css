@@ -1,0 +1,41 @@
+/* Obsidian Genesis: vista cotidiana del explorador.
+ * Oculta soporte del kit; no mueve archivos, no bloquea a las IA y no cambia
+ * el contenido de las notas. Panel, INDICE, Proyectos.base y proyectos quedan.
+ * Para volver a ver todo: desactivar genesis-vista-simple en Apariencia.
+ * El filtro del grafo se prepara en .obsidian/graph.json; ver DOCS/obsidian.md.
+ * Los selectores dependen del DOM de Obsidian; revisar tras actualizar la app.
+ */
+
+/* Carpetas de soporte en la raiz. Las fichas siguen accesibles desde Panel. */
+.nav-files-container .nav-folder:has(> .nav-folder-title:is(
+  [data-path="00_CORE"],
+  [data-path="DOCS"],
+  [data-path="tests"],
+  [data-path="PROJECT_TEMPLATE"]
+)) {
+  display: none !important;
+}
+
+/* Entradas tecnicas y utilidades: conservar sus ubicaciones para las IA. */
+.nav-files-container .nav-file:has(> .nav-file-title:is(
+  [data-path="AGENTS.md"],
+  [data-path="AI-INSTRUCTIONS.md"],
+  [data-path="CLAUDE.md"],
+  [data-path="CHANGELOG.md"],
+  [data-path="CONTRIBUTING.md"],
+  [data-path="LEER_PRIMERO.md"],
+  [data-path="LICENSE"],
+  [data-path="actualizar_indice.py"],
+  [data-path="crear_proyecto.py"],
+  [data-path="instalar.py"],
+  [data-path="README.md"],
+  [data-path="README.en.md"],
+  [data-path="README.de.md"],
+  [data-path="README.zh.md"],
+  [data-path$="/README.md"],
+  [data-path$="/README.en.md"],
+  [data-path$="/README.de.md"],
+  [data-path$="/README.zh.md"]
+)) {
+  display: none !important;
+}
