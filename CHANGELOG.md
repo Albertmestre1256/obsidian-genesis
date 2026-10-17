@@ -1,27 +1,32 @@
 > [!info]- Índice de esta nota (líneas)
-> - Líneas 1–22: Este índice
-> - Líneas 24–25: Cambios
-> - Líneas 26–29: 17/10/2026 — inicio y acceso en una sola guía
-> - Líneas 30–33: 17/10/2026 — entradas de IA más concisas
-> - Líneas 34–37: 17/10/2026 — vista simple inicial de bóvedas nuevas
-> - Líneas 38–41: 17/10/2026 — originales conservados y mantenimiento acotado
-> - Líneas 42–45: 16/10/2026 — guía de los documentos en cuatro idiomas
-> - Líneas 46–49: 16/10/2026 — simplificación de herramientas Python
-> - Líneas 50–53: 16/10/2026 — comunidad y soporte accesibles desde los README
-> - Líneas 54–57: 16/10/2026 — abrir la bóveda en Obsidian no desactualiza el índice
-> - Líneas 58–61: 16/10/2026 — instalar desde un kit abierto con OpenCode
-> - Líneas 62–65: 16/10/2026 — README en cuatro idiomas
-> - Líneas 66–69: 16/10/2026 — sin carpetas __pycache__ en la bóveda
-> - Líneas 70–73: 15/10/2026 — próximo paso solo en la ficha
-> - Líneas 74–77: 15/10/2026 — destino visible al comprobar el cierre
-> - Líneas 78–81: 15/10/2026 — conservar cambios posteriores al plan
-> - Líneas 82–85: 15/10/2026 — cierre coherente con el proyecto inicial
-> - Líneas 86–89: 14/10/2026 — operación visible coherente con el registro
-> - Líneas 90–93: 14/10/2026 — inventario de perfil plegable
-> - Líneas 94–97: 13/10/2026 — índices de proyectos con nombres propios
-> - Líneas 98–119: Sin publicar — candidata a v0.1.0
+> - Líneas 1–23: Este índice
+> - Líneas 25–26: Cambios
+> - Líneas 27–30: 17/10/2026 — menos repetición al validar el inventario
+> - Líneas 31–34: 17/10/2026 — inicio y acceso en una sola guía
+> - Líneas 35–38: 17/10/2026 — entradas de IA más concisas
+> - Líneas 39–42: 17/10/2026 — vista simple inicial de bóvedas nuevas
+> - Líneas 43–46: 17/10/2026 — originales conservados y mantenimiento acotado
+> - Líneas 47–50: 16/10/2026 — guía de los documentos en cuatro idiomas
+> - Líneas 51–54: 16/10/2026 — simplificación de herramientas Python
+> - Líneas 55–58: 16/10/2026 — comunidad y soporte accesibles desde los README
+> - Líneas 59–62: 16/10/2026 — abrir la bóveda en Obsidian no desactualiza el índice
+> - Líneas 63–66: 16/10/2026 — instalar desde un kit abierto con OpenCode
+> - Líneas 67–70: 16/10/2026 — README en cuatro idiomas
+> - Líneas 71–74: 16/10/2026 — sin carpetas __pycache__ en la bóveda
+> - Líneas 75–78: 15/10/2026 — próximo paso solo en la ficha
+> - Líneas 79–82: 15/10/2026 — destino visible al comprobar el cierre
+> - Líneas 83–86: 15/10/2026 — conservar cambios posteriores al plan
+> - Líneas 87–90: 15/10/2026 — cierre coherente con el proyecto inicial
+> - Líneas 91–94: 14/10/2026 — operación visible coherente con el registro
+> - Líneas 95–98: 14/10/2026 — inventario de perfil plegable
+> - Líneas 99–102: 13/10/2026 — índices de proyectos con nombres propios
+> - Líneas 103–124: Sin publicar — candidata a v0.1.0
 
 # Cambios
+
+## 17/10/2026 — menos repetición al validar el inventario
+
+El validador devuelve directamente los errores de estructura y usa la lista de filas para detectar un inventario sin datos, sin una bandera paralela. Conserva los mensajes y los controles de formato, estados, alcances y duplicados; no añade funciones, dependencias ni archivos.
 
 ## 17/10/2026 — inicio y acceso en una sola guía
 
