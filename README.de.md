@@ -72,7 +72,7 @@ Sie führt außerdem ein **Personalisierungsinventar**: was du beantwortet hast,
 
 ## Anhänge oder ein bestehender Vault
 
-Ein angehängtes ZIP gibt keinen Zugriff auf deinen Computer. Wenn der Chat Dateien erzeugen kann, kann er dir eine eingerichtete Kopie zum Herunterladen zurückgeben. Wenn er nur mit Text antwortet, bleibt das Speichern offen. Die [Zugangsanleitung](DOCS/empezar-con-ia.md) erklärt die Möglichkeiten.
+Ein angehängtes ZIP gibt keinen Zugriff auf deinen Computer. Wenn der Chat Dateien erzeugen kann, kann er dir eine eingerichtete Kopie zum Herunterladen zurückgeben. Wenn er nur mit Text antwortet, bleibt das Speichern offen. Die [Zugangsanleitung](DOCS/QUICKSTART.md) erklärt die Möglichkeiten.
 
 Wenn du bereits einen Vault hast, ist die aktuelle Integration zurückhaltend: Die KI liest seine Regeln, vergleicht Konflikte und bewahrt Notizen und Einstellungen. Einen ganzen bestehenden Vault automatisch umzuorganisieren oder zu optimieren ist noch nicht umgesetzt; das ist die oben erwähnte spätere Phase.
 

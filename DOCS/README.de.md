@@ -9,12 +9,12 @@ descripcion: "Inhalt und Zweck der Kit-Dokumente und wann sie hilfreich sind."
 > - Líneas 27–37: Inhaltsverzeichnis
 > - Líneas 38–47: Einstieg
 > - Líneas 48–65: Regeln und Projekte
-> - Líneas 66–85: Hilfe
-> - Líneas 86–99: Integrationen und Einstellungen
-> - Líneas 100–113: Python und Tests
-> - Líneas 114–124: Repository und Credits
-> - Líneas 125–133: Optionale Ressourcen
-> - Líneas 134–146: Beim Verwenden erzeugte Dateien
+> - Líneas 66–84: Hilfe
+> - Líneas 85–98: Integrationen und Einstellungen
+> - Líneas 99–112: Python und Tests
+> - Líneas 113–123: Repository und Credits
+> - Líneas 124–132: Optionale Ressourcen
+> - Líneas 133–145: Beim Verwenden erzeugte Dateien
 
 # Wegweiser zu den Dokumenten und Werkzeugen des Kits
 
@@ -67,8 +67,7 @@ Du musst zum Start nicht alles lesen: Folge dem Haupt-README und beantworte die 
 
 | Dokument oder Werkzeug | Zweck |
 |---|---|
-| [`DOCS/QUICKSTART.md`](../DOCS/QUICKSTART.md) | Kurzverweis auf Einstieg und Zugriffshilfen. |
-| [`DOCS/empezar-con-ia.md`](../DOCS/empezar-con-ia.md) | Echten Ordnerzugriff geben oder mit einer angehängten Kopie arbeiten. |
+| [`DOCS/QUICKSTART.md`](../DOCS/QUICKSTART.md) | Start mit einer KI: lokaler Zugriff, angehängte Kopien, bestehende Vaults und Fortsetzen. |
 | [`DOCS/opencode.md`](../DOCS/opencode.md) | Kit öffnen und Befehle in OpenCode nutzen. |
 | [`DOCS/chatgpt.md`](../DOCS/chatgpt.md) | ChatGPT-Abläufe mit Ordner oder Anhängen. |
 | [`DOCS/usar-con-otras-ias.md`](../DOCS/usar-con-otras-ias.md) | Alltägliche Anfragen zum Fortsetzen, Schreiben oder Speichern von Fortschritten. |

@@ -9,7 +9,7 @@
 
 **Mapa de toda la bóveda:** [[INDICE|Índice principal — primera lectura de la IA]].
 
-**Para empezar:** [[DOCS/empezar-con-ia|Dale la carpeta a tu IA y respondé sus preguntas]]. El asistente prepara la bóveda y tu primer proyecto.
+**Para empezar:** [[DOCS/QUICKSTART|Dale la carpeta a tu IA y respondé sus preguntas]]. El asistente prepara la bóveda y tu primer proyecto.
 
 Si ya está configurada, abrí la ficha del proyecto o pedí «seguí con [proyecto]».
 

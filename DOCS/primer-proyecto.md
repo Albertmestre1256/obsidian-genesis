@@ -11,7 +11,7 @@
 
 # Tu primer proyecto a mano
 
-Esta es la alternativa manual. El recorrido principal consiste en [darle la carpeta a una IA para que la configure con tus respuestas](empezar-con-ia.md).
+Esta es la alternativa manual. El recorrido principal consiste en [darle la carpeta a una IA para que la configure con tus respuestas](QUICKSTART.md).
 
 Una **bóveda** es la carpeta donde Obsidian guarda tus notas. Una **ficha de proyecto** responde: qué quiero hacer, qué sé y qué sigue. En algunos archivos se llama «célula»: es lo mismo.
 

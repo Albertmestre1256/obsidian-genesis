@@ -9,12 +9,12 @@ descripcion: "Qué contiene cada documento del kit, para qué sirve y cuándo co
 > - Líneas 27–37: Índice de esta guía
 > - Líneas 38–47: Entradas
 > - Líneas 48–65: Reglas y proyectos
-> - Líneas 66–85: Ayuda
-> - Líneas 86–99: Integraciones y ajustes
-> - Líneas 100–113: Python y pruebas
-> - Líneas 114–124: Repositorio y créditos
-> - Líneas 125–133: Recursos opcionales
-> - Líneas 134–146: Archivos creados durante el uso
+> - Líneas 66–84: Ayuda
+> - Líneas 85–98: Integraciones y ajustes
+> - Líneas 99–112: Python y pruebas
+> - Líneas 113–123: Repositorio y créditos
+> - Líneas 124–132: Recursos opcionales
+> - Líneas 133–145: Archivos creados durante el uso
 
 # Guía de documentos y herramientas del kit
 
@@ -67,8 +67,7 @@ No necesitás leer todo para empezar: seguí el README principal y respondé las
 
 | Documento o herramienta | Función |
 |---|---|
-| [`DOCS/QUICKSTART.md`](../DOCS/QUICKSTART.md) | Atajo al inicio principal y a las guías de acceso. |
-| [`DOCS/empezar-con-ia.md`](../DOCS/empezar-con-ia.md) | Cómo dar acceso real a una carpeta o trabajar con una copia adjunta. |
+| [`DOCS/QUICKSTART.md`](../DOCS/QUICKSTART.md) | Inicio con una IA: acceso local, copias adjuntas, bóvedas existentes y reanudación. |
 | [`DOCS/opencode.md`](../DOCS/opencode.md) | Abrir el kit y usar sus comandos desde OpenCode. |
 | [`DOCS/chatgpt.md`](../DOCS/chatgpt.md) | Recorridos de ChatGPT con carpeta o archivos adjuntos. |
 | [`DOCS/usar-con-otras-ias.md`](../DOCS/usar-con-otras-ias.md) | Pedidos de uso diario para retomar, redactar o guardar avances. |

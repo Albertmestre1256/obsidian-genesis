@@ -9,12 +9,12 @@ descripcion: "What each kit document contains, what it does and when to consult 
 > - Líneas 27–37: Contents of this guide
 > - Líneas 38–47: Entry points
 > - Líneas 48–65: Rules and projects
-> - Líneas 66–85: Help
-> - Líneas 86–99: Integrations and settings
-> - Líneas 100–113: Python and tests
-> - Líneas 114–124: Repository and credits
-> - Líneas 125–133: Optional resources
-> - Líneas 134–146: Files created during use
+> - Líneas 66–84: Help
+> - Líneas 85–98: Integrations and settings
+> - Líneas 99–112: Python and tests
+> - Líneas 113–123: Repository and credits
+> - Líneas 124–132: Optional resources
+> - Líneas 133–145: Files created during use
 
 # Guide to the kit documents and tools
 
@@ -67,8 +67,7 @@ You do not need to read everything to begin: follow the main README and answer y
 
 | Document or tool | Purpose |
 |---|---|
-| [`DOCS/QUICKSTART.md`](../DOCS/QUICKSTART.md) | Shortcut to the main start and access guides. |
-| [`DOCS/empezar-con-ia.md`](../DOCS/empezar-con-ia.md) | Give real folder access or work with an attached copy. |
+| [`DOCS/QUICKSTART.md`](../DOCS/QUICKSTART.md) | Start with an AI: local access, attached copies, existing vaults and resuming. |
 | [`DOCS/opencode.md`](../DOCS/opencode.md) | Open the kit and use its commands in OpenCode. |
 | [`DOCS/chatgpt.md`](../DOCS/chatgpt.md) | ChatGPT workflows with a folder or attachments. |
 | [`DOCS/usar-con-otras-ias.md`](../DOCS/usar-con-otras-ias.md) | Everyday requests to resume, draft or save progress. |

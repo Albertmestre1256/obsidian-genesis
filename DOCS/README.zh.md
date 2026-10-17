@@ -9,12 +9,12 @@ descripcion: "各文档的内容、用途以及适合查阅的时机。"
 > - Líneas 27–37: 本指南目录
 > - Líneas 38–47: 入口
 > - Líneas 48–65: 规则与项目
-> - Líneas 66–85: 帮助
-> - Líneas 86–99: 集成与设置
-> - Líneas 100–113: Python 与测试
-> - Líneas 114–124: 仓库与署名
-> - Líneas 125–133: 可选资源
-> - Líneas 134–146: 使用过程中创建的文件
+> - Líneas 66–84: 帮助
+> - Líneas 85–98: 集成与设置
+> - Líneas 99–112: Python 与测试
+> - Líneas 113–123: 仓库与署名
+> - Líneas 124–132: 可选资源
+> - Líneas 133–145: 使用过程中创建的文件
 
 # 工具包文档与工具指南
 
@@ -67,8 +67,7 @@ descripcion: "各文档的内容、用途以及适合查阅的时机。"
 
 | 文档或工具 | 用途 |
 |---|---|
-| [`DOCS/QUICKSTART.md`](../DOCS/QUICKSTART.md) | 快速跳转到主要开始步骤与访问指南。 |
-| [`DOCS/empezar-con-ia.md`](../DOCS/empezar-con-ia.md) | 如何提供真实的文件夹访问权限，或使用附件副本。 |
+| [`DOCS/QUICKSTART.md`](../DOCS/QUICKSTART.md) | 使用 AI 开始：本地访问、附件副本、现有仓库和继续配置。 |
 | [`DOCS/opencode.md`](../DOCS/opencode.md) | 在 OpenCode 中打开工具包并使用命令。 |
 | [`DOCS/chatgpt.md`](../DOCS/chatgpt.md) | ChatGPT 使用文件夹或附件的操作流程。 |
 | [`DOCS/usar-con-otras-ias.md`](../DOCS/usar-con-otras-ias.md) | 用于继续项目、写作或保存进展的日常请求示例。 |

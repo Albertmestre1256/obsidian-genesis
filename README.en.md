@@ -72,7 +72,7 @@ It also keeps a **personalization inventory**: what you answered, what is pendin
 
 ## Attachments or an existing vault
 
-An attached ZIP does not give access to your computer. If the chat can generate files, it can return a configured copy for you to download. If it only answers with text, saving it remains pending. The [access guide](DOCS/empezar-con-ia.md) explains the options.
+An attached ZIP does not give access to your computer. If the chat can generate files, it can return a configured copy for you to download. If it only answers with text, saving it remains pending. The [access guide](DOCS/QUICKSTART.md) explains the options.
 
 If you already have a vault, the current integration is conservative: the AI reads its rules, compares conflicts and keeps notes and settings. Automatically reorganizing or optimizing a whole existing vault is not implemented yet; it is the later phase mentioned above.
 

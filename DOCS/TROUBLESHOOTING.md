@@ -23,7 +23,7 @@ Si una IA está configurando tu bóveda, pasale el problema y pedile que revise 
 
 ## La IA no puede guardar en mi carpeta
 
-Comprobá que tenga acceso de escritura a la carpeta correcta. Un adjunto no concede ese acceso. Si puede generar archivos, pedile una copia configurada para descargar; si solo responde texto, quedará pendiente guardarlo. Ver [Empezar con una IA](empezar-con-ia.md).
+Comprobá que tenga acceso de escritura a la carpeta correcta. Un adjunto no concede ese acceso. Si puede generar archivos, pedile una copia configurada para descargar; si solo responde texto, quedará pendiente guardarlo. Ver [Empezar con una IA](QUICKSTART.md).
 
 ## Vuelve a preguntarme lo que ya respondí
 

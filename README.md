@@ -72,7 +72,7 @@ También guarda un **inventario de personalización**: lo respondido, lo pendien
 
 ## Adjuntos o bóveda existente
 
-Un ZIP adjunto no da acceso a tu computadora. Si el chat genera archivos, puede devolverte una copia configurada para descargar. Si solo responde texto, queda pendiente guardarlo. La [guía de acceso](DOCS/empezar-con-ia.md) explica las opciones.
+Un ZIP adjunto no da acceso a tu computadora. Si el chat genera archivos, puede devolverte una copia configurada para descargar. Si solo responde texto, queda pendiente guardarlo. La [guía de acceso](DOCS/QUICKSTART.md) explica las opciones.
 
 Si ya tenés una bóveda, la integración actual es conservadora: la IA lee sus reglas, compara conflictos y conserva notas y ajustes. Reorganizar u optimizar automáticamente toda una bóveda existente todavía no está implementado; es la fase posterior mencionada arriba.
 
