@@ -2,11 +2,11 @@
 > - Líneas 1–9: Este índice
 > - Líneas 11–14: Mantener notas, mapas y registro
 > - Líneas 15–22: Al crear o editar notas
-> - Líneas 23–37: Índices de líneas con Python
-> - Líneas 38–75: Registro identificado y períodos de cinco días
-> - Líneas 76–77: Cierre de la operación
-> - Líneas 78–92: Secuencia de cierre compartida
-> - Líneas 93–97: Sin Python o con archivos adjuntos
+> - Líneas 23–39: Índices de líneas con Python
+> - Líneas 40–77: Registro identificado y períodos de cinco días
+> - Líneas 78–79: Cierre de la operación
+> - Líneas 80–94: Secuencia de cierre compartida
+> - Líneas 95–99: Sin Python o con archivos adjuntos
 
 # Mantener notas, mapas y registro
 
@@ -15,7 +15,7 @@ La IA realiza este mantenimiento dentro del pedido autorizado; la persona no pre
 ## Al crear o editar notas
 
 1. Identificarse con nombre de IA, herramienta y modelo conocido; declarar lo desconocido. Al crear un nodo, dejar «Creado por» en su índice.
-2. Releer y editar los destinos acordados, conservando cambios ajenos. Recalcular el índice de cada nota editable: sección y líneas inicial/final del archivo completo, incluidas propiedades e índice. La atribución del README conserva la primera línea.
+2. Releer y editar los destinos acordados, conservando cambios ajenos. Recalcular el índice de las notas editables creadas o modificadas por esta operación: sección y líneas inicial/final del archivo completo, incluidas propiedades e índice. No recorrer toda la bóveda por rutina. La atribución del README conserva la primera línea.
 3. Actualizar resúmenes y enlaces de los [mapas del nodo y general](indice-principal.md). Para originales existentes, describir contenido y líneas en el índice del nodo; no reescribirlos. Las fuentes Markdown nuevas elaboradas por la IA llevan su índice antes de guardarse. Históricos e integraciones de herramientas conservan su formato.
 4. Elegir el ID de esta operación real. Si se edita la configuración y tiene «Última operación de mantenimiento», actualizar esa etiqueta con el ID exacto **antes** de recalcular rangos y registrar: forma parte de la huella del archivo. Verificar archivos, rangos y enlaces. Si cambió una ficha, aplicar [Revisar fichas](usar-con-otras-ias.md#revisar-fichas) antes de declarar el trabajo verificado; corregir errores o guardar el resultado como pendiente. Registrar cambios reales, incluidos `INDICE.md` y cada índice local que cambió, origen y destino de movimientos y resultados parciales. Cada evento enumera los archivos de esa operación: una fila anterior no registra su nueva edición. No guardar credenciales ni afirmar comprobaciones que no ocurrieron.
 5. Refrescar el mapa tras crear registros o históricos. Los hashes describen el momento del registro; las regeneraciones auxiliares forman parte de la misma operación.
@@ -30,6 +30,8 @@ python 00_CORE/schemas/note_index.py check "ruta/Nota.md"
 ```
 
 `--vault "ruta-de-la-boveda"` procesa notas editables en lote; requiere ese alcance acordado. Excluye `01_FUENTES/`, `_archivo/`, `00_CORE/logs/historial/` e integraciones; rechaza enlaces/junctions en el material a procesar. `check` no escribe: 0 vigente, 1 pendiente, 2 impedido. `apply` valida antes de escribir; ante un fallo, releer las salidas e informar lo parcial. Los títulos dan las descripciones; el script no resume cuerpos ni verifica hechos.
+
+Preferí pasar las rutas concretas de las notas afectadas. El cierre no autoriza por sí solo `apply --vault`: que un archivo tenga extensión `.md` no autoriza modificarlo. Las transcripciones exportadas conservan su contenido y formato; no les agregues índices ni corrijas su texto. Para evidencia técnica, usá un destino acordado fuera de la bóveda de trabajo cuando haya acceso; si se incorporan como material del proyecto, guardalas como originales en `01_FUENTES/` y describilas desde el índice del nodo. No muevas una exportación existente sin autorización. Si la comprobación global señala rangos pendientes en un original fuera de esas carpetas, informá la ruta y el impedimento; no lo reescribas para hacer pasar el cierre.
 
 El actualizador de mapas refresca los rangos de índices que ya los tienen. El creador genera ficha e índice con rangos y los recalcula después de llenar las plantillas. No conservar números de una plantilla al copiarla o ampliar el bloque de un nodo.
 
@@ -83,7 +85,7 @@ Indicá la raíz de la bóveda en los comandos y contrastala con «Bóveda revis
 
 1. **Chequeo parcial**: para registrar avances actuales, elegí su ID y actualizá «Última operación de mantenimiento» si esa etiqueta existe en la configuración. Recalculá rangos y mapas, registrá los cambios y refrescá el mapa. Después ejecutá `python 00_CORE/schemas/validate.py "<raíz-de-la-bóveda>" --cierre --operacion <ID-parcial>`. Si esa operación ya estaba registrada, verificá su estado sin editarla. Este chequeo no escribe.
 2. **Estado final `lista`**: si la bóveda pasa a `estado: lista`, actualizá `00_CORE/configuracion.md` (cambiar `estado` y `fecha`). Elegí un nuevo ID para esa operación final y actualizá la etiqueta existente antes de calcular su huella.
-3. **Mantenimiento de rangos y mapas**: corré `python 00_CORE/schemas/note_index.py apply --vault <raíz>` y `python actualizar_indice.py <raíz>` para refrescar índices de líneas y mapas.
+3. **Mantenimiento de rangos y mapas**: corré `python 00_CORE/schemas/note_index.py apply "<nota-editada>"` con las rutas de las notas editables de esta operación, y `python actualizar_indice.py <raíz>` para refrescar los mapas. Usá `--vault <raíz>` solo si se acordó expresamente un mantenimiento en lote; no para resolver por fuerza un impedimento ajeno a la tarea.
 4. **Registrar edición final**: registrá ese cambio de configuración como **nueva operación real** (ID elegido en el paso 2, `verificado: true`, fecha actual con zona). No reutilicés el ID del chequeo parcial ni edites la configuración después de registrar su huella.
 5. **Refrescar y volver a chequear**: corré `actualizar_indice.py` otra vez (el registro ya existe) y luego `validate.py "<raíz-de-la-bóveda>" --cierre --operacion <ID-final>` con el nuevo ID. El chequeo anterior no sirve para la edición final.
 
