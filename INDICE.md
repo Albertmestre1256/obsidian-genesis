@@ -7,21 +7,21 @@
 > - Líneas 54–57: Mapa de nodos
 > - Líneas 58–61: Catálogo completo de archivos
 > - Líneas 62–70: Ajustes de Obsidian
-> - Líneas 71–90: Ayuda
-> - Líneas 91–105: Desarrollo
-> - Líneas 106–128: Entrada y herramientas
-> - Líneas 129–134: Fichas y plantillas de proyecto
-> - Líneas 135–140: Guías de comunicación
-> - Líneas 141–149: Guías de redacción
-> - Líneas 150–162: Integración Claude
-> - Líneas 163–173: Integración OpenCode
-> - Líneas 174–183: Plantilla de carpetas
-> - Líneas 184–191: Plantillas de organización
-> - Líneas 192–200: Protocolos
-> - Líneas 201–209: Recursos opcionales de davidkimai
-> - Líneas 210–215: Reglas compartidas
-> - Líneas 216–223: Validación
-> - Líneas 224–232: Alcance del catálogo
+> - Líneas 71–93: Ayuda
+> - Líneas 94–108: Desarrollo
+> - Líneas 109–131: Entrada y herramientas
+> - Líneas 132–137: Fichas y plantillas de proyecto
+> - Líneas 138–143: Guías de comunicación
+> - Líneas 144–152: Guías de redacción
+> - Líneas 153–165: Integración Claude
+> - Líneas 166–176: Integración OpenCode
+> - Líneas 177–186: Plantilla de carpetas
+> - Líneas 187–194: Plantillas de organización
+> - Líneas 195–203: Protocolos
+> - Líneas 204–212: Recursos opcionales de davidkimai
+> - Líneas 213–218: Reglas compartidas
+> - Líneas 219–226: Validación
+> - Líneas 227–235: Alcance del catálogo
 
 # Índice principal de la bóveda
 
@@ -37,7 +37,7 @@ Podés agregar presentación y comentarios antes o después del bloque automáti
 
 ## Panorama
 
-- Archivos catalogados: 87. Proyectos propios identificados: 0. Ejemplos ficticios: 1.
+- Archivos catalogados: 90. Proyectos propios identificados: 0. Ejemplos ficticios: 1.
 - Configuración: todavía no existe una nota de configuración del kit.
 - El estado detallado y las tareas se leen en cada ficha; este catálogo no los reemplaza.
 
@@ -74,7 +74,6 @@ Cada fila enlaza un archivo. Las carpetas se representan mediante sus archivos; 
 |---|---|
 | [chatgpt.md](DOCS/chatgpt.md) | Empezar con ChatGPT |
 | [creacion-para-asistentes.md](DOCS/creacion-para-asistentes.md) | Crear los archivos de un proyecto |
-| [empezar-con-ia.md](DOCS/empezar-con-ia.md) | Darle la carpeta a una IA |
 | [indice-principal.md](DOCS/indice-principal.md) | Mantener el mapa general y los índices de nodos |
 | [instalacion-manual.md](DOCS/instalacion-manual.md) | Agregar el kit a una bóveda sin Python |
 | [mantenimiento.md](DOCS/mantenimiento.md) | Mantener notas, mapas y registro |
@@ -85,6 +84,10 @@ Cada fila enlaza un archivo. Las carpetas se representan mediante sus archivos; 
 | [prueba-con-usuarios.md](DOCS/prueba-con-usuarios.md) | Prueba del kit con personas nuevas |
 | [publicacion.md](DOCS/publicacion.md) | Preparar una publicación |
 | [QUICKSTART.md](DOCS/QUICKSTART.md) | Inicio rápido |
+| [README.de.md](DOCS/README.de.md) | Inhalt und Zweck der Kit-Dokumente und wann sie hilfreich sind. |
+| [README.en.md](DOCS/README.en.md) | What each kit document contains, what it does and when to consult it. |
+| [README.md](DOCS/README.md) | Qué contiene cada documento del kit, para qué sirve y cuándo consultarlo. |
+| [README.zh.md](DOCS/README.zh.md) | 各文档的内容、用途以及适合查阅的时机。 |
 | [TROUBLESHOOTING.md](DOCS/TROUBLESHOOTING.md) | Solución de problemas |
 | [usar-con-otras-ias.md](DOCS/usar-con-otras-ias.md) | Trabajar con una IA |
 

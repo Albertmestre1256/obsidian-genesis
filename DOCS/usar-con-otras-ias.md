@@ -13,7 +13,7 @@
 
 # Trabajar con una IA
 
-Para configurar la bóveda por primera vez, empezá por el [README](../README.md). Esta guía reúne el trabajo diario para cualquier IA; los comandos de Claude y OpenCode remiten a estas mismas secciones.
+Para configurar la bóveda por primera vez, seguí el [inicio rápido](QUICKSTART.md). Esta guía reúne el trabajo diario para cualquier IA; los comandos de Claude y OpenCode remiten a estas mismas secciones.
 
 ## Contexto y archivos
 

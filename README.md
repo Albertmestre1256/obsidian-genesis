@@ -1,18 +1,19 @@
 > **Crédito principal a [davidkimai](https://github.com/davidkimai):** este kit se basa en su trabajo [Context Engineering](https://github.com/davidkimai/Context-Engineering). Obsidian Genesis adapta ese trabajo para iniciar y organizar bóvedas de Obsidian con ayuda de una IA.
 > [!info]- Índice de esta nota (líneas)
 > - Líneas 1–1: Atribución
-> - Líneas 2–15: Este índice
-> - Líneas 17–18: Introducción
-> - Líneas 19–26: Obsidian Genesis: tu bóveda, configurada por una IA
-> - Líneas 27–48: Estado del proyecto — 16/10/2026
-> - Líneas 49–69: Empezar en tres pasos
-> - Líneas 70–75: Adjuntos o bóveda existente
-> - Líneas 76–83: Continuar
-> - Líneas 84–96: Qué contiene
-> - Líneas 97–105: Ayuda opcional
-> - Líneas 106–109: Privacidad
-> - Líneas 110–113: Licencia
-> - Líneas 114–116: Sobre el desarrollo
+> - Líneas 2–16: Este índice
+> - Líneas 18–19: Introducción
+> - Líneas 20–27: Obsidian Genesis: tu bóveda, configurada por una IA
+> - Líneas 28–51: Estado del proyecto — 16/10/2026
+> - Líneas 52–72: Empezar en tres pasos
+> - Líneas 73–78: Adjuntos o bóveda existente
+> - Líneas 79–86: Continuar
+> - Líneas 87–101: Qué contiene
+> - Líneas 102–110: Ayuda opcional
+> - Líneas 111–114: Privacidad
+> - Líneas 115–118: Licencia
+> - Líneas 119–122: Comunidad y soporte
+> - Líneas 123–125: Sobre el desarrollo
 
 **Idioma:** Español · [English](README.en.md) · [Deutsch](README.de.md) · [中文](README.zh.md)
 
@@ -40,11 +41,13 @@ El creador vuelve a comprobar el estado antes de guardar un proyecto y distingue
 
 El cierre muestra qué carpeta revisó; la guía usa su ruta explícita para distinguir la copia descargada de tu bóveda.
 
-Las últimas pruebas automáticas locales dieron **509 correctas y 1 omitida en cada versión, Python 3.8 y 3.13, en Windows**. En dos conversaciones de prueba con Claude Code y personas ficticias, la IA configuró la bóveda, pasó el cierre comprobado y, al retomar, siguió sin repetir preguntas; en una de ellas lo hizo desde una conversación nueva. Esas pruebas llevaron a dos ajustes, que todavía no se probaron en una conversación: el Panel ya no guarda una copia fija del próximo paso (queda en la ficha del proyecto) y los scripts ya no dejan carpetas técnicas `__pycache__` dentro de la bóveda. No son pruebas con principiantes reales.
+Los cambios recientes de código se comprobaron con pruebas focalizadas en Windows: **129 casos correctos para el inventario y los índices, y 25 correctos con 1 omitido para el instalador, por separado en Python 3.8 y 3.13**. Son comprobaciones de cambios concretos; no se volvió a ejecutar la suite completa sobre esta versión.
+
+En dos conversaciones de prueba con Claude Code y personas ficticias, la IA configuró la bóveda, pasó el cierre comprobado y, al retomar, siguió sin repetir preguntas; en una de ellas lo hizo desde una conversación nueva. Esas pruebas llevaron a dos ajustes, que todavía no se probaron en una conversación: el Panel ya no guarda una copia fija del próximo paso (queda en la ficha del proyecto) y los scripts ya no dejan carpetas técnicas `__pycache__` dentro de la bóveda. No son pruebas con principiantes reales.
 
 Faltan conversaciones completas en OpenCode y ChatGPT, pruebas con principiantes y las comprobaciones visuales restantes de Obsidian. Algunas interacciones ya se observaron en copias anteriores; eso no valida la presentación de todos los cambios actuales. Los cambios locales y la matriz remota de GitHub Actions siguen pendientes de publicación autorizada.
 
-También quedan por preparar Discussions y patrocinio. El README está en español, inglés, alemán y chino; las guías e instrucciones del kit siguen en español. La adaptación y optimización de bóvedas existentes será una fase posterior. [Historial de cambios](CHANGELOG.md) · [Cómo contribuir](CONTRIBUTING.md).
+Las discusiones de la comunidad están disponibles; el patrocinio sigue pendiente. El README y la guía de documentos están en español, inglés, alemán y chino; las instrucciones comunes del kit siguen en español. La adaptación y optimización de bóvedas existentes será una fase posterior. [Historial de cambios](CHANGELOG.md) · [Cómo contribuir](CONTRIBUTING.md).
 
 ## Empezar en tres pasos
 
@@ -69,7 +72,7 @@ También guarda un **inventario de personalización**: lo respondido, lo pendien
 
 ## Adjuntos o bóveda existente
 
-Un ZIP adjunto no da acceso a tu computadora. Si el chat genera archivos, puede devolverte una copia configurada para descargar. Si solo responde texto, queda pendiente guardarlo. La [guía de acceso](DOCS/empezar-con-ia.md) explica las opciones.
+Un ZIP adjunto no da acceso a tu computadora. Si el chat genera archivos, puede devolverte una copia configurada para descargar. Si solo responde texto, queda pendiente guardarlo. La [guía de acceso](DOCS/QUICKSTART.md) explica las opciones.
 
 Si ya tenés una bóveda, la integración actual es conservadora: la IA lee sus reglas, compara conflictos y conserva notas y ajustes. Reorganizar u optimizar automáticamente toda una bóveda existente todavía no está implementado; es la fase posterior mencionada arriba.
 
@@ -82,6 +85,8 @@ Para organizar más contenido, pedí **«Agregá un nodo para resúmenes de mis 
 Claude Code y OpenCode incluyen `/configurar`, `/empezar`, `/nuevo-proyecto`, `/redactar`, `/validar` y `/cerrar`. En Claude, crear otro proyecto y cerrar son de invocación manual. Los permisos dependen del asistente. Con adjuntos, compartí siempre las notas vigentes: no están sincronizadas.
 
 ## Qué contiene
+
+Para conocer la función de cada archivo y cuándo consultarlo, abrí la [guía de documentos y herramientas](DOCS/README.md).
 
 | Lugar | Uso |
 |---|---|
@@ -111,6 +116,10 @@ El kit guarda archivos locales y no instala sincronización. La IA procesa lo co
 
 [MIT](LICENSE), con los créditos de davidkimai y Albert Mestre. Adaptación independiente de Context Engineering, sin afiliación al proyecto original.
 
+## Comunidad y soporte
+
+Para dudas, ideas y experiencias, usá las [discusiones de la comunidad](https://github.com/Albertmestre1256/obsidian-genesis/discussions). Si algo falla, abrí un [reporte de error](https://github.com/Albertmestre1256/obsidian-genesis/issues) con la plantilla «No me funciona» y un ejemplo ficticio pequeño. [Cómo contribuir](CONTRIBUTING.md).
+
 ## Sobre el desarrollo
 
-Albert Mestre desarrolla esta adaptación con ayuda de asistentes de IA para programación, documentación y pruebas. Las propuestas se revisan y los resultados se verifican antes de integrarlos; el uso de IA no sustituye las pruebas con personas ni acredita por sí solo que el kit sea fácil de usar.
+Albert Mestre desarrolla esta adaptación con contribuciones importantes de **OpenCode, Claude y Codex (OpenAI)**, que ayudaron a construir una parte sustancial del código y apoyaron la documentación y las pruebas. Se los reconoce aquí como herramientas de IA contribuidoras al proyecto. Las propuestas se revisan y los resultados se verifican antes de integrarlos; el uso de IA no sustituye las pruebas con personas ni acredita por sí solo que el kit sea fácil de usar.

@@ -1,18 +1,19 @@
 > **Besonderer Dank an [davidkimai](https://github.com/davidkimai):** Dieses Kit basiert auf dessen Arbeit [Context Engineering](https://github.com/davidkimai/Context-Engineering). Obsidian Genesis passt diese Arbeit an, um Obsidian-Vaults mit Hilfe einer KI einzurichten und zu organisieren.
 > [!info]- Índice de esta nota (líneas)
 > - Líneas 1–1: Atribución
-> - Líneas 2–15: Este índice
-> - Líneas 17–18: Introducción
-> - Líneas 19–26: Obsidian Genesis: dein Vault, eingerichtet von einer KI
-> - Líneas 27–48: Projektstand — 16. Oktober 2026
-> - Líneas 49–69: In drei Schritten starten
-> - Líneas 70–75: Anhänge oder ein bestehender Vault
-> - Líneas 76–83: Fortsetzen
-> - Líneas 84–96: Was es enthält
-> - Líneas 97–107: Optionale Hilfe
-> - Líneas 108–111: Datenschutz
-> - Líneas 112–115: Lizenz
-> - Líneas 116–118: Über die Entwicklung
+> - Líneas 2–16: Este índice
+> - Líneas 18–19: Introducción
+> - Líneas 20–27: Obsidian Genesis: dein Vault, eingerichtet von einer KI
+> - Líneas 28–51: Projektstand — 16. Oktober 2026
+> - Líneas 52–72: In drei Schritten starten
+> - Líneas 73–78: Anhänge oder ein bestehender Vault
+> - Líneas 79–86: Fortsetzen
+> - Líneas 87–101: Was es enthält
+> - Líneas 102–112: Optionale Hilfe
+> - Líneas 113–116: Datenschutz
+> - Líneas 117–120: Lizenz
+> - Líneas 121–124: Community und Hilfe
+> - Líneas 125–127: Über die Entwicklung
 
 **Sprache:** [Español](README.md) · [English](README.en.md) · Deutsch · [中文](README.zh.md)
 
@@ -40,11 +41,13 @@ Der Projektersteller prüft den Zustand erneut, bevor er ein Projekt speichert, 
 
 Die Abschlussprüfung zeigt, welchen Ordner sie geprüft hat; die Anleitung verwendet dessen ausdrücklichen Pfad, um die heruntergeladene Kopie von deinem Vault zu unterscheiden.
 
-Die letzten lokalen automatischen Tests ergaben **509 bestanden und 1 übersprungen in jeder Version, Python 3.8 und 3.13, unter Windows**. In zwei Testgesprächen mit Claude Code und fiktiven Personen richtete die KI den Vault ein, bestand die geprüfte Abschlusskontrolle und setzte beim Fortsetzen ohne wiederholte Fragen fort; in einem der beiden geschah das aus einem neuen Gespräch heraus. Aus diesen Tests entstanden zwei Anpassungen, die noch nicht in einem Gespräch getestet wurden: Das Panel speichert keine feste Kopie des nächsten Schritts mehr (er bleibt in der Projektkarte), und die Skripte hinterlassen keine technischen `__pycache__`-Ordner mehr im Vault. Das sind keine Tests mit echten Einsteigenden.
+Die jüngsten Codeänderungen wurden unter Windows gezielt geprüft: **129 bestandene Fälle für Profilinventar und Indizes sowie 25 bestandene und 1 übersprungener Fall für die Installation, jeweils unter Python 3.8 und 3.13**. Diese Ergebnisse gelten für konkrete Änderungen; die vollständige Testsammlung wurde für diese Version nicht erneut ausgeführt.
+
+In zwei Testgesprächen mit Claude Code und fiktiven Personen richtete die KI den Vault ein, bestand die geprüfte Abschlusskontrolle und setzte beim Fortsetzen ohne wiederholte Fragen fort; in einem der beiden geschah das aus einem neuen Gespräch heraus. Aus diesen Tests entstanden zwei Anpassungen, die noch nicht in einem Gespräch getestet wurden: Das Panel speichert keine feste Kopie des nächsten Schritts mehr (er bleibt in der Projektkarte), und die Skripte hinterlassen keine technischen `__pycache__`-Ordner mehr im Vault. Das sind keine Tests mit echten Einsteigenden.
 
 Es fehlen noch vollständige Gespräche in OpenCode und ChatGPT, Tests mit Einsteigenden und die restlichen visuellen Prüfungen in Obsidian. Einige Interaktionen wurden bereits in früheren Kopien beobachtet; das bestätigt nicht die Darstellung aller aktuellen Änderungen. Die lokalen Änderungen und die entfernte GitHub-Actions-Matrix warten noch auf eine autorisierte Veröffentlichung.
 
-Discussions und Sponsoring sind noch vorzubereiten. Bestehende Vaults anzupassen und zu optimieren ist eine spätere Phase. [Änderungsprotokoll](CHANGELOG.md) · [Mitwirken](CONTRIBUTING.md) (beide auf Spanisch).
+Die Community-Diskussionen sind verfügbar; Sponsoring ist noch offen. README und Dokumentenwegweiser sind auf Spanisch, Englisch, Deutsch und Chinesisch verfügbar; die gemeinsamen Anleitungen bleiben auf Spanisch. Bestehende Vaults anzupassen und zu optimieren ist eine spätere Phase. [Änderungsprotokoll](CHANGELOG.md) · [Mitwirken](CONTRIBUTING.md) (beide auf Spanisch).
 
 ## In drei Schritten starten
 
@@ -69,7 +72,7 @@ Sie führt außerdem ein **Personalisierungsinventar**: was du beantwortet hast,
 
 ## Anhänge oder ein bestehender Vault
 
-Ein angehängtes ZIP gibt keinen Zugriff auf deinen Computer. Wenn der Chat Dateien erzeugen kann, kann er dir eine eingerichtete Kopie zum Herunterladen zurückgeben. Wenn er nur mit Text antwortet, bleibt das Speichern offen. Die [Zugangsanleitung](DOCS/empezar-con-ia.md) erklärt die Möglichkeiten.
+Ein angehängtes ZIP gibt keinen Zugriff auf deinen Computer. Wenn der Chat Dateien erzeugen kann, kann er dir eine eingerichtete Kopie zum Herunterladen zurückgeben. Wenn er nur mit Text antwortet, bleibt das Speichern offen. Die [Zugangsanleitung](DOCS/QUICKSTART.md) erklärt die Möglichkeiten.
 
 Wenn du bereits einen Vault hast, ist die aktuelle Integration zurückhaltend: Die KI liest seine Regeln, vergleicht Konflikte und bewahrt Notizen und Einstellungen. Einen ganzen bestehenden Vault automatisch umzuorganisieren oder zu optimieren ist noch nicht umgesetzt; das ist die oben erwähnte spätere Phase.
 
@@ -82,6 +85,8 @@ Um mehr Inhalte zu organisieren, bitte **„Füge einen Knoten für Zusammenfass
 Claude Code und OpenCode enthalten `/configurar`, `/empezar`, `/nuevo-proyecto`, `/redactar`, `/validar` und `/cerrar`. In Claude werden das Anlegen eines weiteren Projekts und der Abschluss manuell aufgerufen. Die Berechtigungen hängen vom Assistenten ab. Teile bei Anhängen immer die aktuellen Notizen: Sie werden nicht synchronisiert.
 
 ## Was es enthält
+
+Was die einzelnen Dateien tun und wann sie hilfreich sind, erklärt der [Wegweiser zu Dokumenten und Werkzeugen](DOCS/README.de.md).
 
 | Ort | Zweck |
 |---|---|
@@ -113,6 +118,10 @@ Das Kit speichert lokale Dateien und installiert keine Synchronisierung. Die KI 
 
 [MIT](LICENSE), mit Nennung von davidkimai und Albert Mestre. Unabhängige Adaption von Context Engineering, ohne Verbindung zum ursprünglichen Projekt.
 
+## Community und Hilfe
+
+Für Fragen, Ideen und Erfahrungen gibt es die [Community-Diskussionen](https://github.com/Albertmestre1256/obsidian-genesis/discussions). Wenn etwas nicht funktioniert, erstelle einen [Fehlerbericht](https://github.com/Albertmestre1256/obsidian-genesis/issues) mit der Vorlage „No me funciona“ und einem kleinen Beispiel mit fiktiven Daten. [Mitwirken](CONTRIBUTING.md) (auf Spanisch).
+
 ## Über die Entwicklung
 
-Albert Mestre entwickelt diese Adaption mit Hilfe von KI-Assistenten für Programmierung, Dokumentation und Tests. Vorschläge werden geprüft und Ergebnisse vor der Integration verifiziert; der Einsatz von KI ersetzt keine Tests mit Menschen und belegt für sich allein nicht, dass das Kit einfach zu benutzen ist.
+Albert Mestre entwickelt diese Adaption mit wesentlichen Beiträgen von **OpenCode, Claude und Codex (OpenAI)**. Diese KI-Werkzeuge halfen, einen wichtigen Teil des Codes zu erstellen, und unterstützten Dokumentation und Tests; sie werden hier als Mitwirkende gewürdigt. Vorschläge werden geprüft und Ergebnisse vor der Integration verifiziert; der Einsatz von KI ersetzt keine Tests mit Menschen und belegt für sich allein nicht, dass das Kit einfach zu benutzen ist.

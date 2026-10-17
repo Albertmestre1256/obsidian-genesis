@@ -5,11 +5,12 @@ descripcion: Inventario de datos aportados, pendientes u omitidos para personali
 ---
 > [!info]- Índice de esta nota (líneas)
 > - Líneas 1–5: Propiedades
-> - Líneas 6–12: Este índice
-> - Líneas 14–17: Personalizar la bóveda y retomar lo que falta
-> - Líneas 18–41: Qué conocer
-> - Líneas 42–65: Inventario persistente
-> - Líneas 66–74: Preguntar, omitir y volver
+> - Líneas 6–13: Este índice
+> - Líneas 15–18: Personalizar la bóveda y retomar lo que falta
+> - Líneas 19–42: Qué conocer
+> - Líneas 43–66: Inventario persistente
+> - Líneas 67–74: Conservar documentos aportados
+> - Líneas 75–83: Preguntar, omitir y volver
 
 # Personalizar la bóveda y retomar lo que falta
 
@@ -62,6 +63,14 @@ Estados independientes:
 - `verificacion_visual`: prueba en Obsidian, independiente del inventario.
 
 Una bóveda puede estar `lista` con personalización `abierta`. Recalculá el estado al guardar respuestas y enlazá esta sección desde el Panel, sin duplicar la tabla.
+
+## Conservar documentos aportados
+
+Si el usuario pide incorporar un CV, apuntes u otro documento, conservá primero el original en `01_FUENTES/` del nodo acordado. Si ya existe allí, enlazalo sin duplicarlo ni sustituirlo; una versión distinta se agrega con otro nombre, sin pisar la anterior. Respetá el alcance y los datos que pidió no guardar. Si el destino no está claro, acordalo antes de escribir.
+
+Para un adjunto, conservá sus bytes sin alterarlos. Para texto pegado, creá una fuente con transcripción fiel y distinguí sus metadatos del contenido aportado. Después, el inventario enlaza esa fuente; la ficha guarda solo el contexto pertinente y su referencia. Un resumen no reemplaza al documento original ni convierte lo declarado en un hecho verificado. Conservá explícitamente si el material es ficticio o una propuesta de la IA.
+
+Si solo aporta una URL y no podés leerla, guardá la referencia como contenido pendiente de capturar, sin afirmar que conservaste o analizaste el artículo. Una exportación de conversación también es un original: seguí [Mantenimiento](../../DOCS/mantenimiento.md) sin reescribir la transcripción.
 
 ## Preguntar, omitir y volver
 

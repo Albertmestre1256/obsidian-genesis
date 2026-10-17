@@ -1,10 +1,20 @@
 > [!info]- Índice de esta nota (líneas)
-> - Líneas 1–3: Este índice
-> - Líneas 5–24: Contribuir
+> - Líneas 1–5: Este índice
+> - Líneas 7–10: Contribuir
+> - Líneas 11–14: Dónde pedir ayuda
+> - Líneas 15–34: Comprobar cambios
 
 # Contribuir
 
 Probá los cambios en una copia de la bóveda. Conservá la separación entre fuentes, síntesis y entregables, los créditos y la compatibilidad con Python 3.8 o posterior.
+
+## Dónde pedir ayuda
+
+Usá [Discussions](https://github.com/Albertmestre1256/obsidian-genesis/discussions) para preguntar cómo empezar, compartir experiencias o proponer mejoras. Para un fallo reproducible, abrí una [issue](https://github.com/Albertmestre1256/obsidian-genesis/issues) con la plantilla «No me funciona»: explicá en qué paso ocurrió y usá un ejemplo ficticio pequeño. No hace falta compartir tu bóveda personal. También podés contribuir probando el inicio o mejorando las traducciones.
+
+## Comprobar cambios
+
+Para documentación, revisá el contenido, los enlaces y los índices de los archivos modificados. Para código, ejecutá los casos afectados; reservá la suite completa para cambios transversales o una entrega.
 
 Para ejecutar las pruebas:
 

@@ -254,38 +254,20 @@ def _parsear_fila_tabla(linea):
     linea = linea.strip()
     if not linea.startswith('|') or not linea.endswith('|'):
         return None
-    contenido = linea[1:-1]
-    celdas = []
-    actual = []
-    i = 0
-    while i < len(contenido):
-        if contenido[i] == '\\':
-            cuenta = 0
-            while i + cuenta < len(contenido) and contenido[i + cuenta] == '\\':
-                cuenta += 1
-            if i + cuenta < len(contenido) and contenido[i + cuenta] == '|':
-                if cuenta % 2 == 1:
-                    actual.append('\\' * (cuenta // 2))
-                    actual.append('|')
-                    i += cuenta + 1
-                    continue
-                else:
-                    actual.append('\\' * (cuenta // 2))
-                    i += cuenta
-                    continue
-            else:
-                actual.append('\\' * cuenta)
-                i += cuenta
-                continue
-        elif contenido[i] == '|':
-            celdas.append(''.join(actual))
-            actual = []
-            i += 1
+    contenido, inicio = linea[1:-1], 0
+    celdas, actual = [], []
+    for barra in re.finditer(r'(\\*)\|', contenido):
+        cuenta = len(barra[1])
+        actual.extend((contenido[inicio:barra.start()], '\\' * (cuenta // 2)))
+        if cuenta % 2:
+            actual.append('|')
         else:
-            actual.append(contenido[i])
-            i += 1
-    celdas.append(''.join(actual))
-    return [c.strip() for c in celdas]
+            celdas.append(''.join(actual).strip())
+            actual = []
+        inicio = barra.end()
+    actual.append(contenido[inicio:])
+    celdas.append(''.join(actual).strip())
+    return celdas
 
 
 def _es_cabecera_inventario(celdas):
@@ -393,38 +375,24 @@ def _extraer_seccion_inventario(cuerpo):
 
 def _validar_tabla_inventario(lineas_inventario):
     """Valida estructura, estados, alcances y duplicados sin escribir."""
-    errores = []
-    filas_datos = []
     if not lineas_inventario:
-        errores.append('El inventario de personalización: falta la tabla (cabecera, separador y filas).')
-        return errores, filas_datos
-    idx_tabla = None
-    for i, linea in enumerate(lineas_inventario):
-        if linea.strip().startswith('|'):
-            idx_tabla = i
-            break
+        return ['El inventario de personalización: falta la tabla (cabecera, separador y filas).'], []
+    idx_tabla = next((i for i, linea in enumerate(lineas_inventario) if linea.strip().startswith('|')), None)
     if idx_tabla is None:
-        errores.append('El inventario de personalización: no se encuentra tabla markdown.')
-        return errores, filas_datos
+        return ['El inventario de personalización: no se encuentra tabla markdown.'], []
     if idx_tabla + 2 >= len(lineas_inventario):
-        errores.append('El inventario de personalización: tabla incompleta (falta separador o filas de datos).')
-        return errores, filas_datos
+        return ['El inventario de personalización: tabla incompleta (falta separador o filas de datos).'], []
     cabecera = _parsear_fila_tabla(lineas_inventario[idx_tabla])
     if cabecera is None:
-        errores.append('El inventario de personalización: la cabecera no es una fila de tabla válida.')
-        return errores, filas_datos
+        return ['El inventario de personalización: la cabecera no es una fila de tabla válida.'], []
     if not _es_cabecera_inventario(cabecera):
-        errores.append('El inventario de personalización: la cabecera no coincide con la canónica (Ítem | Alcance | Estado | Dato o referencia | Origen y fecha | Para retomar).')
-        return errores, filas_datos
+        return ['El inventario de personalización: la cabecera no coincide con la canónica (Ítem | Alcance | Estado | Dato o referencia | Origen y fecha | Para retomar).'], []
     separador = _parsear_fila_tabla(lineas_inventario[idx_tabla + 1])
     if separador is None:
-        errores.append('El inventario de personalización: falta el separador markdown tras la cabecera.')
-        return errores, filas_datos
+        return ['El inventario de personalización: falta el separador markdown tras la cabecera.'], []
     if not _es_separador_valido(separador):
-        errores.append('El inventario de personalización: el separador debe tener 6 columnas (formato |---|---|---|---|---|---|).')
-        return errores, filas_datos
-    vistas = set()  # para detectar duplicados (item + alcance)
-    tiene_filas = False
+        return ['El inventario de personalización: el separador debe tener 6 columnas (formato |---|---|---|---|---|---|).'], []
+    errores, filas_datos, vistas = [], [], set()
     for i in range(idx_tabla + 2, len(lineas_inventario)):
         linea = lineas_inventario[i].strip()
         if not linea:
@@ -461,8 +429,7 @@ def _validar_tabla_inventario(lineas_inventario):
             'origen': origen.strip(),
             'retomar': retomar.strip()
         })
-        tiene_filas = True
-    if not tiene_filas:
+    if not filas_datos:
         errores.append('El inventario de personalización: no hay filas de datos (se requiere al menos una).')
     return errores, filas_datos
 

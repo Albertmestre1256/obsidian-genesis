@@ -1,20 +1,60 @@
 > [!info]- Índice de esta nota (líneas)
-> - Líneas 1–15: Este índice
-> - Líneas 17–18: Cambios
-> - Líneas 19–22: 16/10/2026 — abrir la bóveda en Obsidian no desactualiza el índice
-> - Líneas 23–26: 16/10/2026 — instalar desde un kit abierto con OpenCode
-> - Líneas 27–30: 16/10/2026 — README en cuatro idiomas
-> - Líneas 31–34: 16/10/2026 — sin carpetas __pycache__ en la bóveda
-> - Líneas 35–38: 15/10/2026 — próximo paso solo en la ficha
-> - Líneas 39–42: 15/10/2026 — destino visible al comprobar el cierre
-> - Líneas 43–46: 15/10/2026 — conservar cambios posteriores al plan
-> - Líneas 47–50: 15/10/2026 — cierre coherente con el proyecto inicial
-> - Líneas 51–54: 14/10/2026 — operación visible coherente con el registro
-> - Líneas 55–58: 14/10/2026 — inventario de perfil plegable
-> - Líneas 59–62: 13/10/2026 — índices de proyectos con nombres propios
-> - Líneas 63–84: Sin publicar — candidata a v0.1.0
+> - Líneas 1–23: Este índice
+> - Líneas 25–26: Cambios
+> - Líneas 27–30: 17/10/2026 — menos repetición al validar el inventario
+> - Líneas 31–34: 17/10/2026 — inicio y acceso en una sola guía
+> - Líneas 35–38: 17/10/2026 — entradas de IA más concisas
+> - Líneas 39–42: 17/10/2026 — vista simple inicial de bóvedas nuevas
+> - Líneas 43–46: 17/10/2026 — originales conservados y mantenimiento acotado
+> - Líneas 47–50: 16/10/2026 — guía de los documentos en cuatro idiomas
+> - Líneas 51–54: 16/10/2026 — simplificación de herramientas Python
+> - Líneas 55–58: 16/10/2026 — comunidad y soporte accesibles desde los README
+> - Líneas 59–62: 16/10/2026 — abrir la bóveda en Obsidian no desactualiza el índice
+> - Líneas 63–66: 16/10/2026 — instalar desde un kit abierto con OpenCode
+> - Líneas 67–70: 16/10/2026 — README en cuatro idiomas
+> - Líneas 71–74: 16/10/2026 — sin carpetas __pycache__ en la bóveda
+> - Líneas 75–78: 15/10/2026 — próximo paso solo en la ficha
+> - Líneas 79–82: 15/10/2026 — destino visible al comprobar el cierre
+> - Líneas 83–86: 15/10/2026 — conservar cambios posteriores al plan
+> - Líneas 87–90: 15/10/2026 — cierre coherente con el proyecto inicial
+> - Líneas 91–94: 14/10/2026 — operación visible coherente con el registro
+> - Líneas 95–98: 14/10/2026 — inventario de perfil plegable
+> - Líneas 99–102: 13/10/2026 — índices de proyectos con nombres propios
+> - Líneas 103–124: Sin publicar — candidata a v0.1.0
 
 # Cambios
+
+## 17/10/2026 — menos repetición al validar el inventario
+
+El validador devuelve directamente los errores de estructura y usa la lista de filas para detectar un inventario sin datos, sin una bandera paralela. Conserva los mensajes y los controles de formato, estados, alcances y duplicados; no añade funciones, dependencias ni archivos.
+
+## 17/10/2026 — inicio y acceso en una sola guía
+
+QUICKSTART reúne el pedido inicial, el acceso local o por copia, la integración de notas existentes y la reanudación. Se retira empezar-con-ia.md y se actualizan sus enlaces en Panel, README y ayudas; las guías específicas de cada cliente permanecen disponibles.
+
+## 17/10/2026 — entradas de IA más concisas
+
+Las entradas remiten a los recorridos existentes sin repetir sus procedimientos. Se conservan el índice completo de inicio, las reglas, la configuración parcial, el inventario y el mantenimiento identificado. La documentación específica se consulta según el pedido; no se añaden archivos al kit ni se cambia el código de las herramientas.
+
+## 17/10/2026 — vista simple inicial de bóvedas nuevas
+
+La carpeta nueva lleva activado un fragmento CSS para despejar el explorador y un filtro del gráfico que prioriza proyectos, fichas y notas frente al soporte técnico. Los archivos siguen accesibles y no cambian sus rutas. La IA conserva los ajustes preparados en la entrega, sin pedir pasos técnicos al principiante. Se reutiliza la vista confirmada por Albert en una copia local; no se acredita una revisión visual formal de este candidato. El instalador de bóvedas existentes conserva sus preferencias y no aplica todavía esta vista.
+
+## 17/10/2026 — originales conservados y mantenimiento acotado
+
+La guía de personalización explicita conservar el documento original antes de resumirlo y enlazarlo desde el inventario y el contexto; mantiene su origen y carácter ficticio cuando corresponda. El cierre recomienda índices de líneas solo sobre notas afectadas, sin imponer un barrido de la bóveda. Las exportaciones de conversaciones conservan su formato y requieren un destino acordado; si un original fuera de las carpetas protegidas impide el cierre, se informa sin reescribirlo. Es una aclaración de las instrucciones: no cambia el validador, no migra documentos existentes ni acredita una nueva prueba conversacional.
+
+## 16/10/2026 — guía de los documentos en cuatro idiomas
+
+DOCS/README.md y sus versiones en inglés, alemán y chino explican la función de los documentos, integraciones, ajustes, scripts y pruebas. Incluyen un índice de secciones y enlaces a los cuatro README principales y entre sus idiomas. Cada README principal enlaza su guía. Los archivos creados durante el uso se distinguen de los distribuidos; no se duplican las instrucciones comunes ni se cambian las reglas de inicio. Al instalar en otra bóveda, las cuatro guías del repositorio permanecen en el kit fuente para evitar enlaces a README y pruebas ausentes; la copia manual sigue el mismo criterio. La ayuda de uso remite a un inicio rápido disponible también en la bóveda instalada, sin depender del README del repositorio. Los cuatro README distinguen los resultados focales recientes de una suite completa que no se volvió a ejecutar sobre esta versión. La declaración final reconoce a OpenCode, Claude y Codex (OpenAI) por su aporte sustancial al código, sin alterar los créditos originales. Las rutas de archivos futuros se muestran como plantillas con identificador reemplazable, sin confundirlas con archivos distribuidos.
+
+## 16/10/2026 — simplificación de herramientas Python
+
+El lector de filas del inventario mantiene barras escapadas y columnas vacías con menos código. El actualizador reutiliza la jerarquía de nodos ya calculada, sin cambiar el contenido de los índices. Se quitaron cinco importaciones repetidas de las pruebas y se añadieron cuatro casos de escapes. Se conservan las seis herramientas, los formatos y los controles de conservación y concurrencia.
+
+## 16/10/2026 — comunidad y soporte accesibles desde los README
+
+Los cuatro README enlazan las discusiones de la comunidad ya habilitadas y los reportes de errores. CONTRIBUTING distingue dudas, propuestas y fallos, reutiliza la plantilla existente y pide comprobaciones proporcionales al cambio. El patrocinio sigue pendiente; no se habilitaron servicios ni se añadieron enlaces de cobro.
 
 ## 16/10/2026 — abrir la bóveda en Obsidian no desactualiza el índice
 

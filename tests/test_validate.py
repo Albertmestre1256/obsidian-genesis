@@ -880,8 +880,6 @@ def test_cierre_etiqueta_editada_despues_del_registro_no_elude_hash(validador, b
 """Contrato independiente: presentación sin perder filas o validar ejemplos."""
 import importlib.util
 import os
-from pathlib import Path
-import pytest
 
 _PERFIL_DEFAULT = Path(__file__).resolve().parents[1]/'00_CORE/schemas/validate.py'
 _PERFIL_HEADER = '| Ítem | Alcance | Estado | Dato o referencia | Origen y fecha | Para retomar |\n|---|---|---|---|---|---|\n'
@@ -980,9 +978,6 @@ def test_perfil_plantilla_actual_se_instancia_sin_perder_filas(perfil_validador,
 
 
 """Dos tablas en el mismo bloque no deben permitir aceptar solo la primera."""
-import importlib.util
-from pathlib import Path
-import pytest
 
 
 @pytest.mark.parametrize('between',['Detalle después de la tabla.','[!info]- Otro inventario'])
@@ -1375,3 +1370,13 @@ def test_cierre_cells_relativa_ajena_no_se_confunde_con_boveda(validador,boveda_
     assert result.returncode == 1 and 'CIERRE VERIFICADO' not in result.stdout
     assert _raiz_cierre_mostrada(other) in result.stdout.splitlines()
     assert foto_cierre(tmp_path) == before
+
+
+@pytest.mark.parametrize('fila,esperado', [
+    (r'| A\|B | fin |', ['A|B', 'fin']),
+    (r'| A\\|B |', ['A\\', 'B']),
+    (r'| A\\\|B |', [r'A\|B']),
+    (r'| ruta\nota | |', [r'ruta\nota', '']),
+])
+def test_fila_inventario_conserva_barras_y_columnas(validador, fila, esperado):
+    assert validador._parsear_fila_tabla(fila) == esperado

@@ -33,7 +33,7 @@ def test_rutas_citadas_existen():
 def test_archivos_esenciales():
     for ruta in ["LICENSE", "README.md", "INDICE.md", "actualizar_indice.py", "DOCS/indice-principal.md", "AI-INSTRUCTIONS.md", "AGENTS.md", "CLAUDE.md",
                  "00_CORE/protocols/configurar-vault.md", ".claude/skills/configurar/SKILL.md",
-                 "DOCS/empezar-con-ia.md", "DOCS/creacion-para-asistentes.md", "crear_proyecto.py",
+                 "DOCS/QUICKSTART.md", "DOCS/creacion-para-asistentes.md", "crear_proyecto.py",
                  ".opencode/commands/configurar.md", "DOCS/opencode.md", "DOCS/chatgpt.md",
                  "00_CORE/atoms/00_vault-rules.md", "00_CORE/templates/TEMPLATE_cell.md",
                  "00_CORE/cells/ejemplo-context.md", "00_CORE/schemas/validate.py",
@@ -81,6 +81,11 @@ def test_enlaces_markdown_locales():
 def test_configuraciones_json_validas():
     for archivo in list((RAIZ / ".obsidian").glob("*.json")) + list((RAIZ / ".claude").glob("*.json")):
         json.loads(archivo.read_text(encoding="utf-8"))
+    apariencia = json.loads((RAIZ / '.obsidian/appearance.json').read_text(encoding='utf-8'))
+    assert set(apariencia) == {'enabledCssSnippets'}  # no distribuir preferencias personales
+    assert 'genesis-vista-simple' in apariencia['enabledCssSnippets']
+    for nombre in apariencia['enabledCssSnippets']:
+        assert (RAIZ / '.obsidian/snippets' / (nombre + '.css')).is_file()
 
 
 def test_selector_plantillas_no_incluye_fichas_existentes():
@@ -94,12 +99,23 @@ def test_selector_plantillas_no_incluye_fichas_existentes():
     assert not (RAIZ/'00_CORE/cells/TEMPLATE_cell.md').exists()
 
 
-def test_grafo_nativo_activo_sin_ocultar_notas_del_usuario():
+def test_grafo_nativo_prioriza_notas_del_usuario():
     assert 'graph' in json.loads((RAIZ / '.obsidian/core-plugins.json').read_text(encoding='utf-8'))
     config = json.loads((RAIZ / '.obsidian/graph.json').read_text(encoding='utf-8'))
-    assert config['search'] == '' and config['showOrphans'] is True
+    assert config['showOrphans'] is True
     assert config['hideUnresolved'] is True and config['showAttachments'] is False
     assert (RAIZ / 'LEER_PRIMERO.md').is_file()
+    terminos = config['search'].split()
+    assert terminos and all(t.startswith('-path:/') and t.endswith('/') for t in terminos)
+    filtros = [re.compile(t[7:-1]) for t in terminos]
+    for ruta in ['Panel.md', 'INDICE.md', 'Viaje/02_SINTESIS/itinerario.md',
+                 'Viaje/01_FUENTES/reserva.md', 'Viaje/README-del-curso.md',
+                 '00_CORE/cells/viaje-context.md', 'Viaje/DOCS/apuntes.md']:
+        assert not any(f.search(ruta) for f in filtros), ruta
+    for ruta in ['DOCS/obsidian.md', 'PROJECT_TEMPLATE/02_SINTESIS/README.md',
+                 'tests/test_kit.py', '00_CORE/templates/TEMPLATE_cell.md',
+                 '00_CORE/atoms/00_vault-rules.md', 'README.de.md', 'AGENTS.md']:
+        assert any(f.search(ruta) for f in filtros), ruta
 
 
 def test_textos_sin_caracteres_de_control():
