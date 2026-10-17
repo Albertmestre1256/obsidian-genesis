@@ -1,25 +1,30 @@
 > [!info]- Índice de esta nota (líneas)
-> - Líneas 1–20: Este índice
-> - Líneas 22–23: Cambios
-> - Líneas 24–27: 17/10/2026 — vista simple inicial de bóvedas nuevas
-> - Líneas 28–31: 17/10/2026 — originales conservados y mantenimiento acotado
-> - Líneas 32–35: 16/10/2026 — guía de los documentos en cuatro idiomas
-> - Líneas 36–39: 16/10/2026 — simplificación de herramientas Python
-> - Líneas 40–43: 16/10/2026 — comunidad y soporte accesibles desde los README
-> - Líneas 44–47: 16/10/2026 — abrir la bóveda en Obsidian no desactualiza el índice
-> - Líneas 48–51: 16/10/2026 — instalar desde un kit abierto con OpenCode
-> - Líneas 52–55: 16/10/2026 — README en cuatro idiomas
-> - Líneas 56–59: 16/10/2026 — sin carpetas __pycache__ en la bóveda
-> - Líneas 60–63: 15/10/2026 — próximo paso solo en la ficha
-> - Líneas 64–67: 15/10/2026 — destino visible al comprobar el cierre
-> - Líneas 68–71: 15/10/2026 — conservar cambios posteriores al plan
-> - Líneas 72–75: 15/10/2026 — cierre coherente con el proyecto inicial
-> - Líneas 76–79: 14/10/2026 — operación visible coherente con el registro
-> - Líneas 80–83: 14/10/2026 — inventario de perfil plegable
-> - Líneas 84–87: 13/10/2026 — índices de proyectos con nombres propios
-> - Líneas 88–109: Sin publicar — candidata a v0.1.0
+> - Líneas 1–21: Este índice
+> - Líneas 23–24: Cambios
+> - Líneas 25–28: 17/10/2026 — entradas de IA más concisas
+> - Líneas 29–32: 17/10/2026 — vista simple inicial de bóvedas nuevas
+> - Líneas 33–36: 17/10/2026 — originales conservados y mantenimiento acotado
+> - Líneas 37–40: 16/10/2026 — guía de los documentos en cuatro idiomas
+> - Líneas 41–44: 16/10/2026 — simplificación de herramientas Python
+> - Líneas 45–48: 16/10/2026 — comunidad y soporte accesibles desde los README
+> - Líneas 49–52: 16/10/2026 — abrir la bóveda en Obsidian no desactualiza el índice
+> - Líneas 53–56: 16/10/2026 — instalar desde un kit abierto con OpenCode
+> - Líneas 57–60: 16/10/2026 — README en cuatro idiomas
+> - Líneas 61–64: 16/10/2026 — sin carpetas __pycache__ en la bóveda
+> - Líneas 65–68: 15/10/2026 — próximo paso solo en la ficha
+> - Líneas 69–72: 15/10/2026 — destino visible al comprobar el cierre
+> - Líneas 73–76: 15/10/2026 — conservar cambios posteriores al plan
+> - Líneas 77–80: 15/10/2026 — cierre coherente con el proyecto inicial
+> - Líneas 81–84: 14/10/2026 — operación visible coherente con el registro
+> - Líneas 85–88: 14/10/2026 — inventario de perfil plegable
+> - Líneas 89–92: 13/10/2026 — índices de proyectos con nombres propios
+> - Líneas 93–114: Sin publicar — candidata a v0.1.0
 
 # Cambios
+
+## 17/10/2026 — entradas de IA más concisas
+
+Las entradas remiten a los recorridos existentes sin repetir sus procedimientos. Se conservan el índice completo de inicio, las reglas, la configuración parcial, el inventario y el mantenimiento identificado. La documentación específica se consulta según el pedido; no se añaden archivos al kit ni se cambia el código de las herramientas.
 
 ## 17/10/2026 — vista simple inicial de bóvedas nuevas
 
