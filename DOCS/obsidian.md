@@ -3,9 +3,9 @@
 > - Líneas 10–13: Plantillas y panel
 > - Líneas 14–17: Abrir la bóveda preparada
 > - Líneas 18–25: Vista simple de una bóveda nueva
-> - Líneas 26–35: En una bóveda existente
-> - Líneas 36–41: Qué muestra el Panel
-> - Líneas 42–52: Ver las conexiones
+> - Líneas 26–48: En una bóveda existente
+> - Líneas 49–54: Qué muestra el Panel
+> - Líneas 55–65: Ver las conexiones
 
 # Plantillas y panel
 
@@ -29,7 +29,20 @@ El instalador conserva `.obsidian/`. Para usar estas funciones, activá Plantill
 
 Si querés el gráfico en una bóveda existente, activá también **Vista de gráfico**. La IA conserva tus ajustes; no reemplaza `.obsidian/` por los del kit.
 
-La vista simple anterior es el valor inicial de una carpeta nueva. El instalador actual no copia esos ajustes a una bóveda existente; no sustituyas su `appearance.json` o `graph.json` por los del kit. La integración automática conservando sus preferencias se prepara por separado.
+La IA puede activar la vista simple con una opción explícita del instalador. Primero muestra el plan y después aplica lo aceptado:
+
+```sh
+python instalar.py "<ruta-de-tu-bóveda>" --vista-simple --dry-run
+python instalar.py "<ruta-de-tu-bóveda>" --vista-simple --yes
+```
+
+Solo agrega el CSS del kit, activa `genesis-vista-simple` en `enabledCssSnippets` y añade `search` al gráfico si no tiene una búsqueda. Conserva las demás claves, estilos y notas. Si ya hay una búsqueda distinta, la conserva e informa **filtro Genesis pendiente**; no combina consultas ni copia fuerzas, escala u otras preferencias del gráfico.
+
+- Un CSS con el mismo nombre y contenido distinto, un JSON incompatible o un enlace en las rutas afectadas impide escribir; se informa el archivo para resolverlo.
+- `--dry-run` no crea archivos ni respaldos. Sin `--yes`, también los cambios de ajustes requieren confirmación.
+- Solo respalda ajustes existentes que realmente cambian, usando archivos `.bak-...` exclusivos. Repetir sin cambios no reescribe ajustes, duplica snippets ni crea respaldos.
+
+Conservá la salida del instalador: identifica cada **Respaldo para restaurar** y cada archivo **Creado (retirar al revertir)**. Para revertir solo la vista, restaurá los ajustes desde los respaldos indicados y retirá únicamente los archivos de vista que esa ejecución creó; un CSS que ya existía idéntico se conserva. Los archivos del kit y las notas no se retiran. Si hubo ediciones posteriores, releelas antes de restaurar para no perderlas. Obsidian puede mantener ajustes en memoria: acordá el cierre y la reapertura, sin forzar procesos.
 
 En los ajustes de Plantillas, indicá `00_CORE/templates` como carpeta de plantillas y `YYYY-MM-DD` como formato de fecha. Allí están las plantillas; las fichas creadas se guardan en `00_CORE/cells/`, para que no aparezcan como opciones para insertar. Si creás la ficha con una IA, ella completa los archivos; la [guía manual](primer-proyecto.md) explica cómo insertarla por tu cuenta.
 
