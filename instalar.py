@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
-"""Agrega el kit a una bóveda existente sin reemplazar archivos. Python 3.8+."""
+"""Agrega el kit; --vista-simple permite ajustar la vista con respaldo. Python 3.8+."""
 import argparse
 import importlib.util
+import json
 import os
+from datetime import datetime
 from pathlib import Path
 import shutil
 import stat
@@ -17,6 +19,12 @@ IGNORAR = {"__pycache__", ".pytest_cache", ".DS_Store", "Thumbs.db", "node_modul
 GENERADOS_OPENCODE = {"package.json", "package-lock.json", "bun.lock", ".gitignore"}
 # Describen el repositorio completo, incluidos README y tests que no se instalan.
 GUIAS_REPOSITORIO = {"README.md", "README.en.md", "README.de.md", "README.zh.md"}
+
+# Vista simple opcional para bóvedas existentes: reusa CSS y filtro del kit.
+VISTA_SIMPLE_CSS = ".obsidian/snippets/genesis-vista-simple.css"
+VISTA_SIMPLE_APARIENCIA = ".obsidian/appearance.json"
+VISTA_SIMPLE_GRAFO = ".obsidian/graph.json"
+SNIPPET_NOMBRE = "genesis-vista-simple"
 
 
 def comprobar_ruta(path):
@@ -85,6 +93,93 @@ def planificar(destino, origen=RAIZ):
     return destino, nuevos, iguales, conflictos
 
 
+def _leer_json(ruta):
+    """Distinguir un archivo ausente de un JSON incompatible."""
+    ruta = comprobar_ruta(ruta)
+    raw = ruta.read_bytes() if ruta.exists() else None
+    actual = json.loads(raw.decode("utf-8-sig")) if raw is not None else {}
+    if not isinstance(actual, dict):
+        raise ValueError("Se esperaba un objeto JSON: {}".format(ruta))
+    return actual, raw
+
+
+def planificar_vista_simple(destino, origen=RAIZ):
+    """Validar todo sin escribir; separar altas CSS de cambios de ajustes."""
+    nuevos, iguales, conflictos, cambios, avisos = [], [], [], [], []
+    for relativa in (VISTA_SIMPLE_CSS, VISTA_SIMPLE_APARIENCIA, VISTA_SIMPLE_GRAFO):
+        try:
+            path = comprobar_ruta(destino / relativa)
+            if any(p.exists() and not p.is_dir() for p in path.parents):
+                raise ValueError("Un padre no es una carpeta: {}".format(path))
+            if relativa == VISTA_SIMPLE_CSS:
+                fuente = comprobar_ruta(origen / relativa)
+                contenido_css = fuente.read_bytes()
+                if not path.exists():
+                    nuevos.append((fuente, path))
+                elif path.read_bytes() == contenido_css:
+                    iguales.append(relativa)
+                else:
+                    raise ValueError("CSS con mismo nombre y contenido distinto")
+                continue
+            actual, antes = _leer_json(path)
+            if relativa == VISTA_SIMPLE_APARIENCIA:
+                snippets = actual.get("enabledCssSnippets", [])
+                if not isinstance(snippets, list) or not all(isinstance(s, str) for s in snippets):
+                    raise ValueError("enabledCssSnippets debe ser una lista de textos")
+                if SNIPPET_NOMBRE not in snippets:
+                    actual["enabledCssSnippets"] = snippets + [SNIPPET_NOMBRE]
+                else:
+                    iguales.append(relativa)
+                    continue
+            else:
+                referencia, _ = _leer_json(origen / relativa)
+                filtro = referencia.get("search")
+                search = actual.get("search", "")
+                if not isinstance(filtro, str) or not filtro:
+                    raise ValueError("Falta el filtro search del kit")
+                if not isinstance(search, str):
+                    raise ValueError("search debe ser un texto")
+                if search:
+                    iguales.append(relativa)
+                    if search != filtro:
+                        avisos.append("Filtro Genesis pendiente: se conserva la búsqueda propia del gráfico.")
+                    continue
+                actual["search"] = filtro
+            despues = (json.dumps(actual, ensure_ascii=False, indent=2) + "\n").encode("utf-8")
+            cambios.append((path, antes, despues))
+        except (OSError, ValueError) as error:
+            conflictos.append("{}: {}".format(relativa, error))
+    return nuevos, iguales, conflictos, cambios, avisos
+
+
+def comprobar_cambios(cambios):
+    for path, antes, _ in cambios:
+        path = comprobar_ruta(path)
+        vigente = path.read_bytes() if path.exists() else None
+        if vigente != antes:
+            raise ValueError("Un ajuste cambió; releé antes de instalar: {}".format(path))
+
+
+def aplicar_vista_simple(cambios, guardar):
+    """Reusar guardado exclusivo/atómico y contraste de bytes del kit."""
+    comprobar_cambios(cambios)
+    for path, antes, despues in cambios:
+        if antes is not None:
+            marca = datetime.now().strftime("%Y%m%d-%H%M%S-%f")
+            for numero in range(1000):
+                backup = path.with_name(path.name + ".bak-{}-{}".format(marca, numero))
+                try:
+                    guardar(backup, None, antes)
+                    break
+                except FileExistsError:
+                    continue
+            else:
+                raise ValueError("No se pudo crear un respaldo exclusivo: {}".format(path))
+            print("Respaldo para restaurar {}: {}".format(path, backup))
+        guardar(path, antes, despues)
+        print(("Creado (retirar al revertir): " if antes is None else "Actualizado: ") + str(path))
+
+
 def copiar_nuevos(nuevos):
     """La apertura exclusiva también evita pisar un archivo creado tras el plan."""
     for fuente, objetivo in nuevos:
@@ -132,6 +227,7 @@ def main(argv=None):
     parser.add_argument("destino", nargs="?", help="Carpeta de una bóveda existente")
     parser.add_argument("--dry-run", action="store_true", help="Mostrar el plan sin copiar")
     parser.add_argument("--yes", action="store_true", help="Aceptar la copia de archivos nuevos")
+    parser.add_argument("--vista-simple", action="store_true", help="Activar la vista simple opcional (CSS y filtro de grafo) preservando preferencias")
     args = parser.parse_args(argv)
     try:
         if not args.destino:
@@ -141,9 +237,17 @@ def main(argv=None):
             if not args.destino:
                 raise ValueError("La ruta está vacía.")
         destino, nuevos, iguales, conflictos = planificar(Path(args.destino).expanduser())
+        v_cambios, v_avisos = [], []
+        if args.vista_simple:
+            v_nuevos, v_iguales, v_conflictos, v_cambios, v_avisos = planificar_vista_simple(destino)
+            nuevos.extend(v_nuevos)
+            iguales.extend(v_iguales)
+            conflictos.extend(v_conflictos)
         print("Destino: {}\nNuevos: {} | Ya iguales: {} | Conflictos: {}".format(
             destino, len(nuevos), len(iguales), len(conflictos)))
-        print("La configuración .obsidian y las notas existentes se conservan.")
+        print("Las notas existentes se conservan; solo se ajusta la vista con --vista-simple.")
+        for aviso in v_avisos:
+            print(aviso)
         if conflictos:
             print("No se copió nada. Revisá estos conflictos antes de instalar:")
             for ruta in conflictos:
@@ -154,16 +258,24 @@ def main(argv=None):
         if args.dry_run:
             for _, objetivo in nuevos:
                 print("Agregar: {}".format(objetivo.relative_to(destino)))
+            if args.vista_simple:
+                print("Vista simple:")
+                for path, antes, _ in v_cambios:
+                    print("  {}: {}".format("Crear" if antes is None else "Respaldar y actualizar", path))
             print("Generar o actualizar INDICE.md y los bloques de índices locales del destino.")
             return 0
-        if nuevos and not args.yes:
+        if (nuevos or v_cambios) and not args.yes:
             if not sys.stdin.isatty():
                 print("Usá --yes para aceptar la copia, o --dry-run para revisar el plan.")
                 return 2
             if input("¿Agregar estos archivos? [s/N]: ").strip().lower() not in {"s", "si", "sí"}:
                 print("Cancelado. No se copió nada.")
                 return 0
+        comprobar_cambios(v_cambios)
         copiar_nuevos(nuevos)
+        for fuente, objetivo in (v_nuevos if args.vista_simple else []):
+            print("Creado (retirar al revertir): {}".format(objetivo))
+        aplicar_vista_simple(v_cambios, indice.lineador().guardar)
         estado_indice = indice.actualizar(destino)
         print("Índice principal: {}".format(estado_indice['estado']))
         if estado_indice['indices_manuales']:

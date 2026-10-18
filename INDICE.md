@@ -8,20 +8,20 @@
 > - Líneas 58–61: Catálogo completo de archivos
 > - Líneas 62–70: Ajustes de Obsidian
 > - Líneas 71–93: Ayuda
-> - Líneas 94–108: Desarrollo
-> - Líneas 109–131: Entrada y herramientas
-> - Líneas 132–137: Fichas y plantillas de proyecto
-> - Líneas 138–143: Guías de comunicación
-> - Líneas 144–152: Guías de redacción
-> - Líneas 153–165: Integración Claude
-> - Líneas 166–176: Integración OpenCode
-> - Líneas 177–186: Plantilla de carpetas
-> - Líneas 187–194: Plantillas de organización
-> - Líneas 195–203: Protocolos
-> - Líneas 204–212: Recursos opcionales de davidkimai
-> - Líneas 213–218: Reglas compartidas
-> - Líneas 219–226: Validación
-> - Líneas 227–235: Alcance del catálogo
+> - Líneas 94–109: Desarrollo
+> - Líneas 110–132: Entrada y herramientas
+> - Líneas 133–138: Fichas y plantillas de proyecto
+> - Líneas 139–144: Guías de comunicación
+> - Líneas 145–153: Guías de redacción
+> - Líneas 154–166: Integración Claude
+> - Líneas 167–177: Integración OpenCode
+> - Líneas 178–187: Plantilla de carpetas
+> - Líneas 188–195: Plantillas de organización
+> - Líneas 196–204: Protocolos
+> - Líneas 205–213: Recursos opcionales de davidkimai
+> - Líneas 214–219: Reglas compartidas
+> - Líneas 220–227: Validación
+> - Líneas 228–236: Alcance del catálogo
 
 # Índice principal de la bóveda
 
@@ -37,7 +37,7 @@ Podés agregar presentación y comentarios antes o después del bloque automáti
 
 ## Panorama
 
-- Archivos catalogados: 90. Proyectos propios identificados: 0. Ejemplos ficticios: 1.
+- Archivos catalogados: 91. Proyectos propios identificados: 0. Ejemplos ficticios: 1.
 - Configuración: todavía no existe una nota de configuración del kit.
 - El estado detallado y las tareas se leen en cada ficha; este catálogo no los reemplaza.
 
@@ -105,6 +105,7 @@ Cada fila enlaza un archivo. Las carpetas se representan mediante sus archivos; 
 | [test\_mantenimiento.py](tests/test_mantenimiento.py) | PY |
 | [test\_nodos.py](tests/test_nodos.py) | PY |
 | [test\_validate.py](tests/test_validate.py) | PY |
+| [test\_vista\_simple\_existente.py](tests/test_vista_simple_existente.py) | PY |
 
 ### Entrada y herramientas
 
