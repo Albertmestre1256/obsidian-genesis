@@ -4,7 +4,7 @@
 > - Líneas 2–16: Este índice
 > - Líneas 18–19: Introducción
 > - Líneas 20–27: Obsidian Genesis: dein Vault, eingerichtet von einer KI
-> - Líneas 28–51: Projektstand — 16. Oktober 2026
+> - Líneas 28–51: Projektstand — 19. Oktober 2026
 > - Líneas 52–72: In drei Schritten starten
 > - Líneas 73–78: Anhänge oder ein bestehender Vault
 > - Líneas 79–86: Fortsetzen
@@ -25,9 +25,9 @@ Ein **Vault** ist ein Ordner mit Notizen, den du mit [Obsidian](https://obsidian
 
 Die Einstiegsnotiz [Leer primero](LEER_PRIMERO.md) („Zuerst lesen“) verbindet das Panel und den allgemeinen Index. In einem neuen Vault aktiviert das Kit die **Graphansicht** von Obsidian: Öffne sie über ihr Symbol in der Seitenleiste, um die verbundenen Notizen zu erkunden, oder nutze den lokalen Graphen im Index eines Projekts.
 
-## Projektstand — 16. Oktober 2026
+## Projektstand — 19. Oktober 2026
 
-**Lokaler Kandidat in Prüfung; noch keine stabile Version.** Der Schwerpunkt bleibt, einen Vault mit einfachen Fragen zu starten, ohne dass die Person programmieren oder die Indizes pflegen muss.
+**Code in `Pruebas` veröffentlicht (`10b99b5`); noch keine stabile Version.** Der Schwerpunkt bleibt, einen Vault mit einfachen Fragen zu starten, ohne dass die Person programmieren oder die Indizes pflegen muss.
 
 | Bereits umgesetzt | Was es ermöglicht |
 |---|---|
@@ -39,15 +39,15 @@ Die Einstiegsnotiz [Leer primero](LEER_PRIMERO.md) („Zuerst lesen“) verbinde
 
 Der Projektersteller prüft den Zustand erneut, bevor er ein Projekt speichert, und unterscheidet blockierende Bedingungen von Teilfehlern; jede Datei wird angelegt, ohne eine vorhandene zu ersetzen.
 
-Die Abschlussprüfung zeigt, welchen Ordner sie geprüft hat; die Anleitung verwendet dessen ausdrücklichen Pfad, um die heruntergeladene Kopie von deinem Vault zu unterscheiden.
+Die einfache Ansicht reduziert die sichtbaren Hilfsdateien im Datei-Explorer und im Graphen neuer Ordner und lässt sich in bestehenden Vaults optional mit Sicherungskopien aktivieren. Einstellungen und eigene Suchabfragen bleiben erhalten; ein noch ausstehender Filter des Kits wird gemeldet.
 
-Die jüngsten Codeänderungen wurden unter Windows gezielt geprüft: **129 bestandene Fälle für Profilinventar und Indizes sowie 25 bestandene und 1 übersprungener Fall für die Installation, jeweils unter Python 3.8 und 3.13**. Diese Ergebnisse gelten für konkrete Änderungen; die vollständige Testsammlung wurde für diese Version nicht erneut ausgeführt.
+Für die Installation bestanden **40 lokale Tests; 1 Test wurde unter Python 3.13 übersprungen**. Die [entfernte Testmatrix für den Code-Commit `10b99b5`](https://github.com/Albertmestre1256/obsidian-genesis/actions/runs/39100123756) endete **6/6 erfolgreich** unter Windows, macOS und Ubuntu mit Python 3.8 und 3.13. Das sind technische Ergebnisse; sie belegen keine einfache Bedienung.
 
-In zwei Testgesprächen mit Claude Code und fiktiven Personen richtete die KI den Vault ein, bestand die geprüfte Abschlusskontrolle und setzte beim Fortsetzen ohne wiederholte Fragen fort; in einem der beiden geschah das aus einem neuen Gespräch heraus. Aus diesen Tests entstanden zwei Anpassungen, die noch nicht in einem Gespräch getestet wurden: Das Panel speichert keine feste Kopie des nächsten Schritts mehr (er bleibt in der Projektkarte), und die Skripte hinterlassen keine technischen `__pycache__`-Ordner mehr im Vault. Das sind keine Tests mit echten Einsteigenden.
+Einrichtung und Fortsetzung wurden mit Claude Code geprüft. Der manuelle Versuch mit OpenCode/Big Pickle zeigte fortgesetzte Nutzung innerhalb derselben Sitzung, aber keine unabhängig geprüfte Fortsetzung. Ein neuer Codex-Chat setzte eine frühere Kopie fort und bewahrte ausgelassene Angaben, mit externem Kontext und externen Werkzeugen. Das sind keine Tests mit echten Einsteigenden; sie bestätigen nicht die Oberfläche aller aktuellen Änderungen.
 
-Es fehlen noch vollständige Gespräche in OpenCode und ChatGPT, Tests mit Einsteigenden und die restlichen visuellen Prüfungen in Obsidian. Einige Interaktionen wurden bereits in früheren Kopien beobachtet; das bestätigt nicht die Darstellung aller aktuellen Änderungen. Die lokalen Änderungen und die entfernte GitHub-Actions-Matrix warten noch auf eine autorisierte Veröffentlichung.
+Noch offen sind die unabhängige Fortsetzung in OpenCode, die gesonderte Prüfung von ChatGPT im Web, ein Test mit fünf Einsteigenden (mindestens vier ohne Hilfe) und die abschließende formale Sichtprüfung in Obsidian.
 
-Die Community-Diskussionen sind verfügbar; Sponsoring ist noch offen. README und Dokumentenwegweiser sind auf Spanisch, Englisch, Deutsch und Chinesisch verfügbar; die gemeinsamen Anleitungen bleiben auf Spanisch. Bestehende Vaults anzupassen und zu optimieren ist eine spätere Phase. [Änderungsprotokoll](CHANGELOG.md) · [Mitwirken](CONTRIBUTING.md) (beide auf Spanisch).
+Die Community-Diskussionen sind verfügbar; Sponsoring ist noch offen. README und Dokumentenwegweiser sind auf Spanisch, Englisch, Deutsch und Chinesisch verfügbar; die gemeinsamen Anleitungen bleiben auf Spanisch. Die allgemeine Anpassung und Optimierung bestehender Vaults ist eine spätere Phase. [Änderungsprotokoll](CHANGELOG.md) · [Mitwirken](CONTRIBUTING.md) (beide auf Spanisch).
 
 ## In drei Schritten starten
 

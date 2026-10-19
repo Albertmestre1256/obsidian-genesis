@@ -4,7 +4,7 @@
 > - Líneas 2–16: Este índice
 > - Líneas 18–19: Introducción
 > - Líneas 20–27: Obsidian Genesis: tu bóveda, configurada por una IA
-> - Líneas 28–51: Estado del proyecto — 16/10/2026
+> - Líneas 28–51: Estado del proyecto — 19/10/2026
 > - Líneas 52–72: Empezar en tres pasos
 > - Líneas 73–78: Adjuntos o bóveda existente
 > - Líneas 79–86: Continuar
@@ -25,9 +25,9 @@ Una **bóveda** es una carpeta de notas que abrís con [Obsidian](https://obsidi
 
 La entrada [Leer primero](LEER_PRIMERO.md) conecta el Panel y el índice general. En una bóveda nueva, el kit activa la **Vista de gráfico** de Obsidian: abrila desde su icono lateral para explorar las notas conectadas, o usá el gráfico local desde el índice de un proyecto.
 
-## Estado del proyecto — 16/10/2026
+## Estado del proyecto — 19/10/2026
 
-**Candidato local en validación; todavía no es una release estable.** El foco sigue siendo iniciar una bóveda con preguntas simples, sin pedirle a la persona que programe ni mantenga los índices.
+**Código publicado en `Pruebas` (`10b99b5`); todavía no es una release estable.** El foco sigue siendo iniciar una bóveda con preguntas simples, sin pedirle a la persona que programe ni mantenga los índices.
 
 | Ya implementado | Qué permite |
 |---|---|
@@ -39,15 +39,15 @@ La entrada [Leer primero](LEER_PRIMERO.md) conecta el Panel y el índice general
 
 El creador vuelve a comprobar el estado antes de guardar un proyecto y distingue los bloqueos previos de los fallos parciales; cada archivo se crea sin reemplazar uno existente.
 
-El cierre muestra qué carpeta revisó; la guía usa su ruta explícita para distinguir la copia descargada de tu bóveda.
+La vista simple despeja el explorador y el gráfico en carpetas nuevas y puede activarse opcionalmente en bóvedas existentes con respaldo. Conserva preferencias y búsqueda propia; informa si el filtro del kit queda pendiente.
 
-Los cambios recientes de código se comprobaron con pruebas focalizadas en Windows: **129 casos correctos para el inventario y los índices, y 25 correctos con 1 omitido para el instalador, por separado en Python 3.8 y 3.13**. Son comprobaciones de cambios concretos; no se volvió a ejecutar la suite completa sobre esta versión.
+El instalador pasó **40 pruebas locales y 1 quedó omitida en Python 3.13**. La [matriz remota del código `10b99b5`](https://github.com/Albertmestre1256/obsidian-genesis/actions/runs/39100123756) terminó **6/6 correcta** en Windows, macOS y Ubuntu con Python 3.8 y 3.13. Son resultados técnicos; no acreditan facilidad de uso.
 
-En dos conversaciones de prueba con Claude Code y personas ficticias, la IA configuró la bóveda, pasó el cierre comprobado y, al retomar, siguió sin repetir preguntas; en una de ellas lo hizo desde una conversación nueva. Esas pruebas llevaron a dos ajustes, que todavía no se probaron en una conversación: el Panel ya no guarda una copia fija del próximo paso (queda en la ficha del proyecto) y los scripts ya no dejan carpetas técnicas `__pycache__` dentro de la bóveda. No son pruebas con principiantes reales.
+Se comprobaron configuración y reanudación con Claude Code. El ensayo manual OpenCode/Big Pickle mostró uso continuado en una misma sesión, sin acreditar reanudación independiente. Un chat nuevo de Codex retomó una copia anterior y conservó las omisiones, con contexto y herramientas externos. No son pruebas con principiantes reales ni validan la interfaz de todos los cambios actuales.
 
-Faltan conversaciones completas en OpenCode y ChatGPT, pruebas con principiantes y las comprobaciones visuales restantes de Obsidian. Algunas interacciones ya se observaron en copias anteriores; eso no valida la presentación de todos los cambios actuales. Los cambios locales y la matriz remota de GitHub Actions siguen pendientes de publicación autorizada.
+Faltan la reanudación independiente en OpenCode, la cobertura específica de ChatGPT web, una prueba con cinco principiantes (al menos cuatro sin ayuda) y la revisión visual formal final en Obsidian.
 
-Las discusiones de la comunidad están disponibles; el patrocinio sigue pendiente. El README y la guía de documentos están en español, inglés, alemán y chino; las instrucciones comunes del kit siguen en español. La adaptación y optimización de bóvedas existentes será una fase posterior. [Historial de cambios](CHANGELOG.md) · [Cómo contribuir](CONTRIBUTING.md).
+Las discusiones de la comunidad están disponibles; el patrocinio sigue pendiente. El README y la guía de documentos están en español, inglés, alemán y chino; las instrucciones comunes del kit siguen en español. La adaptación y optimización general de bóvedas existentes será una fase posterior. [Historial de cambios](CHANGELOG.md) · [Cómo contribuir](CONTRIBUTING.md).
 
 ## Empezar en tres pasos
 
