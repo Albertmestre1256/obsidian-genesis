@@ -4,7 +4,7 @@
 > - Líneas 2–16: Este índice
 > - Líneas 18–19: Introducción
 > - Líneas 20–27: Obsidian Genesis: your vault, set up by an AI
-> - Líneas 28–51: Project status — October 16, 2026
+> - Líneas 28–51: Project status — October 19, 2026
 > - Líneas 52–72: Get started in three steps
 > - Líneas 73–78: Attachments or an existing vault
 > - Líneas 79–86: Continue
@@ -25,9 +25,9 @@ A **vault** is a folder of notes that you open with [Obsidian](https://obsidian.
 
 The entry note [Leer primero](LEER_PRIMERO.md) ("Read first") connects the Panel and the general index. In a new vault, the kit enables Obsidian's **Graph view**: open it from its sidebar icon to explore the connected notes, or use the local graph from a project's index.
 
-## Project status — October 16, 2026
+## Project status — October 19, 2026
 
-**Local candidate under validation; not a stable release yet.** The focus is still to start a vault through simple questions, without asking the person to program or maintain the indexes.
+**Code published on `Pruebas` (`10b99b5`); not a stable release yet.** The focus is still to start a vault through simple questions, without asking the person to program or maintain the indexes.
 
 | Already implemented | What it allows |
 |---|---|
@@ -39,15 +39,15 @@ The entry note [Leer primero](LEER_PRIMERO.md) ("Read first") connects the Panel
 
 The project creator checks the state again before saving a project and tells blocking conditions apart from partial failures; each file is created without replacing an existing one.
 
-The closing check shows which folder it reviewed; the guide uses its explicit path to tell the downloaded copy apart from your vault.
+The simple view reduces clutter in the file explorer and graph for new folders and can be enabled optionally in existing vaults with backups. It preserves preferences and custom searches, reporting when the kit filter remains pending.
 
-Recent code changes were checked with focused tests on Windows: **129 passing cases for the profile inventory and indexes, and 25 passing cases with 1 skipped for the installer, separately on Python 3.8 and 3.13**. These results cover specific changes; the full suite was not rerun on this version.
+The installer passed **40 local tests, with 1 skipped on Python 3.13**. The [remote matrix for code commit `10b99b5`](https://github.com/Albertmestre1256/obsidian-genesis/actions/runs/39100123756) finished **6/6 successfully** on Windows, macOS and Ubuntu with Python 3.8 and 3.13. These are technical results; they do not establish ease of use.
 
-In two test conversations with Claude Code and fictional people, the AI set up the vault, passed the verified closing check and, when resuming, continued without repeating questions; in one of them it did so from a new conversation. Those tests led to two adjustments that have not yet been tested in a conversation: the Panel no longer keeps a fixed copy of the next step (it stays in the project card) and the scripts no longer leave technical `__pycache__` folders inside the vault. These are not tests with real beginners.
+Setup and resumption were checked with Claude Code. The manual OpenCode/Big Pickle trial demonstrated continued use within one session, without establishing independent resumption. A new Codex chat resumed an earlier copy and preserved skipped information, with external context and tools. These are not tests with real beginners and do not validate the interface for all current changes.
 
-Still missing: complete conversations in OpenCode and ChatGPT, tests with beginners and the remaining visual checks in Obsidian. Some interactions were already observed in earlier copies; that does not validate how all current changes look. The local changes and the remote GitHub Actions matrix are still waiting for authorized publication.
+Still pending: independent resumption in OpenCode, specific coverage of ChatGPT web, a test with five beginners (at least four without help) and the final formal visual review in Obsidian.
 
-Community discussions are available; sponsorship is still pending. The README and document guide are available in Spanish, English, German and Chinese; shared kit instructions remain in Spanish. Adapting and optimizing existing vaults will be a later phase. [Changelog](CHANGELOG.md) · [How to contribute](CONTRIBUTING.md) (both in Spanish).
+Community discussions are available; sponsorship is still pending. The README and document guide are available in Spanish, English, German and Chinese; shared kit instructions remain in Spanish. General adaptation and optimization of existing vaults will be a later phase. [Changelog](CHANGELOG.md) · [How to contribute](CONTRIBUTING.md) (both in Spanish).
 
 ## Get started in three steps
 
