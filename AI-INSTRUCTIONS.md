@@ -3,7 +3,7 @@
 > - Líneas 8–11: Entrada para la IA
 > - Líneas 12–17: Antes de trabajar
 > - Líneas 18–29: Elegir el recorrido
-> - Líneas 30–46: Herramientas opcionales
+> - Líneas 30–48: Herramientas opcionales
 
 # Entrada para la IA
 
@@ -38,6 +38,8 @@ Usá herramientas del kit leído, no código preexistente de otra bóveda. Pytho
 | `00_CORE/schemas/validate.py` | «Revisar fichas» en `DOCS/usar-con-otras-ias.md`, incluida revisión manual. |
 | `actualizar_indice.py` | `DOCS/indice-principal.md`: mapas generales y locales. |
 | `00_CORE/schemas/note_index.py` y `00_CORE/schemas/registrar_cambios.py` | `DOCS/mantenimiento.md`: rangos, autoría y registro de cambios. |
+
+Para rangos, fichas, mapas y hashes del registro, decidí con la salida de la herramienta y no con otra revisión de IA. Consultá primero con los modos que no escriben de su guía (`validate.py`, `note_index.py check`, `--dry-run`) y aplicá solo dentro del alcance acordado. Informá estado, archivos afectados y errores concretos; leé el rango o filtro necesario sin volcar cuerpos, logs ni árboles completos. Una salida correcta acredita formato o igualdad, no la verdad del contenido. Sin Python, comprobá por lectura según la guía y declará lo no comprobado.
 
 Cada escritura incluye el mantenimiento de `DOCS/mantenimiento.md`, realizado por la IA. Al desarrollar el kit, guardá la evidencia fuera de su contenido distribuible, sin crear un registro personal en el repositorio.
 
