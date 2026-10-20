@@ -305,7 +305,8 @@ def test_cambio_ajeno_antes_del_reemplazo_se_conserva(tmp_path, monkeypatch):
     with pytest.raises(ValueError, match='cambió'):
         indice.actualizar(tmp_path)
     assert path.read_bytes() == b'# Cambio concurrente de la persona\n'
-    assert not list(tmp_path.glob('.indice-*.tmp'))
+    # El guardado publica temporales '.nota-*.tmp' (note_index.guardar); ninguno debe quedar.
+    assert not list(tmp_path.glob('.nota-*.tmp')) and not list(tmp_path.glob('.indice-*.tmp'))
 
 
 def test_indice_distribuido_coincide_con_archivos_del_kit():

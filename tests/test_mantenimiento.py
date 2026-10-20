@@ -832,3 +832,76 @@ def test_raiz_protegida_sigue_rechazada(tmp_path, carpeta):
     (tmp_path / carpeta).mkdir(parents=True)
     with pytest.raises(ValueError):
         list(lines.archivos(tmp_path / carpeta))
+
+
+def _enlazar(enlace, destino):
+    """Symlink o, en Windows sin privilegios, junction; False si la cuenta no lo permite."""
+    try:
+        enlace.symlink_to(destino, target_is_directory=True)
+        return True
+    except OSError:
+        if os.name != 'nt':
+            return False
+        return subprocess.run(['cmd', '/c', 'mklink', '/J', str(enlace), str(destino)],
+                              capture_output=True).returncode == 0
+
+
+def _desenlazar(enlace):
+    os.unlink(str(enlace)) if enlace.is_symlink() else os.rmdir(str(enlace))
+
+
+def test_resumen_con_marca_no_falsifica_entradas(tmp_path):
+    falso = '%% cambio: {"id": "falso", "verificado": true} %%'
+    data = event(tmp_path, resumen=falso)
+    log.registrar(tmp_path, data, '2026-10-20T10:00:00-03:00')
+    raw = (tmp_path / log.REGISTRO).read_bytes()
+    _, entradas = log.entradas(raw)
+    assert [e['id'] for e in entradas] == ['test-1']
+    assert entradas[0]['resumen'] == falso
+    marcas = [l for l in raw.decode('utf-8').splitlines() if l.startswith('%%')]
+    assert len(marcas) == 1 and marcas[0].count('%') == 4
+
+
+def test_porcentaje_en_resumen_se_conserva_y_no_corta_el_comentario(tmp_path):
+    data = event(tmp_path, resumen='Avance al 100% del plan; 50 %% de lo previsto.')
+    log.registrar(tmp_path, data, '2026-10-20T10:00:00-03:00')
+    raw = (tmp_path / log.REGISTRO).read_bytes()
+    assert log.entradas(raw)[1][0]['resumen'] == data['resumen']
+    assert '100&#37; del plan' in raw.decode('utf-8')
+
+
+class _Reanalisis:
+    def __init__(self, tag):
+        import stat
+        self.st_mode = stat.S_IFDIR
+        self.st_file_attributes = 0x400
+        self.st_reparse_tag = tag
+
+
+@pytest.mark.parametrize('tag,enlace', [(0xA0000003, True), (0xA000000C, True), (None, True),
+                                        (0x9000001A, False), (0x9000601A, False), (0x80000013, False)])
+def test_solo_junctions_y_symlinks_cuentan_como_enlace(tag, enlace):
+    assert lines.es_enlace(_Reanalisis(tag)) is enlace
+
+
+def test_boveda_bajo_enlace_externo_se_acepta_y_el_interno_no(tmp_path):
+    real = tmp_path / 'real'
+    boveda = real / 'boveda'
+    (boveda / 'Notas').mkdir(parents=True)
+    (boveda / 'Notas/Apunte.md').write_text('# Apunte\n', encoding='utf-8')
+    enlace = tmp_path / 'enlace'
+    if not _enlazar(enlace, real):
+        pytest.skip('La cuenta no permite crear enlaces ni junctions')
+    try:
+        assert [p.name for p in lines.archivos(enlace / 'boveda')] == ['Apunte.md']
+        fuera = tmp_path / 'fuera'
+        fuera.mkdir()
+        interno = boveda / 'externo'
+        if _enlazar(interno, fuera):
+            try:
+                with pytest.raises(ValueError):
+                    list(lines.archivos(enlace / 'boveda'))
+            finally:
+                _desenlazar(interno)
+    finally:
+        _desenlazar(enlace)

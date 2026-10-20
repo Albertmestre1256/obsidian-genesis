@@ -13,6 +13,19 @@ SKILLS = ('inicio', 'volcar', 'vault-reorganizer', 'vault-coherence-auditor',
 DESTINOS = {'claude': '.claude/skills', 'codex': '.agents/skills',
             'opencode': '.opencode/skills'}
 
+# Raíces ya validadas: sus carpetas contenedoras no se revisan (p. ej. /home enlazado).
+_RAICES = set()
+
+
+def es_enlace(info):
+    """Symlink o junction. Archivos en la nube (OneDrive) y deduplicación de Windows no redirigen rutas."""
+    if stat.S_ISLNK(info.st_mode):
+        return True
+    if getattr(info, 'st_file_attributes', 0) & 0x400:
+        tag = getattr(info, 'st_reparse_tag', None)
+        return tag is None or not ((tag & 0xFFFF0FFF) == 0x9000001A or tag == 0x80000013)
+    return False
+
 
 def ruta_segura(path):
     """Conservar la ruta literal; rechazar symlinks y junctions en sus ancestros."""
@@ -22,13 +35,27 @@ def ruta_segura(path):
             info = part.lstat()
         except FileNotFoundError:
             continue
-        if stat.S_ISLNK(info.st_mode) or getattr(info, 'st_file_attributes', 0) & 0x400:
+        if es_enlace(info):
             raise ValueError('No se siguen enlaces ni junctions: ' + str(part))
+        if os.path.normcase(str(part)) in _RAICES:
+            break
+    return path
+
+
+def raiz_confiable(path):
+    """Validar la raíz de trabajo sin exigir lo mismo a las carpetas que la contienen."""
+    path = Path(os.path.abspath(str(path)))
+    try:
+        if es_enlace(path.lstat()):
+            raise ValueError('La raíz es un enlace o junction: ' + str(path))
+    except FileNotFoundError:
+        pass
+    _RAICES.add(os.path.normcase(str(path)))
     return path
 
 
 def archivos_skill(folder):
-    folder = ruta_segura(folder)
+    folder = raiz_confiable(folder)
     if not folder.is_dir() or not ruta_segura(folder / 'SKILL.md').is_file():
         raise ValueError('Falta la skill fuente: ' + str(folder))
     for base, dirs, names in os.walk(str(folder), followlinks=False):
@@ -43,7 +70,7 @@ def archivos_skill(folder):
 
 
 def planificar(destino, asistente, origen=RAIZ):
-    destino = ruta_segura(destino)
+    destino = raiz_confiable(destino)
     if not destino.is_dir():
         raise ValueError('El destino debe ser una bóveda Genesis ya copiada: ' + str(destino))
     for marca in ('INDICE.md', '00_CORE/atoms/00_vault-rules.md'):

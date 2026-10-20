@@ -137,3 +137,21 @@ def test_catalogo_incluye_codex_y_lineador_conserva_su_formato(tmp_path):
     antes = skill.read_bytes()
     assert lineas.main(['apply', str(skill)]) == 2
     assert skill.read_bytes() == antes
+
+
+def test_boveda_bajo_enlace_externo_se_instala(tmp_path):
+    real = tmp_path / 'real'
+    real.mkdir()
+    boveda(real / 'boveda')
+    enlace = tmp_path / 'enlace'
+    try:
+        enlace.symlink_to(real, target_is_directory=True)
+    except OSError:
+        if os.name != 'nt' or subprocess.run(['cmd', '/c', 'mklink', '/J', str(enlace), str(real)],
+                                             capture_output=True).returncode:
+            pytest.skip('La cuenta no permite crear enlaces ni junctions')
+    try:
+        assert instalador.main([str(enlace / 'boveda'), '--asistente', 'claude', '--yes']) == 0
+        assert (real / 'boveda/.claude/skills/inicio/SKILL.md').is_file()
+    finally:
+        os.unlink(str(enlace)) if enlace.is_symlink() else os.rmdir(str(enlace))

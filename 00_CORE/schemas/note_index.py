@@ -18,6 +18,19 @@ ATRIBUCIONES = ('> **Crédito principal', '> **Main credit', '> **Besonderer Dan
 IGNORAR = {'.git', '.obsidian', '.obsidian-mcp', '.claude', '.agents', '.opencode', '.github',
            '__pycache__', '.pytest_cache', '.trash', 'node_modules', '.venv', 'venv', '_archivo'}
 
+# Raíces ya validadas: sus carpetas contenedoras no se revisan (p. ej. /home enlazado).
+_RAICES = set()
+
+
+def es_enlace(info):
+    """Symlink o junction. Archivos en la nube (OneDrive) y deduplicación de Windows no redirigen rutas."""
+    if stat.S_ISLNK(info.st_mode):
+        return True
+    if getattr(info, 'st_file_attributes', 0) & 0x400:
+        tag = getattr(info, 'st_reparse_tag', None)
+        return tag is None or not ((tag & 0xFFFF0FFF) == 0x9000001A or tag == 0x80000013)
+    return False
+
 
 def ruta_real(path):
     path = Path(os.path.abspath(str(path)))
@@ -26,8 +39,22 @@ def ruta_real(path):
             info = part.lstat()
         except FileNotFoundError:
             continue
-        if stat.S_ISLNK(info.st_mode) or getattr(info, 'st_file_attributes', 0) & 0x400:
+        if es_enlace(info):
             raise ValueError('No seguir enlaces ni junctions: ' + str(part))
+        if os.path.normcase(str(part)) in _RAICES:
+            break
+    return path
+
+
+def raiz_confiable(path):
+    """Validar la raíz de trabajo sin exigir lo mismo a las carpetas que la contienen."""
+    path = Path(os.path.abspath(str(path)))
+    try:
+        if es_enlace(path.lstat()):
+            raise ValueError('La raíz es un enlace o junction: ' + str(path))
+    except FileNotFoundError:
+        pass
+    _RAICES.add(os.path.normcase(str(path)))
     return path
 
 
@@ -194,7 +221,7 @@ def protegida(path, raiz=None):
 
 
 def archivos(root):
-    root = ruta_real(root)
+    root = raiz_confiable(root)
     historial = tuple(p.casefold() for p in root.parts[-3:]) == ('00_core', 'logs', 'historial')
     if not root.is_dir() or protegida(root, root.parent) or historial:
         raise ValueError('Indicá una carpeta de bóveda existente y editable: ' + str(root))

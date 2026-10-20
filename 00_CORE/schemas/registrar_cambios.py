@@ -116,7 +116,7 @@ def evento(root, data, comprobar=True):
 
 
 def _registrar(root, data, fecha=None, dry_run=False):
-    root = lineas.ruta_real(root)
+    root = lineas.raiz_confiable(root)
     if not root.is_dir():
         raise ValueError('La bóveda debe existir.')
     now = momento(fecha) if fecha else datetime.now().astimezone()
@@ -157,11 +157,13 @@ def _registrar(root, data, fecha=None, dry_run=False):
         base = lineas.sin_indice(before.decode('utf-8-sig'))
     event['fecha'] = now.isoformat()
     author = 'IA:{} ({})'.format(event['ia'], ', '.join([event['herramienta']] + ([event['modelo']] if 'modelo' in event else [])))
-    esc = lambda s: s.replace('|', '\\|').replace('<', '&lt;').replace('>', '&gt;')
+    # '%' como entidad: un texto libre no puede abrir comentarios ni imitar una entrada.
+    esc = lambda s: s.replace('%', '&#37;').replace('|', '\\|').replace('<', '&lt;').replace('>', '&gt;')
     added = '\n## {} · {}\n\nAutor: {}. Verificado: {}.\n\n{}\n\n| Acción | Ruta | Desde | SHA-256 del resultado |\n|---|---|---|---|\n'.format(event['fecha'], event['id'], esc(author), 'sí' if event['verificado'] else 'no', esc(event['resumen']))
     for change in event['cambios']:
         added += '| {} | {} | {} | {} |\n'.format(change['accion'], esc(change['ruta']), esc(change.get('desde', '')), change.get('sha256', 'archivo eliminado; no es un hash comprobado'))
-    added += '\n%% cambio: ' + json.dumps(event, ensure_ascii=False, sort_keys=True) + ' %%\n'
+    # '%' escapado en el JSON: el comentario de Obsidian no se cierra antes de tiempo.
+    added += '\n%% cambio: ' + json.dumps(event, ensure_ascii=False, sort_keys=True).replace('%', '\\u0025') + ' %%\n'
     after = lineas.contenido((base.rstrip() + '\n' + added).encode('utf-8'))
     if not rotate and before and before.startswith(b'\xef\xbb\xbf'):
         after = b'\xef\xbb\xbf' + after
@@ -177,7 +179,7 @@ def _registrar(root, data, fecha=None, dry_run=False):
 def registrar(root, data, fecha=None, dry_run=False):
     if dry_run:
         return _registrar(root, data, fecha, True)
-    root = lineas.ruta_real(root)
+    root = lineas.raiz_confiable(root)
     if not root.is_dir():
         raise ValueError('La bóveda debe existir.')
     # Comprobar el plan antes de crear carpetas; repetir bajo bloqueo para guardar.

@@ -65,6 +65,19 @@ def encontrar_indice_existente(origen, destino, codigo):
     
     return None
 
+# Raíces ya validadas: sus carpetas contenedoras no se revisan (p. ej. /home enlazado).
+_RAICES = set()
+
+
+def es_enlace(info):
+    """Symlink o junction. Archivos en la nube (OneDrive) y deduplicación de Windows no redirigen rutas."""
+    if stat.S_ISLNK(info.st_mode):
+        return True
+    if getattr(info, 'st_file_attributes', 0) & 0x400:
+        tag = getattr(info, 'st_reparse_tag', None)
+        return tag is None or not ((tag & 0xFFFF0FFF) == 0x9000001A or tag == 0x80000013)
+    return False
+
 
 def ruta_real(ruta):
     ruta = Path(os.path.abspath(str(ruta)))
@@ -73,8 +86,22 @@ def ruta_real(ruta):
             info = parte.lstat()
         except FileNotFoundError:
             continue
-        if stat.S_ISLNK(info.st_mode) or getattr(info, 'st_file_attributes', 0) & 0x400:
+        if es_enlace(info):
             raise ValueError('La ruta contiene un enlace o junction: {}'.format(parte))
+        if os.path.normcase(str(parte)) in _RAICES:
+            break
+    return ruta
+
+
+def raiz_confiable(ruta):
+    """Validar la raíz de trabajo sin exigir lo mismo a las carpetas que la contienen."""
+    ruta = Path(os.path.abspath(str(ruta)))
+    try:
+        if es_enlace(ruta.lstat()):
+            raise ValueError('La raíz es un enlace o junction: ' + str(ruta))
+    except FileNotFoundError:
+        pass
+    _RAICES.add(os.path.normcase(str(ruta)))
     return ruta
 
 
@@ -125,7 +152,7 @@ def lineador(origen=RAIZ):
 
 
 def planificar(destino, datos, origen=RAIZ):
-    origen, destino = ruta_real(origen), ruta_real(destino)
+    origen, destino = raiz_confiable(origen), raiz_confiable(destino)
     if not destino.is_dir():
         raise ValueError('La carpeta de bóveda debe existir y tener los archivos del kit.')
     reglas = Path('00_CORE/atoms/00_vault-rules.md')

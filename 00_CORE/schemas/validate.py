@@ -538,7 +538,13 @@ def validar(path):
 
 def _es_enlace(ruta):
     info = os.lstat(ruta)
-    return stat.S_ISLNK(info.st_mode) or bool(getattr(info, 'st_file_attributes', 0) & 0x400)
+    if stat.S_ISLNK(info.st_mode):
+        return True
+    if getattr(info, 'st_file_attributes', 0) & 0x400:
+        # Como note_index.es_enlace: archivos en la nube y deduplicación no redirigen rutas.
+        tag = getattr(info, 'st_reparse_tag', None)
+        return tag is None or not ((tag & 0xFFFF0FFF) == 0x9000001A or tag == 0x80000013)
+    return False
 
 
 def _notas_con_nombre(raiz, nombre):
