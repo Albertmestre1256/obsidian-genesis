@@ -1,19 +1,20 @@
 > **Besonderer Dank an [davidkimai](https://github.com/davidkimai):** Dieses Kit basiert auf dessen Arbeit [Context Engineering](https://github.com/davidkimai/Context-Engineering). Obsidian Genesis passt diese Arbeit an, um Obsidian-Vaults mit Hilfe einer KI einzurichten und zu organisieren.
 > [!info]- Índice de esta nota (líneas)
 > - Líneas 1–1: Atribución
-> - Líneas 2–16: Este índice
-> - Líneas 18–19: Introducción
-> - Líneas 20–27: Obsidian Genesis: dein Vault, eingerichtet von einer KI
-> - Líneas 28–51: Projektstand — 19. Oktober 2026
-> - Líneas 52–72: In drei Schritten starten
-> - Líneas 73–78: Anhänge oder ein bestehender Vault
-> - Líneas 79–86: Fortsetzen
-> - Líneas 87–101: Was es enthält
-> - Líneas 102–112: Optionale Hilfe
-> - Líneas 113–116: Datenschutz
-> - Líneas 117–120: Lizenz
-> - Líneas 121–124: Community und Hilfe
-> - Líneas 125–127: Über die Entwicklung
+> - Líneas 2–17: Este índice
+> - Líneas 19–20: Introducción
+> - Líneas 21–28: Obsidian Genesis: dein Vault, eingerichtet von einer KI
+> - Líneas 29–52: Projektstand — 19. Oktober 2026
+> - Líneas 53–73: In drei Schritten starten
+> - Líneas 74–79: Anhänge oder ein bestehender Vault
+> - Líneas 80–87: Fortsetzen
+> - Líneas 88–102: Was es enthält
+> - Líneas 103–113: Optionale Hilfe
+> - Líneas 114–117: Datenschutz
+> - Líneas 118–121: Lizenz
+> - Líneas 122–125: Community und Hilfe
+> - Líneas 126–129: Über die Entwicklung
+> - Líneas 130–132: Projekt unterstützen
 
 **Sprache:** [Español](README.md) · [English](README.en.md) · Deutsch · [中文](README.zh.md)
 
@@ -47,7 +48,7 @@ Einrichtung und Fortsetzung wurden mit Claude Code geprüft. Der manuelle Versuc
 
 Noch offen sind die unabhängige Fortsetzung in OpenCode, die gesonderte Prüfung von ChatGPT im Web, ein Test mit fünf Einsteigenden (mindestens vier ohne Hilfe) und die abschließende formale Sichtprüfung in Obsidian.
 
-Die Community-Diskussionen sind verfügbar; Sponsoring ist noch offen. README und Dokumentenwegweiser sind auf Spanisch, Englisch, Deutsch und Chinesisch verfügbar; die gemeinsamen Anleitungen bleiben auf Spanisch. Die allgemeine Anpassung und Optimierung bestehender Vaults ist eine spätere Phase. [Änderungsprotokoll](CHANGELOG.md) · [Mitwirken](CONTRIBUTING.md) (beide auf Spanisch).
+Die Community-Diskussionen sind verfügbar, und du kannst das Projekt auf [Patreon](https://www.patreon.com/obsidiangenesis) unterstützen. README und Dokumentenwegweiser sind auf Spanisch, Englisch, Deutsch und Chinesisch verfügbar; die gemeinsamen Anleitungen bleiben auf Spanisch. Die allgemeine Anpassung und Optimierung bestehender Vaults ist eine spätere Phase. [Änderungsprotokoll](CHANGELOG.md) · [Mitwirken](CONTRIBUTING.md) (beide auf Spanisch).
 
 ## In drei Schritten starten
 
@@ -125,3 +126,7 @@ Für Fragen, Ideen und Erfahrungen gibt es die [Community-Diskussionen](https://
 ## Über die Entwicklung
 
 Albert Mestre entwickelt diese Adaption mit wesentlichen Beiträgen von **OpenCode, Claude und Codex (OpenAI)**. Diese KI-Werkzeuge halfen, einen wichtigen Teil des Codes zu erstellen, und unterstützten Dokumentation und Tests; sie werden hier als Mitwirkende gewürdigt. Vorschläge werden geprüft und Ergebnisse vor der Integration verifiziert; der Einsatz von KI ersetzt keine Tests mit Menschen und belegt für sich allein nicht, dass das Kit einfach zu benutzen ist.
+
+## Projekt unterstützen
+
+Obsidian Genesis ist kostenlos und bleibt es auch. Wenn dir das Kit hilft, kannst du es auf [Patreon](https://www.patreon.com/obsidiangenesis) unterstützen. Beiträge schaffen Zeit für Anleitungen für Einsteigende, Tests mit echten Menschen, Übersetzungen und Hilfe. Sie sind freiwillig: Sie schalten keine Funktionen frei, und das gesamte Kit bleibt öffentlich.

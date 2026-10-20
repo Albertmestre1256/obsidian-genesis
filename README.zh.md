@@ -1,19 +1,20 @@
 > **主要致谢：[davidkimai](https://github.com/davidkimai)。** 本工具包基于其作品 [Context Engineering](https://github.com/davidkimai/Context-Engineering)。Obsidian Genesis 改编了这项工作，借助 AI 来创建和整理 Obsidian 仓库（vault）。
 > [!info]- Índice de esta nota (líneas)
 > - Líneas 1–1: Atribución
-> - Líneas 2–16: Este índice
-> - Líneas 18–19: Introducción
-> - Líneas 20–27: Obsidian Genesis：由 AI 为你配置的仓库
-> - Líneas 28–51: 项目状态 — 2026 年 10 月 19 日
-> - Líneas 52–72: 三步开始
-> - Líneas 73–78: 附件或已有仓库
-> - Líneas 79–86: 继续
-> - Líneas 87–101: 包含内容
-> - Líneas 102–112: 可选帮助
-> - Líneas 113–116: 隐私
-> - Líneas 117–120: 许可证
-> - Líneas 121–124: 社区与支持
-> - Líneas 125–127: 关于开发
+> - Líneas 2–17: Este índice
+> - Líneas 19–20: Introducción
+> - Líneas 21–28: Obsidian Genesis：由 AI 为你配置的仓库
+> - Líneas 29–52: 项目状态 — 2026 年 10 月 19 日
+> - Líneas 53–73: 三步开始
+> - Líneas 74–79: 附件或已有仓库
+> - Líneas 80–87: 继续
+> - Líneas 88–102: 包含内容
+> - Líneas 103–113: 可选帮助
+> - Líneas 114–117: 隐私
+> - Líneas 118–121: 许可证
+> - Líneas 122–125: 社区与支持
+> - Líneas 126–129: 关于开发
+> - Líneas 130–132: 支持本项目
 
 **语言：** [Español](README.md) · [English](README.en.md) · [Deutsch](README.de.md) · 中文
 
@@ -47,7 +48,7 @@
 
 仍待完成：OpenCode 的新会话独立恢复、ChatGPT 网页版的专项验证、五名初学者的测试（至少四人无需帮助），以及 Obsidian 中最终正式的视觉检查。
 
-社区讨论现已开放；赞助渠道仍待确定。README 与文档指南提供西班牙语、英语、德语和中文版本；工具包的通用操作说明仍使用西班牙语。全面调整和优化现有仓库将是后续阶段。[更新日志](CHANGELOG.md) · [如何贡献](CONTRIBUTING.md)（均为西班牙语）。
+社区讨论现已开放，你也可以通过 [Patreon](https://www.patreon.com/obsidiangenesis) 支持本项目。README 与文档指南提供西班牙语、英语、德语和中文版本；工具包的通用操作说明仍使用西班牙语。全面调整和优化现有仓库将是后续阶段。[更新日志](CHANGELOG.md) · [如何贡献](CONTRIBUTING.md)（均为西班牙语）。
 
 ## 三步开始
 
@@ -125,3 +126,7 @@ Python 3.8 或更高版本可以借助标准库自动完成安装、创建、验
 ## 关于开发
 
 Albert Mestre 在 **OpenCode、Claude 和 Codex（OpenAI）** 的重要协助下开发这一改编版本。这些 AI 工具帮助构建了代码的重要部分，并支持文档编写和测试，因此在此列为项目的贡献工具。各项提议都会经过审阅，结果在整合前都会经过验证；使用 AI 不能取代与真人的测试，也不能单凭这一点证明工具包易于使用。
+
+## 支持本项目
+
+Obsidian Genesis 是免费的，并将一直免费。如果它对你有帮助，可以通过 [Patreon](https://www.patreon.com/obsidiangenesis) 支持本项目。捐助用于投入时间完善初学者指南、开展真人测试、维护翻译和提供支持。捐助完全自愿：不会解锁任何功能，整个工具包始终公开。

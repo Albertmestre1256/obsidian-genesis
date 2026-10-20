@@ -1,19 +1,20 @@
 > **Crédito principal a [davidkimai](https://github.com/davidkimai):** este kit se basa en su trabajo [Context Engineering](https://github.com/davidkimai/Context-Engineering). Obsidian Genesis adapta ese trabajo para iniciar y organizar bóvedas de Obsidian con ayuda de una IA.
 > [!info]- Índice de esta nota (líneas)
 > - Líneas 1–1: Atribución
-> - Líneas 2–16: Este índice
-> - Líneas 18–19: Introducción
-> - Líneas 20–27: Obsidian Genesis: tu bóveda, configurada por una IA
-> - Líneas 28–51: Estado del proyecto — 19/10/2026
-> - Líneas 52–72: Empezar en tres pasos
-> - Líneas 73–78: Adjuntos o bóveda existente
-> - Líneas 79–86: Continuar
-> - Líneas 87–101: Qué contiene
-> - Líneas 102–110: Ayuda opcional
-> - Líneas 111–114: Privacidad
-> - Líneas 115–118: Licencia
-> - Líneas 119–122: Comunidad y soporte
-> - Líneas 123–125: Sobre el desarrollo
+> - Líneas 2–17: Este índice
+> - Líneas 19–20: Introducción
+> - Líneas 21–28: Obsidian Genesis: tu bóveda, configurada por una IA
+> - Líneas 29–52: Estado del proyecto — 19/10/2026
+> - Líneas 53–73: Empezar en tres pasos
+> - Líneas 74–79: Adjuntos o bóveda existente
+> - Líneas 80–87: Continuar
+> - Líneas 88–102: Qué contiene
+> - Líneas 103–111: Ayuda opcional
+> - Líneas 112–115: Privacidad
+> - Líneas 116–119: Licencia
+> - Líneas 120–123: Comunidad y soporte
+> - Líneas 124–127: Sobre el desarrollo
+> - Líneas 128–130: Apoyar el proyecto
 
 **Idioma:** Español · [English](README.en.md) · [Deutsch](README.de.md) · [中文](README.zh.md)
 
@@ -47,7 +48,7 @@ Se comprobaron configuración y reanudación con Claude Code. El ensayo manual O
 
 Faltan la reanudación independiente en OpenCode, la cobertura específica de ChatGPT web, una prueba con cinco principiantes (al menos cuatro sin ayuda) y la revisión visual formal final en Obsidian.
 
-Las discusiones de la comunidad están disponibles; el patrocinio sigue pendiente. El README y la guía de documentos están en español, inglés, alemán y chino; las instrucciones comunes del kit siguen en español. La adaptación y optimización general de bóvedas existentes será una fase posterior. [Historial de cambios](CHANGELOG.md) · [Cómo contribuir](CONTRIBUTING.md).
+Las discusiones de la comunidad están disponibles y podés apoyar el proyecto en [Patreon](https://www.patreon.com/obsidiangenesis). El README y la guía de documentos están en español, inglés, alemán y chino; las instrucciones comunes del kit siguen en español. La adaptación y optimización general de bóvedas existentes será una fase posterior. [Historial de cambios](CHANGELOG.md) · [Cómo contribuir](CONTRIBUTING.md).
 
 ## Empezar en tres pasos
 
@@ -123,3 +124,7 @@ Para dudas, ideas y experiencias, usá las [discusiones de la comunidad](https:/
 ## Sobre el desarrollo
 
 Albert Mestre desarrolla esta adaptación con contribuciones importantes de **OpenCode, Claude y Codex (OpenAI)**, que ayudaron a construir una parte sustancial del código y apoyaron la documentación y las pruebas. Se los reconoce aquí como herramientas de IA contribuidoras al proyecto. Las propuestas se revisan y los resultados se verifican antes de integrarlos; el uso de IA no sustituye las pruebas con personas ni acredita por sí solo que el kit sea fácil de usar.
+
+## Apoyar el proyecto
+
+Obsidian Genesis es gratuito y lo seguirá siendo. Si te resulta útil, podés apoyarlo en [Patreon](https://www.patreon.com/obsidiangenesis). Los aportes ayudan a dedicar tiempo a guías para principiantes, pruebas con personas reales, traducciones y soporte. Son opcionales: no desbloquean funciones y todo el kit sigue siendo público.
