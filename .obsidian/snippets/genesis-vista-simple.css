@@ -11,7 +11,8 @@
   [data-path="00_CORE"],
   [data-path="DOCS"],
   [data-path="tests"],
-  [data-path="PROJECT_TEMPLATE"]
+  [data-path="PROJECT_TEMPLATE"],
+  [data-path="skills"]
 )) {
   display: none !important;
 }
@@ -28,6 +29,7 @@
   [data-path="actualizar_indice.py"],
   [data-path="crear_proyecto.py"],
   [data-path="instalar.py"],
+  [data-path="instalar_skills.py"],
   [data-path="README.md"],
   [data-path="README.en.md"],
   [data-path="README.de.md"],

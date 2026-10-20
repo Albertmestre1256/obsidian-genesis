@@ -1,6 +1,6 @@
 {
   "collapse-filter": false,
-  "search": "-path:/^(DOCS|tests|PROJECT_TEMPLATE)\\// -path:/^00_CORE\\/(?!cells\\/)/ -path:/(^|\\/)README([.](en|de|zh))?[.]md$/ -path:/^(AGENTS|AI-INSTRUCTIONS|CLAUDE|CHANGELOG|CONTRIBUTING|LEER_PRIMERO)[.]md$/ -path:/^(actualizar_indice|crear_proyecto|instalar)[.]py$/",
+  "search": "-path:/^(DOCS|tests|PROJECT_TEMPLATE|skills)\\// -path:/^00_CORE\\/(?!cells\\/)/ -path:/(^|\\/)README([.](en|de|zh))?[.]md$/ -path:/^(AGENTS|AI-INSTRUCTIONS|CLAUDE|CHANGELOG|CONTRIBUTING|LEER_PRIMERO)[.]md$/ -path:/^(actualizar_indice|crear_proyecto|instalar|instalar_skills)[.]py$/",
   "showTags": false,
   "showAttachments": false,
   "hideUnresolved": true,
