@@ -10,7 +10,7 @@ Antes de publicar una versión del kit:
 - [ ] Ejecutar las pruebas automáticas y el validador.
 - [ ] Probar configuración y trabajo diario en Claude Code real.
 - [ ] Probar configuración y trabajo diario en OpenCode y ChatGPT con carpeta local o copia descargable; registrar acceso y herramientas disponibles. En OpenCode, distinguir carga de comandos de respuesta del modelo y cambios guardados.
-- [ ] Probar bóveda existente, nombres ocupados y reanudación parcial.
+- [ ] Probar nombres ocupados y reanudación parcial.
 - [ ] Completar y registrar la [prueba con usuarios](prueba-con-usuarios.md).
 - [ ] Comprobar al final Panel, Plantillas y enlaces en Obsidian limpio.
 - [ ] Revisar licencia y atribución, nombre del repositorio y visibilidad acordada.

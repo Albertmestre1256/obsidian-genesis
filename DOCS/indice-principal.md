@@ -3,7 +3,7 @@
 > - Líneas 8–13: Mantener el mapa general y los índices de nodos
 > - Líneas 14–33: Crear y actualizar un nodo
 > - Líneas 34–52: Mantenerlo vigente
-> - Líneas 53–61: Bóvedas existentes y falta de acceso
+> - Líneas 53–59: Falta de acceso
 
 # Mantener el mapa general y los índices de nodos
 
@@ -50,9 +50,7 @@ Se regenera el bloque entre `%% vault-index:start %%` y `%% vault-index:end %%`,
 
 En los nodos, el bloque va entre `%% node-index:start %%` y `%% node-index:end %%`. Conserva propósito, resúmenes manuales y comentarios externos. Primero se comprueban todos los índices; ante un fallo de escritura posterior, puede haber índices locales ya guardados: informá el impedimento y releé antes de reintentar, sin declarar el mapa completo.
 
-## Bóvedas existentes y falta de acceso
-
-Respetá índice y reglas propios. Si acordaron otro nombre, señalalo en las entradas para asistentes y mantenelo con herramientas de archivos; el script usa `INDICE.md`.
+## Falta de acceso
 
 Si no podés actualizarlo, informá archivos cambiados e índice pendiente, sin declarar integración completa. Las fuentes siguen siendo de solo agregado.
 

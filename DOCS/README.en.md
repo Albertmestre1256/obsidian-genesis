@@ -22,7 +22,7 @@ descripcion: "What each kit document contains, what it does and when to consult 
 
 **This guide in other languages:** [Español](README.md) · [English](README.en.md) · [Deutsch](README.de.md) · [中文](README.zh.md)
 
-You do not need to read everything to begin: follow the main README and answer your AI’s questions. Use this guide to understand the files or find help. File paths are the same in every language; the kit’s shared instructions remain in Spanish. This guide describes the complete repository and is read in the downloaded kit folder. When integrating the kit into another vault, it stays here with the tests and development documentation; usage help is copied.
+You do not need to read everything to begin: follow the main README and answer your AI’s questions. Use this guide to understand the files or find help. File paths are the same in every language; the kit’s shared instructions remain in Spanish. This guide describes the complete repository and is read in the downloaded kit folder.
 
 ## Contents of this guide
 
@@ -67,12 +67,12 @@ You do not need to read everything to begin: follow the main README and answer y
 
 | Document or tool | Purpose |
 |---|---|
-| [`DOCS/QUICKSTART.md`](../DOCS/QUICKSTART.md) | Start with an AI: local access, attached copies, existing vaults and resuming. |
+| [`DOCS/QUICKSTART.md`](../DOCS/QUICKSTART.md) | Start with an AI: local access, attached copies and resuming. |
 | [`DOCS/opencode.md`](../DOCS/opencode.md) | Open the kit and use its commands in OpenCode. |
 | [`DOCS/chatgpt.md`](../DOCS/chatgpt.md) | ChatGPT workflows with a folder or attachments. |
 | [`DOCS/usar-con-otras-ias.md`](../DOCS/usar-con-otras-ias.md) | Everyday requests to resume, draft or save progress. |
 | [`DOCS/primer-proyecto.md`](../DOCS/primer-proyecto.md) | Create a project manually as an alternative. |
-| [`DOCS/instalacion-manual.md`](../DOCS/instalacion-manual.md) | Integrate the kit without running Python. |
+| [`DOCS/instalacion-manual.md`](../DOCS/instalacion-manual.md) | Legacy integration into existing vaults, outside the current scope; kept until removal or separation is decided. |
 | [`DOCS/creacion-para-asistentes.md`](../DOCS/creacion-para-asistentes.md) | Technical reference for an AI preparing project files. |
 | [`DOCS/indice-principal.md`](../DOCS/indice-principal.md) | Maintain the map, local indexes and scalable links. |
 | [`DOCS/mantenimiento.md`](../DOCS/mantenimiento.md) | Update line ranges, maps and logs, and verify closure. |
@@ -93,16 +93,16 @@ You do not need to read everything to begin: follow the main README and answer y
 | [`.claude/skills/validar/SKILL.md`](../.claude/skills/validar/SKILL.md) · [`.opencode/commands/validar.md`](../.opencode/commands/validar.md) | /validar: check context notes and explain errors or warnings. |
 | [`.claude/skills/cerrar/SKILL.md`](../.claude/skills/cerrar/SKILL.md) · [`.opencode/commands/cerrar.md`](../.opencode/commands/cerrar.md) | /cerrar: propose saving changes and verify approved updates. |
 | [`.claude/skills/vault-manager/SKILL.md`](../.claude/skills/vault-manager/SKILL.md) · [`.claude/settings.json`](../.claude/settings.json) | Vault usage guidance and Claude integration settings. |
-| [`.obsidian/app.json`](../.obsidian/app.json) · [`.obsidian/core-plugins.json`](../.obsidian/core-plugins.json) · [`.obsidian/graph.json`](../.obsidian/graph.json) · [`.obsidian/templates.json`](../.obsidian/templates.json) · [`.obsidian/appearance.json`](../.obsidian/appearance.json) · [`.obsidian/snippets/genesis-vista-simple.css`](../.obsidian/snippets/genesis-vista-simple.css) | Initial settings and enabled simple view for a new vault; preserve existing settings when integrating. |
+| [`.obsidian/app.json`](../.obsidian/app.json) · [`.obsidian/core-plugins.json`](../.obsidian/core-plugins.json) · [`.obsidian/graph.json`](../.obsidian/graph.json) · [`.obsidian/templates.json`](../.obsidian/templates.json) · [`.obsidian/appearance.json`](../.obsidian/appearance.json) · [`.obsidian/snippets/genesis-vista-simple.css`](../.obsidian/snippets/genesis-vista-simple.css) | Initial settings and enabled simple view for a new vault. |
 | [`Proyectos.base`](../Proyectos.base) | Project table used by the Panel; not a note or script. |
 
 ## Python and tests
 
-Python automates tasks; you do not need to program to use the kit with an AI that can manage files. Tests are for kit developers, and the installer does not copy them into an installed vault.
+Python automates tasks; you do not need to program to use the kit with an AI that can manage files. Tests are for kit developers.
 
 | Document or tool | Purpose |
 |---|---|
-| [`instalar.py`](../instalar.py) | Add the kit to another vault without replacing existing files. |
+| [`instalar.py`](../instalar.py) | Legacy installer for existing vaults, outside the current scope; kept until removal or separation is decided. |
 | [`crear_proyecto.py`](../crear_proyecto.py) | Create the context note and folders of an agreed project. |
 | [`actualizar_indice.py`](../actualizar_indice.py) | Generate or check the general index and node indexes. |
 | [`00_CORE/schemas/validate.py`](../00_CORE/schemas/validate.py) | Check context notes and setup; with --cierre, verify an operation. |

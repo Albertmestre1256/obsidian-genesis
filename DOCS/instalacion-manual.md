@@ -1,8 +1,10 @@
 > [!info]- Índice de esta nota (líneas)
 > - Líneas 1–3: Este índice
-> - Líneas 5–21: Agregar el kit a una bóveda sin Python
+> - Líneas 5–23: Agregar el kit a una bóveda existente sin Python (heredado)
 
-# Agregar el kit a una bóveda sin Python
+# Agregar el kit a una bóveda existente sin Python (heredado)
+
+> **Fuera del alcance actual.** Obsidian Genesis prepara bóvedas nuevas. Esta guía corresponde a la integración en bóvedas existentes y se conserva hasta decidir su retiro o separación. Para empezar, seguí el [inicio rápido](QUICKSTART.md) en una carpeta nueva.
 
 Usá esta guía si ya tenés una bóveda. Conservá la carpeta descargada del kit separada de la bóveda de destino.
 

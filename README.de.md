@@ -6,15 +6,15 @@
 > - Líneas 21–28: Obsidian Genesis: dein Vault, eingerichtet von einer KI
 > - Líneas 29–52: Projektstand — 20. Oktober 2026
 > - Líneas 53–73: In drei Schritten starten
-> - Líneas 74–79: Anhänge oder ein bestehender Vault
+> - Líneas 74–79: Anhänge und vorhandene Notizen
 > - Líneas 80–87: Fortsetzen
 > - Líneas 88–102: Was es enthält
-> - Líneas 103–113: Optionale Hilfe
-> - Líneas 114–117: Datenschutz
-> - Líneas 118–121: Lizenz
-> - Líneas 122–125: Community und Hilfe
-> - Líneas 126–129: Über die Entwicklung
-> - Líneas 130–132: Projekt unterstützen
+> - Líneas 103–112: Optionale Hilfe
+> - Líneas 113–116: Datenschutz
+> - Líneas 117–120: Lizenz
+> - Líneas 121–124: Community und Hilfe
+> - Líneas 125–128: Über die Entwicklung
+> - Líneas 129–131: Projekt unterstützen
 
 **Sprache:** [Español](README.md) · [English](README.en.md) · Deutsch · [中文](README.zh.md)
 
@@ -40,7 +40,7 @@ Die Einstiegsnotiz [Leer primero](LEER_PRIMERO.md) („Zuerst lesen“) verbinde
 
 Der Projektersteller prüft den Zustand erneut, bevor er ein Projekt speichert, und unterscheidet blockierende Bedingungen von Teilfehlern; jede Datei wird angelegt, ohne eine vorhandene zu ersetzen.
 
-Die einfache Ansicht reduziert die sichtbaren Hilfsdateien im Datei-Explorer und im Graphen neuer Ordner und lässt sich in bestehenden Vaults optional mit Sicherungskopien aktivieren. Einstellungen und eigene Suchabfragen bleiben erhalten; ein noch ausstehender Filter des Kits wird gemeldet.
+Die einfache Ansicht reduziert die sichtbaren Hilfsdateien im Datei-Explorer und im Graphen der neuen Vaults, die das Kit vorbereitet.
 
 Die [entfernte Testmatrix für den Code-Commit `c69c38a`](https://github.com/Albertmestre1256/obsidian-genesis/actions/runs/39375866749) endete **6/6 erfolgreich** unter Windows, macOS und Ubuntu mit Python 3.8 und 3.13. Das sind technische Ergebnisse; sie belegen keine einfache Bedienung.
 
@@ -48,7 +48,7 @@ Einrichtung und Fortsetzung wurden mit Claude Code geprüft. Der manuelle Versuc
 
 Noch offen sind die unabhängige Fortsetzung in OpenCode, die gesonderte Prüfung von ChatGPT im Web, ein Test mit fünf Einsteigenden (mindestens vier ohne Hilfe) und die abschließende formale Sichtprüfung in Obsidian.
 
-Die Community-Diskussionen sind verfügbar, und du kannst das Projekt auf [Patreon](https://www.patreon.com/obsidiangenesis) unterstützen. README und Dokumentenwegweiser sind auf Spanisch, Englisch, Deutsch und Chinesisch verfügbar; die gemeinsamen Anleitungen bleiben auf Spanisch. Die allgemeine Anpassung und Optimierung bestehender Vaults ist eine spätere Phase. [Änderungsprotokoll](CHANGELOG.md) · [Mitwirken](CONTRIBUTING.md) (beide auf Spanisch).
+Die Community-Diskussionen sind verfügbar, und du kannst das Projekt auf [Patreon](https://www.patreon.com/obsidiangenesis) unterstützen. README und Dokumentenwegweiser sind auf Spanisch, Englisch, Deutsch und Chinesisch verfügbar; die gemeinsamen Anleitungen bleiben auf Spanisch. Bestehende Vaults anzupassen oder zu optimieren gehört nicht zu diesem Kit: Dafür wird es ein separates Repository geben. [Änderungsprotokoll](CHANGELOG.md) · [Mitwirken](CONTRIBUTING.md) (beide auf Spanisch).
 
 ## In drei Schritten starten
 
@@ -71,11 +71,11 @@ Sie führt außerdem ein **Personalisierungsinventar**: was du beantwortet hast,
 
 **Du erhältst:** einen vorbereiteten Ordner, die Projektkarte, ein Panel für den Zugriff und eine Erklärung, wie du ihn in Obsidian öffnest. Die KI prüft die Dateien; die visuelle Prüfung erfolgt in Obsidian. Falls du es noch nicht hast, installiere es von [obsidian.md](https://obsidian.md), öffne den vorbereiteten Ordner als Vault und gehe zu `Panel.md`.
 
-## Anhänge oder ein bestehender Vault
+## Anhänge und vorhandene Notizen
 
 Ein angehängtes ZIP gibt keinen Zugriff auf deinen Computer. Wenn der Chat Dateien erzeugen kann, kann er dir eine eingerichtete Kopie zum Herunterladen zurückgeben. Wenn er nur mit Text antwortet, bleibt das Speichern offen. Die [Zugangsanleitung](DOCS/QUICKSTART.md) erklärt die Möglichkeiten.
 
-Wenn du bereits einen Vault hast, ist die aktuelle Integration zurückhaltend: Die KI liest seine Regeln, vergleicht Konflikte und bewahrt Notizen und Einstellungen. Einen ganzen bestehenden Vault automatisch umzuorganisieren oder zu optimieren ist noch nicht umgesetzt; das ist die oben erwähnte spätere Phase.
+Wenn du bereits einen Vault hast, passt dieses Kit ihn nicht an: Verwende es in einem neuen Ordner. Bestehende Vaults anzupassen oder zu optimieren wird ein separates Repository, das noch nicht verfügbar ist.
 
 ## Fortsetzen
 
@@ -105,11 +105,10 @@ Das Beispiel `aprender-python` ist fiktiv und von deinen eigenen Projekten getre
 Diese Anleitungen sind auf Spanisch:
 
 - [Ein Projekt von Hand anlegen](DOCS/primer-proyecto.md).
-- [Das Kit ohne Python einbinden](DOCS/instalacion-manual.md).
 - [Vorlagen und Panel](DOCS/obsidian.md).
 - [Fehlerbehebung](DOCS/TROUBLESHOOTING.md).
 
-Python 3.8 oder neuer automatisiert Installation, Erstellung, Prüfung und Index mit der Standardbibliothek. Die KI kann die Einrichtung auch mit ihren Dateiwerkzeugen vornehmen. Zum Mitwirken: [CONTRIBUTING](CONTRIBUTING.md).
+Python 3.8 oder neuer automatisiert Erstellung, Prüfung und Index mit der Standardbibliothek. Die KI kann die Einrichtung auch mit ihren Dateiwerkzeugen vornehmen. Zum Mitwirken: [CONTRIBUTING](CONTRIBUTING.md).
 
 ## Datenschutz
 

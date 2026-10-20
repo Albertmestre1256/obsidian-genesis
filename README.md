@@ -6,15 +6,15 @@
 > - Líneas 21–28: Obsidian Genesis: tu bóveda, configurada por una IA
 > - Líneas 29–52: Estado del proyecto — 20/10/2026
 > - Líneas 53–73: Empezar en tres pasos
-> - Líneas 74–79: Adjuntos o bóveda existente
+> - Líneas 74–79: Adjuntos y notas que ya tenés
 > - Líneas 80–87: Continuar
 > - Líneas 88–102: Qué contiene
-> - Líneas 103–111: Ayuda opcional
-> - Líneas 112–115: Privacidad
-> - Líneas 116–119: Licencia
-> - Líneas 120–123: Comunidad y soporte
-> - Líneas 124–127: Sobre el desarrollo
-> - Líneas 128–130: Apoyar el proyecto
+> - Líneas 103–110: Ayuda opcional
+> - Líneas 111–114: Privacidad
+> - Líneas 115–118: Licencia
+> - Líneas 119–122: Comunidad y soporte
+> - Líneas 123–126: Sobre el desarrollo
+> - Líneas 127–129: Apoyar el proyecto
 
 **Idioma:** Español · [English](README.en.md) · [Deutsch](README.de.md) · [中文](README.zh.md)
 
@@ -40,7 +40,7 @@ La entrada [Leer primero](LEER_PRIMERO.md) conecta el Panel y el índice general
 
 El creador vuelve a comprobar el estado antes de guardar un proyecto y distingue los bloqueos previos de los fallos parciales; cada archivo se crea sin reemplazar uno existente.
 
-La vista simple despeja el explorador y el gráfico en carpetas nuevas y puede activarse opcionalmente en bóvedas existentes con respaldo. Conserva preferencias y búsqueda propia; informa si el filtro del kit queda pendiente.
+La vista simple despeja el explorador y el gráfico de las bóvedas nuevas que prepara el kit.
 
 La [matriz remota del código `c69c38a`](https://github.com/Albertmestre1256/obsidian-genesis/actions/runs/39375866749) terminó **6/6 correcta** en Windows, macOS y Ubuntu con Python 3.8 y 3.13. Son resultados técnicos; no acreditan facilidad de uso.
 
@@ -48,7 +48,7 @@ Se comprobaron configuración y reanudación con Claude Code. El ensayo manual O
 
 Faltan la reanudación independiente en OpenCode, la cobertura específica de ChatGPT web, una prueba con cinco principiantes (al menos cuatro sin ayuda) y la revisión visual formal final en Obsidian.
 
-Las discusiones de la comunidad están disponibles y podés apoyar el proyecto en [Patreon](https://www.patreon.com/obsidiangenesis). El README y la guía de documentos están en español, inglés, alemán y chino; las instrucciones comunes del kit siguen en español. La adaptación y optimización general de bóvedas existentes será una fase posterior. [Historial de cambios](CHANGELOG.md) · [Cómo contribuir](CONTRIBUTING.md).
+Las discusiones de la comunidad están disponibles y podés apoyar el proyecto en [Patreon](https://www.patreon.com/obsidiangenesis). El README y la guía de documentos están en español, inglés, alemán y chino; las instrucciones comunes del kit siguen en español. Adaptar u optimizar bóvedas existentes queda fuera de este kit: será un repositorio separado. [Historial de cambios](CHANGELOG.md) · [Cómo contribuir](CONTRIBUTING.md).
 
 ## Empezar en tres pasos
 
@@ -71,11 +71,11 @@ También guarda un **inventario de personalización**: lo respondido, lo pendien
 
 **Recibís:** carpeta preparada, ficha del proyecto, Panel para acceder y explicación para abrirla en Obsidian. La IA verifica los archivos; la prueba visual se hace en Obsidian. Si aún no lo tenés, instalalo desde [obsidian.md](https://obsidian.md), abrí la carpeta preparada como bóveda y entrá a `Panel.md`.
 
-## Adjuntos o bóveda existente
+## Adjuntos y notas que ya tenés
 
 Un ZIP adjunto no da acceso a tu computadora. Si el chat genera archivos, puede devolverte una copia configurada para descargar. Si solo responde texto, queda pendiente guardarlo. La [guía de acceso](DOCS/QUICKSTART.md) explica las opciones.
 
-Si ya tenés una bóveda, la integración actual es conservadora: la IA lee sus reglas, compara conflictos y conserva notas y ajustes. Reorganizar u optimizar automáticamente toda una bóveda existente todavía no está implementado; es la fase posterior mencionada arriba.
+Si ya tenés una bóveda, este kit no la adapta: usalo en una carpeta nueva. Adaptar u optimizar bóvedas existentes será un repositorio separado, todavía no disponible.
 
 ## Continuar
 
@@ -103,11 +103,10 @@ El ejemplo `aprender-python` es ficticio y está separado de proyectos propios. 
 ## Ayuda opcional
 
 - [Crear un proyecto a mano](DOCS/primer-proyecto.md).
-- [Integrar el kit sin Python](DOCS/instalacion-manual.md).
 - [Plantillas y panel](DOCS/obsidian.md).
 - [Solución de problemas](DOCS/TROUBLESHOOTING.md).
 
-Python 3.8 o posterior automatiza instalación, creación, validación e índice con la biblioteca estándar. La IA también puede configurar usando sus herramientas de archivos. Para contribuir: [CONTRIBUTING](CONTRIBUTING.md).
+Python 3.8 o posterior automatiza creación, validación e índice con la biblioteca estándar. La IA también puede configurar usando sus herramientas de archivos. Para contribuir: [CONTRIBUTING](CONTRIBUTING.md).
 
 ## Privacidad
 

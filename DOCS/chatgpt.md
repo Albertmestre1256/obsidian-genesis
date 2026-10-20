@@ -27,7 +27,7 @@ Abrí un chat de ChatGPT Work. Si acepta el ZIP del kit y puede descomprimirlo, 
 
 Si el chat no puede leer el ZIP, adjuntá los documentos que pida, empezando por `INDICE.md`, `AI-INSTRUCTIONS.md`, las reglas y `00_CORE/protocols/configurar-vault.md`. Para crear archivos necesita también las plantillas reales del kit; leer solo el índice no permite reconstruir toda la bóveda. Pedile que identifique cada adjunto por su ruta y conserve archivos distintos con el mismo nombre. Si no puede reunir el kit y generar la copia, la configuración queda pendiente: podés continuar en la app con acceso a carpeta o usar la [guía manual](primer-proyecto.md).
 
-Cuando recibas un ZIP configurado, descargalo, descomprimilo en una carpeta nueva y abrí esa carpeta en Obsidian. Comprobá que estén `INDICE.md`, `Panel.md`, tu ficha y las carpetas ocultas incluidas. El chat trabajó sobre una copia: la carpeta original no se actualiza con el adjunto. Si tenés una bóveda existente, integrá las notas modificadas dentro del alcance acordado, sin reemplazar toda tu bóveda con el ZIP.
+Cuando recibas un ZIP configurado, descargalo, descomprimilo en una carpeta nueva y abrí esa carpeta en Obsidian. Comprobá que estén `INDICE.md`, `Panel.md`, tu ficha y las carpetas ocultas incluidas. El chat trabajó sobre una copia: la carpeta original no se actualiza con el adjunto. Si ya tenías una bóveda preparada con el kit, copiá en ella solo las notas modificadas dentro del alcance acordado, sin reemplazarla entera con el ZIP.
 
 ## Un Proyecto de ChatGPT para continuar
 

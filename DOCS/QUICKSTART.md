@@ -12,7 +12,7 @@ Para configurar esta carpeta, pedile a tu IA: «Configurá esta bóveda con preg
 
 Con acceso local, abrí como carpeta de trabajo la que contiene `INDICE.md` e `AI-INSTRUCTIONS.md`. La IA comprueba lectura y escritura, explica el destino y entrega los archivos verificados. Para pasos específicos de acceso: [OpenCode](opencode.md) o [ChatGPT](chatgpt.md).
 
-Si ya tenés notas, dale acceso también a tu bóveda y señalala como destino. La IA conserva sus reglas, notas y ajustes; acuerda cómo integrar archivos incompatibles antes de cambiarlos.
+El kit prepara bóvedas nuevas. Si ya tenés notas, usá igual una carpeta nueva: el kit no adapta bóvedas existentes; eso será un repositorio separado.
 
 Un ZIP adjunto da acceso a una copia. Si el chat puede leerlo y generar archivos, recibís otra copia configurada para descargar y abrir en Obsidian; el original no se actualiza. Si solo responde texto, guardar queda pendiente: usá un asistente con acceso local o la [alternativa manual](primer-proyecto.md).
 

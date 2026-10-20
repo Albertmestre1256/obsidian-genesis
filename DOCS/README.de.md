@@ -22,7 +22,7 @@ descripcion: "Inhalt und Zweck der Kit-Dokumente und wann sie hilfreich sind."
 
 **Dieser Wegweiser in anderen Sprachen:** [Español](README.md) · [English](README.en.md) · [Deutsch](README.de.md) · [中文](README.zh.md)
 
-Du musst zum Start nicht alles lesen: Folge dem Haupt-README und beantworte die Fragen deiner KI. Dieser Wegweiser erklärt die Dateien und hilft bei der Suche nach Unterstützung. Die Dateipfade bleiben in allen Sprachen gleich; die gemeinsamen Anweisungen des Kits sind weiterhin auf Spanisch. Dieser Wegweiser beschreibt das vollständige Repository und wird im heruntergeladenen Kit-Ordner gelesen. Beim Integrieren in einen anderen Vault bleibt er hier bei Tests und Entwicklungsdokumentation; die Nutzungshilfen werden kopiert.
+Du musst zum Start nicht alles lesen: Folge dem Haupt-README und beantworte die Fragen deiner KI. Dieser Wegweiser erklärt die Dateien und hilft bei der Suche nach Unterstützung. Die Dateipfade bleiben in allen Sprachen gleich; die gemeinsamen Anweisungen des Kits sind weiterhin auf Spanisch. Dieser Wegweiser beschreibt das vollständige Repository und wird im heruntergeladenen Kit-Ordner gelesen.
 
 ## Inhaltsverzeichnis
 
@@ -67,12 +67,12 @@ Du musst zum Start nicht alles lesen: Folge dem Haupt-README und beantworte die 
 
 | Dokument oder Werkzeug | Zweck |
 |---|---|
-| [`DOCS/QUICKSTART.md`](../DOCS/QUICKSTART.md) | Start mit einer KI: lokaler Zugriff, angehängte Kopien, bestehende Vaults und Fortsetzen. |
+| [`DOCS/QUICKSTART.md`](../DOCS/QUICKSTART.md) | Start mit einer KI: lokaler Zugriff, angehängte Kopien und Fortsetzen. |
 | [`DOCS/opencode.md`](../DOCS/opencode.md) | Kit öffnen und Befehle in OpenCode nutzen. |
 | [`DOCS/chatgpt.md`](../DOCS/chatgpt.md) | ChatGPT-Abläufe mit Ordner oder Anhängen. |
 | [`DOCS/usar-con-otras-ias.md`](../DOCS/usar-con-otras-ias.md) | Alltägliche Anfragen zum Fortsetzen, Schreiben oder Speichern von Fortschritten. |
 | [`DOCS/primer-proyecto.md`](../DOCS/primer-proyecto.md) | Ein Projekt alternativ von Hand anlegen. |
-| [`DOCS/instalacion-manual.md`](../DOCS/instalacion-manual.md) | Kit ohne Ausführen von Python integrieren. |
+| [`DOCS/instalacion-manual.md`](../DOCS/instalacion-manual.md) | Frühere Integration in bestehende Vaults, außerhalb des aktuellen Umfangs; bleibt erhalten, bis über Entfernen oder Auslagern entschieden ist. |
 | [`DOCS/creacion-para-asistentes.md`](../DOCS/creacion-para-asistentes.md) | Technische Referenz für die KI beim Erstellen von Projektdateien. |
 | [`DOCS/indice-principal.md`](../DOCS/indice-principal.md) | Übersicht, lokale Indizes und skalierbare Verknüpfungen pflegen. |
 | [`DOCS/mantenimiento.md`](../DOCS/mantenimiento.md) | Zeilenbereiche, Übersichten und Protokoll aktualisieren; Abschluss prüfen. |
@@ -93,16 +93,16 @@ Du musst zum Start nicht alles lesen: Folge dem Haupt-README und beantworte die 
 | [`.claude/skills/validar/SKILL.md`](../.claude/skills/validar/SKILL.md) · [`.opencode/commands/validar.md`](../.opencode/commands/validar.md) | /validar: Kontextnotizen prüfen und Fehler oder Hinweise erklären. |
 | [`.claude/skills/cerrar/SKILL.md`](../.claude/skills/cerrar/SKILL.md) · [`.opencode/commands/cerrar.md`](../.opencode/commands/cerrar.md) | /cerrar: Speichern von Änderungen vorschlagen und Freigegebenes prüfen. |
 | [`.claude/skills/vault-manager/SKILL.md`](../.claude/skills/vault-manager/SKILL.md) · [`.claude/settings.json`](../.claude/settings.json) | Orientierung zur Vault-Nutzung und Einstellungen der Claude-Integration. |
-| [`.obsidian/app.json`](../.obsidian/app.json) · [`.obsidian/core-plugins.json`](../.obsidian/core-plugins.json) · [`.obsidian/graph.json`](../.obsidian/graph.json) · [`.obsidian/templates.json`](../.obsidian/templates.json) · [`.obsidian/appearance.json`](../.obsidian/appearance.json) · [`.obsidian/snippets/genesis-vista-simple.css`](../.obsidian/snippets/genesis-vista-simple.css) | Grundeinstellungen und aktivierte einfache Ansicht für neue Vaults; eigene Einstellungen beim Integrieren erhalten. |
+| [`.obsidian/app.json`](../.obsidian/app.json) · [`.obsidian/core-plugins.json`](../.obsidian/core-plugins.json) · [`.obsidian/graph.json`](../.obsidian/graph.json) · [`.obsidian/templates.json`](../.obsidian/templates.json) · [`.obsidian/appearance.json`](../.obsidian/appearance.json) · [`.obsidian/snippets/genesis-vista-simple.css`](../.obsidian/snippets/genesis-vista-simple.css) | Grundeinstellungen und aktivierte einfache Ansicht für neue Vaults. |
 | [`Proyectos.base`](../Proyectos.base) | Projekttabelle des Panels; weder Notiz noch Skript. |
 
 ## Python und Tests
 
-Python automatisiert Aufgaben. Mit einer KI, die Dateien verwalten kann, brauchst du zum Verwenden des Kits nicht zu programmieren. Tests dienen der Entwicklung des Kits; der Installer kopiert sie nicht in einen eingerichteten Vault.
+Python automatisiert Aufgaben. Mit einer KI, die Dateien verwalten kann, brauchst du zum Verwenden des Kits nicht zu programmieren. Tests dienen der Entwicklung des Kits.
 
 | Dokument oder Werkzeug | Zweck |
 |---|---|
-| [`instalar.py`](../instalar.py) | Kit zu einem anderen Vault hinzufügen, ohne vorhandene Dateien zu ersetzen. |
+| [`instalar.py`](../instalar.py) | Früheres Installationsprogramm für bestehende Vaults, außerhalb des aktuellen Umfangs; bleibt erhalten, bis über Entfernen oder Auslagern entschieden ist. |
 | [`crear_proyecto.py`](../crear_proyecto.py) | Kontextnotiz und Ordner eines vereinbarten Projekts erstellen. |
 | [`actualizar_indice.py`](../actualizar_indice.py) | Allgemeinen Index und Knotenindizes erzeugen oder prüfen. |
 | [`00_CORE/schemas/validate.py`](../00_CORE/schemas/validate.py) | Kontextnotizen und Einrichtung prüfen; mit --cierre einen Vorgang abgleichen. |

@@ -3,10 +3,10 @@
 > - Líneas 11–14: Plantillas y panel
 > - Líneas 15–18: Abrir la bóveda preparada
 > - Líneas 19–26: Vista simple de una bóveda nueva
-> - Líneas 27–49: En una bóveda existente
-> - Líneas 50–55: Qué muestra el Panel
-> - Líneas 56–67: Ver las conexiones
-> - Líneas 68–86: Retirar material del kit que ya no usás
+> - Líneas 27–32: Ajustes de Plantillas
+> - Líneas 33–38: Qué muestra el Panel
+> - Líneas 39–50: Ver las conexiones
+> - Líneas 51–70: Retirar material del kit que ya no usás
 
 # Plantillas y panel
 
@@ -24,32 +24,15 @@ El explorador prioriza `Panel.md`, `INDICE.md`, `Proyectos.base` y los proyectos
 
 Si querés volver a ver el soporte, pedíselo a la IA: puede desactivar solo `genesis-vista-simple` en `enabledCssSnippets` y retirar el filtro de `search`, conservando los demás ajustes. La alternativa manual está en Ajustes → Apariencia → Fragmentos CSS y en los filtros del gráfico. Preparar estos archivos no acredita una comprobación visual en la app. Si Obsidian ya estaba abierto, puede mantener ajustes en memoria; no cerrar procesos por fuerza. Ocultar no elimina: para sacar de la bóveda el material que no usás, ver [Retirar material del kit](#retirar-material-del-kit-que-ya-no-usás).
 
-## En una bóveda existente
+## Ajustes de Plantillas
 
-El instalador conserva `.obsidian/`. Para usar estas funciones, activá Plantillas, Bases y Búsqueda en Ajustes → Plugins principales. Bases requiere Obsidian 1.9.10 o posterior.
-
-Si querés el gráfico en una bóveda existente, activá también **Vista de gráfico**. La IA conserva tus ajustes; no reemplaza `.obsidian/` por los del kit.
-
-La IA puede activar la vista simple con una opción explícita del instalador. Primero muestra el plan y después aplica lo aceptado:
-
-```sh
-python instalar.py "<ruta-de-tu-bóveda>" --vista-simple --dry-run
-python instalar.py "<ruta-de-tu-bóveda>" --vista-simple --yes
-```
-
-Solo agrega el CSS del kit, activa `genesis-vista-simple` en `enabledCssSnippets` y añade `search` al gráfico si no tiene una búsqueda. Conserva las demás claves, estilos y notas. Si ya hay una búsqueda distinta, la conserva e informa **filtro Genesis pendiente**; no combina consultas ni copia fuerzas, escala u otras preferencias del gráfico.
-
-- Un CSS con el mismo nombre y contenido distinto, un JSON incompatible o un enlace en las rutas afectadas impide escribir; se informa el archivo para resolverlo.
-- `--dry-run` no crea archivos ni respaldos. Sin `--yes`, también los cambios de ajustes requieren confirmación.
-- Solo respalda ajustes existentes que realmente cambian, usando archivos `.bak-...` exclusivos. Repetir sin cambios no reescribe ajustes, duplica snippets ni crea respaldos.
-
-Conservá la salida del instalador: identifica cada **Respaldo para restaurar** y cada archivo **Creado (retirar al revertir)**. Para revertir solo la vista, restaurá los ajustes desde los respaldos indicados y retirá únicamente los archivos de vista que esa ejecución creó; un CSS que ya existía idéntico se conserva. Los archivos del kit y las notas no se retiran. Si hubo ediciones posteriores, releelas antes de restaurar para no perderlas. Obsidian puede mantener ajustes en memoria: acordá el cierre y la reapertura, sin forzar procesos.
+La bóveda nueva ya trae Plantillas, Bases, Búsqueda y la vista simple configuradas; activarlas en una bóveda existente queda fuera del alcance del kit.
 
 En los ajustes de Plantillas, indicá `00_CORE/templates` como carpeta de plantillas y `YYYY-MM-DD` como formato de fecha. Allí están las plantillas; las fichas creadas se guardan en `00_CORE/cells/`, para que no aparezcan como opciones para insertar. Si creás la ficha con una IA, ella completa los archivos; la [guía manual](primer-proyecto.md) explica cómo insertarla por tu cuenta.
 
 ## Qué muestra el Panel
 
-La tabla de `Proyectos.base` reúne fichas propias. La búsqueda muestra tareas pendientes; para completarlas, abrí la nota original. El ejemplo lleva la propiedad `ejemplo: true` y se consulta desde un enlace de ayuda, separado de las vistas de trabajo.
+La tabla de `Proyectos.base` reúne fichas propias. La búsqueda muestra tareas pendientes; para completarlas, abrí la nota original. El ejemplo lleva la propiedad `ejemplo: true` y se consulta desde un enlace de ayuda, separado de las vistas de trabajo. La tabla usa Bases, que requiere Obsidian 1.9.10 o posterior.
 
 Fuentes: [Plantillas](https://obsidian.md/help/plugins/templates), [Bases](https://obsidian.md/help/bases/syntax), [Búsqueda](https://obsidian.md/help/plugins/search) y [Obsidian 1.9.10](https://obsidian.md/changelog/2025-08-18-desktop-v1.9.10/).
 
@@ -74,9 +57,10 @@ Referencia de los fragmentos de estilo: [CSS snippets](https://obsidian.md/help/
    - `tests/` y `.github/`: pruebas y metadatos de GitHub.
    - `DOCS/README*.md` y las traducciones `README.en.md`, `README.de.md` y `README.zh.md` de la raíz que la persona no use.
    - `CONTRIBUTING.md`, `DOCS/publicacion.md` y `DOCS/prueba-con-usuarios.md`, si su lectura confirma que sirven para desarrollar o publicar el kit.
+   - `instalar.py` y `DOCS/instalacion-manual.md`: material heredado para bóvedas existentes, que una bóveda nueva no usa.
 
-   Estas categorías son ejemplos, nunca una lista autorizada: reemplazalas por las rutas concretas que existan y sean retirables. El instalador no copia `tests/`, `.github/`, los README de la raíz ni `DOCS/README*.md` al integrar otra bóveda; el resto de `DOCS/` sí se instala. En una bóveda integrada, no busques lo que no se instaló.
-3. **Siempre se conserva.** Proyectos y sus carpetas, originales, `00_CORE/configuracion.md` con inventario y omisiones, fichas, registros e historial, índices, `Panel.md`, `Proyectos.base` y `.obsidian/`. También `INDICE.md`, `AGENTS.md`, `CLAUDE.md`, `AI-INSTRUCTIONS.md`, `LEER_PRIMERO.md`, reglas, protocolos, plantillas, `PROJECT_TEMPLATE/`, `.claude/`, `.opencode/`, herramientas y guías de `DOCS/` que estas entradas citan para retomar, ampliar, configurar otra parte o revisar. `LICENSE` y los créditos del kit permanecen: si una traducción se retira, el README que la persona lee conserva la atribución.
+   Estas categorías son ejemplos, nunca una lista autorizada: reemplazalas por las rutas concretas que existan y sean retirables.
+3. **Siempre se conserva.** Proyectos y sus carpetas, originales, `00_CORE/configuracion.md` con inventario y omisiones, fichas, registros e historial, índices, `Panel.md`, `Proyectos.base` y `.obsidian/`. También `INDICE.md`, `AGENTS.md`, `CLAUDE.md`, `AI-INSTRUCTIONS.md`, `LEER_PRIMERO.md`, reglas, protocolos, plantillas, `PROJECT_TEMPLATE/`, `.claude/`, `.opencode/`, herramientas y guías de uso (salvo los heredados `instalar.py` y `DOCS/instalacion-manual.md`) de `DOCS/` que estas entradas citan para retomar, ampliar, configurar otra parte o revisar. `LICENSE` y los créditos del kit permanecen: si una traducción se retira, el README que la persona lee conserva la atribución.
 4. **Referencias.** Buscá cada ruta y nombre candidato en lo que permanece: notas, guías, plantillas, herramientas y ajustes. Los enlaces del bloque automático de `INDICE.md` e índices generados son catálogo y se refrescan después; un filtro que oculta una ruta tampoco depende de ella. Un enlace manual o de una guía conservada debe seguir válido: conservá el candidato o incluí en la propuesta la adaptación concreta (archivo, texto actual y nuevo). Ninguna reescritura global.
 5. **Decisión obligatoria de cierre.** Mostrá una tabla con cada archivo por su ruta exacta, nunca una carpeta entera, con qué contiene, por qué ya no hace falta, dependencias o adaptación, respaldo y restauración, y el destino del respaldo **fuera de la bóveda**: otra carpeta con acceso o un ZIP descargable. Separá «Se eliminará si lo autorizás» de «Se conserva»; la segunda lista identifica las reglas, entradas, herramientas y datos necesarios. Un respaldo dentro vuelve a cargar gráfico y catálogo. Pedí la frase explícita del comienzo para aceptar la lista, o que indique exclusiones, conservación o postergación. Registrá su decisión y las rutas en el avance de configuración. Sin respuesta, registrá «retiro pendiente de decisión»; la integración puede seguir `lista`, pero no presentes el retiro ni el cierre de entrega como resueltos. Una decisión ya registrada no se vuelve a preguntar mientras la lista siga vigente. Aprobar una carpeta por su nombre abarca solo los archivos listados, no los que aparezcan después. Sin candidatos seguros, informá «Nada se eliminará», registrá el motivo y cerrá este paso conservando todo, sin pedir una orden vacía ni anunciar ahorro.
 6. **Respaldo.** Copiá cada archivo aprobado conservando su ruta relativa, con una nota de restauración: versión del kit, fecha, rutas, autoría y una copia de `LICENSE`. Contrastá cada archivo copiado con el de la bóveda. Sin destino, sin acceso o ante una diferencia, no se retira nada.

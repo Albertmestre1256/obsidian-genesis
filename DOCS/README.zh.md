@@ -22,7 +22,7 @@ descripcion: "各文档的内容、用途以及适合查阅的时机。"
 
 **本指南的其他语言版本:** [Español](README.md) · [English](README.en.md) · [Deutsch](README.de.md) · [中文](README.zh.md)
 
-开始前不需要读完所有文档：按照主 README 操作，回答 AI 的问题即可。本指南帮助你了解文件或查找帮助。各语言版本使用相同的文件路径；工具包的通用指令仍为西班牙语。 本指南介绍完整仓库，应在下载的工具包文件夹中查阅。将工具包整合到另一个笔记库时，本指南与测试及开发文档留在原文件夹中；日常使用帮助仍会复制。
+开始前不需要读完所有文档：按照主 README 操作，回答 AI 的问题即可。本指南帮助你了解文件或查找帮助。各语言版本使用相同的文件路径；工具包的通用指令仍为西班牙语。 本指南介绍完整仓库，应在下载的工具包文件夹中查阅。
 
 ## 本指南目录
 
@@ -67,12 +67,12 @@ descripcion: "各文档的内容、用途以及适合查阅的时机。"
 
 | 文档或工具 | 用途 |
 |---|---|
-| [`DOCS/QUICKSTART.md`](../DOCS/QUICKSTART.md) | 使用 AI 开始：本地访问、附件副本、现有仓库和继续配置。 |
+| [`DOCS/QUICKSTART.md`](../DOCS/QUICKSTART.md) | 使用 AI 开始：本地访问、附件副本和继续配置。 |
 | [`DOCS/opencode.md`](../DOCS/opencode.md) | 在 OpenCode 中打开工具包并使用命令。 |
 | [`DOCS/chatgpt.md`](../DOCS/chatgpt.md) | ChatGPT 使用文件夹或附件的操作流程。 |
 | [`DOCS/usar-con-otras-ias.md`](../DOCS/usar-con-otras-ias.md) | 用于继续项目、写作或保存进展的日常请求示例。 |
 | [`DOCS/primer-proyecto.md`](../DOCS/primer-proyecto.md) | 手动创建项目的备选方法。 |
-| [`DOCS/instalacion-manual.md`](../DOCS/instalacion-manual.md) | 不运行 Python 时如何整合工具包。 |
+| [`DOCS/instalacion-manual.md`](../DOCS/instalacion-manual.md) | 旧的现有仓库整合方式，不在当前范围内；是否移除或拆分尚待决定。 |
 | [`DOCS/creacion-para-asistentes.md`](../DOCS/creacion-para-asistentes.md) | 供 AI 准备项目文件时使用的技术参考。 |
 | [`DOCS/indice-principal.md`](../DOCS/indice-principal.md) | 维护总索引、局部索引和可扩展的链接关系。 |
 | [`DOCS/mantenimiento.md`](../DOCS/mantenimiento.md) | 更新行号索引、地图与记录，并检查收尾状态。 |
@@ -93,16 +93,16 @@ descripcion: "各文档的内容、用途以及适合查阅的时机。"
 | [`.claude/skills/validar/SKILL.md`](../.claude/skills/validar/SKILL.md) · [`.opencode/commands/validar.md`](../.opencode/commands/validar.md) | /validar：检查上下文笔记并解释错误或提醒。 |
 | [`.claude/skills/cerrar/SKILL.md`](../.claude/skills/cerrar/SKILL.md) · [`.opencode/commands/cerrar.md`](../.opencode/commands/cerrar.md) | /cerrar：建议保存变更并检查已同意的更新。 |
 | [`.claude/skills/vault-manager/SKILL.md`](../.claude/skills/vault-manager/SKILL.md) · [`.claude/settings.json`](../.claude/settings.json) | 笔记库使用引导与 Claude 集成设置。 |
-| [`.obsidian/app.json`](../.obsidian/app.json) · [`.obsidian/core-plugins.json`](../.obsidian/core-plugins.json) · [`.obsidian/graph.json`](../.obsidian/graph.json) · [`.obsidian/templates.json`](../.obsidian/templates.json) · [`.obsidian/appearance.json`](../.obsidian/appearance.json) · [`.obsidian/snippets/genesis-vista-simple.css`](../.obsidian/snippets/genesis-vista-simple.css) | 新笔记库的初始设置及已启用的简洁视图；整合时保留已有设置。 |
+| [`.obsidian/app.json`](../.obsidian/app.json) · [`.obsidian/core-plugins.json`](../.obsidian/core-plugins.json) · [`.obsidian/graph.json`](../.obsidian/graph.json) · [`.obsidian/templates.json`](../.obsidian/templates.json) · [`.obsidian/appearance.json`](../.obsidian/appearance.json) · [`.obsidian/snippets/genesis-vista-simple.css`](../.obsidian/snippets/genesis-vista-simple.css) | 新笔记库的初始设置及已启用的简洁视图。 |
 | [`Proyectos.base`](../Proyectos.base) | 面板使用的项目表；它不是笔记或脚本。 |
 
 ## Python 与测试
 
-Python 用于自动执行任务。只要 AI 能管理文件，使用工具包就不需要编程。测试文件供工具包开发者使用；安装程序不会把它们复制到安装后的笔记库。
+Python 用于自动执行任务。只要 AI 能管理文件，使用工具包就不需要编程。测试文件供工具包开发者使用。
 
 | 文档或工具 | 用途 |
 |---|---|
-| [`instalar.py`](../instalar.py) | 将工具包添加到另一个笔记库，不替换已有文件。 |
+| [`instalar.py`](../instalar.py) | 用于现有仓库的旧安装器，不在当前范围内；是否移除或拆分尚待决定。 |
 | [`crear_proyecto.py`](../crear_proyecto.py) | 为已商定的项目创建上下文笔记与文件夹。 |
 | [`actualizar_indice.py`](../actualizar_indice.py) | 生成或检查总索引与节点索引。 |
 | [`00_CORE/schemas/validate.py`](../00_CORE/schemas/validate.py) | 检查上下文笔记与配置；使用 --cierre 核查一次操作。 |

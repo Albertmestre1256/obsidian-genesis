@@ -25,25 +25,25 @@ Esta es la guía principal de configuración. La persona cuenta qué necesita; l
 
 Leé `INDICE.md` completo y después `00_CORE/atoms/00_vault-rules.md`. Comprobá el acceso real de lectura y escritura; un adjunto o enlace no da acceso al original. Buscá configuración y fichas por su propiedad `proyecto`, aunque estén renombradas: si ya hay trabajo, conservá su versión y retomá solo lo pendiente.
 
-En una bóveda existente, leé su entrada y reglas antes de elegir dónde guardar; respetá sus convenciones y acordá incompatibilidades puntuales. Si falta un índice, proponé integrarlo. No sustituyas reglas ni entrada, ni interpretes la ausencia de configuración del kit como una bóveda vacía.
+Genesis prepara bóvedas nuevas. Si el destino tiene notas propias y no fue preparado con este kit, no lo adaptes ni mezcles el kit con ellas: proponé una carpeta nueva y dejá la existente sin cambios. Una bóveda ya preparada con el kit se retoma según el párrafo anterior. No interpretes la ausencia de configuración del kit como una bóveda vacía.
 
 ## 2. Preguntar lo indispensable y acordar el destino
 
-Preguntá solo lo que falte, de a una o dos preguntas: qué quiere organizar, si empieza de cero o conserva notas y qué quiere lograr. Reutilizá lo ya respondido. Derivá nombre, descripción y contexto sin pedir YAML, carpetas ni letras A/B/C/D. Si el objetivo es ambiguo, ofrecé dos opciones y esperá su elección; una propuesta no confirma una decisión.
+Preguntá solo lo que falte, de a una o dos preguntas: qué quiere organizar, si empieza de cero o ya tiene notas (en ese caso se usa igual una carpeta nueva) y qué quiere lograr. Reutilizá lo ya respondido. Derivá nombre, descripción y contexto sin pedir YAML, carpetas ni letras A/B/C/D. Si el objetivo es ambiguo, ofrecé dos opciones y esperá su elección; una propuesta no confirma una decisión.
 
 CV, presentación, formación, experiencia, fecha, fuentes, hechos y primera tarea son opcionales. Con objetivo acordado y sin tarea, dejá acciones vacías: los avisos no obligan a inventar datos. Empezá por un proyecto.
 
 Proponé la carpeta descargada para una bóveda nueva. Si quiere otra, obtené la ruta de una carpeta nueva separada; no muevas ni renombres el origen. Ante rutas ocupadas o una ficha propia coincidente, ofrecé retomar o acordar otro identificador. Si coincide con el ejemplo ficticio, conservá sus datos y proponé otro identificador; practicar con él requiere elección explícita. Pedí acceso si falta.
 
-Mostrá destino, proyecto, objetivo, próximo paso aceptado o pendiente y archivos afectados, incluido `INDICE.md`. Resolvé elecciones pendientes antes de escribir. Ese pedido con alcance acordado autoriza el trabajo sin otra aprobación por archivo; reestructurar notas existentes requiere autorización específica.
+Mostrá destino, proyecto, objetivo, próximo paso aceptado o pendiente y archivos afectados, incluido `INDICE.md`. Resolvé elecciones pendientes antes de escribir. Ese pedido con alcance acordado autoriza el trabajo sin otra aprobación por archivo; no muevas ni reestructures notas sin autorización específica.
 
 ## 3. Preparar los archivos
 
 | Destino acordado | Preparación |
 |---|---|
-| Carpeta descargada | Ya contiene el kit; no ejecutes el instalador sobre sí mismo. |
+| Carpeta descargada | Ya contiene el kit; trabajá en ella sin volver a copiarlo. |
 | Otra carpeta nueva | Copiá el kit con `.obsidian`, `.claude` y `.opencode`; excluí Git, cachés, `.claude/worktrees`, `workspace*.json` y datos de pruebas. Detenete ante archivos diferentes presentes. |
-| Bóveda existente | Usá la instalación conservadora de `AI-INSTRUCTIONS.md` o [la alternativa sin Python](../../DOCS/instalacion-manual.md). Conservá `.obsidian`; no fuerces conflictos. Acordá ajustes de Plantillas/Bases e indicá lo pendiente. |
+| Carpeta con notas propias ajena al kit | Fuera del alcance de este kit: no instales ni integres. Proponé una carpeta nueva; adaptar bóvedas existentes será un repositorio separado. |
 
 ### Guardar el punto de partida
 
@@ -54,9 +54,9 @@ Mantené `estado: parcial` hasta comprobar la integración. Guardá avance e imp
 ### Crear el proyecto
 
 1. Derivá un identificador corto, sin tildes y con guiones; acordá una variante si está reservado u ocupado. Con Python y reglas compatibles, seguí [el creador](../../DOCS/creacion-para-asistentes.md). Si ya existe una ficha editada, trabajá desde ella: no la recrees ni eludas su protección con otro nombre.
-2. Sin Python o con organización propia, creá desde `PROJECT_TEMPLATE/` y [la plantilla de ficha](../templates/TEMPLATE_cell.md); guardá la ficha en `00_CORE/cells/` y completá identificador, descripción, contexto, objetivo y fecha real. Quitá marcadores y ejemplos de la copia; hechos con fuente e intenciones atribuidas al usuario, sin presentarlas como logros. Acciones solo aceptadas; secciones sin datos vacías.
-3. Enlazá ficha e índice. En una bóveda nueva (carpeta descargada u otra carpeta nueva), reemplazá el aviso inicial del Panel por bienvenida y acceso al proyecto y al inventario. No copies el próximo paso al Panel: queda en «Próximas acciones» de la ficha y el Panel lo muestra en «Acciones pendientes». Remití a esa sección con una frase que siga siendo cierta cuando cambien las tareas, por ejemplo: «Tus tareas aparecen en Acciones pendientes; si no hay ninguna, pedí "seguí con [proyecto]" para elegir la próxima», con el nombre real del proyecto. Conservá el ejemplo con `ejemplo: true`, separado de proyectos propios. En una bóveda existente, editá solo el bloque acordado. El creador no completa este paso.
-4. Actualizá configuración y avance; preferencias personales allí, sin cambiar reglas compartidas. En una bóveda nueva, conservá también la [vista simple preparada](../../DOCS/obsidian.md#vista-simple-de-una-bóveda-nueva), incluidos el CSS activo y el filtro del gráfico: la persona no los configura a mano. En una bóveda existente, conservá sus ajustes. Mantené [mapas y nodos](../../DOCS/indice-principal.md): el catálogo debe reflejar los archivos reales del destino.
+2. Sin Python, creá desde `PROJECT_TEMPLATE/` y [la plantilla de ficha](../templates/TEMPLATE_cell.md); guardá la ficha en `00_CORE/cells/` y completá identificador, descripción, contexto, objetivo y fecha real. Quitá marcadores y ejemplos de la copia; hechos con fuente e intenciones atribuidas al usuario, sin presentarlas como logros. Acciones solo aceptadas; secciones sin datos vacías.
+3. Enlazá ficha e índice. En una bóveda nueva (carpeta descargada u otra carpeta nueva), reemplazá el aviso inicial del Panel por bienvenida y acceso al proyecto y al inventario. No copies el próximo paso al Panel: queda en «Próximas acciones» de la ficha y el Panel lo muestra en «Acciones pendientes». Remití a esa sección con una frase que siga siendo cierta cuando cambien las tareas, por ejemplo: «Tus tareas aparecen en Acciones pendientes; si no hay ninguna, pedí "seguí con [proyecto]" para elegir la próxima», con el nombre real del proyecto. Conservá el ejemplo con `ejemplo: true`, separado de proyectos propios. El creador no completa este paso.
+4. Actualizá configuración y avance; preferencias personales allí, sin cambiar reglas compartidas. En una bóveda nueva, conservá también la [vista simple preparada](../../DOCS/obsidian.md#vista-simple-de-una-bóveda-nueva), incluidos el CSS activo y el filtro del gráfico: la persona no los configura a mano. Mantené [mapas y nodos](../../DOCS/indice-principal.md): el catálogo debe reflejar los archivos reales del destino.
 
 Este paso también agrega proyectos a una bóveda lista: sin reinstalar ni repetir la entrevista. Un proyecto distinto se acuerda; preguntá solo por los datos indispensables ausentes. No requiere cuentas nuevas, plugins comunitarios ni sincronización; no publiques ni hagas push de la bóveda personalizada.
 

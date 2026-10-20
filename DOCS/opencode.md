@@ -26,7 +26,7 @@ Si OpenCode todavía no responde porque falta conectar un proveedor o el modelo 
 
 La carpeta preparada, la ficha de tu proyecto, un acceso desde `Panel.md`, la configuración guardada y `INDICE.md` actualizado. Abrí esa carpeta como bóveda en Obsidian y entrá al Panel. Si todavía no lo instalaste, podés hacerlo desde [obsidian.md](https://obsidian.md).
 
-Para una bóveda existente, indicá su carpeta como destino y permití leerla antes de integrar el kit. Se conservan sus reglas y ajustes; cualquier cambio a notas existentes se acuerda por separado.
+Este kit prepara bóvedas nuevas: indicá una carpeta nueva como destino. No lo uses para adaptar una bóveda existente.
 
 ## Retomar
 
@@ -46,6 +46,6 @@ Si el proyecto no está claro, el asistente debe preguntarte cuál. `/validar` r
 
 ## Cómo se integra
 
-`AGENTS.md` señala el orden de lectura. Los seis archivos de `.opencode/commands/` remiten al protocolo de configuración o a los pedidos de uso diario; no duplican sus procedimientos ni necesitan cargar las skills de Claude. El instalador también agrega estos archivos a bóvedas existentes, conservando cualquier comando previo del mismo nombre.
+`AGENTS.md` señala el orden de lectura. Los seis archivos de `.opencode/commands/` remiten al protocolo de configuración o a los pedidos de uso diario; no duplican sus procedimientos ni necesitan cargar las skills de Claude.
 
 Referencia oficial: [reglas](https://opencode.ai/docs/rules/) y [comandos](https://opencode.ai/docs/commands/). El formato está preparado según esas convenciones; la prueba de invocación en OpenCode real se registra por separado de la verificación de archivos.

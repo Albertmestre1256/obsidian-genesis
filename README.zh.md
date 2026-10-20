@@ -6,15 +6,15 @@
 > - Líneas 21–28: Obsidian Genesis：由 AI 为你配置的仓库
 > - Líneas 29–52: 项目状态 — 2026 年 10 月 20 日
 > - Líneas 53–73: 三步开始
-> - Líneas 74–79: 附件或已有仓库
+> - Líneas 74–79: 附件和已有笔记
 > - Líneas 80–87: 继续
 > - Líneas 88–102: 包含内容
-> - Líneas 103–113: 可选帮助
-> - Líneas 114–117: 隐私
-> - Líneas 118–121: 许可证
-> - Líneas 122–125: 社区与支持
-> - Líneas 126–129: 关于开发
-> - Líneas 130–132: 支持本项目
+> - Líneas 103–112: 可选帮助
+> - Líneas 113–116: 隐私
+> - Líneas 117–120: 许可证
+> - Líneas 121–124: 社区与支持
+> - Líneas 125–128: 关于开发
+> - Líneas 129–131: 支持本项目
 
 **语言：** [Español](README.md) · [English](README.en.md) · [Deutsch](README.de.md) · 中文
 
@@ -40,7 +40,7 @@
 
 项目创建器在保存项目前会再次检查状态，并区分事先阻止的情况与部分失败；每个文件都在不覆盖已有文件的前提下创建。
 
-简洁视图减少新文件夹的文件列表和关系图谱中的杂项；现有仓库也可选择启用，并保留备份。原有设置和自定义搜索会保留；如果工具包的过滤条件尚未应用，会明确提示。
+简洁视图减少工具包所准备的新仓库在文件列表和关系图谱中的杂项。
 
 [代码提交 `c69c38a` 的远程测试矩阵](https://github.com/Albertmestre1256/obsidian-genesis/actions/runs/39375866749)在 Windows、macOS 和 Ubuntu 上使用 Python 3.8 和 3.13，**6/6 项均成功**。这些是技术结果，不能证明工具包易于使用。
 
@@ -48,7 +48,7 @@
 
 仍待完成：OpenCode 的新会话独立恢复、ChatGPT 网页版的专项验证、五名初学者的测试（至少四人无需帮助），以及 Obsidian 中最终正式的视觉检查。
 
-社区讨论现已开放，你也可以通过 [Patreon](https://www.patreon.com/obsidiangenesis) 支持本项目。README 与文档指南提供西班牙语、英语、德语和中文版本；工具包的通用操作说明仍使用西班牙语。全面调整和优化现有仓库将是后续阶段。[更新日志](CHANGELOG.md) · [如何贡献](CONTRIBUTING.md)（均为西班牙语）。
+社区讨论现已开放，你也可以通过 [Patreon](https://www.patreon.com/obsidiangenesis) 支持本项目。README 与文档指南提供西班牙语、英语、德语和中文版本；工具包的通用操作说明仍使用西班牙语。调整和优化现有仓库不属于本工具包，将作为单独的仓库开发。[更新日志](CHANGELOG.md) · [如何贡献](CONTRIBUTING.md)（均为西班牙语）。
 
 ## 三步开始
 
@@ -71,11 +71,11 @@ AI 会询问你想整理什么、要保留哪些笔记以及目标是什么。�
 
 **你将得到：** 一个准备好的文件夹、项目卡片、用于访问的面板，以及如何在 Obsidian 中打开它的说明。AI 会检查文件；视觉检查在 Obsidian 中进行。如果你还没有安装 Obsidian，请从 [obsidian.md](https://obsidian.md) 安装，将准备好的文件夹作为仓库打开，然后进入 `Panel.md`。
 
-## 附件或已有仓库
+## 附件和已有笔记
 
 附加的 ZIP 文件并不能让 AI 访问你的电脑。如果聊天能生成文件，它可以返回一份配置好的副本供你下载。如果它只能回复文字，保存工作就仍待完成。[访问指南](DOCS/QUICKSTART.md)说明了各种选择。
 
-如果你已经有一个仓库，目前的整合方式是保守的：AI 会读取它的规则、比较冲突，并保留笔记和设置。自动重组或优化整个现有仓库尚未实现；这就是上面提到的后续阶段。
+如果你已经有一个仓库，本工具包不会调整它：请在新文件夹中使用本工具包。调整和优化现有仓库将是一个单独的仓库，目前尚未提供。
 
 ## 继续
 
@@ -105,11 +105,10 @@ Claude Code 和 OpenCode 包含 `/configurar`、`/empezar`、`/nuevo-proyecto`�
 以下指南为西班牙语：
 
 - [手动创建项目](DOCS/primer-proyecto.md)。
-- [不使用 Python 整合工具包](DOCS/instalacion-manual.md)。
 - [模板和面板](DOCS/obsidian.md)。
 - [故障排除](DOCS/TROUBLESHOOTING.md)。
 
-Python 3.8 或更高版本可以借助标准库自动完成安装、创建、验证和索引。AI 也可以使用其文件工具完成配置。参与贡献：[CONTRIBUTING](CONTRIBUTING.md)。
+Python 3.8 或更高版本可以借助标准库自动完成创建、验证和索引。AI 也可以使用其文件工具完成配置。参与贡献：[CONTRIBUTING](CONTRIBUTING.md)。
 
 ## 隐私
 

@@ -45,11 +45,11 @@ También admite su carpeta `00_CORE/cells`. Si moviste o volviste a extraer el Z
 
 ## Python no está disponible
 
-El kit funciona con herramientas de archivos y revisión manual. Python solo automatiza instalación, creación y validación. Si necesitás usarlo, el comando puede llamarse `python3` o `py` en lugar de `python`.
+El kit funciona con herramientas de archivos y revisión manual. Python solo automatiza creación, validación e índice. Si necesitás usarlo, el comando puede llamarse `python3` o `py` en lugar de `python`.
 
 ## El instalador informa conflictos o se interrumpió
 
-Ante conflictos detectados en el plan, no copia nada: hay archivos con el mismo nombre y distinto contenido. Compará ambas versiones; repetir el comando no reemplaza la existente. `--dry-run` muestra el plan.
+`instalar.py` es material heredado, fuera del alcance actual: no lo uses para configurar. Si una ejecución anterior informó conflictos, no copió nada: hay archivos con el mismo nombre y distinto contenido. Compará ambas versiones; repetir el comando no reemplaza la existente. `--dry-run` muestra el plan.
 
 Si se interrumpió durante la copia, releé su registro: puede haber archivos completos agregados. El instalador intenta retirar solo su archivo incompleto y un reintento omite los ya idénticos. Si la copia terminó pero la revisión dio errores, los archivos están agregados: revisá las fichas señaladas.
 
@@ -59,7 +59,7 @@ Puede haber una carpeta ocupada o una ficha con el mismo identificador, aunque e
 
 ## No aparece el Panel o la fecha automática
 
-Seguí [Plantillas y panel](obsidian.md). En una bóveda existente el instalador conserva los plugins habilitados. Insertá la plantilla solo en una nota vacía; al duplicarla a mano, reemplazá `{{date:YYYY-MM-DD}}` por una fecha real.
+Seguí [Plantillas y panel](obsidian.md). Insertá la plantilla solo en una nota vacía; al duplicarla a mano, reemplazá `{{date:YYYY-MM-DD}}` por una fecha real.
 
 El ejemplo ficticio se abre desde la ayuda del Panel; está excluido de sus proyectos y tareas. Si todavía no creaste un proyecto propio, esas vistas pueden estar vacías.
 

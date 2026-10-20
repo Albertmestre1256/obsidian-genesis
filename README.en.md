@@ -6,15 +6,15 @@
 > - Líneas 21–28: Obsidian Genesis: your vault, set up by an AI
 > - Líneas 29–52: Project status — October 20, 2026
 > - Líneas 53–73: Get started in three steps
-> - Líneas 74–79: Attachments or an existing vault
+> - Líneas 74–79: Attachments and notes you already have
 > - Líneas 80–87: Continue
 > - Líneas 88–102: What it contains
-> - Líneas 103–113: Optional help
-> - Líneas 114–117: Privacy
-> - Líneas 118–121: License
-> - Líneas 122–125: Community and support
-> - Líneas 126–129: About the development
-> - Líneas 130–132: Support the project
+> - Líneas 103–112: Optional help
+> - Líneas 113–116: Privacy
+> - Líneas 117–120: License
+> - Líneas 121–124: Community and support
+> - Líneas 125–128: About the development
+> - Líneas 129–131: Support the project
 
 **Language:** [Español](README.md) · English · [Deutsch](README.de.md) · [中文](README.zh.md)
 
@@ -40,7 +40,7 @@ The entry note [Leer primero](LEER_PRIMERO.md) ("Read first") connects the Panel
 
 The project creator checks the state again before saving a project and tells blocking conditions apart from partial failures; each file is created without replacing an existing one.
 
-The simple view reduces clutter in the file explorer and graph for new folders and can be enabled optionally in existing vaults with backups. It preserves preferences and custom searches, reporting when the kit filter remains pending.
+The simple view reduces clutter in the file explorer and graph of the new vaults the kit prepares.
 
 The [remote matrix for code commit `c69c38a`](https://github.com/Albertmestre1256/obsidian-genesis/actions/runs/39375866749) finished **6/6 successfully** on Windows, macOS and Ubuntu with Python 3.8 and 3.13. These are technical results; they do not establish ease of use.
 
@@ -48,7 +48,7 @@ Setup and resumption were checked with Claude Code. The manual OpenCode/Big Pick
 
 Still pending: independent resumption in OpenCode, specific coverage of ChatGPT web, a test with five beginners (at least four without help) and the final formal visual review in Obsidian.
 
-Community discussions are available, and you can support the project on [Patreon](https://www.patreon.com/obsidiangenesis). The README and document guide are available in Spanish, English, German and Chinese; shared kit instructions remain in Spanish. General adaptation and optimization of existing vaults will be a later phase. [Changelog](CHANGELOG.md) · [How to contribute](CONTRIBUTING.md) (both in Spanish).
+Community discussions are available, and you can support the project on [Patreon](https://www.patreon.com/obsidiangenesis). The README and document guide are available in Spanish, English, German and Chinese; shared kit instructions remain in Spanish. Adapting or optimizing existing vaults is outside this kit: it will be a separate repository. [Changelog](CHANGELOG.md) · [How to contribute](CONTRIBUTING.md) (both in Spanish).
 
 ## Get started in three steps
 
@@ -71,11 +71,11 @@ It also keeps a **personalization inventory**: what you answered, what is pendin
 
 **You get:** a prepared folder, the project card, a Panel to access it and an explanation of how to open it in Obsidian. The AI checks the files; the visual check happens in Obsidian. If you don't have it yet, install it from [obsidian.md](https://obsidian.md), open the prepared folder as a vault and go to `Panel.md`.
 
-## Attachments or an existing vault
+## Attachments and notes you already have
 
 An attached ZIP does not give access to your computer. If the chat can generate files, it can return a configured copy for you to download. If it only answers with text, saving it remains pending. The [access guide](DOCS/QUICKSTART.md) explains the options.
 
-If you already have a vault, the current integration is conservative: the AI reads its rules, compares conflicts and keeps notes and settings. Automatically reorganizing or optimizing a whole existing vault is not implemented yet; it is the later phase mentioned above.
+If you already have a vault, this kit does not adapt it: use it in a new folder. Adapting or optimizing existing vaults will be a separate repository, not available yet.
 
 ## Continue
 
@@ -105,11 +105,10 @@ The `aprender-python` example is fictional and kept apart from your own projects
 These guides are in Spanish:
 
 - [Create a project by hand](DOCS/primer-proyecto.md).
-- [Integrate the kit without Python](DOCS/instalacion-manual.md).
 - [Templates and panel](DOCS/obsidian.md).
 - [Troubleshooting](DOCS/TROUBLESHOOTING.md).
 
-Python 3.8 or later automates installation, creation, validation and the index with the standard library. The AI can also set things up using its file tools. To contribute: [CONTRIBUTING](CONTRIBUTING.md).
+Python 3.8 or later automates creation, validation and the index with the standard library. The AI can also set things up using its file tools. To contribute: [CONTRIBUTING](CONTRIBUTING.md).
 
 ## Privacy
 

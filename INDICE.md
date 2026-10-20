@@ -75,7 +75,7 @@ Cada fila enlaza un archivo. Las carpetas se representan mediante sus archivos; 
 | [chatgpt.md](DOCS/chatgpt.md) | Empezar con ChatGPT |
 | [creacion-para-asistentes.md](DOCS/creacion-para-asistentes.md) | Crear los archivos de un proyecto |
 | [indice-principal.md](DOCS/indice-principal.md) | Mantener el mapa general y los índices de nodos |
-| [instalacion-manual.md](DOCS/instalacion-manual.md) | Agregar el kit a una bóveda sin Python |
+| [instalacion-manual.md](DOCS/instalacion-manual.md) | Agregar el kit a una bóveda existente sin Python (heredado) |
 | [mantenimiento.md](DOCS/mantenimiento.md) | Mantener notas, mapas y registro |
 | [mcp-claude.md](DOCS/mcp-claude.md) | Si Claude no conecta con el MCP |
 | [obsidian.md](DOCS/obsidian.md) | Plantillas y panel |
@@ -158,7 +158,7 @@ Cada fila enlaza un archivo. Las carpetas se representan mediante sus archivos; 
 |---|---|
 | [settings.json](.claude/settings.json) | JSON |
 | [cerrar/SKILL.md](.claude/skills/cerrar/SKILL.md) | Cierra la sesión guardando en la célula del proyecto lo que cambió hoy |
-| [configurar/SKILL.md](.claude/skills/configurar/SKILL.md) | Configura una bóveda de Obsidian desde este kit mediante preguntas simples, cuando el usuario pide empezar de cero o adaptar una bóveda existente. No usar para desarrollar el kit n |
+| [configurar/SKILL.md](.claude/skills/configurar/SKILL.md) | Configura una bóveda de Obsidian desde este kit mediante preguntas simples, cuando el usuario pide empezar una bóveda nueva; no adapta bóvedas existentes. No usar para desarrollar |
 | [empezar/SKILL.md](.claude/skills/empezar/SKILL.md) | Arranca una sesión de trabajo en un proyecto cargando solo el contexto necesario |
 | [nuevo-proyecto/SKILL.md](.claude/skills/nuevo-proyecto/SKILL.md) | Crea las carpetas y la ficha de un proyecto mediante preguntas simples. |
 | [redactar/SKILL.md](.claude/skills/redactar/SKILL.md) | Escribe un texto para un proyecto con los datos necesarios y una revisión proporcional a la tarea |

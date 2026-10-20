@@ -1,35 +1,40 @@
 > [!info]- Índice de esta nota (líneas)
-> - Líneas 1–30: Este índice
-> - Líneas 32–33: Cambios
-> - Líneas 34–37: 20/10/2026 — decisión explícita sobre el retiro al configurar
-> - Líneas 38–41: 20/10/2026 — retiro opcional del material del kit
-> - Líneas 42–45: 20/10/2026 — estado del proyecto y financiación en GitHub
-> - Líneas 46–49: 20/10/2026 — apoyo opcional en Patreon
-> - Líneas 50–53: 20/10/2026 — comprobaciones mecánicas con herramientas
-> - Líneas 54–57: 20/10/2026 — comentarios YAML en el catálogo
-> - Líneas 58–61: 18/10/2026 — vista simple opcional en bóvedas existentes
-> - Líneas 62–65: 17/10/2026 — menos repetición al validar el inventario
-> - Líneas 66–69: 17/10/2026 — inicio y acceso en una sola guía
-> - Líneas 70–73: 17/10/2026 — entradas de IA más concisas
-> - Líneas 74–77: 17/10/2026 — vista simple inicial de bóvedas nuevas
-> - Líneas 78–81: 17/10/2026 — originales conservados y mantenimiento acotado
-> - Líneas 82–85: 16/10/2026 — guía de los documentos en cuatro idiomas
-> - Líneas 86–89: 16/10/2026 — simplificación de herramientas Python
-> - Líneas 90–93: 16/10/2026 — comunidad y soporte accesibles desde los README
-> - Líneas 94–97: 16/10/2026 — abrir la bóveda en Obsidian no desactualiza el índice
-> - Líneas 98–101: 16/10/2026 — instalar desde un kit abierto con OpenCode
-> - Líneas 102–105: 16/10/2026 — README en cuatro idiomas
-> - Líneas 106–109: 16/10/2026 — sin carpetas __pycache__ en la bóveda
-> - Líneas 110–113: 15/10/2026 — próximo paso solo en la ficha
-> - Líneas 114–117: 15/10/2026 — destino visible al comprobar el cierre
-> - Líneas 118–121: 15/10/2026 — conservar cambios posteriores al plan
-> - Líneas 122–125: 15/10/2026 — cierre coherente con el proyecto inicial
-> - Líneas 126–129: 14/10/2026 — operación visible coherente con el registro
-> - Líneas 130–133: 14/10/2026 — inventario de perfil plegable
-> - Líneas 134–137: 13/10/2026 — índices de proyectos con nombres propios
-> - Líneas 138–159: Sin publicar — candidata a v0.1.0
+> - Líneas 1–31: Este índice
+> - Líneas 33–34: Cambios
+> - Líneas 35–38: 20/10/2026 — alcance: bóvedas nuevas
+> - Líneas 39–42: 20/10/2026 — decisión explícita sobre el retiro al configurar
+> - Líneas 43–46: 20/10/2026 — retiro opcional del material del kit
+> - Líneas 47–50: 20/10/2026 — estado del proyecto y financiación en GitHub
+> - Líneas 51–54: 20/10/2026 — apoyo opcional en Patreon
+> - Líneas 55–58: 20/10/2026 — comprobaciones mecánicas con herramientas
+> - Líneas 59–62: 20/10/2026 — comentarios YAML en el catálogo
+> - Líneas 63–66: 18/10/2026 — vista simple opcional en bóvedas existentes
+> - Líneas 67–70: 17/10/2026 — menos repetición al validar el inventario
+> - Líneas 71–74: 17/10/2026 — inicio y acceso en una sola guía
+> - Líneas 75–78: 17/10/2026 — entradas de IA más concisas
+> - Líneas 79–82: 17/10/2026 — vista simple inicial de bóvedas nuevas
+> - Líneas 83–86: 17/10/2026 — originales conservados y mantenimiento acotado
+> - Líneas 87–90: 16/10/2026 — guía de los documentos en cuatro idiomas
+> - Líneas 91–94: 16/10/2026 — simplificación de herramientas Python
+> - Líneas 95–98: 16/10/2026 — comunidad y soporte accesibles desde los README
+> - Líneas 99–102: 16/10/2026 — abrir la bóveda en Obsidian no desactualiza el índice
+> - Líneas 103–106: 16/10/2026 — instalar desde un kit abierto con OpenCode
+> - Líneas 107–110: 16/10/2026 — README en cuatro idiomas
+> - Líneas 111–114: 16/10/2026 — sin carpetas __pycache__ en la bóveda
+> - Líneas 115–118: 15/10/2026 — próximo paso solo en la ficha
+> - Líneas 119–122: 15/10/2026 — destino visible al comprobar el cierre
+> - Líneas 123–126: 15/10/2026 — conservar cambios posteriores al plan
+> - Líneas 127–130: 15/10/2026 — cierre coherente con el proyecto inicial
+> - Líneas 131–134: 14/10/2026 — operación visible coherente con el registro
+> - Líneas 135–138: 14/10/2026 — inventario de perfil plegable
+> - Líneas 139–142: 13/10/2026 — índices de proyectos con nombres propios
+> - Líneas 143–164: Sin publicar — candidata a v0.1.0
 
 # Cambios
+
+## 20/10/2026 — alcance: bóvedas nuevas
+
+Las entradas, el protocolo de configuración y las guías ya no ofrecen adaptar bóvedas existentes: Genesis prepara bóvedas nuevas y esa adaptación será un repositorio separado. El instalador y su guía sin Python se marcan como material heredado; ambos y sus pruebas se conservan, pendientes de una decisión de retiro o separación. No cambia código.
 
 ## 20/10/2026 — decisión explícita sobre el retiro al configurar
 
