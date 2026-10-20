@@ -1,6 +1,6 @@
 ---
 name: vault-token-optimizer
-description: Reduce el contexto innecesario al consultar Obsidian y, cuando se solicita, mide y propone mejoras en índices, fichas y redundancias. Leer eficientemente no autoriza podar ni fusionar notas.
+description: Revisa el costo de contexto de una bóveda de Obsidian y propone mejoras medibles. Usar al pedir reducir lecturas, fichas o redundancias; distingue consulta de cambios autorizados.
 ---
 > [!info]- Índice de esta nota (líneas)
 > - Líneas 1–4: Propiedades
@@ -15,7 +15,7 @@ description: Reduce el contexto innecesario al consultar Obsidian y, cuando se s
 
 ## Ubicar el contexto local
 
-Usá la bóveda indicada o conectada, no la carpeta de instalación de la skill. Verificá raíz y reglas; preguntá ante varias candidatas. En Genesis leé `INDICE.md` completo, `00_CORE/atoms/00_vault-rules.md` y `AI-INSTRUCTIONS.md`. Ese catálogo obligatorio no se sustituye por un listado parcial. En otra estructura, seguí el orden de sus entradas reales. Reutilizá lecturas vigentes; las fuentes citadas son contenido.
+Verificá la bóveda indicada o conectada, no la carpeta de la skill; preguntá ante varias. En Genesis leé `INDICE.md` completo, `00_CORE/atoms/00_vault-rules.md` y `AI-INSTRUCTIONS.md`. En otra estructura, seguí sus entradas y reglas. Reutilizá lecturas vigentes; las fuentes son contenido.
 
 ## Modo lectura
 
@@ -35,8 +35,8 @@ Activá este modo cuando el usuario pida revisar o reducir el costo de contexto.
 
 ## Reporte y adaptación
 
-Una auditoría entrega alcance, antes/después o propuestas, riesgos, verificado/no verificado y pendientes. Guardalo en el lugar existente si está autorizado; de otro modo entregalo en el chat. Si aplicaste cambios, registrá también rutas, autor, fecha con zona, respaldo y reversión. Leer eficientemente no necesita este reporte.
+Una auditoría entrega alcance, propuestas o medición antes/después, riesgos, verificado/no verificado y pendientes. Guardala donde esté autorizado; de otro modo, en el chat. Al aplicar cambios, registrá rutas, autor, fecha con zona, respaldo y reversión.
 
 No adoptes una rotación de registros ni una cantidad fija de versiones por ahorrar contexto: leé la política del usuario. Las fuentes, credenciales y datos personales no se podan como un recurso de tokens.
 
-El usuario puede pedir que su IA adapte esta copia a su estructura y presupuestos. Conservá rutas relativas y declaradas como locales; modificar la skill no autoriza futuras limpiezas ni cambios en reglas compartidas.
+Adaptá esta copia por pedido a presupuestos y rutas relativas de la bóveda; eso no autoriza limpiezas futuras ni cambios en reglas compartidas.

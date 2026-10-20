@@ -97,11 +97,11 @@ Cada fila enlaza un archivo. Las carpetas se representan mediante sus archivos; 
 
 | Archivo | Qué contiene |
 |---|---|
-| [inicio/SKILL.md](skills/inicio/SKILL.md) | Retoma una bóveda de Obsidian leyendo sus reglas, mapa y estado del proyecto elegido. Usar al iniciar una sesión, cambiar de proyecto o pedir /inicio; solo lee. |
-| [vault-coherence-auditor/SKILL.md](skills/vault-coherence-auditor/SKILL.md) | Busca reglas contradictorias, enlaces rotos, estados desfasados y referencias antiguas en Obsidian. Usar al pedir una auditoría de coherencia; propone correcciones con evidencia an |
-| [vault-reorganizer/SKILL.md](skills/vault-reorganizer/SKILL.md) | Mueve, renombra o archiva notas y proyectos de Obsidian nombrados por el usuario, manteniendo enlaces y trazabilidad. Usar para reorganizaciones concretas; no clasifica proyectos p |
-| [vault-token-optimizer/SKILL.md](skills/vault-token-optimizer/SKILL.md) | Reduce el contexto innecesario al consultar Obsidian y, cuando se solicita, mide y propone mejoras en índices, fichas y redundancias. Leer eficientemente no autoriza podar ni fusio |
-| [volcar/SKILL.md](skills/volcar/SKILL.md) | Guarda decisiones, avances y aprendizajes de la conversación en una bóveda de Obsidian, con plan de destinos, verificación y resumen para retomar. Usar ante /volcar o un pedido de |
+| [inicio/SKILL.md](skills/inicio/SKILL.md) | Inicia o retoma una sesión en Obsidian desde las reglas, mapa y estado guardado del proyecto. Usar ante /inicio o al cambiar de proyecto; solo lectura. |
+| [vault-coherence-auditor/SKILL.md](skills/vault-coherence-auditor/SKILL.md) | Audita reglas contradictorias, enlaces rotos y estados desfasados en Obsidian. Usar al pedir coherencia o referencias viejas; presenta evidencia y un plan antes de corregir. |
+| [vault-reorganizer/SKILL.md](skills/vault-reorganizer/SKILL.md) | Mueve, renombra o archiva notas y proyectos de Obsidian concretos, conservando enlaces y trazabilidad. Usar cuando el usuario indique qué reorganizar; no decide estados por su cuen |
+| [vault-token-optimizer/SKILL.md](skills/vault-token-optimizer/SKILL.md) | Revisa el costo de contexto de una bóveda de Obsidian y propone mejoras medibles. Usar al pedir reducir lecturas, fichas o redundancias; distingue consulta de cambios autorizados. |
+| [volcar/SKILL.md](skills/volcar/SKILL.md) | Guarda novedades de la conversación en Obsidian con destinos acordados, verificación y resumen de continuidad. Usar ante /volcar o al pedir guardar el progreso del chat. |
 
 ### Desarrollo
 
