@@ -109,6 +109,11 @@ def tipo(meta):
 
 def scalar(valor):
     valor = valor.strip()
+    if valor.startswith(('"', "'")):
+        citado = re.fullmatch(r'''("(?:[^"\\]|\\.)*"|'(?:[^']|'')*')(?:\s+#.*)?\s*''', valor)
+        if not citado:
+            return None
+        valor = citado.group(1)
     if valor.startswith('"'):
         try:
             result = json.loads(valor)
