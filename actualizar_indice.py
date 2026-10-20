@@ -30,7 +30,7 @@ NODO_INICIO = '%% node-index:start %%'
 NODO_FIN = '%% node-index:end %%'
 IGNORAR = {'.git', '__pycache__', '.pytest_cache', '.trash', '.obsidian-mcp',
            'node_modules', '.venv', 'venv', '.DS_Store', 'Thumbs.db', 'desktop.ini'}
-OCULTAS = {'.claude', '.opencode', '.obsidian', '.github', '.gitignore'}
+OCULTAS = {'.claude', '.agents', '.opencode', '.obsidian', '.github', '.gitignore'}
 # De .obsidian solo se catalogan los ajustes del kit: Obsidian crea otros al usarse
 # (apariencia, atajos, plugins, sesiones) y no deben desactualizar el índice.
 AJUSTES_KIT = {'app.json', 'core-plugins.json', 'graph.json', 'templates.json'}
@@ -164,7 +164,7 @@ def categoria(ruta):
                   'davidkimai-resources': 'Recursos opcionales de davidkimai'}
         return groups.get(parts[1] if len(parts) > 1 else '', 'Configuración y registros comunes')
     return {'DOCS': 'Ayuda', 'PROJECT_TEMPLATE': 'Plantilla de carpetas', '.claude': 'Integración Claude',
-            '.opencode': 'Integración OpenCode',
+            '.opencode': 'Integración OpenCode', '.agents': 'Integración Codex',
             '.obsidian': 'Ajustes de Obsidian', '.github': 'Desarrollo', 'tests': 'Desarrollo'}.get(
                 parts[0], 'Entrada y herramientas' if len(parts) == 1 else 'Carpeta: ' + parts[0])
 
@@ -317,7 +317,7 @@ def bloque(records, hierarchy=None):
         description = m.get('descripcion') or m.get('description') or m.get('titulo') or ('Índice principal de la bóveda' if r['ruta'] == 'INDICE.md' else Path(r['ruta']).suffix.lstrip('.').upper() or 'Archivo sin extensión')
         lines.append('| {} | {} |'.format(link(r['ruta'], labels[r['ruta']]), esc(description[:180])))
     lines += ['', '## Alcance del catálogo', '',
-              'Incluye notas, fuentes, adjuntos, guías y herramientas, además de .claude, .opencode, .obsidian y .github cuando existen. No lee el cuerpo completo de las notas ni los archivos de ajustes para elaborar descripciones.', '',
+              'Incluye notas, fuentes, adjuntos, guías y herramientas, además de .claude, .agents, .opencode, .obsidian y .github cuando existen. No lee el cuerpo completo de las notas ni los archivos de ajustes para elaborar descripciones.', '',
               'Excluye Git, papelera, registro interno del MCP, cachés, dependencias, checkouts de .claude/worktrees, ajustes que Obsidian crea al usarse (solo cataloga los del kit), otros archivos ocultos y nombres habituales de credenciales o claves. No sigue enlaces ni junctions; si los encuentra en el material a catalogar, informa el impedimento y conserva el índice anterior.', '',
               'Los metadatos reconocidos son campos escalares simples del comienzo de notas Markdown; estructuras complejas no se interpretan como proyectos. Todas las notas visibles siguen apareciendo en el catálogo aunque no tengan esos metadatos.', '']
     if notices:

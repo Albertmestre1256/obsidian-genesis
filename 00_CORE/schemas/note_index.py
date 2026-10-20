@@ -15,7 +15,7 @@ HEADERS = (HEADER, '> [!info] Índice de esta nota (líneas)')
 ENTRY = re.compile(r'^> - Líneas (\d+)–(\d+): (.+)$')
 # Primera línea de atribución del README y sus traducciones.
 ATRIBUCIONES = ('> **Crédito principal', '> **Main credit', '> **Besonderer Dank', '> **主要致谢')
-IGNORAR = {'.git', '.obsidian', '.obsidian-mcp', '.claude', '.opencode', '.github',
+IGNORAR = {'.git', '.obsidian', '.obsidian-mcp', '.claude', '.agents', '.opencode', '.github',
            '__pycache__', '.pytest_cache', '.trash', 'node_modules', '.venv', 'venv', '_archivo'}
 
 

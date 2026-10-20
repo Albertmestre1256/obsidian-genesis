@@ -6,7 +6,7 @@
 > - Líneas 27–32: Ajustes de Plantillas
 > - Líneas 33–38: Qué muestra el Panel
 > - Líneas 39–50: Ver las conexiones
-> - Líneas 51–70: Retirar material del kit que ya no usás
+> - Líneas 51–71: Retirar material del kit que ya no usás
 
 # Plantillas y panel
 
@@ -61,6 +61,7 @@ Referencia de los fragmentos de estilo: [CSS snippets](https://obsidian.md/help/
 
    Estas categorías son ejemplos, nunca una lista autorizada: reemplazalas por las rutas concretas que existan y sean retirables.
 3. **Siempre se conserva.** Proyectos y sus carpetas, originales, `00_CORE/configuracion.md` con inventario y omisiones, fichas, registros e historial, índices, `Panel.md`, `Proyectos.base` y `.obsidian/`. También `INDICE.md`, `AGENTS.md`, `CLAUDE.md`, `AI-INSTRUCTIONS.md`, `LEER_PRIMERO.md`, reglas, protocolos, plantillas, `PROJECT_TEMPLATE/`, `.claude/`, `.opencode/`, herramientas y guías de uso (salvo los heredados `instalar.py` y `DOCS/instalacion-manual.md`) de `DOCS/` que estas entradas citan para retomar, ampliar, configurar otra parte o revisar. `LICENSE` y los créditos del kit permanecen: si una traducción se retira, el README que la persona lee conserva la atribución.
+   Conservá también las cinco skills editables de `skills/`, sus instalaciones locales (incluida `.agents/skills` si existe), `instalar_skills.py` y `DOCS/skills-portables.md`: sirven para el trabajo diario y su personalización.
 4. **Referencias.** Buscá cada ruta y nombre candidato en lo que permanece: notas, guías, plantillas, herramientas y ajustes. Los enlaces del bloque automático de `INDICE.md` e índices generados son catálogo y se refrescan después; un filtro que oculta una ruta tampoco depende de ella. Un enlace manual o de una guía conservada debe seguir válido: conservá el candidato o incluí en la propuesta la adaptación concreta (archivo, texto actual y nuevo). Ninguna reescritura global.
 5. **Decisión obligatoria de cierre.** Mostrá una tabla con cada archivo por su ruta exacta, nunca una carpeta entera, con qué contiene, por qué ya no hace falta, dependencias o adaptación, respaldo y restauración, y el destino del respaldo **fuera de la bóveda**: otra carpeta con acceso o un ZIP descargable. Separá «Se eliminará si lo autorizás» de «Se conserva»; la segunda lista identifica las reglas, entradas, herramientas y datos necesarios. Un respaldo dentro vuelve a cargar gráfico y catálogo. Pedí la frase explícita del comienzo para aceptar la lista, o que indique exclusiones, conservación o postergación. Registrá su decisión y las rutas en el avance de configuración. Sin respuesta, registrá «retiro pendiente de decisión»; la integración puede seguir `lista`, pero no presentes el retiro ni el cierre de entrega como resueltos. Una decisión ya registrada no se vuelve a preguntar mientras la lista siga vigente. Aprobar una carpeta por su nombre abarca solo los archivos listados, no los que aparezcan después. Sin candidatos seguros, informá «Nada se eliminará», registrá el motivo y cerrá este paso conservando todo, sin pedir una orden vacía ni anunciar ahorro.
 6. **Respaldo.** Copiá cada archivo aprobado conservando su ruta relativa, con una nota de restauración: versión del kit, fecha, rutas, autoría y una copia de `LICENSE`. Contrastá cada archivo copiado con el de la bóveda. Sin destino, sin acceso o ante una diferencia, no se retira nada.

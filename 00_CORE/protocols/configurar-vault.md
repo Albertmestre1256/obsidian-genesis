@@ -5,17 +5,18 @@ descripcion: Conversación de inicio para que una IA configure la bóveda con la
 ---
 > [!info]- Índice de esta nota (líneas)
 > - Líneas 1–5: Propiedades
-> - Líneas 6–18: Este índice
-> - Líneas 20–23: Configurar una bóveda conversando
-> - Líneas 24–29: 1. Ubicar la bóveda
-> - Líneas 30–39: 2. Preguntar lo indispensable y acordar el destino
-> - Líneas 40–47: 3. Preparar los archivos
-> - Líneas 48–53: Guardar el punto de partida
-> - Líneas 54–62: Crear el proyecto
-> - Líneas 63–72: 4. Verificar y entregar
-> - Líneas 73–86: Ejemplo completo de inicio
-> - Líneas 87–90: Secuencia de cierre compartida
-> - Líneas 91–93: Si no podés escribir en la carpeta
+> - Líneas 6–19: Este índice
+> - Líneas 21–24: Configurar una bóveda conversando
+> - Líneas 25–30: 1. Ubicar la bóveda
+> - Líneas 31–40: 2. Preguntar lo indispensable y acordar el destino
+> - Líneas 41–48: 3. Preparar los archivos
+> - Líneas 49–52: Incluir las cinco skills
+> - Líneas 53–58: Guardar el punto de partida
+> - Líneas 59–67: Crear el proyecto
+> - Líneas 68–77: 4. Verificar y entregar
+> - Líneas 78–91: Ejemplo completo de inicio
+> - Líneas 92–95: Secuencia de cierre compartida
+> - Líneas 96–98: Si no podés escribir en la carpeta
 
 # Configurar una bóveda conversando
 
@@ -35,15 +36,19 @@ CV, presentación, formación, experiencia, fecha, fuentes, hechos y primera tar
 
 Proponé la carpeta descargada para una bóveda nueva. Si quiere otra, obtené la ruta de una carpeta nueva separada; no muevas ni renombres el origen. Ante rutas ocupadas o una ficha propia coincidente, ofrecé retomar o acordar otro identificador. Si coincide con el ejemplo ficticio, conservá sus datos y proponé otro identificador; practicar con él requiere elección explícita. Pedí acceso si falta.
 
-Mostrá destino, proyecto, objetivo, próximo paso aceptado o pendiente y archivos afectados, incluido `INDICE.md`. Resolvé elecciones pendientes antes de escribir. Ese pedido con alcance acordado autoriza el trabajo sin otra aprobación por archivo; no muevas ni reestructures notas sin autorización específica.
+Mostrá destino, proyecto, objetivo, próximo paso aceptado o pendiente y archivos afectados, incluido `INDICE.md` y las cinco skills locales de [Skills portables](../../DOCS/skills-portables.md). Resolvé elecciones pendientes antes de escribir. Ese pedido con alcance acordado autoriza el trabajo sin otra aprobación por archivo; no muevas ni reestructures notas sin autorización específica.
 
 ## 3. Preparar los archivos
 
 | Destino acordado | Preparación |
 |---|---|
 | Carpeta descargada | Ya contiene el kit; trabajá en ella sin volver a copiarlo. |
-| Otra carpeta nueva | Copiá el kit con `.obsidian`, `.claude` y `.opencode`; excluí Git, cachés, `.claude/worktrees`, `workspace*.json` y datos de pruebas. Detenete ante archivos diferentes presentes. |
+| Otra carpeta nueva | Copiá el kit, incluidas `skills/`, `instalar_skills.py`, `.obsidian`, `.claude` y `.opencode`; excluí Git, cachés, `.claude/worktrees`, `workspace*.json`, skills personalizadas de otra bóveda y datos de pruebas. Detenete ante archivos diferentes presentes. |
 | Carpeta con notas propias ajena al kit | Fuera del alcance de este kit: no instales ni integres. Proponé una carpeta nueva; adaptar bóvedas existentes será un repositorio separado. |
+
+### Incluir las cinco skills
+
+Seguí [Skills portables](../../DOCS/skills-portables.md): instalá `inicio`, `volcar`, `vault-reorganizer`, `vault-coherence-auditor` y `vault-token-optimizer` para el asistente actual dentro de esta bóveda, conservando las fuentes editables. No modifiques instalaciones globales. Compará antes de copiar; las personalizaciones se conservan. Si el usuario lo omite, su aplicación no carga skills o falta acceso, dejá la lectura directa disponible y registrá ese estado sin afirmar instalación nativa. No reinstales al retomar una configuración parcial si las copias ya están presentes.
 
 ### Guardar el punto de partida
 
@@ -62,7 +67,7 @@ Este paso también agrega proyectos a una bóveda lista: sin reinstalar ni repet
 
 ## 4. Verificar y entregar
 
-Releé archivos y enlaces: sin duplicados ni marcadores, ficha válida según [Revisar fichas](../../DOCS/usar-con-otras-ias.md#revisar-fichas), Panel adaptado y acceso al inventario. Completá el [mantenimiento y cierre](../../DOCS/mantenimiento.md#secuencia-de-cierre-compartida): autoría, rangos, mapas y registro. La IA realiza las operaciones; la persona no ejecuta comandos ni cuenta líneas. Sin Python, aplicá su alternativa manual y declarala.
+Releé archivos y enlaces: sin duplicados ni marcadores, ficha válida según [Revisar fichas](../../DOCS/usar-con-otras-ias.md#revisar-fichas), Panel adaptado y acceso al inventario. Comprobá también las cinco skills y su destino local, o declaralas disponibles por lectura directa/omitidas/pendientes según lo ocurrido; archivos copiados no acreditan invocación real. Completá el [mantenimiento y cierre](../../DOCS/mantenimiento.md#secuencia-de-cierre-compartida): autoría, rangos, mapas y registro. La IA realiza las operaciones; la persona no ejecuta comandos ni cuenta líneas. Sin Python, aplicá su alternativa manual y declarala.
 
 Marcá `lista` solo con archivos e integración comprobados. Si falla, conservá `parcial`, lo completado y el impedimento; releelos al retomar. El inventario puede seguir abierto con la bóveda lista: ofrecé «qué falta para personalizar mi bóveda» cuando quiera completarlo.
 
