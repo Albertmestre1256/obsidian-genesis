@@ -1,34 +1,39 @@
 > [!info]- Índice de esta nota (líneas)
-> - Líneas 1–29: Este índice
-> - Líneas 31–32: Cambios
-> - Líneas 33–36: 20/10/2026 — retiro opcional del material del kit
-> - Líneas 37–40: 20/10/2026 — estado del proyecto y financiación en GitHub
-> - Líneas 41–44: 20/10/2026 — apoyo opcional en Patreon
-> - Líneas 45–48: 20/10/2026 — comprobaciones mecánicas con herramientas
-> - Líneas 49–52: 20/10/2026 — comentarios YAML en el catálogo
-> - Líneas 53–56: 18/10/2026 — vista simple opcional en bóvedas existentes
-> - Líneas 57–60: 17/10/2026 — menos repetición al validar el inventario
-> - Líneas 61–64: 17/10/2026 — inicio y acceso en una sola guía
-> - Líneas 65–68: 17/10/2026 — entradas de IA más concisas
-> - Líneas 69–72: 17/10/2026 — vista simple inicial de bóvedas nuevas
-> - Líneas 73–76: 17/10/2026 — originales conservados y mantenimiento acotado
-> - Líneas 77–80: 16/10/2026 — guía de los documentos en cuatro idiomas
-> - Líneas 81–84: 16/10/2026 — simplificación de herramientas Python
-> - Líneas 85–88: 16/10/2026 — comunidad y soporte accesibles desde los README
-> - Líneas 89–92: 16/10/2026 — abrir la bóveda en Obsidian no desactualiza el índice
-> - Líneas 93–96: 16/10/2026 — instalar desde un kit abierto con OpenCode
-> - Líneas 97–100: 16/10/2026 — README en cuatro idiomas
-> - Líneas 101–104: 16/10/2026 — sin carpetas __pycache__ en la bóveda
-> - Líneas 105–108: 15/10/2026 — próximo paso solo en la ficha
-> - Líneas 109–112: 15/10/2026 — destino visible al comprobar el cierre
-> - Líneas 113–116: 15/10/2026 — conservar cambios posteriores al plan
-> - Líneas 117–120: 15/10/2026 — cierre coherente con el proyecto inicial
-> - Líneas 121–124: 14/10/2026 — operación visible coherente con el registro
-> - Líneas 125–128: 14/10/2026 — inventario de perfil plegable
-> - Líneas 129–132: 13/10/2026 — índices de proyectos con nombres propios
-> - Líneas 133–154: Sin publicar — candidata a v0.1.0
+> - Líneas 1–30: Este índice
+> - Líneas 32–33: Cambios
+> - Líneas 34–37: 20/10/2026 — decisión explícita sobre el retiro al configurar
+> - Líneas 38–41: 20/10/2026 — retiro opcional del material del kit
+> - Líneas 42–45: 20/10/2026 — estado del proyecto y financiación en GitHub
+> - Líneas 46–49: 20/10/2026 — apoyo opcional en Patreon
+> - Líneas 50–53: 20/10/2026 — comprobaciones mecánicas con herramientas
+> - Líneas 54–57: 20/10/2026 — comentarios YAML en el catálogo
+> - Líneas 58–61: 18/10/2026 — vista simple opcional en bóvedas existentes
+> - Líneas 62–65: 17/10/2026 — menos repetición al validar el inventario
+> - Líneas 66–69: 17/10/2026 — inicio y acceso en una sola guía
+> - Líneas 70–73: 17/10/2026 — entradas de IA más concisas
+> - Líneas 74–77: 17/10/2026 — vista simple inicial de bóvedas nuevas
+> - Líneas 78–81: 17/10/2026 — originales conservados y mantenimiento acotado
+> - Líneas 82–85: 16/10/2026 — guía de los documentos en cuatro idiomas
+> - Líneas 86–89: 16/10/2026 — simplificación de herramientas Python
+> - Líneas 90–93: 16/10/2026 — comunidad y soporte accesibles desde los README
+> - Líneas 94–97: 16/10/2026 — abrir la bóveda en Obsidian no desactualiza el índice
+> - Líneas 98–101: 16/10/2026 — instalar desde un kit abierto con OpenCode
+> - Líneas 102–105: 16/10/2026 — README en cuatro idiomas
+> - Líneas 106–109: 16/10/2026 — sin carpetas __pycache__ en la bóveda
+> - Líneas 110–113: 15/10/2026 — próximo paso solo en la ficha
+> - Líneas 114–117: 15/10/2026 — destino visible al comprobar el cierre
+> - Líneas 118–121: 15/10/2026 — conservar cambios posteriores al plan
+> - Líneas 122–125: 15/10/2026 — cierre coherente con el proyecto inicial
+> - Líneas 126–129: 14/10/2026 — operación visible coherente con el registro
+> - Líneas 130–133: 14/10/2026 — inventario de perfil plegable
+> - Líneas 134–137: 13/10/2026 — índices de proyectos con nombres propios
+> - Líneas 138–159: Sin publicar — candidata a v0.1.0
 
 # Cambios
+
+## 20/10/2026 — decisión explícita sobre el retiro al configurar
+
+El cierre de configuración exige revisar el material sobrante y presentar cada archivo propuesto para eliminar, su función, motivo, respaldo y lo que se conserva. La persona autoriza la lista con la orden explícita de retiro o indica exclusiones, conservación o postergación; sin respuesta queda pendiente y no se borra. Este paso sustituye la mención opcional anterior, sin añadir scripts ni eliminar archivos del kit.
 
 ## 20/10/2026 — retiro opcional del material del kit
 

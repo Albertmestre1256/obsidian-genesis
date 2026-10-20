@@ -12,10 +12,10 @@ descripcion: Conversación de inicio para que una IA configure la bóveda con la
 > - Líneas 40–47: 3. Preparar los archivos
 > - Líneas 48–53: Guardar el punto de partida
 > - Líneas 54–62: Crear el proyecto
-> - Líneas 63–70: 4. Verificar y entregar
-> - Líneas 71–84: Ejemplo completo de inicio
-> - Líneas 85–88: Secuencia de cierre compartida
-> - Líneas 89–91: Si no podés escribir en la carpeta
+> - Líneas 63–72: 4. Verificar y entregar
+> - Líneas 73–86: Ejemplo completo de inicio
+> - Líneas 87–90: Secuencia de cierre compartida
+> - Líneas 91–93: Si no podés escribir en la carpeta
 
 # Configurar una bóveda conversando
 
@@ -66,7 +66,9 @@ Releé archivos y enlaces: sin duplicados ni marcadores, ficha válida según [R
 
 Marcá `lista` solo con archivos e integración comprobados. Si falla, conservá `parcial`, lo completado y el impedimento; releelos al retomar. El inventario puede seguir abierto con la bóveda lista: ofrecé «qué falta para personalizar mi bóveda» cuando quiera completarlo.
 
-Mostrá carpeta y acceso al proyecto. Explicá abrir esa carpeta como bóveda en Obsidian y entrar al Panel; si falta Obsidian, indicá `https://obsidian.md`. Separá comprobación de archivos de prueba visual. Ofrecé seguir la tarea aceptada o elegirla; no afirmes haber abierto Obsidian sin hacerlo. Con `lista`, mencioná una sola vez la opción de [retirar material del kit](../../DOCS/obsidian.md#retirar-material-del-kit-que-ya-no-usás), por ejemplo: «Si más adelante querés, pedí "Retirá de esta bóveda el material del kit que ya no necesito"; sin ese pedido conservo todo». No insistas ni la ejecutes sin esa elección.
+Mostrá carpeta y acceso al proyecto. Explicá abrir esa carpeta como bóveda en Obsidian y entrar al Panel; si falta Obsidian, indicá `https://obsidian.md`. Separá comprobación de archivos de prueba visual. No afirmes haber abierto Obsidian sin hacerlo.
+
+Con la integración `lista`, realizá obligatoriamente la revisión de [material del kit para retirar](../../DOCS/obsidian.md#retirar-material-del-kit-que-ya-no-usás) antes de cerrar la entrega. Mostrá los archivos exactos que se eliminarían, su función y motivo, qué se conserva y dónde se respaldarán. Pedí expresamente a la persona: **«Para autorizar esta lista, respondé: Retirá de esta bóveda el material del kit que ya no necesito»**; también puede indicar exclusiones, conservar todo o postergar. Registrá la decisión según esa guía y ejecutá solo el retiro autorizado. Sin respuesta queda pendiente; sin candidatos seguros, explicá que nada se eliminará. No sustituyas este paso por una sugerencia para más adelante ni repitas una decisión vigente. Después ofrecé seguir la tarea aceptada o elegirla.
 
 ## Ejemplo completo de inicio
 
@@ -78,7 +80,7 @@ Ejemplo ficticio, no datos para copiar automáticamente. Cada respuesta se usa c
 > **IA:** Prepararé «Estudio de astronomía» en esta carpeta para entender las bases y guardar tus resúmenes. Guardaré tus respuestas, crearé el proyecto y actualizaré sus accesos, el Panel y el índice general. El perfil y la primera tarea pueden esperar. ¿Usamos esta carpeta con ese alcance?
 > **Persona:** Sí, preparalo aquí.
 
-La IA guarda primero configuración parcial e inventario, crea el proyecto, adapta el Panel y verifica el mantenimiento. Solo después informa lo comprobado: «Tu carpeta está preparada; abrila como bóveda en Obsidian y entrá al Panel. Tu perfil sigue para después». Si hay un impedimento, explica lo parcial. La prueba visual continúa pendiente hasta realizarla.
+La IA guarda primero configuración parcial e inventario, crea el proyecto, adapta el Panel y verifica el mantenimiento. Solo después informa lo comprobado: «Tu carpeta está preparada; abrila como bóveda en Obsidian y entrá al Panel. Tu perfil sigue para después». Antes de cerrar la entrega, presenta la lista concreta de retiro y pide la decisión explícita del paso 4; sin respuesta, deja ese paso pendiente. Si hay un impedimento, explica lo parcial. La prueba visual continúa pendiente hasta realizarla.
 
 Si luego pide «Agregá un nodo para mis resúmenes y una nota vacía», seguí la guía de mapas: padre ↔ hijo, nodo ↔ nota, nodos generales conectados con entrada e índice. Al decir «seguí con mi estudio», releé configuración y ficha, conservá omisiones y proponé elegir el primer tema; no guardes una propuesta como tarea aceptada.
 

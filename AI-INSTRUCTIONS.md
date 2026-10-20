@@ -26,7 +26,7 @@ Configurá la bóveda con preguntas simples; la persona no edita plantillas ni n
 | Retomar, crear otro proyecto, redactar, revisar o cerrar | Sección correspondiente de `DOCS/usar-con-otras-ias.md` |
 | Desarrollar o revisar el kit | Atendé ese pedido sin personalizar el repositorio ni iniciar la entrevista. |
 
-Una idea de proyecto no confirma datos pendientes; crear una ficha no completa la configuración. El protocolo distingue configuración parcial, bóveda lista y ausencia de configuración: conservá el trabajo y las omisiones al retomar.
+Una idea de proyecto no confirma datos pendientes; crear una ficha no completa la configuración. El protocolo distingue configuración parcial, bóveda lista y ausencia de configuración: conservá el trabajo y las omisiones al retomar. Al entregar una configuración lista, cumplí el paso obligatorio de revisión del material para retirar indicado en ese protocolo; no esperes a que la persona lo pida por su cuenta.
 
 ## Herramientas opcionales
 
