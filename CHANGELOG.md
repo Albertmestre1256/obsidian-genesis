@@ -1,32 +1,37 @@
 > [!info]- Índice de esta nota (líneas)
-> - Líneas 1–27: Este índice
-> - Líneas 29–30: Cambios
-> - Líneas 31–34: 20/10/2026 — apoyo opcional en Patreon
-> - Líneas 35–38: 20/10/2026 — comprobaciones mecánicas con herramientas
-> - Líneas 39–42: 20/10/2026 — comentarios YAML en el catálogo
-> - Líneas 43–46: 18/10/2026 — vista simple opcional en bóvedas existentes
-> - Líneas 47–50: 17/10/2026 — menos repetición al validar el inventario
-> - Líneas 51–54: 17/10/2026 — inicio y acceso en una sola guía
-> - Líneas 55–58: 17/10/2026 — entradas de IA más concisas
-> - Líneas 59–62: 17/10/2026 — vista simple inicial de bóvedas nuevas
-> - Líneas 63–66: 17/10/2026 — originales conservados y mantenimiento acotado
-> - Líneas 67–70: 16/10/2026 — guía de los documentos en cuatro idiomas
-> - Líneas 71–74: 16/10/2026 — simplificación de herramientas Python
-> - Líneas 75–78: 16/10/2026 — comunidad y soporte accesibles desde los README
-> - Líneas 79–82: 16/10/2026 — abrir la bóveda en Obsidian no desactualiza el índice
-> - Líneas 83–86: 16/10/2026 — instalar desde un kit abierto con OpenCode
-> - Líneas 87–90: 16/10/2026 — README en cuatro idiomas
-> - Líneas 91–94: 16/10/2026 — sin carpetas __pycache__ en la bóveda
-> - Líneas 95–98: 15/10/2026 — próximo paso solo en la ficha
-> - Líneas 99–102: 15/10/2026 — destino visible al comprobar el cierre
-> - Líneas 103–106: 15/10/2026 — conservar cambios posteriores al plan
-> - Líneas 107–110: 15/10/2026 — cierre coherente con el proyecto inicial
-> - Líneas 111–114: 14/10/2026 — operación visible coherente con el registro
-> - Líneas 115–118: 14/10/2026 — inventario de perfil plegable
-> - Líneas 119–122: 13/10/2026 — índices de proyectos con nombres propios
-> - Líneas 123–144: Sin publicar — candidata a v0.1.0
+> - Líneas 1–28: Este índice
+> - Líneas 30–31: Cambios
+> - Líneas 32–35: 20/10/2026 — estado del proyecto y financiación en GitHub
+> - Líneas 36–39: 20/10/2026 — apoyo opcional en Patreon
+> - Líneas 40–43: 20/10/2026 — comprobaciones mecánicas con herramientas
+> - Líneas 44–47: 20/10/2026 — comentarios YAML en el catálogo
+> - Líneas 48–51: 18/10/2026 — vista simple opcional en bóvedas existentes
+> - Líneas 52–55: 17/10/2026 — menos repetición al validar el inventario
+> - Líneas 56–59: 17/10/2026 — inicio y acceso en una sola guía
+> - Líneas 60–63: 17/10/2026 — entradas de IA más concisas
+> - Líneas 64–67: 17/10/2026 — vista simple inicial de bóvedas nuevas
+> - Líneas 68–71: 17/10/2026 — originales conservados y mantenimiento acotado
+> - Líneas 72–75: 16/10/2026 — guía de los documentos en cuatro idiomas
+> - Líneas 76–79: 16/10/2026 — simplificación de herramientas Python
+> - Líneas 80–83: 16/10/2026 — comunidad y soporte accesibles desde los README
+> - Líneas 84–87: 16/10/2026 — abrir la bóveda en Obsidian no desactualiza el índice
+> - Líneas 88–91: 16/10/2026 — instalar desde un kit abierto con OpenCode
+> - Líneas 92–95: 16/10/2026 — README en cuatro idiomas
+> - Líneas 96–99: 16/10/2026 — sin carpetas __pycache__ en la bóveda
+> - Líneas 100–103: 15/10/2026 — próximo paso solo en la ficha
+> - Líneas 104–107: 15/10/2026 — destino visible al comprobar el cierre
+> - Líneas 108–111: 15/10/2026 — conservar cambios posteriores al plan
+> - Líneas 112–115: 15/10/2026 — cierre coherente con el proyecto inicial
+> - Líneas 116–119: 14/10/2026 — operación visible coherente con el registro
+> - Líneas 120–123: 14/10/2026 — inventario de perfil plegable
+> - Líneas 124–127: 13/10/2026 — índices de proyectos con nombres propios
+> - Líneas 128–149: Sin publicar — candidata a v0.1.0
 
 # Cambios
+
+## 20/10/2026 — estado del proyecto y financiación en GitHub
+
+Los README citan el código publicado en main y su matriz remota en lugar de una versión anterior de Pruebas. `.github/FUNDING.yml` usa el nombre de la página de Patreon y el índice general lo cataloga.
 
 ## 20/10/2026 — apoyo opcional en Patreon
 

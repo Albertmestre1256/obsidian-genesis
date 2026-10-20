@@ -8,20 +8,20 @@
 > - Líneas 58–61: Catálogo completo de archivos
 > - Líneas 62–70: Ajustes de Obsidian
 > - Líneas 71–93: Ayuda
-> - Líneas 94–109: Desarrollo
-> - Líneas 110–132: Entrada y herramientas
-> - Líneas 133–138: Fichas y plantillas de proyecto
-> - Líneas 139–144: Guías de comunicación
-> - Líneas 145–153: Guías de redacción
-> - Líneas 154–166: Integración Claude
-> - Líneas 167–177: Integración OpenCode
-> - Líneas 178–187: Plantilla de carpetas
-> - Líneas 188–195: Plantillas de organización
-> - Líneas 196–204: Protocolos
-> - Líneas 205–213: Recursos opcionales de davidkimai
-> - Líneas 214–219: Reglas compartidas
-> - Líneas 220–227: Validación
-> - Líneas 228–236: Alcance del catálogo
+> - Líneas 94–110: Desarrollo
+> - Líneas 111–133: Entrada y herramientas
+> - Líneas 134–139: Fichas y plantillas de proyecto
+> - Líneas 140–145: Guías de comunicación
+> - Líneas 146–154: Guías de redacción
+> - Líneas 155–167: Integración Claude
+> - Líneas 168–178: Integración OpenCode
+> - Líneas 179–188: Plantilla de carpetas
+> - Líneas 189–196: Plantillas de organización
+> - Líneas 197–205: Protocolos
+> - Líneas 206–214: Recursos opcionales de davidkimai
+> - Líneas 215–220: Reglas compartidas
+> - Líneas 221–228: Validación
+> - Líneas 229–237: Alcance del catálogo
 
 # Índice principal de la bóveda
 
@@ -37,7 +37,7 @@ Podés agregar presentación y comentarios antes o después del bloque automáti
 
 ## Panorama
 
-- Archivos catalogados: 91. Proyectos propios identificados: 0. Ejemplos ficticios: 1.
+- Archivos catalogados: 92. Proyectos propios identificados: 0. Ejemplos ficticios: 1.
 - Configuración: todavía no existe una nota de configuración del kit.
 - El estado detallado y las tareas se leen en cada ficha; este catálogo no los reemplaza.
 
@@ -95,6 +95,7 @@ Cada fila enlaza un archivo. Las carpetas se representan mediante sus archivos; 
 
 | Archivo | Qué contiene |
 |---|---|
+| [FUNDING.yml](.github/FUNDING.yml) | YML |
 | [no-me-funciona.md](.github/ISSUE_TEMPLATE/no-me-funciona.md) | MD |
 | [tests.yml](.github/workflows/tests.yml) | YML |
 | [conftest.py](tests/conftest.py) | PY |

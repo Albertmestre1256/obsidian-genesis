@@ -4,7 +4,7 @@
 > - Líneas 2–17: Este índice
 > - Líneas 19–20: Introducción
 > - Líneas 21–28: Obsidian Genesis: your vault, set up by an AI
-> - Líneas 29–52: Project status — October 19, 2026
+> - Líneas 29–52: Project status — October 20, 2026
 > - Líneas 53–73: Get started in three steps
 > - Líneas 74–79: Attachments or an existing vault
 > - Líneas 80–87: Continue
@@ -26,9 +26,9 @@ A **vault** is a folder of notes that you open with [Obsidian](https://obsidian.
 
 The entry note [Leer primero](LEER_PRIMERO.md) ("Read first") connects the Panel and the general index. In a new vault, the kit enables Obsidian's **Graph view**: open it from its sidebar icon to explore the connected notes, or use the local graph from a project's index.
 
-## Project status — October 19, 2026
+## Project status — October 20, 2026
 
-**Code published on `Pruebas` (`10b99b5`); not a stable release yet.** The focus is still to start a vault through simple questions, without asking the person to program or maintain the indexes.
+**Code published on `main` (`c69c38a`); not a stable release yet.** The focus is still to start a vault through simple questions, without asking the person to program or maintain the indexes.
 
 | Already implemented | What it allows |
 |---|---|
@@ -42,7 +42,7 @@ The project creator checks the state again before saving a project and tells blo
 
 The simple view reduces clutter in the file explorer and graph for new folders and can be enabled optionally in existing vaults with backups. It preserves preferences and custom searches, reporting when the kit filter remains pending.
 
-The installer passed **40 local tests, with 1 skipped on Python 3.13**. The [remote matrix for code commit `10b99b5`](https://github.com/Albertmestre1256/obsidian-genesis/actions/runs/39100123756) finished **6/6 successfully** on Windows, macOS and Ubuntu with Python 3.8 and 3.13. These are technical results; they do not establish ease of use.
+The [remote matrix for code commit `c69c38a`](https://github.com/Albertmestre1256/obsidian-genesis/actions/runs/39375866749) finished **6/6 successfully** on Windows, macOS and Ubuntu with Python 3.8 and 3.13. These are technical results; they do not establish ease of use.
 
 Setup and resumption were checked with Claude Code. The manual OpenCode/Big Pickle trial demonstrated continued use within one session, without establishing independent resumption. A new Codex chat resumed an earlier copy and preserved skipped information, with external context and tools. These are not tests with real beginners and do not validate the interface for all current changes.
 

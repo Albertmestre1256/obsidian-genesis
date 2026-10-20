@@ -4,7 +4,7 @@
 > - Líneas 2–17: Este índice
 > - Líneas 19–20: Introducción
 > - Líneas 21–28: Obsidian Genesis: tu bóveda, configurada por una IA
-> - Líneas 29–52: Estado del proyecto — 19/10/2026
+> - Líneas 29–52: Estado del proyecto — 20/10/2026
 > - Líneas 53–73: Empezar en tres pasos
 > - Líneas 74–79: Adjuntos o bóveda existente
 > - Líneas 80–87: Continuar
@@ -26,9 +26,9 @@ Una **bóveda** es una carpeta de notas que abrís con [Obsidian](https://obsidi
 
 La entrada [Leer primero](LEER_PRIMERO.md) conecta el Panel y el índice general. En una bóveda nueva, el kit activa la **Vista de gráfico** de Obsidian: abrila desde su icono lateral para explorar las notas conectadas, o usá el gráfico local desde el índice de un proyecto.
 
-## Estado del proyecto — 19/10/2026
+## Estado del proyecto — 20/10/2026
 
-**Código publicado en `Pruebas` (`10b99b5`); todavía no es una release estable.** El foco sigue siendo iniciar una bóveda con preguntas simples, sin pedirle a la persona que programe ni mantenga los índices.
+**Código publicado en `main` (`c69c38a`); todavía no es una release estable.** El foco sigue siendo iniciar una bóveda con preguntas simples, sin pedirle a la persona que programe ni mantenga los índices.
 
 | Ya implementado | Qué permite |
 |---|---|
@@ -42,7 +42,7 @@ El creador vuelve a comprobar el estado antes de guardar un proyecto y distingue
 
 La vista simple despeja el explorador y el gráfico en carpetas nuevas y puede activarse opcionalmente en bóvedas existentes con respaldo. Conserva preferencias y búsqueda propia; informa si el filtro del kit queda pendiente.
 
-El instalador pasó **40 pruebas locales y 1 quedó omitida en Python 3.13**. La [matriz remota del código `10b99b5`](https://github.com/Albertmestre1256/obsidian-genesis/actions/runs/39100123756) terminó **6/6 correcta** en Windows, macOS y Ubuntu con Python 3.8 y 3.13. Son resultados técnicos; no acreditan facilidad de uso.
+La [matriz remota del código `c69c38a`](https://github.com/Albertmestre1256/obsidian-genesis/actions/runs/39375866749) terminó **6/6 correcta** en Windows, macOS y Ubuntu con Python 3.8 y 3.13. Son resultados técnicos; no acreditan facilidad de uso.
 
 Se comprobaron configuración y reanudación con Claude Code. El ensayo manual OpenCode/Big Pickle mostró uso continuado en una misma sesión, sin acreditar reanudación independiente. Un chat nuevo de Codex retomó una copia anterior y conservó las omisiones, con contexto y herramientas externos. No son pruebas con principiantes reales ni validan la interfaz de todos los cambios actuales.
 

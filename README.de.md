@@ -4,7 +4,7 @@
 > - Líneas 2–17: Este índice
 > - Líneas 19–20: Introducción
 > - Líneas 21–28: Obsidian Genesis: dein Vault, eingerichtet von einer KI
-> - Líneas 29–52: Projektstand — 19. Oktober 2026
+> - Líneas 29–52: Projektstand — 20. Oktober 2026
 > - Líneas 53–73: In drei Schritten starten
 > - Líneas 74–79: Anhänge oder ein bestehender Vault
 > - Líneas 80–87: Fortsetzen
@@ -26,9 +26,9 @@ Ein **Vault** ist ein Ordner mit Notizen, den du mit [Obsidian](https://obsidian
 
 Die Einstiegsnotiz [Leer primero](LEER_PRIMERO.md) („Zuerst lesen“) verbindet das Panel und den allgemeinen Index. In einem neuen Vault aktiviert das Kit die **Graphansicht** von Obsidian: Öffne sie über ihr Symbol in der Seitenleiste, um die verbundenen Notizen zu erkunden, oder nutze den lokalen Graphen im Index eines Projekts.
 
-## Projektstand — 19. Oktober 2026
+## Projektstand — 20. Oktober 2026
 
-**Code in `Pruebas` veröffentlicht (`10b99b5`); noch keine stabile Version.** Der Schwerpunkt bleibt, einen Vault mit einfachen Fragen zu starten, ohne dass die Person programmieren oder die Indizes pflegen muss.
+**Code in `main` veröffentlicht (`c69c38a`); noch keine stabile Version.** Der Schwerpunkt bleibt, einen Vault mit einfachen Fragen zu starten, ohne dass die Person programmieren oder die Indizes pflegen muss.
 
 | Bereits umgesetzt | Was es ermöglicht |
 |---|---|
@@ -42,7 +42,7 @@ Der Projektersteller prüft den Zustand erneut, bevor er ein Projekt speichert, 
 
 Die einfache Ansicht reduziert die sichtbaren Hilfsdateien im Datei-Explorer und im Graphen neuer Ordner und lässt sich in bestehenden Vaults optional mit Sicherungskopien aktivieren. Einstellungen und eigene Suchabfragen bleiben erhalten; ein noch ausstehender Filter des Kits wird gemeldet.
 
-Für die Installation bestanden **40 lokale Tests; 1 Test wurde unter Python 3.13 übersprungen**. Die [entfernte Testmatrix für den Code-Commit `10b99b5`](https://github.com/Albertmestre1256/obsidian-genesis/actions/runs/39100123756) endete **6/6 erfolgreich** unter Windows, macOS und Ubuntu mit Python 3.8 und 3.13. Das sind technische Ergebnisse; sie belegen keine einfache Bedienung.
+Die [entfernte Testmatrix für den Code-Commit `c69c38a`](https://github.com/Albertmestre1256/obsidian-genesis/actions/runs/39375866749) endete **6/6 erfolgreich** unter Windows, macOS und Ubuntu mit Python 3.8 und 3.13. Das sind technische Ergebnisse; sie belegen keine einfache Bedienung.
 
 Einrichtung und Fortsetzung wurden mit Claude Code geprüft. Der manuelle Versuch mit OpenCode/Big Pickle zeigte fortgesetzte Nutzung innerhalb derselben Sitzung, aber keine unabhängig geprüfte Fortsetzung. Ein neuer Codex-Chat setzte eine frühere Kopie fort und bewahrte ausgelassene Angaben, mit externem Kontext und externen Werkzeugen. Das sind keine Tests mit echten Einsteigenden; sie bestätigen nicht die Oberfläche aller aktuellen Änderungen.
 
