@@ -68,6 +68,28 @@ def test_indice_reconoce_tipo_admitido_en_ficha_renombrada(tmp_path, tipo):
     assert 'estudiar' in own and 'Estudio.md' in own
 
 
+@pytest.mark.parametrize('comilla', ['"', "'"])
+def test_ficha_y_nodo_con_comentarios_y_hash_entre_comillas(tmp_path, validador, ejemplo, comilla):
+    def citado(value):
+        return json.dumps(value, ensure_ascii=False) if comilla == '"' else "'" + value.replace("'", "''") + "'"
+
+    descripcion = "Preparar l'étoile # astronomía"
+    text = ejemplo.replace('ejemplo: true\n', '')
+    for key, value in [('tipo', 'celula'), ('proyecto', 'estudiar'), ('descripcion', descripcion)]:
+        text = re.sub(r'^' + key + r':.*$', lambda _: key + ': ' + citado(value) + ' # aclaración', text, flags=re.M)
+    cell = guardar(tmp_path, '00_CORE/cells/Ficha propia.md', text)
+    assert validador.validar(cell)[0] == []
+    node = guardar(tmp_path, 'Estudio/Entrada.md',
+        '---\ntipo: ' + citado('indice-proyecto') + ' # nodo\nproyecto: ' + citado('estudiar') + ' # identidad\n---\n# Estudio\n')
+    before = {p: p.read_bytes() for p in (cell, node)}
+    indice.actualizar(tmp_path)
+    output = (tmp_path / 'INDICE.md').read_text(encoding='utf-8')
+    own = output.split('## Proyectos propios\n', 1)[1].split('## Ejemplos ficticios', 1)[0]
+    assert 'Ficha%20propia.md' in own and 'Estudio/Entrada.md' in own
+    assert indice.metadatos(cell)['descripcion'] == descripcion
+    assert {p: p.read_bytes() for p in before} == before
+
+
 def test_comprobar_no_escribe_y_actualizar_es_idempotente(tmp_path):
     guardar(tmp_path, 'nota.md', '# Mi nota\n')
     assert run(tmp_path, '--comprobar').returncode == 1
