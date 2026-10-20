@@ -51,6 +51,16 @@ def bloqueo(path):
             pass
 
 
+def modo_final(path):
+    """Permisos de la nota: los actuales o los que daría la máscara del sistema a una nota nueva."""
+    try:
+        return stat.S_IMODE(path.stat().st_mode)
+    except FileNotFoundError:
+        mascara = os.umask(0)
+        os.umask(mascara)
+        return 0o666 & ~mascara
+
+
 def guardar(path, before, after):
     path = ruta_real(path)
     if before == after:
@@ -63,6 +73,8 @@ def guardar(path, before, after):
             with tempfile.NamedTemporaryFile(prefix='.nota-', suffix='.tmp', dir=str(path.parent), delete=False) as stream:
                 temporary = Path(stream.name)
                 stream.write(after)
+            # NamedTemporaryFile crea con 0600; la nota publicada conserva sus permisos.
+            os.chmod(str(temporary), modo_final(path))
             if before is None:
                 # Publicar completo sin reemplazar un archivo aparecido mientras se escribía.
                 try:
@@ -87,8 +99,13 @@ def guardar(path, before, after):
     return True
 
 
+def partir(text):
+    # Solo \n separa líneas; splitlines también corta en \x0c, U+2028 y otros que Obsidian no cuenta.
+    return re.findall(r'[^\n]*\n|[^\n]+\Z', text)
+
+
 def separar(text, reubicar=False):
-    lines = text.splitlines(keepends=True)
+    lines = partir(text)
     clean = [line.rstrip('\r\n') for line in lines]
     first = 0
     if clean and clean[0] == '---':
@@ -162,8 +179,15 @@ def contenido(raw):
     return bom + render(raw.decode('utf-8-sig')).encode('utf-8')
 
 
-def protegida(path):
-    # Conservar originales, copias históricas y formatos de integraciones.
+def protegida(path, raiz=None):
+    # Conservar originales, copias históricas y formatos de integraciones dentro de la bóveda;
+    # las carpetas que contienen a la bóveda no cuentan.
+    path = Path(os.path.abspath(str(path)))
+    if raiz is not None:
+        try:
+            path = path.relative_to(os.path.abspath(str(raiz)))
+        except ValueError:
+            pass
     parts = tuple(p.casefold() for p in path.parts)
     return (any(p in IGNORAR or p == '01_fuentes' for p in parts)
             or any(parts[i:i+3] == ('00_core', 'logs', 'historial') for i in range(len(parts)-2)))
@@ -171,10 +195,11 @@ def protegida(path):
 
 def archivos(root):
     root = ruta_real(root)
-    if not root.is_dir() or protegida(root):
+    historial = tuple(p.casefold() for p in root.parts[-3:]) == ('00_core', 'logs', 'historial')
+    if not root.is_dir() or protegida(root, root.parent) or historial:
         raise ValueError('Indicá una carpeta de bóveda existente y editable: ' + str(root))
     for base, dirs, names in os.walk(str(root), followlinks=False):
-        dirs[:] = sorted(d for d in dirs if not protegida(Path(base) / d))
+        dirs[:] = sorted(d for d in dirs if not protegida(Path(base) / d, root))
         for d in dirs:
             ruta_real(Path(base) / d)
         for name in sorted(names):
@@ -193,8 +218,9 @@ def main(argv=None):
             raise ValueError('Indicá notas concretas o --vault, nunca ambos.')
         paths = list(archivos(Path(args.vault))) if args.vault else [ruta_real(Path(p)) for p in args.notas]
         plans = []
+        raiz = Path(args.vault) if args.vault else Path.cwd()
         for path in paths:
-            if protegida(path):
+            if protegida(path, raiz):
                 raise ValueError('Original, histórico o integración protegido; describirlo en el mapa del nodo: ' + str(path))
             raw = path.read_bytes()
             plans.append((path, raw, contenido(raw)))

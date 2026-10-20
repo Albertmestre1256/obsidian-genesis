@@ -90,7 +90,7 @@ def evento(root, data, comprobar=True):
         raise ValueError('cambios debe incluir los archivos efectivamente cambiados.')
     result['cambios'] = []
     for change in changes:
-        if not isinstance(change, dict) or change.get('accion') not in ACCIONES:
+        if not isinstance(change, dict) or not isinstance(change.get('accion'), str) or change['accion'] not in ACCIONES:
             raise ValueError('Acción de cambio no reconocida.')
         item = {'accion': change['accion'], 'ruta': relativa(change.get('ruta'))}
         if item['ruta'] == REGISTRO or item['ruta'].startswith(ARCHIVO + '/'):
@@ -194,8 +194,11 @@ def registrar(root, data, fecha=None, dry_run=False):
     try:
         return _registrar(root, data, fecha)
     finally:
-        if os.path.samestat(identity, lineas.ruta_real(lock).lstat()):
-            lock.unlink()
+        try:
+            if os.path.samestat(identity, lineas.ruta_real(lock).lstat()):
+                lock.unlink()
+        except FileNotFoundError:
+            pass
 
 
 def main(argv=None):

@@ -311,3 +311,13 @@ def test_kit_abierto_con_opencode_no_choca_con_el_opencode_de_la_boveda(tmp_path
     assert all(despues[ruta] == contenido for ruta, contenido in antes.items())
     assert not (vault / ".opencode/node_modules").exists()
     assert (vault / ".opencode/commands/package.json").is_file()  # el filtro se limita a .opencode/
+
+
+
+def test_mensaje_final_no_remite_a_secciones_retiradas(tmp_path):
+    vault = tmp_path / "Bóveda"
+    vault.mkdir()
+    resultado = ejecutar(vault, "--yes")
+    assert resultado.returncode in (0, 1), resultado.stdout + resultado.stderr
+    assert "Plugins principales" in resultado.stdout
+    assert "DOCS/obsidian.md" not in resultado.stdout

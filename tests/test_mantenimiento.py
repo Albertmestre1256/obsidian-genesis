@@ -755,3 +755,80 @@ def test_lectura_vieja_se_rechaza_y_no_deja_bloqueo(tmp_path):
         lines.guardar(target, b'Lectura anterior', b'Mi cambio')
     assert target.read_bytes() == b'Cambio de otro asistente'
     assert sorted(p.name for p in tmp_path.iterdir()) == ['Nota.md']
+
+
+@pytest.mark.parametrize('accion', [[], {}, ['crear'], 3])
+def test_accion_no_textual_es_error_controlado(tmp_path, accion):
+    data = event(tmp_path)
+    data['cambios'] = [{'accion': accion, 'ruta': 'Notas/Apunte.md'}]
+    with pytest.raises(ValueError):
+        log.registrar(tmp_path, data, '2026-10-09T10:00:00-03:00')
+    assert not (tmp_path / '00_CORE').exists()
+
+
+def test_bloqueo_retirado_por_otro_no_oculta_el_registro(tmp_path, monkeypatch):
+    original = log._registrar
+
+    def registrar_y_retirar(root, *args):
+        resultado = original(root, *args)
+        bloqueo = root / '00_CORE/logs/.registro-cambios.lock'
+        if bloqueo.exists():  # La simulación previa no toma el bloqueo.
+            bloqueo.unlink()
+        return resultado
+
+    monkeypatch.setattr(log, '_registrar', registrar_y_retirar)
+    resultado = log.registrar(tmp_path, event(tmp_path), '2026-10-09T10:00:00-03:00')
+    assert isinstance(resultado, dict)
+    assert (tmp_path / log.REGISTRO).is_file()
+
+
+@pytest.mark.skipif(os.name == 'nt', reason='Permisos POSIX')
+def test_guardar_conserva_permisos_de_la_nota(tmp_path):
+    nota = tmp_path / 'Nota.md'
+    nota.write_text('# Título\nTexto.\n', encoding='utf-8')
+    os.chmod(str(nota), 0o644)
+    raw = nota.read_bytes()
+    assert lines.guardar(nota, raw, lines.contenido(raw))
+    assert nota.stat().st_mode & 0o777 == 0o644
+
+
+@pytest.mark.skipif(os.name == 'nt', reason='Permisos POSIX')
+def test_guardar_nota_nueva_respeta_la_mascara(tmp_path):
+    anterior = os.umask(0o022)
+    try:
+        nota = tmp_path / 'Nueva.md'
+        assert lines.guardar(nota, None, b'# Nueva\n')
+    finally:
+        os.umask(anterior)
+    assert nota.stat().st_mode & 0o777 == 0o644
+
+
+@pytest.mark.parametrize('separador', ['\x0c', '\u2028', '\x85', '\x0b'])
+def test_rangos_cuentan_solo_saltos_de_linea_reales(separador):
+    texto = '# Uno\nTexto' + separador + 'pegado de un PDF.\n## Dos\nFin.\n'
+    salida = lines.render(texto).split('\n')
+    rango = next(l for l in salida if l.endswith(': Dos'))
+    inicio = int(re.search(r'Líneas (\d+)–', rango).group(1))
+    assert salida[inicio - 1] == '## Dos'
+    assert lines.contenido(lines.render(texto).encode('utf-8')) == lines.render(texto).encode('utf-8')
+
+
+@pytest.mark.parametrize('contenedor', ['_archivo', '01_FUENTES', '.trash', 'venv'])
+def test_boveda_dentro_de_carpeta_con_nombre_protegido(tmp_path, monkeypatch, contenedor):
+    vault = tmp_path / contenedor / 'boveda'
+    (vault / 'Notas').mkdir(parents=True)
+    (vault / 'Notas/Apunte.md').write_text('# Apunte\nTexto.\n', encoding='utf-8')
+    (vault / '01_FUENTES').mkdir()
+    (vault / '01_FUENTES/Original.md').write_text('# Original\n', encoding='utf-8')
+    assert [p.name for p in lines.archivos(vault)] == ['Apunte.md']
+    assert lines.main(['check', '--vault', str(vault)]) == 1
+    monkeypatch.chdir(vault)
+    assert lines.main(['check', 'Notas/Apunte.md']) == 1
+    assert lines.main(['check', '01_FUENTES/Original.md']) == 2
+
+
+@pytest.mark.parametrize('carpeta', ['01_FUENTES', '00_CORE/logs/historial', '_archivo'])
+def test_raiz_protegida_sigue_rechazada(tmp_path, carpeta):
+    (tmp_path / carpeta).mkdir(parents=True)
+    with pytest.raises(ValueError):
+        list(lines.archivos(tmp_path / carpeta))

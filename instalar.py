@@ -282,7 +282,7 @@ def main(argv=None):
             print("Índices locales manuales para revisar, conservados: " + ", ".join(estado_indice['indices_manuales']))
         print("\nCopia completa. Revisando las células de la bóveda...")
         codigo = revisar_celulas(destino)
-        print("Abrí Panel.md. Para activar Plantillas y Bases en una bóveda existente, seguí DOCS/obsidian.md.")
+        print("Abrí Panel.md. Activá Plantillas y Bases en Ajustes → Plugins principales (Bases requiere Obsidian 1.9.10 o posterior).")
         if codigo:
             print("Los archivos se agregaron, pero hay células que necesitan revisión.")
         return codigo

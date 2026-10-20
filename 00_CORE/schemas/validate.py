@@ -13,8 +13,10 @@ import datetime
 import hashlib
 import importlib.util
 import json
+import os
 import posixpath
 import re
+import stat
 import sys
 sys.dont_write_bytecode = True  # no dejar __pycache__ dentro de la bóveda
 import unicodedata
@@ -377,6 +379,8 @@ def _validar_tabla_inventario(lineas_inventario):
     """Valida estructura, estados, alcances y duplicados sin escribir."""
     if not lineas_inventario:
         return ['El inventario de personalización: falta la tabla (cabecera, separador y filas).'], []
+    if lineas_inventario == ['__ERROR_MEZCLA__']:
+        return ['El inventario de personalización: mezcla una tabla suelta con un bloque plegable, o tiene dos bloques; dejá una sola tabla en un único lugar.'], []
     idx_tabla = next((i for i, linea in enumerate(lineas_inventario) if linea.strip().startswith('|')), None)
     if idx_tabla is None:
         return ['El inventario de personalización: no se encuentra tabla markdown.'], []
@@ -532,6 +536,22 @@ def validar(path):
     return errores, avisos
 
 
+def _es_enlace(ruta):
+    info = os.lstat(ruta)
+    return stat.S_ISLNK(info.st_mode) or bool(getattr(info, 'st_file_attributes', 0) & 0x400)
+
+
+def _notas_con_nombre(raiz, nombre):
+    """Notas con ese nombre que Obsidian indexa: sin carpetas ocultas, dependencias, enlaces ni junctions."""
+    encontradas = []
+    for base, dirs, names in os.walk(str(raiz), followlinks=False):
+        dirs[:] = [d for d in dirs if not d.startswith('.') and d not in ('node_modules', '__pycache__')
+                   and not _es_enlace(os.path.join(base, d))]
+        if nombre in names:
+            encontradas.append(Path(base) / nombre)
+    return encontradas
+
+
 def validar_configuracion(raiz):
     """Comprueba el cierre básico y el inventario de personalización cuando existe la configuración del kit.
 
@@ -591,7 +611,7 @@ def validar_configuracion(raiz):
             acceso = True
         elif wiki and ruta in {path.name, path.stem}:
             # Obsidian admite nombres cortos; exigir una única nota con ese nombre.
-            acceso = acceso or list(Path(raiz).rglob(path.name)) == [path]
+            acceso = acceso or _notas_con_nombre(raiz, path.name) == [path]
     if not acceso:
         errores.append('El Panel no da acceso al inventario: añadí un enlace a 00_CORE/configuracion.md.')
     return errores
@@ -853,7 +873,7 @@ def validar_cierre(raiz, operacion):
     # 4. Rangos de líneas en notas editables (note_index.archivos + contenido)
     try:
         for nota in _lineas.archivos(raiz):
-            if _lineas.protegida(nota):
+            if _lineas.protegida(nota, raiz):
                 continue
             raw = nota.read_bytes()
             esperado = _lineas.contenido(raw)

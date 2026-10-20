@@ -1380,3 +1380,30 @@ def test_cierre_cells_relativa_ajena_no_se_confunde_con_boveda(validador,boveda_
 ])
 def test_fila_inventario_conserva_barras_y_columnas(validador, fila, esperado):
     assert validador._parsear_fila_tabla(fila) == esperado
+
+
+@pytest.mark.parametrize('copia', ['.trash/configuracion.md', '.obsidian/configuracion.md',
+                                   'node_modules/paquete/configuracion.md'])
+def test_nombre_corto_del_panel_ignora_carpetas_no_indexadas(validador, tmp_path, copia):
+    preparar_configuracion(tmp_path, '[[configuracion]]\n')
+    destino = tmp_path / copia
+    destino.parent.mkdir(parents=True, exist_ok=True)
+    destino.write_text('# Copia vieja\n', encoding='utf-8')
+    assert validador.validar_configuracion(tmp_path) == []
+
+
+def test_nombre_corto_repetido_en_la_boveda_sigue_sin_dar_acceso(validador, tmp_path):
+    preparar_configuracion(tmp_path, '[[configuracion]]\n')
+    (tmp_path / 'Otra').mkdir()
+    (tmp_path / 'Otra/configuracion.md').write_text('# Otra\n', encoding='utf-8')
+    assert any('Panel no da acceso' in error for error in validador.validar_configuracion(tmp_path))
+
+
+def test_inventario_mezclado_explica_la_mezcla(validador, tmp_path):
+    preparar_configuracion(tmp_path, '[[00_CORE/configuracion]]\n')
+    configuracion = tmp_path / '00_CORE/configuracion.md'
+    configuracion.write_text(configuracion.read_text(encoding='utf-8')
+                             + '> | otro-item | boveda | pendiente | — | — | — |\n', encoding='utf-8')
+    errores = validador.validar_configuracion(tmp_path)
+    assert any('mezcla una tabla suelta' in error for error in errores)
+    assert not any('no se encuentra tabla' in error for error in errores)
