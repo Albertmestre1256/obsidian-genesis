@@ -1,33 +1,38 @@
 > [!info]- Índice de esta nota (líneas)
-> - Líneas 1–28: Este índice
-> - Líneas 30–31: Cambios
-> - Líneas 32–35: 20/10/2026 — estado del proyecto y financiación en GitHub
-> - Líneas 36–39: 20/10/2026 — apoyo opcional en Patreon
-> - Líneas 40–43: 20/10/2026 — comprobaciones mecánicas con herramientas
-> - Líneas 44–47: 20/10/2026 — comentarios YAML en el catálogo
-> - Líneas 48–51: 18/10/2026 — vista simple opcional en bóvedas existentes
-> - Líneas 52–55: 17/10/2026 — menos repetición al validar el inventario
-> - Líneas 56–59: 17/10/2026 — inicio y acceso en una sola guía
-> - Líneas 60–63: 17/10/2026 — entradas de IA más concisas
-> - Líneas 64–67: 17/10/2026 — vista simple inicial de bóvedas nuevas
-> - Líneas 68–71: 17/10/2026 — originales conservados y mantenimiento acotado
-> - Líneas 72–75: 16/10/2026 — guía de los documentos en cuatro idiomas
-> - Líneas 76–79: 16/10/2026 — simplificación de herramientas Python
-> - Líneas 80–83: 16/10/2026 — comunidad y soporte accesibles desde los README
-> - Líneas 84–87: 16/10/2026 — abrir la bóveda en Obsidian no desactualiza el índice
-> - Líneas 88–91: 16/10/2026 — instalar desde un kit abierto con OpenCode
-> - Líneas 92–95: 16/10/2026 — README en cuatro idiomas
-> - Líneas 96–99: 16/10/2026 — sin carpetas __pycache__ en la bóveda
-> - Líneas 100–103: 15/10/2026 — próximo paso solo en la ficha
-> - Líneas 104–107: 15/10/2026 — destino visible al comprobar el cierre
-> - Líneas 108–111: 15/10/2026 — conservar cambios posteriores al plan
-> - Líneas 112–115: 15/10/2026 — cierre coherente con el proyecto inicial
-> - Líneas 116–119: 14/10/2026 — operación visible coherente con el registro
-> - Líneas 120–123: 14/10/2026 — inventario de perfil plegable
-> - Líneas 124–127: 13/10/2026 — índices de proyectos con nombres propios
-> - Líneas 128–149: Sin publicar — candidata a v0.1.0
+> - Líneas 1–29: Este índice
+> - Líneas 31–32: Cambios
+> - Líneas 33–36: 20/10/2026 — retiro opcional del material del kit
+> - Líneas 37–40: 20/10/2026 — estado del proyecto y financiación en GitHub
+> - Líneas 41–44: 20/10/2026 — apoyo opcional en Patreon
+> - Líneas 45–48: 20/10/2026 — comprobaciones mecánicas con herramientas
+> - Líneas 49–52: 20/10/2026 — comentarios YAML en el catálogo
+> - Líneas 53–56: 18/10/2026 — vista simple opcional en bóvedas existentes
+> - Líneas 57–60: 17/10/2026 — menos repetición al validar el inventario
+> - Líneas 61–64: 17/10/2026 — inicio y acceso en una sola guía
+> - Líneas 65–68: 17/10/2026 — entradas de IA más concisas
+> - Líneas 69–72: 17/10/2026 — vista simple inicial de bóvedas nuevas
+> - Líneas 73–76: 17/10/2026 — originales conservados y mantenimiento acotado
+> - Líneas 77–80: 16/10/2026 — guía de los documentos en cuatro idiomas
+> - Líneas 81–84: 16/10/2026 — simplificación de herramientas Python
+> - Líneas 85–88: 16/10/2026 — comunidad y soporte accesibles desde los README
+> - Líneas 89–92: 16/10/2026 — abrir la bóveda en Obsidian no desactualiza el índice
+> - Líneas 93–96: 16/10/2026 — instalar desde un kit abierto con OpenCode
+> - Líneas 97–100: 16/10/2026 — README en cuatro idiomas
+> - Líneas 101–104: 16/10/2026 — sin carpetas __pycache__ en la bóveda
+> - Líneas 105–108: 15/10/2026 — próximo paso solo en la ficha
+> - Líneas 109–112: 15/10/2026 — destino visible al comprobar el cierre
+> - Líneas 113–116: 15/10/2026 — conservar cambios posteriores al plan
+> - Líneas 117–120: 15/10/2026 — cierre coherente con el proyecto inicial
+> - Líneas 121–124: 14/10/2026 — operación visible coherente con el registro
+> - Líneas 125–128: 14/10/2026 — inventario de perfil plegable
+> - Líneas 129–132: 13/10/2026 — índices de proyectos con nombres propios
+> - Líneas 133–154: Sin publicar — candidata a v0.1.0
 
 # Cambios
+
+## 20/10/2026 — retiro opcional del material del kit
+
+`DOCS/obsidian.md` describe cómo la IA puede retirar, a pedido, material del kit que ya no se usa en una bóveda lista: lista exacta de archivos autorizada, respaldo fuera de la bóveda, retiro archivo por archivo con nueva comprobación justo antes, referencias comprobadas y registro. Sin ese pedido se conserva todo. `configurar-vault.md` lo ofrece una vez al entregar y `AI-INSTRUCTIONS.md` lo enruta.
 
 ## 20/10/2026 — estado del proyecto y financiación en GitHub
 

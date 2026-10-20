@@ -2,8 +2,8 @@
 > - Líneas 1–6: Este índice
 > - Líneas 8–11: Entrada para la IA
 > - Líneas 12–17: Antes de trabajar
-> - Líneas 18–29: Elegir el recorrido
-> - Líneas 30–48: Herramientas opcionales
+> - Líneas 18–30: Elegir el recorrido
+> - Líneas 31–49: Herramientas opcionales
 
 # Entrada para la IA
 
@@ -21,6 +21,7 @@ Configurá la bóveda con preguntas simples; la persona no edita plantillas ni n
 |---|---|
 | Configurar una bóveda nueva, integrar una existente o retomar configuración parcial | `00_CORE/protocols/configurar-vault.md`: preguntas, configuración e inventario antes del proyecto, Panel y comprobación de entrega. |
 | Completar el perfil, revisar faltantes o retomar datos omitidos, también con la bóveda lista | `00_CORE/protocols/personalizar-vault.md` |
+| Retirar de una bóveda lista el material del kit que ya no se usa | «Retirar material del kit que ya no usás» en `DOCS/obsidian.md`, sin repetir la entrevista |
 | Crear, ampliar o consultar un nodo | «Crear y actualizar un nodo» en `DOCS/indice-principal.md` |
 | Retomar, crear otro proyecto, redactar, revisar o cerrar | Sección correspondiente de `DOCS/usar-con-otras-ias.md` |
 | Desarrollar o revisar el kit | Atendé ese pedido sin personalizar el repositorio ni iniciar la entrevista. |

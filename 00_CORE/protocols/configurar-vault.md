@@ -66,7 +66,7 @@ Releé archivos y enlaces: sin duplicados ni marcadores, ficha válida según [R
 
 Marcá `lista` solo con archivos e integración comprobados. Si falla, conservá `parcial`, lo completado y el impedimento; releelos al retomar. El inventario puede seguir abierto con la bóveda lista: ofrecé «qué falta para personalizar mi bóveda» cuando quiera completarlo.
 
-Mostrá carpeta y acceso al proyecto. Explicá abrir esa carpeta como bóveda en Obsidian y entrar al Panel; si falta Obsidian, indicá `https://obsidian.md`. Separá comprobación de archivos de prueba visual. Ofrecé seguir la tarea aceptada o elegirla; no afirmes haber abierto Obsidian sin hacerlo.
+Mostrá carpeta y acceso al proyecto. Explicá abrir esa carpeta como bóveda en Obsidian y entrar al Panel; si falta Obsidian, indicá `https://obsidian.md`. Separá comprobación de archivos de prueba visual. Ofrecé seguir la tarea aceptada o elegirla; no afirmes haber abierto Obsidian sin hacerlo. Con `lista`, mencioná una sola vez la opción de [retirar material del kit](../../DOCS/obsidian.md#retirar-material-del-kit-que-ya-no-usás), por ejemplo: «Si más adelante querés, pedí "Retirá de esta bóveda el material del kit que ya no necesito"; sin ese pedido conservo todo». No insistas ni la ejecutes sin esa elección.
 
 ## Ejemplo completo de inicio
 
