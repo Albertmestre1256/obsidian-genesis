@@ -3,7 +3,7 @@
 > - Líneas 8–11: Entrada para la IA
 > - Líneas 12–17: Antes de trabajar
 > - Líneas 18–31: Elegir el recorrido
-> - Líneas 32–51: Herramientas opcionales
+> - Líneas 32–50: Herramientas opcionales
 
 # Entrada para la IA
 
@@ -24,7 +24,7 @@ Configurá la bóveda con preguntas simples; la persona no edita plantillas ni n
 | Retirar de una bóveda lista el material del kit que ya no se usa | «Retirar material del kit que ya no usás» en `DOCS/obsidian.md`, sin repetir la entrevista |
 | Crear, ampliar o consultar un nodo | «Crear y actualizar un nodo» en `DOCS/indice-principal.md` |
 | Retomar, crear otro proyecto, redactar, revisar o cerrar | Sección correspondiente de `DOCS/usar-con-otras-ias.md` |
-| Usar o personalizar inicio, volcar, reorganización, coherencia o eficiencia de contexto | `DOCS/skills-portables.md`: fuentes editables, instalación local y selección de la skill pertinente. |
+| Usar, copiar o personalizar las skills opcionales: inicio, volcar, reorganización, coherencia o eficiencia de contexto | `DOCS/skills-portables.md`: fuentes editables, copia opcional al asistente y selección de la skill pertinente. Para retomar, recomendá `empezar`. |
 | Desarrollar o revisar el kit | Atendé ese pedido sin personalizar el repositorio ni iniciar la entrevista. |
 
 Una idea de proyecto no confirma datos pendientes; crear una ficha no completa la configuración. El protocolo distingue configuración parcial, bóveda lista y ausencia de configuración: conservá el trabajo y las omisiones al retomar. Al entregar una configuración lista, cumplí el paso obligatorio de revisión del material para retirar indicado en ese protocolo; no esperes a que la persona lo pida por su cuenta.
@@ -37,7 +37,6 @@ Usá herramientas del kit leído, no código preexistente de otra bóveda. Pytho
 |---|---|
 | `instalar.py` | Material heredado de la integración en bóvedas existentes, fuera del alcance actual: no lo uses para configurar. Su retiro o separación está pendiente de decisión. |
 | `crear_proyecto.py` | `DOCS/creacion-para-asistentes.md`; crea ficha, índice y carpetas, sin completar Panel ni configuración. |
-| `instalar_skills.py` | `DOCS/skills-portables.md`; distribuye las cinco skills dentro de la bóveda sin sobrescribir personalizaciones. |
 | `00_CORE/schemas/validate.py` | «Revisar fichas» en `DOCS/usar-con-otras-ias.md`, incluida revisión manual. |
 | `actualizar_indice.py` | `DOCS/indice-principal.md`: mapas generales y locales. |
 | `00_CORE/schemas/note_index.py` y `00_CORE/schemas/registrar_cambios.py` | `DOCS/mantenimiento.md`: rangos, autoría y registro de cambios. |

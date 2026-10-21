@@ -1,43 +1,48 @@
 > [!info]- Índice de esta nota (líneas)
-> - Líneas 1–38: Este índice
-> - Líneas 40–41: Cambios
-> - Líneas 42–45: 21/10/2026 — creador: porcentajes, identificador y plantilla
-> - Líneas 46–49: 21/10/2026 — bloqueos huérfanos con guía de recuperación
-> - Líneas 50–53: 21/10/2026 — ayuda de IA al final de los README
-> - Líneas 54–57: 20/10/2026 — registro inviolable y enlaces solo dentro de la bóveda
-> - Líneas 58–61: 20/10/2026 — robustez de registro, rangos y Panel
-> - Líneas 62–65: 20/10/2026 — vista simple con las skills portables
-> - Líneas 66–69: 20/10/2026 — cinco skills portables
-> - Líneas 70–73: 20/10/2026 — alcance: bóvedas nuevas
-> - Líneas 74–77: 20/10/2026 — decisión explícita sobre el retiro al configurar
-> - Líneas 78–81: 20/10/2026 — retiro opcional del material del kit
-> - Líneas 82–85: 20/10/2026 — estado del proyecto y financiación en GitHub
-> - Líneas 86–89: 20/10/2026 — apoyo opcional en Patreon
-> - Líneas 90–93: 20/10/2026 — comprobaciones mecánicas con herramientas
-> - Líneas 94–97: 20/10/2026 — comentarios YAML en el catálogo
-> - Líneas 98–101: 18/10/2026 — vista simple opcional en bóvedas existentes
-> - Líneas 102–105: 17/10/2026 — menos repetición al validar el inventario
-> - Líneas 106–109: 17/10/2026 — inicio y acceso en una sola guía
-> - Líneas 110–113: 17/10/2026 — entradas de IA más concisas
-> - Líneas 114–117: 17/10/2026 — vista simple inicial de bóvedas nuevas
-> - Líneas 118–121: 17/10/2026 — originales conservados y mantenimiento acotado
-> - Líneas 122–125: 16/10/2026 — guía de los documentos en cuatro idiomas
-> - Líneas 126–129: 16/10/2026 — simplificación de herramientas Python
-> - Líneas 130–133: 16/10/2026 — comunidad y soporte accesibles desde los README
-> - Líneas 134–137: 16/10/2026 — abrir la bóveda en Obsidian no desactualiza el índice
-> - Líneas 138–141: 16/10/2026 — instalar desde un kit abierto con OpenCode
-> - Líneas 142–145: 16/10/2026 — README en cuatro idiomas
-> - Líneas 146–149: 16/10/2026 — sin carpetas __pycache__ en la bóveda
-> - Líneas 150–153: 15/10/2026 — próximo paso solo en la ficha
-> - Líneas 154–157: 15/10/2026 — destino visible al comprobar el cierre
-> - Líneas 158–161: 15/10/2026 — conservar cambios posteriores al plan
-> - Líneas 162–165: 15/10/2026 — cierre coherente con el proyecto inicial
-> - Líneas 166–169: 14/10/2026 — operación visible coherente con el registro
-> - Líneas 170–173: 14/10/2026 — inventario de perfil plegable
-> - Líneas 174–177: 13/10/2026 — índices de proyectos con nombres propios
-> - Líneas 178–199: Sin publicar — candidata a v0.1.0
+> - Líneas 1–39: Este índice
+> - Líneas 41–42: Cambios
+> - Líneas 43–46: 21/10/2026 — skills opcionales en Markdown, sin instalador
+> - Líneas 47–50: 21/10/2026 — creador: porcentajes, identificador y plantilla
+> - Líneas 51–54: 21/10/2026 — bloqueos huérfanos con guía de recuperación
+> - Líneas 55–58: 21/10/2026 — ayuda de IA al final de los README
+> - Líneas 59–62: 20/10/2026 — registro inviolable y enlaces solo dentro de la bóveda
+> - Líneas 63–66: 20/10/2026 — robustez de registro, rangos y Panel
+> - Líneas 67–70: 20/10/2026 — vista simple con las skills portables
+> - Líneas 71–74: 20/10/2026 — cinco skills portables
+> - Líneas 75–78: 20/10/2026 — alcance: bóvedas nuevas
+> - Líneas 79–82: 20/10/2026 — decisión explícita sobre el retiro al configurar
+> - Líneas 83–86: 20/10/2026 — retiro opcional del material del kit
+> - Líneas 87–90: 20/10/2026 — estado del proyecto y financiación en GitHub
+> - Líneas 91–94: 20/10/2026 — apoyo opcional en Patreon
+> - Líneas 95–98: 20/10/2026 — comprobaciones mecánicas con herramientas
+> - Líneas 99–102: 20/10/2026 — comentarios YAML en el catálogo
+> - Líneas 103–106: 18/10/2026 — vista simple opcional en bóvedas existentes
+> - Líneas 107–110: 17/10/2026 — menos repetición al validar el inventario
+> - Líneas 111–114: 17/10/2026 — inicio y acceso en una sola guía
+> - Líneas 115–118: 17/10/2026 — entradas de IA más concisas
+> - Líneas 119–122: 17/10/2026 — vista simple inicial de bóvedas nuevas
+> - Líneas 123–126: 17/10/2026 — originales conservados y mantenimiento acotado
+> - Líneas 127–130: 16/10/2026 — guía de los documentos en cuatro idiomas
+> - Líneas 131–134: 16/10/2026 — simplificación de herramientas Python
+> - Líneas 135–138: 16/10/2026 — comunidad y soporte accesibles desde los README
+> - Líneas 139–142: 16/10/2026 — abrir la bóveda en Obsidian no desactualiza el índice
+> - Líneas 143–146: 16/10/2026 — instalar desde un kit abierto con OpenCode
+> - Líneas 147–150: 16/10/2026 — README en cuatro idiomas
+> - Líneas 151–154: 16/10/2026 — sin carpetas __pycache__ en la bóveda
+> - Líneas 155–158: 15/10/2026 — próximo paso solo en la ficha
+> - Líneas 159–162: 15/10/2026 — destino visible al comprobar el cierre
+> - Líneas 163–166: 15/10/2026 — conservar cambios posteriores al plan
+> - Líneas 167–170: 15/10/2026 — cierre coherente con el proyecto inicial
+> - Líneas 171–174: 14/10/2026 — operación visible coherente con el registro
+> - Líneas 175–178: 14/10/2026 — inventario de perfil plegable
+> - Líneas 179–182: 13/10/2026 — índices de proyectos con nombres propios
+> - Líneas 183–204: Sin publicar — candidata a v0.1.0
 
 # Cambios
+
+## 21/10/2026 — skills opcionales en Markdown, sin instalador
+
+Las cinco skills de `skills/` quedan como notas Markdown opcionales: la configuración ya no las instala y la bóveda funciona sin ellas. Al entregar, la IA avisa que existen y las copia a la carpeta del asistente solo si la persona lo pide. Se retiran `instalar_skills.py` y sus pruebas; la guía de skills explica la copia con herramientas de archivos. Para retomar se recomienda `empezar`; `inicio` queda como alternativa portable.
 
 ## 21/10/2026 — creador: porcentajes, identificador y plantilla
 
