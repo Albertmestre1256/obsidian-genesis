@@ -9,6 +9,7 @@ import re
 import stat
 import sys
 import tempfile
+import time
 
 HEADER = '> [!info]- Índice de esta nota (líneas)'
 HEADERS = (HEADER, '> [!info] Índice de esta nota (líneas)')
@@ -64,6 +65,28 @@ def ruta_real(path, raiz=None):
     return path
 
 
+GUIA_BLOQUEO = 'ver «Aparece un bloqueo» en DOCS/TROUBLESHOOTING.md'
+
+
+def marca_bloqueo():
+    """Contenido del bloqueo: proceso y hora de inicio, para reconocerlo si queda huérfano."""
+    return 'pid={} inicio={}\n'.format(os.getpid(), time.strftime('%Y-%m-%dT%H:%M:%S%z')).encode('utf-8')
+
+
+def mensaje_bloqueo(lock, que='Otra escritura'):
+    """Explicar cómo seguir ante un bloqueo existente; el kit nunca lo retira por su cuenta."""
+    try:
+        minutos = int(max(0, time.time() - lock.stat().st_mtime) // 60)
+        edad = 'desde hace {} min'.format(minutos)
+    except OSError:
+        minutos, edad = None, 'antigüedad desconocida'
+    texto = '{} está en curso ({}); esperá y reintentá. Bloqueo: {}.'.format(que, edad, lock)
+    if minutos is not None and minutos >= 10:
+        texto += ' Tiene más de 10 minutos: probablemente quedó de una operación interrumpida.'
+    return texto + (' Si ninguna IA ni proceso está trabajando en esta bóveda, el bloqueo quedó huérfano: '
+                    'borrá solo ese archivo, releé las notas afectadas y reintentá; ' + GUIA_BLOQUEO + '.')
+
+
 @contextmanager
 def bloqueo(path, raiz=None):
     """Coordinar escritores del kit; los clientes MCP usan sus propios etags."""
@@ -71,8 +94,10 @@ def bloqueo(path, raiz=None):
     try:
         stream = lock.open('xb')
     except FileExistsError:
-        raise ValueError('Otra escritura está en curso; releé y reintentá después. No retires el bloqueo: ' + str(lock))
+        raise ValueError(mensaje_bloqueo(lock))
     identity = os.fstat(stream.fileno())
+    stream.write(marca_bloqueo())
+    stream.flush()
     try:
         with stream:
             yield

@@ -970,7 +970,8 @@ def validar_cierre(raiz, operacion):
     # 7. Bloqueo de registro concurrente
     lock_path = raiz / '00_CORE' / 'logs' / '.registro-cambios.lock'
     if lock_path.exists():
-        errores.append('Registro bloqueado por otra operación (.registro-cambios.lock).')
+        errores.append('Registro bloqueado por otra operación (.registro-cambios.lock). '
+                       'Si no hay otra operación activa, ver «Aparece un bloqueo» en DOCS/TROUBLESHOOTING.md.')
 
     return errores
 

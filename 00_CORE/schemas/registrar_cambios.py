@@ -191,8 +191,9 @@ def registrar(root, data, fecha=None, dry_run=False):
     try:
         with lock.open('xb') as stream:
             identity = os.fstat(stream.fileno())
+            stream.write(lineas.marca_bloqueo())
     except FileExistsError:
-        raise ValueError('Otro registro está en curso; releer y reintentar después. No retirar su bloqueo.')
+        raise ValueError(lineas.mensaje_bloqueo(lock, 'Otro registro'))
     try:
         return _registrar(root, data, fecha)
     finally:

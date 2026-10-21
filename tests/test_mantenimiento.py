@@ -978,3 +978,56 @@ def test_registro_bajo_enlace_externo_y_enlace_interno_rechazado(tmp_path):
                 _desenlazar(interno)
     finally:
         _desenlazar(enlace)
+
+
+def _envejecer(path, minutos):
+    viejo = time.time() - minutos * 60
+    os.utime(str(path), (viejo, viejo))
+
+
+def test_bloqueo_huerfano_de_nota_explica_como_recuperarse(tmp_path):
+    target = tmp_path / 'Nota.md'
+    target.write_bytes(b'Original')
+    lock = tmp_path / '.Nota.md.kit-lock'
+    lock.write_bytes(b'pid=1 inicio=ayer')
+    _envejecer(lock, 90)
+    with pytest.raises(ValueError) as error:
+        lines.guardar(target, b'Original', b'Cambio')
+    mensaje = str(error.value)
+    assert 'en curso' in mensaje and str(lock) in mensaje
+    assert 'más de 10 minutos' in mensaje and 'huérfano' in mensaje and 'TROUBLESHOOTING' in mensaje
+    assert lock.read_bytes() == b'pid=1 inicio=ayer' and target.read_bytes() == b'Original'
+
+
+def test_bloqueo_reciente_no_se_presenta_como_huerfano_probable(tmp_path):
+    target = tmp_path / 'Nota.md'
+    lock = tmp_path / '.Nota.md.kit-lock'
+    lock.write_bytes(b'')
+    with pytest.raises(ValueError) as error:
+        lines.guardar(target, None, b'Nueva')
+    assert 'más de 10 minutos' not in str(error.value) and 'huérfano' in str(error.value)
+    assert not target.exists()
+
+
+def test_bloqueo_huerfano_del_registro_explica_como_recuperarse(tmp_path):
+    data = event(tmp_path)
+    lock = tmp_path / '00_CORE/logs/.registro-cambios.lock'
+    lock.parent.mkdir(parents=True)
+    lock.write_bytes(b'')
+    _envejecer(lock, 60)
+    with pytest.raises(ValueError, match='huérfano') as error:
+        log.registrar(tmp_path, data, '2026-10-21T10:00:00-03:00')
+    assert 'Otro registro' in str(error.value) and lock.exists()
+
+
+def test_guia_de_bloqueos_existe_en_la_ayuda():
+    texto = (ROOT / 'DOCS/TROUBLESHOOTING.md').read_text(encoding='utf-8')
+    assert '\n## Aparece un bloqueo\n' in texto.replace('\r\n', '\n')
+
+
+def test_bloqueo_propio_queda_identificado_mientras_escribe(tmp_path):
+    target = tmp_path / 'Nota.md'
+    with lines.bloqueo(target):
+        contenido = (tmp_path / '.Nota.md.kit-lock').read_bytes()
+    assert contenido.startswith(b'pid=') and b'inicio=' in contenido
+    assert not list(tmp_path.glob('*.kit-lock'))

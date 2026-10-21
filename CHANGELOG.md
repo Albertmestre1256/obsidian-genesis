@@ -1,41 +1,46 @@
 > [!info]- Índice de esta nota (líneas)
-> - Líneas 1–36: Este índice
-> - Líneas 38–39: Cambios
-> - Líneas 40–43: 21/10/2026 — ayuda de IA al final de los README
-> - Líneas 44–47: 20/10/2026 — registro inviolable y enlaces solo dentro de la bóveda
-> - Líneas 48–51: 20/10/2026 — robustez de registro, rangos y Panel
-> - Líneas 52–55: 20/10/2026 — vista simple con las skills portables
-> - Líneas 56–59: 20/10/2026 — cinco skills portables
-> - Líneas 60–63: 20/10/2026 — alcance: bóvedas nuevas
-> - Líneas 64–67: 20/10/2026 — decisión explícita sobre el retiro al configurar
-> - Líneas 68–71: 20/10/2026 — retiro opcional del material del kit
-> - Líneas 72–75: 20/10/2026 — estado del proyecto y financiación en GitHub
-> - Líneas 76–79: 20/10/2026 — apoyo opcional en Patreon
-> - Líneas 80–83: 20/10/2026 — comprobaciones mecánicas con herramientas
-> - Líneas 84–87: 20/10/2026 — comentarios YAML en el catálogo
-> - Líneas 88–91: 18/10/2026 — vista simple opcional en bóvedas existentes
-> - Líneas 92–95: 17/10/2026 — menos repetición al validar el inventario
-> - Líneas 96–99: 17/10/2026 — inicio y acceso en una sola guía
-> - Líneas 100–103: 17/10/2026 — entradas de IA más concisas
-> - Líneas 104–107: 17/10/2026 — vista simple inicial de bóvedas nuevas
-> - Líneas 108–111: 17/10/2026 — originales conservados y mantenimiento acotado
-> - Líneas 112–115: 16/10/2026 — guía de los documentos en cuatro idiomas
-> - Líneas 116–119: 16/10/2026 — simplificación de herramientas Python
-> - Líneas 120–123: 16/10/2026 — comunidad y soporte accesibles desde los README
-> - Líneas 124–127: 16/10/2026 — abrir la bóveda en Obsidian no desactualiza el índice
-> - Líneas 128–131: 16/10/2026 — instalar desde un kit abierto con OpenCode
-> - Líneas 132–135: 16/10/2026 — README en cuatro idiomas
-> - Líneas 136–139: 16/10/2026 — sin carpetas __pycache__ en la bóveda
-> - Líneas 140–143: 15/10/2026 — próximo paso solo en la ficha
-> - Líneas 144–147: 15/10/2026 — destino visible al comprobar el cierre
-> - Líneas 148–151: 15/10/2026 — conservar cambios posteriores al plan
-> - Líneas 152–155: 15/10/2026 — cierre coherente con el proyecto inicial
-> - Líneas 156–159: 14/10/2026 — operación visible coherente con el registro
-> - Líneas 160–163: 14/10/2026 — inventario de perfil plegable
-> - Líneas 164–167: 13/10/2026 — índices de proyectos con nombres propios
-> - Líneas 168–189: Sin publicar — candidata a v0.1.0
+> - Líneas 1–37: Este índice
+> - Líneas 39–40: Cambios
+> - Líneas 41–44: 21/10/2026 — bloqueos huérfanos con guía de recuperación
+> - Líneas 45–48: 21/10/2026 — ayuda de IA al final de los README
+> - Líneas 49–52: 20/10/2026 — registro inviolable y enlaces solo dentro de la bóveda
+> - Líneas 53–56: 20/10/2026 — robustez de registro, rangos y Panel
+> - Líneas 57–60: 20/10/2026 — vista simple con las skills portables
+> - Líneas 61–64: 20/10/2026 — cinco skills portables
+> - Líneas 65–68: 20/10/2026 — alcance: bóvedas nuevas
+> - Líneas 69–72: 20/10/2026 — decisión explícita sobre el retiro al configurar
+> - Líneas 73–76: 20/10/2026 — retiro opcional del material del kit
+> - Líneas 77–80: 20/10/2026 — estado del proyecto y financiación en GitHub
+> - Líneas 81–84: 20/10/2026 — apoyo opcional en Patreon
+> - Líneas 85–88: 20/10/2026 — comprobaciones mecánicas con herramientas
+> - Líneas 89–92: 20/10/2026 — comentarios YAML en el catálogo
+> - Líneas 93–96: 18/10/2026 — vista simple opcional en bóvedas existentes
+> - Líneas 97–100: 17/10/2026 — menos repetición al validar el inventario
+> - Líneas 101–104: 17/10/2026 — inicio y acceso en una sola guía
+> - Líneas 105–108: 17/10/2026 — entradas de IA más concisas
+> - Líneas 109–112: 17/10/2026 — vista simple inicial de bóvedas nuevas
+> - Líneas 113–116: 17/10/2026 — originales conservados y mantenimiento acotado
+> - Líneas 117–120: 16/10/2026 — guía de los documentos en cuatro idiomas
+> - Líneas 121–124: 16/10/2026 — simplificación de herramientas Python
+> - Líneas 125–128: 16/10/2026 — comunidad y soporte accesibles desde los README
+> - Líneas 129–132: 16/10/2026 — abrir la bóveda en Obsidian no desactualiza el índice
+> - Líneas 133–136: 16/10/2026 — instalar desde un kit abierto con OpenCode
+> - Líneas 137–140: 16/10/2026 — README en cuatro idiomas
+> - Líneas 141–144: 16/10/2026 — sin carpetas __pycache__ en la bóveda
+> - Líneas 145–148: 15/10/2026 — próximo paso solo en la ficha
+> - Líneas 149–152: 15/10/2026 — destino visible al comprobar el cierre
+> - Líneas 153–156: 15/10/2026 — conservar cambios posteriores al plan
+> - Líneas 157–160: 15/10/2026 — cierre coherente con el proyecto inicial
+> - Líneas 161–164: 14/10/2026 — operación visible coherente con el registro
+> - Líneas 165–168: 14/10/2026 — inventario de perfil plegable
+> - Líneas 169–172: 13/10/2026 — índices de proyectos con nombres propios
+> - Líneas 173–194: Sin publicar — candidata a v0.1.0
 
 # Cambios
+
+## 21/10/2026 — bloqueos huérfanos con guía de recuperación
+
+Si una escritura encuentra un bloqueo, el mensaje indica su ruta y antigüedad, avisa cuando supera los 10 minutos y explica cómo recuperarse si quedó de una operación interrumpida. Los bloqueos del kit registran el proceso y la hora de inicio. El kit sigue sin retirarlos por su cuenta; la guía está en «Aparece un bloqueo» de Solución de problemas.
 
 ## 21/10/2026 — ayuda de IA al final de los README
 

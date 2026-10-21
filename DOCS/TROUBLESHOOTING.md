@@ -1,21 +1,22 @@
 > [!info]- Índice de esta nota (líneas)
-> - Líneas 1–18: Este índice
-> - Líneas 20–23: Solución de problemas
-> - Líneas 24–27: La IA no puede guardar en mi carpeta
-> - Líneas 28–31: Vuelve a preguntarme lo que ya respondí
-> - Líneas 32–35: Todavía no tengo fecha, fuentes ni primera tarea
-> - Líneas 36–45: El cierre revisa otra bóveda
-> - Líneas 46–49: Python no está disponible
-> - Líneas 50–55: El instalador informa conflictos o se interrumpió
-> - Líneas 56–59: El creador informa un proyecto existente
-> - Líneas 60–65: No aparece el Panel o la fecha automática
-> - Líneas 66–69: Claude Code no reconoce un comando
-> - Líneas 70–73: Claude no conecta al MCP o rechaza sus herramientas
-> - Líneas 74–77: OpenCode no muestra los comandos del kit
-> - Líneas 78–81: OpenCode muestra un error del proveedor o modelo
-> - Líneas 82–85: ChatGPT ve los adjuntos pero no mi carpeta
-> - Líneas 86–106: Mensajes del validador
-> - Líneas 107–109: La IA no encuentra una nota nueva
+> - Líneas 1–19: Este índice
+> - Líneas 21–24: Solución de problemas
+> - Líneas 25–28: La IA no puede guardar en mi carpeta
+> - Líneas 29–32: Vuelve a preguntarme lo que ya respondí
+> - Líneas 33–36: Todavía no tengo fecha, fuentes ni primera tarea
+> - Líneas 37–46: El cierre revisa otra bóveda
+> - Líneas 47–50: Python no está disponible
+> - Líneas 51–56: Aparece un bloqueo
+> - Líneas 57–62: El instalador informa conflictos o se interrumpió
+> - Líneas 63–66: El creador informa un proyecto existente
+> - Líneas 67–72: No aparece el Panel o la fecha automática
+> - Líneas 73–76: Claude Code no reconoce un comando
+> - Líneas 77–80: Claude no conecta al MCP o rechaza sus herramientas
+> - Líneas 81–84: OpenCode no muestra los comandos del kit
+> - Líneas 85–88: OpenCode muestra un error del proveedor o modelo
+> - Líneas 89–92: ChatGPT ve los adjuntos pero no mi carpeta
+> - Líneas 93–113: Mensajes del validador
+> - Líneas 114–116: La IA no encuentra una nota nueva
 
 # Solución de problemas
 
@@ -46,6 +47,12 @@ También admite su carpeta `00_CORE/cells`. Si moviste o volviste a extraer el Z
 ## Python no está disponible
 
 El kit funciona con herramientas de archivos y revisión manual. Python solo automatiza creación, validación e índice. Si necesitás usarlo, el comando puede llamarse `python3` o `py` en lugar de `python`.
+
+## Aparece un bloqueo
+
+Mientras escriben, las herramientas del kit crean un archivo de bloqueo (`.<nota>.kit-lock` junto a la nota, o `00_CORE/logs/.registro-cambios.lock` para el registro) y lo retiran al terminar. El archivo indica el proceso y la hora de inicio. Si una operación se cortó (corte de luz, cierre forzado, error del asistente), puede quedar y las escrituras siguientes se detienen con un mensaje que muestra su ruta y antigüedad. Un bloqueo reciente suele indicar otra operación en curso: esperá y reintentá.
+
+Si ninguna IA ni proceso está trabajando en la bóveda, el bloqueo quedó huérfano. Borrá solo ese archivo, releé las notas afectadas para confirmar que están completas y reintentá. El kit no retira bloqueos por su cuenta: otra herramienta podría estar usándolos.
 
 ## El instalador informa conflictos o se interrumpió
 
