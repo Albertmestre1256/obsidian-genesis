@@ -29,7 +29,7 @@ Genesis prepara bóvedas nuevas. Si el destino tiene notas propias y no fue prep
 
 ## 2. Preguntar lo indispensable y acordar el destino
 
-Preguntá solo lo que falte, de a una o dos preguntas: qué quiere organizar, si empieza de cero o ya tiene notas (en ese caso se usa igual una carpeta nueva) y qué quiere lograr. Reutilizá lo ya respondido. Derivá nombre, descripción y contexto sin pedir YAML, carpetas ni letras A/B/C/D. Si el objetivo es ambiguo, ofrecé dos opciones y esperá su elección; una propuesta no confirma una decisión.
+Preguntá solo lo que falte, de a una o dos preguntas: qué quiere organizar, si empieza de cero o ya tiene notas (en ese caso se usa igual una carpeta nueva), qué quiere lograr y cuál sería su primer paso concreto; si no lo sabe, queda pendiente. Reutilizá lo ya respondido. Derivá nombre, descripción y contexto sin pedir YAML, carpetas ni letras A/B/C/D. Si el objetivo es ambiguo, ofrecé dos opciones y esperá su elección; una propuesta no confirma una decisión.
 
 CV, presentación, formación, experiencia, fecha, fuentes, hechos y primera tarea son opcionales. Con objetivo acordado y sin tarea, dejá acciones vacías: los avisos no obligan a inventar datos. Empezá por un proyecto.
 
@@ -64,7 +64,7 @@ Este paso también agrega proyectos a una bóveda lista: sin reinstalar ni repet
 
 Releé archivos y enlaces: sin duplicados ni marcadores, ficha válida según [Revisar fichas](../../DOCS/usar-con-otras-ias.md#revisar-fichas), Panel adaptado y acceso al inventario. Al entregar, mencioná una vez que hay cinco [skills opcionales](../../DOCS/skills-portables.md) en `skills/` y que la IA puede copiarlas a la carpeta del asistente si la persona lo pide; no las instales por defecto. Para retomar, recomendá `empezar` o el pedido «seguí con [proyecto]». Completá el [mantenimiento y cierre](../../DOCS/mantenimiento.md#secuencia-de-cierre-compartida): autoría, rangos, mapas y registro. La IA realiza las operaciones; la persona no ejecuta comandos ni cuenta líneas. Sin Python, aplicá su alternativa manual y declarala.
 
-Marcá `lista` solo con archivos e integración comprobados. Si falla, conservá `parcial`, lo completado y el impedimento; releelos al retomar. El inventario puede seguir abierto con la bóveda lista: ofrecé «qué falta para personalizar mi bóveda» cuando quiera completarlo.
+Marcá `lista` solo con archivos e integración comprobados: el cierre de la operación final tiene que terminar en «CIERRE VERIFICADO». Con errores, corregilos o conservá `parcial` y explicá qué falta. Si falla, conservá `parcial`, lo completado y el impedimento; releelos al retomar. El inventario puede seguir abierto con la bóveda lista: ofrecé «qué falta para personalizar mi bóveda» cuando quiera completarlo.
 
 Mostrá carpeta y acceso al proyecto. Explicá abrir esa carpeta como bóveda en Obsidian y entrar al Panel; si falta Obsidian, indicá `https://obsidian.md`. Separá comprobación de archivos de prueba visual. No afirmes haber abierto Obsidian sin hacerlo.
 
@@ -90,4 +90,4 @@ La secuencia técnica vive en [Mantenimiento](../../DOCS/mantenimiento.md#secuen
 
 ## Si no podés escribir en la carpeta
 
-Explicá el límite antes de prometer una configuración. Si podés generar archivos, devolvé una copia configurada y comprobada del kit leído, incluidos los ocultos; indicá descargar, descomprimir y abrir esa carpeta. El original no cambió. Si solo respondés texto, entregá plan y contenidos con destinos como pendientes y ofrecé conectar la carpeta o [la alternativa manual](../../DOCS/primer-proyecto.md). No simules acceso ni sincronización.
+Explicá el límite antes de prometer una configuración. Si podés generar archivos, devolvé una copia configurada del kit leído, incluidos los ocultos, y antes de ofrecerla seguí [Entregar una copia como ZIP](../../DOCS/mantenimiento.md#entregar-una-copia-como-zip). Indicá descargar, descomprimir y abrir esa carpeta. El original no cambió. Si solo respondés texto, entregá plan y contenidos con destinos como pendientes y ofrecé conectar la carpeta o [la alternativa manual](../../DOCS/primer-proyecto.md). No simules acceso ni sincronización.

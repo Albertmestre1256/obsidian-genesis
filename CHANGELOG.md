@@ -1,46 +1,51 @@
 > [!info]- Índice de esta nota (líneas)
-> - Líneas 1–41: Este índice
-> - Líneas 43–44: Cambios
-> - Líneas 45–48: 21/10/2026 — README más claro con guías enlazadas
-> - Líneas 49–52: 21/10/2026 — material heredado fuera de Genesis
-> - Líneas 53–56: 21/10/2026 — skills opcionales en Markdown, sin instalador
-> - Líneas 57–60: 21/10/2026 — creador: porcentajes, identificador y plantilla
-> - Líneas 61–64: 21/10/2026 — bloqueos huérfanos con guía de recuperación
-> - Líneas 65–68: 21/10/2026 — ayuda de IA al final de los README
-> - Líneas 69–72: 20/10/2026 — registro inviolable y enlaces solo dentro de la bóveda
-> - Líneas 73–76: 20/10/2026 — robustez de registro, rangos y Panel
-> - Líneas 77–80: 20/10/2026 — vista simple con las skills portables
-> - Líneas 81–84: 20/10/2026 — cinco skills portables
-> - Líneas 85–88: 20/10/2026 — alcance: bóvedas nuevas
-> - Líneas 89–92: 20/10/2026 — decisión explícita sobre el retiro al configurar
-> - Líneas 93–96: 20/10/2026 — retiro opcional del material del kit
-> - Líneas 97–100: 20/10/2026 — estado del proyecto y financiación en GitHub
-> - Líneas 101–104: 20/10/2026 — apoyo opcional en Patreon
-> - Líneas 105–108: 20/10/2026 — comprobaciones mecánicas con herramientas
-> - Líneas 109–112: 20/10/2026 — comentarios YAML en el catálogo
-> - Líneas 113–116: 18/10/2026 — vista simple opcional en bóvedas existentes
-> - Líneas 117–120: 17/10/2026 — menos repetición al validar el inventario
-> - Líneas 121–124: 17/10/2026 — inicio y acceso en una sola guía
-> - Líneas 125–128: 17/10/2026 — entradas de IA más concisas
-> - Líneas 129–132: 17/10/2026 — vista simple inicial de bóvedas nuevas
-> - Líneas 133–136: 17/10/2026 — originales conservados y mantenimiento acotado
-> - Líneas 137–140: 16/10/2026 — guía de los documentos en cuatro idiomas
-> - Líneas 141–144: 16/10/2026 — simplificación de herramientas Python
-> - Líneas 145–148: 16/10/2026 — comunidad y soporte accesibles desde los README
-> - Líneas 149–152: 16/10/2026 — abrir la bóveda en Obsidian no desactualiza el índice
-> - Líneas 153–156: 16/10/2026 — instalar desde un kit abierto con OpenCode
-> - Líneas 157–160: 16/10/2026 — README en cuatro idiomas
-> - Líneas 161–164: 16/10/2026 — sin carpetas __pycache__ en la bóveda
-> - Líneas 165–168: 15/10/2026 — próximo paso solo en la ficha
-> - Líneas 169–172: 15/10/2026 — destino visible al comprobar el cierre
-> - Líneas 173–176: 15/10/2026 — conservar cambios posteriores al plan
-> - Líneas 177–180: 15/10/2026 — cierre coherente con el proyecto inicial
-> - Líneas 181–184: 14/10/2026 — operación visible coherente con el registro
-> - Líneas 185–188: 14/10/2026 — inventario de perfil plegable
-> - Líneas 189–192: 13/10/2026 — índices de proyectos con nombres propios
-> - Líneas 193–214: Sin publicar — candidata a v0.1.0
+> - Líneas 1–42: Este índice
+> - Líneas 44–45: Cambios
+> - Líneas 46–49: 21/10/2026 — entrega de una copia como ZIP
+> - Líneas 50–53: 21/10/2026 — README más claro con guías enlazadas
+> - Líneas 54–57: 21/10/2026 — material heredado fuera de Genesis
+> - Líneas 58–61: 21/10/2026 — skills opcionales en Markdown, sin instalador
+> - Líneas 62–65: 21/10/2026 — creador: porcentajes, identificador y plantilla
+> - Líneas 66–69: 21/10/2026 — bloqueos huérfanos con guía de recuperación
+> - Líneas 70–73: 21/10/2026 — ayuda de IA al final de los README
+> - Líneas 74–77: 20/10/2026 — registro inviolable y enlaces solo dentro de la bóveda
+> - Líneas 78–81: 20/10/2026 — robustez de registro, rangos y Panel
+> - Líneas 82–85: 20/10/2026 — vista simple con las skills portables
+> - Líneas 86–89: 20/10/2026 — cinco skills portables
+> - Líneas 90–93: 20/10/2026 — alcance: bóvedas nuevas
+> - Líneas 94–97: 20/10/2026 — decisión explícita sobre el retiro al configurar
+> - Líneas 98–101: 20/10/2026 — retiro opcional del material del kit
+> - Líneas 102–105: 20/10/2026 — estado del proyecto y financiación en GitHub
+> - Líneas 106–109: 20/10/2026 — apoyo opcional en Patreon
+> - Líneas 110–113: 20/10/2026 — comprobaciones mecánicas con herramientas
+> - Líneas 114–117: 20/10/2026 — comentarios YAML en el catálogo
+> - Líneas 118–121: 18/10/2026 — vista simple opcional en bóvedas existentes
+> - Líneas 122–125: 17/10/2026 — menos repetición al validar el inventario
+> - Líneas 126–129: 17/10/2026 — inicio y acceso en una sola guía
+> - Líneas 130–133: 17/10/2026 — entradas de IA más concisas
+> - Líneas 134–137: 17/10/2026 — vista simple inicial de bóvedas nuevas
+> - Líneas 138–141: 17/10/2026 — originales conservados y mantenimiento acotado
+> - Líneas 142–145: 16/10/2026 — guía de los documentos en cuatro idiomas
+> - Líneas 146–149: 16/10/2026 — simplificación de herramientas Python
+> - Líneas 150–153: 16/10/2026 — comunidad y soporte accesibles desde los README
+> - Líneas 154–157: 16/10/2026 — abrir la bóveda en Obsidian no desactualiza el índice
+> - Líneas 158–161: 16/10/2026 — instalar desde un kit abierto con OpenCode
+> - Líneas 162–165: 16/10/2026 — README en cuatro idiomas
+> - Líneas 166–169: 16/10/2026 — sin carpetas __pycache__ en la bóveda
+> - Líneas 170–173: 15/10/2026 — próximo paso solo en la ficha
+> - Líneas 174–177: 15/10/2026 — destino visible al comprobar el cierre
+> - Líneas 178–181: 15/10/2026 — conservar cambios posteriores al plan
+> - Líneas 182–185: 15/10/2026 — cierre coherente con el proyecto inicial
+> - Líneas 186–189: 14/10/2026 — operación visible coherente con el registro
+> - Líneas 190–193: 14/10/2026 — inventario de perfil plegable
+> - Líneas 194–197: 13/10/2026 — índices de proyectos con nombres propios
+> - Líneas 198–219: Sin publicar — candidata a v0.1.0
 
 # Cambios
+
+## 21/10/2026 — entrega de una copia como ZIP
+
+Antes de ofrecer una copia para descargar, la IA pregunta el primer paso (puede quedar pendiente), completa el cierre y solo marca la configuración como lista con «CIERRE VERIFICADO». Arma el ZIP con nombres UTF-8 y lo comprueba descomprimiéndolo y repitiendo el cierre sobre esa copia. La guía de ChatGPT y Solución de problemas explican qué hacer si los nombres aparecen como «├ìndice». Surgió de una prueba con ChatGPT web.
 
 ## 21/10/2026 — README más claro con guías enlazadas
 

@@ -1,21 +1,22 @@
 > [!info]- Índice de esta nota (líneas)
-> - Líneas 1–18: Este índice
-> - Líneas 20–23: Solución de problemas
-> - Líneas 24–27: La IA no puede guardar en mi carpeta
-> - Líneas 28–31: Vuelve a preguntarme lo que ya respondí
-> - Líneas 32–35: Todavía no tengo fecha, fuentes ni primera tarea
-> - Líneas 36–45: El cierre revisa otra bóveda
-> - Líneas 46–49: Python no está disponible
-> - Líneas 50–55: Aparece un bloqueo
-> - Líneas 56–59: El creador informa un proyecto existente
-> - Líneas 60–65: No aparece el Panel o la fecha automática
-> - Líneas 66–69: Claude Code no reconoce un comando
-> - Líneas 70–73: Claude no conecta al MCP o rechaza sus herramientas
-> - Líneas 74–77: OpenCode no muestra los comandos del kit
-> - Líneas 78–81: OpenCode muestra un error del proveedor o modelo
-> - Líneas 82–85: ChatGPT ve los adjuntos pero no mi carpeta
-> - Líneas 86–106: Mensajes del validador
-> - Líneas 107–109: La IA no encuentra una nota nueva
+> - Líneas 1–19: Este índice
+> - Líneas 21–24: Solución de problemas
+> - Líneas 25–28: La IA no puede guardar en mi carpeta
+> - Líneas 29–32: Vuelve a preguntarme lo que ya respondí
+> - Líneas 33–36: Todavía no tengo fecha, fuentes ni primera tarea
+> - Líneas 37–46: El cierre revisa otra bóveda
+> - Líneas 47–50: Python no está disponible
+> - Líneas 51–56: Aparece un bloqueo
+> - Líneas 57–60: El creador informa un proyecto existente
+> - Líneas 61–66: No aparece el Panel o la fecha automática
+> - Líneas 67–70: Claude Code no reconoce un comando
+> - Líneas 71–74: Claude no conecta al MCP o rechaza sus herramientas
+> - Líneas 75–78: OpenCode no muestra los comandos del kit
+> - Líneas 79–82: OpenCode muestra un error del proveedor o modelo
+> - Líneas 83–86: ChatGPT ve los adjuntos pero no mi carpeta
+> - Líneas 87–90: Nombres raros al descomprimir el ZIP
+> - Líneas 91–111: Mensajes del validador
+> - Líneas 112–114: La IA no encuentra una nota nueva
 
 # Solución de problemas
 
@@ -82,6 +83,10 @@ Si `/configurar` aparece pero la IA no responde, separá ese problema de los arc
 ## ChatGPT ve los adjuntos pero no mi carpeta
 
 Un Proyecto de ChatGPT con archivos subidos trabaja sobre esas copias. Para guardar en la bóveda local, necesitás adjuntar la carpeta a un proyecto local con herramientas de escritura. También podés pedir una copia descargable si el chat puede generarla. Seguí la [guía de ChatGPT](chatgpt.md) y usá la versión vigente de tus notas al retomar.
+
+## Nombres raros al descomprimir el ZIP
+
+Si al descomprimir una copia preparada por la IA ves nombres como «├ìndice» o «fotografÃ­a», el ZIP se armó sin marcar los nombres como UTF-8 y los enlaces de Obsidian van a fallar. No abras esa carpeta como bóveda: pedile a la IA que vuelva a armar el ZIP con nombres UTF-8 y que lo compruebe descomprimiéndolo, como indica [Mantenimiento](mantenimiento.md#entregar-una-copia-como-zip).
 
 ## Mensajes del validador
 
