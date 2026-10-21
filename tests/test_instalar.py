@@ -320,4 +320,6 @@ def test_mensaje_final_no_remite_a_secciones_retiradas(tmp_path):
     resultado = ejecutar(vault, "--yes")
     assert resultado.returncode in (0, 1), resultado.stdout + resultado.stderr
     assert "Plugins principales" in resultado.stdout
-    assert "DOCS/obsidian.md" not in resultado.stdout
+    # La salida lista cada archivo copiado (también DOCS/obsidian.md): se revisa solo el mensaje final.
+    final = [l for l in resultado.stdout.splitlines() if l.startswith("Abrí Panel.md")]
+    assert len(final) == 1 and "obsidian.md" not in final[0]
