@@ -1005,7 +1005,8 @@ def test_bloqueo_reciente_no_se_presenta_como_huerfano_probable(tmp_path):
     lock.write_bytes(b'')
     with pytest.raises(ValueError) as error:
         lines.guardar(target, None, b'Nueva')
-    assert 'más de 10 minutos' not in str(error.value) and 'huérfano' in str(error.value)
+    mensaje = str(error.value)
+    assert 'más de 10 minutos' not in mensaje and 'borrá' not in mensaje and 'TROUBLESHOOTING' in mensaje
     assert not target.exists()
 
 
@@ -1029,5 +1030,50 @@ def test_bloqueo_propio_queda_identificado_mientras_escribe(tmp_path):
     target = tmp_path / 'Nota.md'
     with lines.bloqueo(target):
         contenido = (tmp_path / '.Nota.md.kit-lock').read_bytes()
-    assert contenido.startswith(b'pid=') and b'inicio=' in contenido
+    pid, inicio = contenido.decode('utf-8').split()
+    assert pid == 'pid={}'.format(os.getpid())
+    assert datetime.fromisoformat(inicio[len('inicio='):]).utcoffset() is not None
     assert not list(tmp_path.glob('*.kit-lock'))
+
+
+def _fallar_marca():
+    raise OSError(errno.ENOSPC, 'Disco lleno')
+
+
+def test_bloqueo_de_nota_se_retira_si_falla_su_marca(tmp_path, monkeypatch):
+    target = tmp_path / 'Nota.md'
+    target.write_bytes(b'Original')
+    monkeypatch.setattr(lines, 'marca_bloqueo', _fallar_marca)
+    with pytest.raises(OSError):
+        lines.guardar(target, b'Original', b'Cambio')
+    assert not list(tmp_path.glob('*.kit-lock')) and target.read_bytes() == b'Original'
+    monkeypatch.undo()
+    assert lines.guardar(target, b'Original', b'Cambio') and target.read_bytes() == b'Cambio'
+
+
+def test_bloqueo_del_registro_se_retira_si_falla_su_marca(tmp_path, monkeypatch):
+    lock = tmp_path / '00_CORE/logs/.registro-cambios.lock'
+    monkeypatch.setattr(log.lineas, 'marca_bloqueo', _fallar_marca)
+    with pytest.raises(OSError):
+        log.registrar(tmp_path, event(tmp_path), '2026-10-20T10:00:00-03:00')
+    assert not lock.exists()
+    monkeypatch.undo()
+    assert log.registrar(tmp_path, event(tmp_path), '2026-10-20T10:00:00-03:00')['estado'] == 'registrado'
+
+
+def test_bloqueo_del_registro_queda_identificado_mientras_registra(tmp_path, monkeypatch):
+    lock = tmp_path / '00_CORE/logs/.registro-cambios.lock'
+    original, vistos = log._registrar, []
+
+    def espiar(*args):
+        vistos.append(lock.read_bytes() if lock.exists() else None)
+        return original(*args)
+    monkeypatch.setattr(log, '_registrar', espiar)
+    assert log.registrar(tmp_path, event(tmp_path), '2026-10-20T10:00:00-03:00')['estado'] == 'registrado'
+    assert vistos[0] is None and vistos[-1].startswith(b'pid=') and not lock.exists()
+
+
+def test_bloqueo_de_antiguedad_desconocida_remite_a_la_guia(tmp_path):
+    mensaje = lines.mensaje_bloqueo(tmp_path / '.ya-retirado.kit-lock')
+    assert 'antigüedad desconocida' in mensaje and 'confirmación de la persona' in mensaje
+    assert 'TROUBLESHOOTING' in mensaje

@@ -592,6 +592,8 @@ def test_cierre_incompleto_falla_sin_reparar(validador, boveda_cierre, fallo):
     before = foto_cierre(vault)
     errors = validador.validar_cierre(vault, operation)
     assert errors and all(isinstance(e,str) and e.strip() for e in errors)
+    if fallo == 'registro-bloqueado':
+        assert any('Aparece un bloqueo' in e for e in errors)
     assert foto_cierre(vault) == before
 
 

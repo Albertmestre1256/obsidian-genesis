@@ -40,7 +40,7 @@
 
 ## 21/10/2026 — bloqueos huérfanos con guía de recuperación
 
-Si una escritura encuentra un bloqueo, el mensaje indica su ruta y antigüedad, avisa cuando supera los 10 minutos y explica cómo recuperarse si quedó de una operación interrumpida. Los bloqueos del kit registran el proceso y la hora de inicio. El kit sigue sin retirarlos por su cuenta; la guía está en «Aparece un bloqueo» de Solución de problemas.
+Si una escritura encuentra un bloqueo, el mensaje indica su ruta y antigüedad. Ante uno reciente pide esperar; a partir de los 10 minutos, o si no puede medir la antigüedad, explica cómo recuperarse si quedó de una operación interrumpida y pide que una IA lo confirme con la persona antes de borrarlo. Los bloqueos del kit registran el proceso y la hora de inicio. El kit sigue sin retirarlos por su cuenta; la guía está en «Aparece un bloqueo» de Solución de problemas.
 
 ## 21/10/2026 — ayuda de IA al final de los README
 

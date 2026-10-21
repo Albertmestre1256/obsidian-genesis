@@ -3,6 +3,7 @@
 import argparse
 import errno
 from contextlib import contextmanager
+from datetime import datetime
 import os
 from pathlib import Path
 import re
@@ -70,7 +71,8 @@ GUIA_BLOQUEO = 'ver «Aparece un bloqueo» en DOCS/TROUBLESHOOTING.md'
 
 def marca_bloqueo():
     """Contenido del bloqueo: proceso y hora de inicio, para reconocerlo si queda huérfano."""
-    return 'pid={} inicio={}\n'.format(os.getpid(), time.strftime('%Y-%m-%dT%H:%M:%S%z')).encode('utf-8')
+    inicio = datetime.now().astimezone().isoformat(timespec='seconds')
+    return 'pid={} inicio={}\n'.format(os.getpid(), inicio).encode('utf-8')
 
 
 def mensaje_bloqueo(lock, que='Otra escritura'):
@@ -81,10 +83,13 @@ def mensaje_bloqueo(lock, que='Otra escritura'):
     except OSError:
         minutos, edad = None, 'antigüedad desconocida'
     texto = '{} está en curso ({}); esperá y reintentá. Bloqueo: {}.'.format(que, edad, lock)
-    if minutos is not None and minutos >= 10:
+    if minutos is not None and minutos < 10:
+        return texto + ' Si persiste, ' + GUIA_BLOQUEO + '.'
+    if minutos is not None:
         texto += ' Tiene más de 10 minutos: probablemente quedó de una operación interrumpida.'
     return texto + (' Si ninguna IA ni proceso está trabajando en esta bóveda, el bloqueo quedó huérfano: '
-                    'borrá solo ese archivo, releé las notas afectadas y reintentá; ' + GUIA_BLOQUEO + '.')
+                    'borrá solo ese archivo (una IA, solo con confirmación de la persona), '
+                    'releé las notas afectadas y reintentá; ' + GUIA_BLOQUEO + '.')
 
 
 @contextmanager
@@ -96,10 +101,10 @@ def bloqueo(path, raiz=None):
     except FileExistsError:
         raise ValueError(mensaje_bloqueo(lock))
     identity = os.fstat(stream.fileno())
-    stream.write(marca_bloqueo())
-    stream.flush()
     try:
         with stream:
+            stream.write(marca_bloqueo())
+            stream.flush()
             yield
     finally:
         try:

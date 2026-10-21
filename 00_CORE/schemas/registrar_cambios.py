@@ -189,12 +189,14 @@ def registrar(root, data, fecha=None, dry_run=False):
     lock = lineas.ruta_real(root / '00_CORE/logs/.registro-cambios.lock')
     lock.parent.mkdir(parents=True, exist_ok=True)
     try:
-        with lock.open('xb') as stream:
-            identity = os.fstat(stream.fileno())
-            stream.write(lineas.marca_bloqueo())
+        stream = lock.open('xb')
     except FileExistsError:
         raise ValueError(lineas.mensaje_bloqueo(lock, 'Otro registro'))
+    identity = os.fstat(stream.fileno())
     try:
+        # La marca se escribe bajo el finally: si falla, el bloqueo propio se retira.
+        with stream:
+            stream.write(lineas.marca_bloqueo())
         return _registrar(root, data, fecha)
     finally:
         try:
