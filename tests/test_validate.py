@@ -556,7 +556,7 @@ CIERRE_ESPERADO = {
     'rango': 'Rangos desactualizados', 'sin-registro': 'Falta registro activo', 'id-ajeno': 'no encontrada',
     'sin-config-en-evento': 'sin cambio de configuración', 'evento-no-verificado': 'no verificada',
     'hash-config-viejo': 'hash de configuración no coincide', 'registro-roto': 'Registro propio sin propiedades',
-    'fecha-futura': 'fecha en el futuro', 'registro-bloqueado': 'Aparece un bloqueo',
+    'fecha-futura': 'fecha en el futuro', 'registro-bloqueado': 'Registro bloqueado',
     'sin-config': 'Falta 00_CORE/configuracion.md'}
 
 
@@ -572,9 +572,10 @@ def test_cierre_incompleto_falla_sin_reparar(validador, boveda_cierre, fallo):
     elif fallo == 'mapa-general':
         (vault / 'Apunte.md').write_bytes(lines.contenido(b'# Apunte\n'))
     elif fallo == 'mapa-nodo':
+        # Solo el bloque del nodo: una nota nueva cambiaría también el mapa general y lo taparía.
         node = vault / 'estudio/00 - Índice - estudio.md'
-        note = node.parent / 'Nota nueva.md'
-        note.write_bytes(lines.contenido(b'# Nota\n'))
+        text = node.read_text(encoding='utf-8').replace(maps.NODO_INICIO, maps.NODO_INICIO+'\n- [[Nota inventada]]', 1)
+        node.write_bytes(lines.contenido(text.encode('utf-8')))
     elif fallo == 'rango':
         config = vault / '00_CORE/configuracion.md'
         config.write_text(config.read_text(encoding='utf-8')+'\n## Detalle nuevo\nTexto.\n', encoding='utf-8')
