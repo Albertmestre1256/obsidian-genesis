@@ -1,20 +1,21 @@
 > **主要致谢：[davidkimai](https://github.com/davidkimai)。** 本工具包基于其作品 [Context Engineering](https://github.com/davidkimai/Context-Engineering)。Obsidian Genesis 改编了这项工作，借助 AI 来创建和整理 Obsidian 仓库（vault）。
+
 > [!info]- Índice de esta nota (líneas)
 > - Líneas 1–1: Atribución
-> - Líneas 2–17: Este índice
-> - Líneas 19–20: Introducción
-> - Líneas 21–28: Obsidian Genesis：由 AI 为你配置的仓库
-> - Líneas 29–52: 项目状态 — 2026 年 10 月 20 日
-> - Líneas 53–73: 三步开始
-> - Líneas 74–79: 附件和已有笔记
-> - Líneas 80–87: 继续
-> - Líneas 88–102: 包含内容
-> - Líneas 103–112: 可选帮助
-> - Líneas 113–116: 隐私
-> - Líneas 117–120: 许可证
-> - Líneas 121–124: 社区与支持
-> - Líneas 125–128: 支持本项目
-> - Líneas 129–131: 关于开发
+> - Líneas 3–18: Este índice
+> - Líneas 20–21: Introducción
+> - Líneas 22–29: Obsidian Genesis：由 AI 为你配置的仓库
+> - Líneas 30–53: 项目状态 — 2026 年 10 月 20 日
+> - Líneas 54–74: 三步开始
+> - Líneas 75–80: 附件和已有笔记
+> - Líneas 81–88: 继续
+> - Líneas 89–103: 包含内容
+> - Líneas 104–113: 可选帮助
+> - Líneas 114–117: 隐私
+> - Líneas 118–121: 许可证
+> - Líneas 122–125: 社区与支持
+> - Líneas 126–129: 支持本项目
+> - Líneas 130–132: 关于开发
 
 **语言：** [Español](README.md) · [English](README.en.md) · [Deutsch](README.de.md) · 中文
 

@@ -1,45 +1,50 @@
 > [!info]- Índice de esta nota (líneas)
-> - Líneas 1–40: Este índice
-> - Líneas 42–43: Cambios
-> - Líneas 44–47: 21/10/2026 — material heredado fuera de Genesis
-> - Líneas 48–51: 21/10/2026 — skills opcionales en Markdown, sin instalador
-> - Líneas 52–55: 21/10/2026 — creador: porcentajes, identificador y plantilla
-> - Líneas 56–59: 21/10/2026 — bloqueos huérfanos con guía de recuperación
-> - Líneas 60–63: 21/10/2026 — ayuda de IA al final de los README
-> - Líneas 64–67: 20/10/2026 — registro inviolable y enlaces solo dentro de la bóveda
-> - Líneas 68–71: 20/10/2026 — robustez de registro, rangos y Panel
-> - Líneas 72–75: 20/10/2026 — vista simple con las skills portables
-> - Líneas 76–79: 20/10/2026 — cinco skills portables
-> - Líneas 80–83: 20/10/2026 — alcance: bóvedas nuevas
-> - Líneas 84–87: 20/10/2026 — decisión explícita sobre el retiro al configurar
-> - Líneas 88–91: 20/10/2026 — retiro opcional del material del kit
-> - Líneas 92–95: 20/10/2026 — estado del proyecto y financiación en GitHub
-> - Líneas 96–99: 20/10/2026 — apoyo opcional en Patreon
-> - Líneas 100–103: 20/10/2026 — comprobaciones mecánicas con herramientas
-> - Líneas 104–107: 20/10/2026 — comentarios YAML en el catálogo
-> - Líneas 108–111: 18/10/2026 — vista simple opcional en bóvedas existentes
-> - Líneas 112–115: 17/10/2026 — menos repetición al validar el inventario
-> - Líneas 116–119: 17/10/2026 — inicio y acceso en una sola guía
-> - Líneas 120–123: 17/10/2026 — entradas de IA más concisas
-> - Líneas 124–127: 17/10/2026 — vista simple inicial de bóvedas nuevas
-> - Líneas 128–131: 17/10/2026 — originales conservados y mantenimiento acotado
-> - Líneas 132–135: 16/10/2026 — guía de los documentos en cuatro idiomas
-> - Líneas 136–139: 16/10/2026 — simplificación de herramientas Python
-> - Líneas 140–143: 16/10/2026 — comunidad y soporte accesibles desde los README
-> - Líneas 144–147: 16/10/2026 — abrir la bóveda en Obsidian no desactualiza el índice
-> - Líneas 148–151: 16/10/2026 — instalar desde un kit abierto con OpenCode
-> - Líneas 152–155: 16/10/2026 — README en cuatro idiomas
-> - Líneas 156–159: 16/10/2026 — sin carpetas __pycache__ en la bóveda
-> - Líneas 160–163: 15/10/2026 — próximo paso solo en la ficha
-> - Líneas 164–167: 15/10/2026 — destino visible al comprobar el cierre
-> - Líneas 168–171: 15/10/2026 — conservar cambios posteriores al plan
-> - Líneas 172–175: 15/10/2026 — cierre coherente con el proyecto inicial
-> - Líneas 176–179: 14/10/2026 — operación visible coherente con el registro
-> - Líneas 180–183: 14/10/2026 — inventario de perfil plegable
-> - Líneas 184–187: 13/10/2026 — índices de proyectos con nombres propios
-> - Líneas 188–209: Sin publicar — candidata a v0.1.0
+> - Líneas 1–41: Este índice
+> - Líneas 43–44: Cambios
+> - Líneas 45–48: 21/10/2026 — README más claro con guías enlazadas
+> - Líneas 49–52: 21/10/2026 — material heredado fuera de Genesis
+> - Líneas 53–56: 21/10/2026 — skills opcionales en Markdown, sin instalador
+> - Líneas 57–60: 21/10/2026 — creador: porcentajes, identificador y plantilla
+> - Líneas 61–64: 21/10/2026 — bloqueos huérfanos con guía de recuperación
+> - Líneas 65–68: 21/10/2026 — ayuda de IA al final de los README
+> - Líneas 69–72: 20/10/2026 — registro inviolable y enlaces solo dentro de la bóveda
+> - Líneas 73–76: 20/10/2026 — robustez de registro, rangos y Panel
+> - Líneas 77–80: 20/10/2026 — vista simple con las skills portables
+> - Líneas 81–84: 20/10/2026 — cinco skills portables
+> - Líneas 85–88: 20/10/2026 — alcance: bóvedas nuevas
+> - Líneas 89–92: 20/10/2026 — decisión explícita sobre el retiro al configurar
+> - Líneas 93–96: 20/10/2026 — retiro opcional del material del kit
+> - Líneas 97–100: 20/10/2026 — estado del proyecto y financiación en GitHub
+> - Líneas 101–104: 20/10/2026 — apoyo opcional en Patreon
+> - Líneas 105–108: 20/10/2026 — comprobaciones mecánicas con herramientas
+> - Líneas 109–112: 20/10/2026 — comentarios YAML en el catálogo
+> - Líneas 113–116: 18/10/2026 — vista simple opcional en bóvedas existentes
+> - Líneas 117–120: 17/10/2026 — menos repetición al validar el inventario
+> - Líneas 121–124: 17/10/2026 — inicio y acceso en una sola guía
+> - Líneas 125–128: 17/10/2026 — entradas de IA más concisas
+> - Líneas 129–132: 17/10/2026 — vista simple inicial de bóvedas nuevas
+> - Líneas 133–136: 17/10/2026 — originales conservados y mantenimiento acotado
+> - Líneas 137–140: 16/10/2026 — guía de los documentos en cuatro idiomas
+> - Líneas 141–144: 16/10/2026 — simplificación de herramientas Python
+> - Líneas 145–148: 16/10/2026 — comunidad y soporte accesibles desde los README
+> - Líneas 149–152: 16/10/2026 — abrir la bóveda en Obsidian no desactualiza el índice
+> - Líneas 153–156: 16/10/2026 — instalar desde un kit abierto con OpenCode
+> - Líneas 157–160: 16/10/2026 — README en cuatro idiomas
+> - Líneas 161–164: 16/10/2026 — sin carpetas __pycache__ en la bóveda
+> - Líneas 165–168: 15/10/2026 — próximo paso solo en la ficha
+> - Líneas 169–172: 15/10/2026 — destino visible al comprobar el cierre
+> - Líneas 173–176: 15/10/2026 — conservar cambios posteriores al plan
+> - Líneas 177–180: 15/10/2026 — cierre coherente con el proyecto inicial
+> - Líneas 181–184: 14/10/2026 — operación visible coherente con el registro
+> - Líneas 185–188: 14/10/2026 — inventario de perfil plegable
+> - Líneas 189–192: 13/10/2026 — índices de proyectos con nombres propios
+> - Líneas 193–214: Sin publicar — candidata a v0.1.0
 
 # Cambios
+
+## 21/10/2026 — README más claro con guías enlazadas
+
+El README en español explica primero qué es el kit y suma un glosario corto (bóveda, ficha, Panel, índice general y nodo), qué recibís, el uso diario y una sección «Guías» que enlaza cada documento según lo que necesites. El estado del proyecto queda breve y sin datos de desarrollo. En los cuatro README, una línea en blanco separa la atribución del índice de líneas para que GitHub no los muestre como una sola cita.
 
 ## 21/10/2026 — material heredado fuera de Genesis
 

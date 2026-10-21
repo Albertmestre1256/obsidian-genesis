@@ -228,16 +228,18 @@ def render(text, reubicar=False):
     if not sections or sections[0][0] > 0:
         sections.insert(0, (0, 'Contenido' if not sections else 'Introducción'))
     sections = [(i, title) for i, title in sections if i < len(body)]
+    # Una línea en blanco separa la atribución del índice: en GitHub no se funden en una sola cita.
+    gap = 1 if head and head[0].strip() != '---' else 0
     block_len = 2 + bool(head) + len(sections)
-    body_start = len(head) + block_len + 2
+    body_start = len(head) + gap + block_len + 2
     block = [HEADER]
     if head:
         block.append('> - Líneas 1–{}: {}'.format(len(head), 'Propiedades' if head[0].strip() == '---' else 'Atribución'))
-    block.append('> - Líneas {}–{}: Este índice'.format(len(head) + 1, len(head) + block_len))
+    block.append('> - Líneas {}–{}: Este índice'.format(len(head) + gap + 1, len(head) + gap + block_len))
     for k, (start, title) in enumerate(sections):
         end = sections[k + 1][0] - 1 if k + 1 < len(sections) else len(body) - 1
         block.append('> - Líneas {}–{}: {}'.format(body_start + start, body_start + end, title))
-    return ''.join(head) + newline.join(block) + newline * 2 + ''.join(body)
+    return ''.join(head) + newline * gap + newline.join(block) + newline * 2 + ''.join(body)
 
 
 def contenido(raw):

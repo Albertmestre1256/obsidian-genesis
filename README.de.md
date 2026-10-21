@@ -1,20 +1,21 @@
 > **Besonderer Dank an [davidkimai](https://github.com/davidkimai):** Dieses Kit basiert auf dessen Arbeit [Context Engineering](https://github.com/davidkimai/Context-Engineering). Obsidian Genesis passt diese Arbeit an, um Obsidian-Vaults mit Hilfe einer KI einzurichten und zu organisieren.
+
 > [!info]- Índice de esta nota (líneas)
 > - Líneas 1–1: Atribución
-> - Líneas 2–17: Este índice
-> - Líneas 19–20: Introducción
-> - Líneas 21–28: Obsidian Genesis: dein Vault, eingerichtet von einer KI
-> - Líneas 29–52: Projektstand — 20. Oktober 2026
-> - Líneas 53–73: In drei Schritten starten
-> - Líneas 74–79: Anhänge und vorhandene Notizen
-> - Líneas 80–87: Fortsetzen
-> - Líneas 88–102: Was es enthält
-> - Líneas 103–112: Optionale Hilfe
-> - Líneas 113–116: Datenschutz
-> - Líneas 117–120: Lizenz
-> - Líneas 121–124: Community und Hilfe
-> - Líneas 125–128: Projekt unterstützen
-> - Líneas 129–131: Über die Entwicklung
+> - Líneas 3–18: Este índice
+> - Líneas 20–21: Introducción
+> - Líneas 22–29: Obsidian Genesis: dein Vault, eingerichtet von einer KI
+> - Líneas 30–53: Projektstand — 20. Oktober 2026
+> - Líneas 54–74: In drei Schritten starten
+> - Líneas 75–80: Anhänge und vorhandene Notizen
+> - Líneas 81–88: Fortsetzen
+> - Líneas 89–103: Was es enthält
+> - Líneas 104–113: Optionale Hilfe
+> - Líneas 114–117: Datenschutz
+> - Líneas 118–121: Lizenz
+> - Líneas 122–125: Community und Hilfe
+> - Líneas 126–129: Projekt unterstützen
+> - Líneas 130–132: Über die Entwicklung
 
 **Sprache:** [Español](README.md) · [English](README.en.md) · Deutsch · [中文](README.zh.md)
 

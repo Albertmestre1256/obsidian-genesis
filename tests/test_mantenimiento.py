@@ -50,9 +50,13 @@ def test_rangos_apuntan_a_secciones_y_respetan_cuerpo(eol, bom):
 def test_atribucion_traducida_queda_primera(atribucion):
     text = atribucion + '\n\n# Kit\n## Uso\nHola\n'
     result = lines.render(text)
-    assert result.splitlines()[0] == atribucion
-    assert result.splitlines()[1].startswith('> [!info]')
-    assert result.splitlines()[2] == '> - Líneas 1–1: Atribución'
+    salida = result.splitlines()
+    # La línea en blanco evita que GitHub muestre atribución e índice como una sola cita.
+    assert salida[0] == atribucion and salida[1] == '' and salida[2].startswith('> [!info]')
+    assert salida[3] == '> - Líneas 1–1: Atribución' and salida[4].startswith('> - Líneas 3–')
+    for titulo in ('# Kit', '## Uso'):
+        inicio = int(re.search(r'Líneas (\d+)–\d+: ' + titulo.lstrip('# '), result).group(1))
+        assert salida[inicio - 1] == titulo
     assert lines.render(result) == result
 
 

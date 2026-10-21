@@ -1,54 +1,42 @@
 > **Crédito principal a [davidkimai](https://github.com/davidkimai):** este kit se basa en su trabajo [Context Engineering](https://github.com/davidkimai/Context-Engineering). Obsidian Genesis adapta ese trabajo para iniciar y organizar bóvedas de Obsidian con ayuda de una IA.
+
 > [!info]- Índice de esta nota (líneas)
 > - Líneas 1–1: Atribución
-> - Líneas 2–17: Este índice
-> - Líneas 19–20: Introducción
-> - Líneas 21–28: Obsidian Genesis: tu bóveda, configurada por una IA
-> - Líneas 29–52: Estado del proyecto — 20/10/2026
-> - Líneas 53–73: Empezar en tres pasos
-> - Líneas 74–79: Adjuntos y notas que ya tenés
-> - Líneas 80–87: Continuar
-> - Líneas 88–102: Qué contiene
-> - Líneas 103–110: Ayuda opcional
-> - Líneas 111–114: Privacidad
-> - Líneas 115–118: Licencia
-> - Líneas 119–122: Comunidad y soporte
-> - Líneas 123–126: Apoyar el proyecto
-> - Líneas 127–129: Sobre el desarrollo
+> - Líneas 3–19: Este índice
+> - Líneas 21–22: Introducción
+> - Líneas 23–28: Obsidian Genesis: tu bóveda, configurada por una IA
+> - Líneas 29–40: Qué es cada cosa
+> - Líneas 41–59: Empezar en tres pasos
+> - Líneas 60–68: Qué recibís
+> - Líneas 69–76: Uso diario
+> - Líneas 77–95: Guías
+> - Líneas 96–111: Qué hay en la carpeta
+> - Líneas 112–117: Estado del proyecto
+> - Líneas 118–121: Privacidad
+> - Líneas 122–125: Licencia
+> - Líneas 126–129: Comunidad y soporte
+> - Líneas 130–133: Apoyar el proyecto
+> - Líneas 134–136: Sobre el desarrollo
 
 **Idioma:** Español · [English](README.en.md) · [Deutsch](README.de.md) · [中文](README.zh.md)
 
 # Obsidian Genesis: tu bóveda, configurada por una IA
 
-Descargá el kit, dale la carpeta a una IA y respondé sus preguntas. El asistente prepara tus notas y tu primer proyecto usando las reglas del kit. No necesitás programar ni conocer Obsidian.
+Obsidian Genesis es un kit gratuito para empezar a usar [Obsidian](https://obsidian.md) sin saber cómo funciona. Le das esta carpeta a una IA que pueda leer y escribir archivos, respondés unas preguntas simples y la IA arma tu bóveda: tu primer proyecto, un panel para entrar y un índice que mantiene al día. No necesitás programar.
 
-Una **bóveda** es una carpeta de notas que abrís con [Obsidian](https://obsidian.md). El kit está en español y sirve para estudio, trabajo o cualquier proyecto personal.
+Sirve para estudio, trabajo o cualquier proyecto personal. El kit está en español; este README y la guía de documentos también están en inglés, alemán y chino.
 
-La entrada [Leer primero](LEER_PRIMERO.md) conecta el Panel y el índice general. En una bóveda nueva, el kit activa la **Vista de gráfico** de Obsidian: abrila desde su icono lateral para explorar las notas conectadas, o usá el gráfico local desde el índice de un proyecto.
+## Qué es cada cosa
 
-## Estado del proyecto — 20/10/2026
-
-**Código publicado en `main` (`c69c38a`); todavía no es una release estable.** El foco sigue siendo iniciar una bóveda con preguntas simples, sin pedirle a la persona que programe ni mantenga los índices.
-
-| Ya implementado | Qué permite |
+| Término | Qué es |
 |---|---|
-| Configuración conversacional | Guardar respuestas antes del primer proyecto y retomar lo que quedó pendiente. |
-| Perfil opcional y reanudable | Mantener un único inventario plegable; conservar datos omitidos y completar solo lo que la persona elija. |
-| Nodos e índices conectados | Cada colección enlaza su padre, hijos y notas; los nodos generales enlazan el mapa y Leer primero. Los proyectos nuevos tienen índices con nombres propios. |
-| Mantenimiento y cierre | Identificar al asistente, registrar cambios con historial conservado y comprobar fichas, Panel, perfil, mapas, rangos y coherencia del proyecto inicial. |
-| Accesos para distintas IA | Guías para Claude Code, OpenCode, ChatGPT y otros asistentes con herramientas de archivos; alternativa manual disponible. |
+| Bóveda | La carpeta de notas que abrís con Obsidian. |
+| Ficha del proyecto | Una nota con el objetivo, los datos comprobados y las próximas acciones de un proyecto. |
+| Panel | La página de inicio: tus proyectos y tareas pendientes. |
+| Índice general | `INDICE.md`, el mapa de todos los archivos. La IA lo lee primero y lo mantiene actualizado. |
+| Nodo | Una carpeta temática con su propio índice, por ejemplo «Resúmenes de materias». |
 
-El creador vuelve a comprobar el estado antes de guardar un proyecto y distingue los bloqueos previos de los fallos parciales; cada archivo se crea sin reemplazar uno existente.
-
-La vista simple despeja el explorador y el gráfico de las bóvedas nuevas que prepara el kit.
-
-La [matriz remota del código `c69c38a`](https://github.com/Albertmestre1256/obsidian-genesis/actions/runs/39375866749) terminó **6/6 correcta** en Windows, macOS y Ubuntu con Python 3.8 y 3.13. Son resultados técnicos; no acreditan facilidad de uso.
-
-Se comprobaron configuración y reanudación con Claude Code. El ensayo manual OpenCode/Big Pickle mostró uso continuado en una misma sesión, sin acreditar reanudación independiente. Un chat nuevo de Codex retomó una copia anterior y conservó las omisiones, con contexto y herramientas externos. No son pruebas con principiantes reales ni validan la interfaz de todos los cambios actuales.
-
-Faltan la reanudación independiente en OpenCode, la cobertura específica de ChatGPT web, una prueba con cinco principiantes (al menos cuatro sin ayuda) y la revisión visual formal final en Obsidian.
-
-Las discusiones de la comunidad están disponibles y podés apoyar el proyecto en [Patreon](https://www.patreon.com/obsidiangenesis). El README y la guía de documentos están en español, inglés, alemán y chino; las instrucciones comunes del kit siguen en español. Adaptar u optimizar bóvedas existentes queda fuera de este kit: será un repositorio separado. [Historial de cambios](CHANGELOG.md) · [Cómo contribuir](CONTRIBUTING.md).
+La IA trabaja con las reglas y guías del kit: pregunta antes de escribir, te explica dónde va a guardar cada cosa y comprueba los archivos al terminar.
 
 ## Empezar en tres pasos
 
@@ -60,53 +48,72 @@ Las discusiones de la comunidad están disponibles y podés apoyar el proyecto e
 
 | Usás | Cómo abrir el kit |
 |---|---|
+| Claude Code | Abrí la carpeta y usá el mensaje anterior o `/configurar`. |
 | OpenCode | Abrí la carpeta y usá el mensaje anterior o `/configurar`. [Guía](DOCS/opencode.md). |
 | ChatGPT | Carpeta local con herramientas de archivos o copia adjunta. [Guía](DOCS/chatgpt.md). |
-| Claude Code | Abrí la carpeta y usá el mensaje anterior o `/configurar`. |
 | Otra IA | Dale acceso a la carpeta y usá el mismo mensaje. |
 
-La IA pregunta qué querés organizar, qué notas conservar y cuál es el objetivo. Podés responder «todavía no sé» o «no tengo fecha»; la primera tarea puede elegirse después.
+La IA pregunta qué querés organizar, qué notas conservar y cuál es el objetivo. Podés responder «todavía no sé» o «no tengo fecha»: la primera tarea puede elegirse después. Si adjuntás un ZIP en lugar de dar acceso a la carpeta, el [inicio rápido](DOCS/QUICKSTART.md) explica qué podés recibir.
 
-También guarda un **inventario de personalización**: lo respondido, lo pendiente y lo que elegiste saltar. En notas nuevas está plegado debajo del proyecto y su avance; se abre cuando querés revisarlo. Presentación, CV, formación, rutina y duración de la bóveda son opcionales. Podés empezar con lo básico y decir después **«qué falta para personalizar mi bóveda»** o **«completemos mi perfil»**. [Cómo funciona](00_CORE/protocols/personalizar-vault.md).
+Si ya tenés una bóveda, el kit no la adapta: usalo en una carpeta nueva. Adaptar bóvedas existentes será un repositorio separado, todavía no disponible.
 
-**Recibís:** carpeta preparada, ficha del proyecto, Panel para acceder y explicación para abrirla en Obsidian. La IA verifica los archivos; la prueba visual se hace en Obsidian. Si aún no lo tenés, instalalo desde [obsidian.md](https://obsidian.md), abrí la carpeta preparada como bóveda y entrá a `Panel.md`.
+## Qué recibís
 
-## Adjuntos y notas que ya tenés
+- Una carpeta lista para abrir como bóveda, con tu primer proyecto y su ficha.
+- El **Panel** (`Panel.md`) para entrar a tus proyectos y tareas, y **Leer primero** (`LEER_PRIMERO.md`), que conecta el Panel con el índice general.
+- Una vista simple: el explorador muestra tus notas y oculta los archivos técnicos del kit. La **Vista de gráfico** de Obsidian, desde su icono lateral, muestra cómo se conectan.
+- Un **inventario de personalización** opcional y plegado: lo que respondiste, lo pendiente y lo que elegiste saltar. Podés completarlo cuando quieras con **«qué falta para personalizar mi bóveda»**. [Cómo funciona](00_CORE/protocols/personalizar-vault.md).
 
-Un ZIP adjunto no da acceso a tu computadora. Si el chat genera archivos, puede devolverte una copia configurada para descargar. Si solo responde texto, queda pendiente guardarlo. La [guía de acceso](DOCS/QUICKSTART.md) explica las opciones.
+Para abrirla, instalá Obsidian desde [obsidian.md](https://obsidian.md), abrí la carpeta preparada como bóveda y entrá a `Panel.md`. La IA verifica los archivos; cómo se ve en Obsidian lo comprobás vos.
 
-Si ya tenés una bóveda, este kit no la adapta: usalo en una carpeta nueva. Adaptar u optimizar bóvedas existentes será un repositorio separado, todavía no disponible.
+## Uso diario
 
-## Continuar
+- **Retomar:** decí **«Seguí con [proyecto]»** o usá `/empezar`. La IA lee el índice, las reglas y la ficha, y sigue con lo pendiente.
+- **Otros pedidos:** otro proyecto, un borrador, una revisión o guardar el cierre del día. [Pedidos listos para usar](DOCS/usar-con-otras-ias.md).
+- **Organizar más contenido:** pedí **«Agregá un nodo para resúmenes de mis materias»**. La IA crea su índice y lo conecta al mapa general. [Cómo funcionan los nodos](DOCS/indice-principal.md).
 
-Decí **«Seguí con [proyecto]»**. La IA lee primero el índice, después las reglas y la ficha vigente, y retoma lo pendiente. Podés pedir otro proyecto, un borrador, una revisión o guardar el cierre: [pedidos de uso diario](DOCS/usar-con-otras-ias.md).
+Claude Code y OpenCode incluyen `/configurar`, `/empezar`, `/nuevo-proyecto`, `/redactar`, `/validar` y `/cerrar`; en Claude, crear otro proyecto y cerrar se invocan a mano. Los permisos dependen del asistente. Si trabajás con adjuntos, compartí siempre las notas vigentes: no se sincronizan solas.
 
-Para organizar más contenido, pedí **«Agregá un nodo para resúmenes de mis materias»**. Cada nodo tiene un índice con enlaces y resúmenes; el mapa general conecta todos los nodos y la IA los mantiene al agregar notas. Los índices previos se conservan; cambiar su nombre o reorganizar notas requiere un alcance acordado. [Guía](DOCS/indice-principal.md).
+## Guías
 
-Claude Code y OpenCode incluyen `/configurar`, `/empezar`, `/nuevo-proyecto`, `/redactar`, `/validar` y `/cerrar`. En Claude, crear otro proyecto y cerrar son de invocación manual. Los permisos dependen del asistente. Con adjuntos, compartí siempre las notas vigentes: no están sincronizadas.
-
-## Qué contiene
-
-Para conocer la función de cada archivo y cuándo consultarlo, abrí la [guía de documentos y herramientas](DOCS/README.md).
-
-| Lugar | Uso |
+| Si querés… | Leé |
 |---|---|
-| `INDICE.md` | Primera lectura: catálogo completo de archivos y proyectos |
-| `LEER_PRIMERO.md` | Entrada para la persona y conexión central de los nodos generales |
+| Ver las formas de darle la carpeta a una IA | [Inicio rápido](DOCS/QUICKSTART.md) |
+| Usar ChatGPT | [Empezar con ChatGPT](DOCS/chatgpt.md) |
+| Usar OpenCode | [Empezar con OpenCode](DOCS/opencode.md) |
+| Resolver la conexión de Claude con Obsidian (MCP) | [Si Claude no conecta con el MCP](DOCS/mcp-claude.md) |
+| Conocer los pedidos de uso diario | [Trabajar con una IA](DOCS/usar-con-otras-ias.md) |
+| Crear un proyecto sin IA | [Tu primer proyecto a mano](DOCS/primer-proyecto.md) |
+| Entender el Panel, las plantillas y la vista simple | [Plantillas y panel](DOCS/obsidian.md) |
+| Agregar nodos y entender el mapa general | [Mapa general e índices de nodos](DOCS/indice-principal.md) |
+| Saber cómo se registran y comprueban los cambios | [Mantenimiento](DOCS/mantenimiento.md) |
+| Usar las cinco skills opcionales | [Skills opcionales](DOCS/skills-portables.md) |
+| Resolver un problema | [Solución de problemas](DOCS/TROUBLESHOOTING.md) |
+| Ver qué hace cada archivo del kit | [Guía de documentos y herramientas](DOCS/README.md) |
+
+**Para asistentes y para desarrollar el kit:** [entrada para la IA](AI-INSTRUCTIONS.md) · [reglas de la bóveda](00_CORE/atoms/00_vault-rules.md) · [protocolo de configuración](00_CORE/protocols/configurar-vault.md) · [creador de proyectos](DOCS/creacion-para-asistentes.md) · [cómo contribuir](CONTRIBUTING.md) · [prueba con usuarios](DOCS/prueba-con-usuarios.md) · [publicación](DOCS/publicacion.md) · [historial de cambios](CHANGELOG.md).
+
+## Qué hay en la carpeta
+
+| Lugar | Para qué |
+|---|---|
 | `Panel.md` | Acceso a proyectos y tareas |
-| `00_CORE/` | Reglas, fichas, guías y herramientas |
-| `PROJECT_TEMPLATE/` | Carpetas para fuentes, borradores, entregables e historial |
-| `DOCS/` | Ayuda opcional |
+| `LEER_PRIMERO.md` | Entrada para la persona y conexión de los nodos generales |
+| `INDICE.md` | Catálogo de archivos y proyectos; primera lectura de la IA |
+| `00_CORE/` | Reglas, fichas, plantillas y herramientas |
+| `PROJECT_TEMPLATE/` | Carpetas de un proyecto: fuentes, borradores, entregables y archivo |
+| `skills/` | Cinco skills opcionales |
+| `DOCS/` | Guías |
 
-El ejemplo `aprender-python` es ficticio y está separado de proyectos propios. Tus datos se completan con tus respuestas; las secciones sin información pueden quedar vacías.
+El ejemplo `aprender-python` es ficticio y está separado de tus proyectos. Tus datos salen de tus respuestas; lo que no sepas puede quedar vacío.
 
-## Ayuda opcional
+Python 3.8 o posterior automatiza la creación, la validación y el índice con la biblioteca estándar. Sin Python, la IA usa sus herramientas de archivos.
 
-- [Crear un proyecto a mano](DOCS/primer-proyecto.md).
-- [Plantillas y panel](DOCS/obsidian.md).
-- [Solución de problemas](DOCS/TROUBLESHOOTING.md).
+## Estado del proyecto
 
-Python 3.8 o posterior automatiza creación, validación e índice con la biblioteca estándar. La IA también puede configurar usando sus herramientas de archivos. Para contribuir: [CONTRIBUTING](CONTRIBUTING.md).
+Versión candidata a la primera release (v0.1.0); todavía no es estable. Funcionan la configuración conversacional con perfil reanudable, el creador de proyectos, los nodos e índices conectados, el registro de cambios y la validación. Las pruebas automáticas pasan en Windows, macOS y Ubuntu con Python 3.8 y 3.13; eso no acredita que el kit sea fácil de usar.
+
+Se comprobaron la configuración y la reanudación con Claude Code. Faltan la reanudación independiente en OpenCode, ChatGPT web, una prueba con cinco principiantes y la revisión visual final en Obsidian. El detalle está en el [historial de cambios](CHANGELOG.md).
 
 ## Privacidad
 
