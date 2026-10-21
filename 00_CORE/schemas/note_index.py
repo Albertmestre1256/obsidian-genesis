@@ -85,10 +85,12 @@ def mensaje_bloqueo(lock, que='Otra escritura'):
     texto = '{} está en curso ({}); esperá y reintentá. Bloqueo: {}.'.format(que, edad, lock)
     if minutos is not None and minutos < 10:
         return texto + ' Si persiste, ' + GUIA_BLOQUEO + '.'
-    if minutos is not None:
+    if minutos is None:
+        texto += ' Puede haberse liberado recién: reintentá antes de borrar nada.'
+    else:
         texto += ' Tiene más de 10 minutos: probablemente quedó de una operación interrumpida.'
     return texto + (' Si ninguna IA ni proceso está trabajando en esta bóveda, el bloqueo quedó huérfano: '
-                    'borrá solo ese archivo (una IA, solo con confirmación de la persona), '
+                    'borrá solo ese archivo (si sos una IA, pedí antes confirmación a la persona), '
                     'releé las notas afectadas y reintentá; ' + GUIA_BLOQUEO + '.')
 
 

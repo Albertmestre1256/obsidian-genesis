@@ -550,9 +550,17 @@ def test_cierre_correcto_no_exige_cv_y_no_escribe(validador, boveda_cierre, esta
     assert foto_cierre(vault) == before
 
 
-@pytest.mark.parametrize('fallo', ['aviso-panel', 'mapa-general', 'mapa-nodo', 'rango',
-    'sin-registro', 'id-ajeno', 'sin-config-en-evento', 'evento-no-verificado',
-    'hash-config-viejo', 'registro-roto', 'fecha-futura', 'registro-bloqueado', 'sin-config'])
+# Cada escenario debe fallar por su propio control, no por otro que lo tape.
+CIERRE_ESPERADO = {
+    'aviso-panel': 'Para empezar', 'mapa-general': 'Mapas desactualizados', 'mapa-nodo': 'Mapas desactualizados',
+    'rango': 'Rangos desactualizados', 'sin-registro': 'Falta registro activo', 'id-ajeno': 'no encontrada',
+    'sin-config-en-evento': 'sin cambio de configuración', 'evento-no-verificado': 'no verificada',
+    'hash-config-viejo': 'hash de configuración no coincide', 'registro-roto': 'Registro propio sin propiedades',
+    'fecha-futura': 'fecha en el futuro', 'registro-bloqueado': 'Aparece un bloqueo',
+    'sin-config': 'Falta 00_CORE/configuracion.md'}
+
+
+@pytest.mark.parametrize('fallo', list(CIERRE_ESPERADO))
 def test_cierre_incompleto_falla_sin_reparar(validador, boveda_cierre, fallo):
     from datetime import datetime, timedelta
     vault, maps, lines, registry = boveda_cierre()
@@ -592,8 +600,7 @@ def test_cierre_incompleto_falla_sin_reparar(validador, boveda_cierre, fallo):
     before = foto_cierre(vault)
     errors = validador.validar_cierre(vault, operation)
     assert errors and all(isinstance(e,str) and e.strip() for e in errors)
-    if fallo == 'registro-bloqueado':
-        assert any('Aparece un bloqueo' in e for e in errors)
+    assert any(CIERRE_ESPERADO[fallo] in e for e in errors), errors
     assert foto_cierre(vault) == before
 
 

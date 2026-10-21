@@ -1075,5 +1075,6 @@ def test_bloqueo_del_registro_queda_identificado_mientras_registra(tmp_path, mon
 
 def test_bloqueo_de_antiguedad_desconocida_remite_a_la_guia(tmp_path):
     mensaje = lines.mensaje_bloqueo(tmp_path / '.ya-retirado.kit-lock')
-    assert 'antigüedad desconocida' in mensaje and 'confirmación de la persona' in mensaje
+    assert 'antigüedad desconocida' in mensaje and 'reintentá antes de borrar' in mensaje
+    assert 'confirmación a la persona' in mensaje
     assert 'TROUBLESHOOTING' in mensaje
