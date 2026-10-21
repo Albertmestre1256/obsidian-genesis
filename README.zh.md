@@ -2,54 +2,41 @@
 
 > [!info]- Índice de esta nota (líneas)
 > - Líneas 1–1: Atribución
-> - Líneas 3–18: Este índice
-> - Líneas 20–21: Introducción
-> - Líneas 22–29: Obsidian Genesis：由 AI 为你配置的仓库
-> - Líneas 30–53: 项目状态 — 2026 年 10 月 20 日
-> - Líneas 54–74: 三步开始
-> - Líneas 75–80: 附件和已有笔记
-> - Líneas 81–88: 继续
-> - Líneas 89–103: 包含内容
-> - Líneas 104–113: 可选帮助
-> - Líneas 114–117: 隐私
-> - Líneas 118–121: 许可证
-> - Líneas 122–125: 社区与支持
-> - Líneas 126–129: 支持本项目
-> - Líneas 130–132: 关于开发
+> - Líneas 3–19: Este índice
+> - Líneas 21–22: Introducción
+> - Líneas 23–28: Obsidian Genesis：由 AI 为你配置的仓库
+> - Líneas 29–40: 术语说明
+> - Líneas 41–59: 三步开始
+> - Líneas 60–68: 你将得到
+> - Líneas 69–76: 日常使用
+> - Líneas 77–97: 指南
+> - Líneas 98–113: 文件夹里有什么
+> - Líneas 114–119: 项目状态
+> - Líneas 120–123: 隐私
+> - Líneas 124–127: 许可证
+> - Líneas 128–131: 社区与支持
+> - Líneas 132–135: 支持本项目
+> - Líneas 136–138: 关于开发
 
 **语言：** [Español](README.md) · [English](README.en.md) · [Deutsch](README.de.md) · 中文
 
 # Obsidian Genesis：由 AI 为你配置的仓库
 
-下载工具包，把文件夹交给一个 AI，然后回答它的问题。助手会按照工具包的规则准备你的笔记和第一个项目。你不需要会编程，也不需要了解 Obsidian。
+Obsidian Genesis 是一个免费工具包，让你在不了解 [Obsidian](https://obsidian.md) 如何运作的情况下也能开始使用它。把这个文件夹交给一个能读写文件的 AI，回答几个简单的问题，AI 就会搭建你的仓库：你的第一个项目、一个入口面板，以及一个它会持续更新的索引。你不需要会编程。
 
-**仓库（vault）** 是一个用 [Obsidian](https://obsidian.md) 打开的笔记文件夹。工具包使用西班牙语，适用于学习、工作或任何个人项目。你可以用自己的语言和助手交流；工具包的笔记和指南目前仍为西班牙语。
+它适用于学习、工作或任何个人项目。工具包使用西班牙语：你可以用自己的语言和助手交流，但工具包的笔记和指南目前仍为西班牙语。本 README 和文档指南也提供西班牙语、英语和德语版本。
 
-入口笔记 [Leer primero](LEER_PRIMERO.md)（“请先阅读”）连接面板（Panel）和总索引。在新仓库中，工具包会启用 Obsidian 的**关系图谱**：从侧边栏图标打开它来浏览相互连接的笔记，或在某个项目的索引中使用局部关系图谱。
+## 术语说明
 
-## 项目状态 — 2026 年 10 月 20 日
-
-**代码已发布到 `main` 分支（`c69c38a`）；尚不是稳定版本。** 重点仍然是通过简单的问题来创建仓库，不要求使用者编程或维护索引。
-
-| 已实现 | 作用 |
+| 术语 | 含义 |
 |---|---|
-| 对话式配置 | 在创建第一个项目之前保存回答，并继续未完成的部分。 |
-| 可选、可继续的个人资料 | 维护唯一一份可折叠的清单；保留被跳过的信息，只补充使用者选择的内容。 |
-| 相互连接的节点和索引 | 每个集合都链接其上级、下级和笔记；总节点链接地图和 Leer primero。新项目拥有以自身名称命名的索引。 |
-| 维护与收尾 | 标识助手，记录变更并保留历史，检查项目卡片、面板、个人资料、地图、行范围以及初始项目的一致性。 |
-| 支持多种 AI | 提供 Claude Code、OpenCode、ChatGPT 及其他具备文件工具的助手的指南；也有手动方式可选。 |
+| 仓库（vault） | 用 Obsidian 打开的笔记文件夹。 |
+| 项目卡片 | 记录项目目标、已核实的事实和下一步行动的笔记。 |
+| 面板（Panel） | 首页：你的项目和待办任务。 |
+| 总索引 | `INDICE.md`，所有文件的地图。AI 会首先阅读并保持其最新。 |
+| 节点 | 带有自己索引的主题文件夹，例如“课程摘要”。 |
 
-项目创建器在保存项目前会再次检查状态，并区分事先阻止的情况与部分失败；每个文件都在不覆盖已有文件的前提下创建。
-
-简洁视图减少工具包所准备的新仓库在文件列表和关系图谱中的杂项。
-
-[代码提交 `c69c38a` 的远程测试矩阵](https://github.com/Albertmestre1256/obsidian-genesis/actions/runs/39375866749)在 Windows、macOS 和 Ubuntu 上使用 Python 3.8 和 3.13，**6/6 项均成功**。这些是技术结果，不能证明工具包易于使用。
-
-已用 Claude Code 检查配置和继续工作。OpenCode/Big Pickle 的手动试验展示了同一会话内的持续使用，未证明新会话中的独立恢复。一个新的 Codex 对话继续处理了较早的副本，并保留了被跳过的信息；过程中使用了外部上下文和工具。这些并非与真正初学者进行的测试，也不能验证所有当前变更的界面表现。
-
-仍待完成：OpenCode 的新会话独立恢复、ChatGPT 网页版的专项验证、五名初学者的测试（至少四人无需帮助），以及 Obsidian 中最终正式的视觉检查。
-
-社区讨论现已开放，你也可以通过 [Patreon](https://www.patreon.com/obsidiangenesis) 支持本项目。README 与文档指南提供西班牙语、英语、德语和中文版本；工具包的通用操作说明仍使用西班牙语。调整和优化现有仓库不属于本工具包，将作为单独的仓库开发。[更新日志](CHANGELOG.md) · [如何贡献](CONTRIBUTING.md)（均为西班牙语）。
+AI 按照工具包的规则和指南工作：写入前先询问，说明每样内容会保存在哪里，并在完成后检查文件。
 
 ## 三步开始
 
@@ -61,55 +48,74 @@
 
 | 你使用的工具 | 如何打开工具包 |
 |---|---|
+| Claude Code | 打开文件夹，使用上面的消息或 `/configurar`。 |
 | OpenCode | 打开文件夹，使用上面的消息或 `/configurar`。[指南](DOCS/opencode.md)。 |
 | ChatGPT | 带文件工具的本地文件夹，或附加的副本。[指南](DOCS/chatgpt.md)。 |
-| Claude Code | 打开文件夹，使用上面的消息或 `/configurar`。 |
 | 其他 AI | 让它访问该文件夹，并使用同样的消息。 |
 
-AI 会询问你想整理什么、要保留哪些笔记以及目标是什么。你可以回答“我还不知道”或“我没有截止日期”；第一个任务可以以后再选。
+AI 会询问你想整理什么、要保留哪些笔记以及目标是什么。你可以回答“我还不知道”或“我没有截止日期”：第一个任务可以以后再选。如果你附加 ZIP 文件而不是提供文件夹访问权限，[快速入门](DOCS/QUICKSTART.md)说明了你可能收到什么。
 
-它还会维护一份**个性化清单**：你已回答的、待定的以及你选择跳过的内容。在新笔记中，它折叠在项目及其进展下方；需要查看时再展开。自我介绍、简历、教育背景、日常安排以及仓库的使用期限都是可选的。你可以先从基本内容开始，之后再说 **“个性化我的仓库还缺什么”** 或 **“我们来完善我的个人资料”**。[工作原理](00_CORE/protocols/personalizar-vault.md)。
+如果你已经有一个仓库，本工具包不会调整它：请在新文件夹中使用本工具包。调整现有仓库将是一个单独的仓库，目前尚未提供。
 
-**你将得到：** 一个准备好的文件夹、项目卡片、用于访问的面板，以及如何在 Obsidian 中打开它的说明。AI 会检查文件；视觉检查在 Obsidian 中进行。如果你还没有安装 Obsidian，请从 [obsidian.md](https://obsidian.md) 安装，将准备好的文件夹作为仓库打开，然后进入 `Panel.md`。
+## 你将得到
 
-## 附件和已有笔记
+- 一个可以作为仓库打开的文件夹，包含你的第一个项目及其项目卡片。
+- **面板**（`Panel.md`）用于进入你的项目和任务；**Leer primero**（`LEER_PRIMERO.md`，“请先阅读”）把面板与总索引连接起来。
+- 简洁视图：文件列表显示你的笔记，隐藏工具包的技术文件。从侧边栏图标打开 Obsidian 的**关系图谱**，可以看到笔记之间的连接。
+- 一份可选、默认折叠的**个性化清单**：你已回答的、待定的以及你选择跳过的内容。你可以随时说 **“个性化我的仓库还缺什么”** 来完善它。[工作原理](00_CORE/protocols/personalizar-vault.md)。
 
-附加的 ZIP 文件并不能让 AI 访问你的电脑。如果聊天能生成文件，它可以返回一份配置好的副本供你下载。如果它只能回复文字，保存工作就仍待完成。[访问指南](DOCS/QUICKSTART.md)说明了各种选择。
+打开方法：从 [obsidian.md](https://obsidian.md) 安装 Obsidian，将准备好的文件夹作为仓库打开，然后进入 `Panel.md`。AI 会检查文件；在 Obsidian 中的显示效果由你来确认。
 
-如果你已经有一个仓库，本工具包不会调整它：请在新文件夹中使用本工具包。调整和优化现有仓库将是一个单独的仓库，目前尚未提供。
+## 日常使用
 
-## 继续
+- **继续：** 说 **“继续 [项目]”** 或使用 `/empezar`。AI 会阅读索引、规则和项目卡片，并继续待办事项。
+- **其他请求：** 另一个项目、草稿、审阅或保存当天的收尾。[现成的请求](DOCS/usar-con-otras-ias.md)。
+- **整理更多内容：** 说 **“添加一个节点，用于我的课程摘要”**。AI 会创建它的索引并连接到总地图。[节点如何运作](DOCS/indice-principal.md)。
 
-说 **“继续 [项目]”**。AI 会先阅读索引，然后阅读规则和当前的项目卡片，并继续待办事项。你可以要求创建另一个项目、起草、审阅或保存收尾：[日常请求](DOCS/usar-con-otras-ias.md)。
+Claude Code 和 OpenCode 包含 `/configurar`、`/empezar`、`/nuevo-proyecto`、`/redactar`、`/validar` 和 `/cerrar`；在 Claude 中，创建另一个项目和收尾需要手动调用。权限取决于所用的助手。使用附件时，请始终分享最新的笔记：它们不会自动同步。
 
-如需整理更多内容，可以说 **“添加一个节点，用于我的课程摘要”**。每个节点都有一个包含链接和摘要的索引；总地图连接所有节点，AI 在添加笔记时会维护它们。已有的索引会被保留；重命名索引或重组笔记需要事先约定范围。[指南](DOCS/indice-principal.md)。
+## 指南
 
-Claude Code 和 OpenCode 包含 `/configurar`、`/empezar`、`/nuevo-proyecto`、`/redactar`、`/validar` 和 `/cerrar`。在 Claude 中，创建另一个项目和收尾需要手动调用。权限取决于所用的助手。使用附件时，请始终分享最新的笔记：它们不会同步。
+除文档指南外，以下指南均为西班牙语。
 
-## 包含内容
+| 如果你想…… | 请阅读 |
+|---|---|
+| 了解把文件夹交给 AI 的方式 | [快速入门](DOCS/QUICKSTART.md) |
+| 使用 ChatGPT | [ChatGPT 入门](DOCS/chatgpt.md) |
+| 使用 OpenCode | [OpenCode 入门](DOCS/opencode.md) |
+| 解决 Claude 与 Obsidian 的连接问题（MCP） | [Claude 无法连接 MCP 时](DOCS/mcp-claude.md) |
+| 了解日常请求 | [与 AI 协作](DOCS/usar-con-otras-ias.md) |
+| 不用 AI 创建项目 | [手动创建第一个项目](DOCS/primer-proyecto.md) |
+| 了解面板、模板和简洁视图 | [模板和面板](DOCS/obsidian.md) |
+| 添加节点并了解总地图 | [总地图和节点索引](DOCS/indice-principal.md) |
+| 了解变更如何记录和检查 | [维护](DOCS/mantenimiento.md) |
+| 使用五个可选 skill | [可选 skill](DOCS/skills-portables.md) |
+| 解决问题 | [故障排除](DOCS/TROUBLESHOOTING.md) |
+| 查看工具包每个文件的作用 | [文档与工具指南](DOCS/README.zh.md) |
 
-各文件的用途与查阅时机，请参阅[文档与工具指南](DOCS/README.zh.md)。
+**面向助手和工具包开发：** [AI 入口](AI-INSTRUCTIONS.md) · [仓库规则](00_CORE/atoms/00_vault-rules.md) · [配置流程](00_CORE/protocols/configurar-vault.md) · [项目创建器](DOCS/creacion-para-asistentes.md) · [如何贡献](CONTRIBUTING.md) · [用户测试](DOCS/prueba-con-usuarios.md) · [发布](DOCS/publicacion.md) · [更新日志](CHANGELOG.md)。
+
+## 文件夹里有什么
 
 | 位置 | 用途 |
 |---|---|
-| `INDICE.md` | 首先阅读：文件和项目的完整目录 |
-| `LEER_PRIMERO.md` | 面向使用者的入口笔记，也是各总节点的核心连接 |
 | `Panel.md` | 访问项目和任务 |
-| `00_CORE/` | 规则、项目卡片、指南和工具 |
-| `PROJECT_TEMPLATE/` | 用于资料、草稿、成果和历史的文件夹 |
-| `DOCS/` | 可选帮助 |
+| `LEER_PRIMERO.md` | 面向使用者的入口笔记，也是各总节点的连接 |
+| `INDICE.md` | 文件和项目目录；AI 首先阅读 |
+| `00_CORE/` | 规则、项目卡片、模板和工具 |
+| `PROJECT_TEMPLATE/` | 项目文件夹：资料、草稿、成果和归档 |
+| `skills/` | 五个可选 skill |
+| `DOCS/` | 指南 |
 
-示例 `aprender-python` 是虚构的，与你自己的项目分开。你的数据根据你的回答填写；没有信息的部分可以留空。
+示例 `aprender-python` 是虚构的，与你的项目分开。你的数据来自你的回答；不知道的内容可以留空。
 
-## 可选帮助
+Python 3.8 或更高版本可以借助标准库自动完成创建、验证和索引。没有 Python 时，AI 会使用其文件工具。
 
-以下指南为西班牙语：
+## 项目状态
 
-- [手动创建项目](DOCS/primer-proyecto.md)。
-- [模板和面板](DOCS/obsidian.md)。
-- [故障排除](DOCS/TROUBLESHOOTING.md)。
+第一个版本（v0.1.0）的候选版；尚不稳定。对话式配置及可继续的个人资料、项目创建器、相互连接的节点和索引、变更记录和验证均已可用。自动测试在 Windows、macOS 和 Ubuntu 上使用 Python 3.8 和 3.13 通过；这并不能证明工具包易于使用。
 
-Python 3.8 或更高版本可以借助标准库自动完成创建、验证和索引。AI 也可以使用其文件工具完成配置。参与贡献：[CONTRIBUTING](CONTRIBUTING.md)。
+已用 Claude Code 检查配置和继续工作。仍待完成：OpenCode 的新会话独立恢复、ChatGPT 网页版、五名初学者的测试，以及 Obsidian 中最终的视觉检查。详情见[更新日志](CHANGELOG.md)（西班牙语）。
 
 ## 隐私
 

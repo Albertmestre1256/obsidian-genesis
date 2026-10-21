@@ -44,7 +44,7 @@
 
 ## 21/10/2026 — README más claro con guías enlazadas
 
-El README en español explica primero qué es el kit y suma un glosario corto (bóveda, ficha, Panel, índice general y nodo), qué recibís, el uso diario y una sección «Guías» que enlaza cada documento según lo que necesites. El estado del proyecto queda breve y sin datos de desarrollo. En los cuatro README, una línea en blanco separa la atribución del índice de líneas para que GitHub no los muestre como una sola cita.
+Los README en español, inglés, alemán y chino explican primero qué es el kit y suman un glosario corto (bóveda, ficha, Panel, índice general y nodo), qué recibís, el uso diario y una sección «Guías» que enlaza cada documento según lo que necesites. El estado del proyecto queda breve y sin datos de desarrollo. En los cuatro README, una línea en blanco separa la atribución del índice de líneas para que GitHub no los muestre como una sola cita.
 
 ## 21/10/2026 — material heredado fuera de Genesis
 
