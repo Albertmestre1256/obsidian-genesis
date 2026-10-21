@@ -23,7 +23,7 @@ Esta es la guía principal de configuración. La persona cuenta qué necesita; l
 
 ## 1. Ubicar la bóveda
 
-Leé `INDICE.md` completo y después `00_CORE/atoms/00_vault-rules.md`. Comprobá el acceso real de lectura y escritura; un adjunto o enlace no da acceso al original. Buscá configuración y fichas por su propiedad `proyecto`, aunque estén renombradas: si ya hay trabajo, conservá su versión y retomá solo lo pendiente.
+Leé `INDICE.md` completo y después `00_CORE/atoms/00_vault-rules.md`. Comprobá el acceso real de lectura y escritura; un adjunto o enlace no da acceso al original. Si recibís el kit como ZIP, descomprimilo con `zipfile` de Python y no con `unzip`, para que los nombres con tildes no cambien. Buscá configuración y fichas por su propiedad `proyecto`, aunque estén renombradas: si ya hay trabajo, conservá su versión y retomá solo lo pendiente.
 
 Genesis prepara bóvedas nuevas. Si el destino tiene notas propias y no fue preparado con este kit, no lo adaptes ni mezcles el kit con ellas: proponé una carpeta nueva y dejá la existente sin cambios. Una bóveda ya preparada con el kit se retoma según el párrafo anterior. No interpretes la ausencia de configuración del kit como una bóveda vacía.
 
@@ -53,7 +53,7 @@ Mantené `estado: parcial` hasta comprobar la integración. Guardá avance e imp
 
 ### Crear el proyecto
 
-1. Derivá un identificador corto, sin tildes y con guiones; acordá una variante si está reservado u ocupado. Con Python y reglas compatibles, seguí [el creador](../../DOCS/creacion-para-asistentes.md). Si ya existe una ficha editada, trabajá desde ella: no la recrees ni eludas su protección con otro nombre.
+1. Derivá un identificador corto, sin tildes y con guiones; acordá una variante si está reservado u ocupado. Con Python y reglas compatibles, usá [el creador](../../DOCS/creacion-para-asistentes.md); si falla, resolvé la causa (por ejemplo, un nombre dañado al descomprimir) antes de crear a mano. Si ya existe una ficha editada, trabajá desde ella: no la recrees ni eludas su protección con otro nombre.
 2. Sin Python, creá desde `PROJECT_TEMPLATE/` y [la plantilla de ficha](../templates/TEMPLATE_cell.md); guardá la ficha en `00_CORE/cells/` y completá identificador, descripción, contexto, objetivo y fecha real. Quitá marcadores y ejemplos de la copia; hechos con fuente e intenciones atribuidas al usuario, sin presentarlas como logros. Acciones solo aceptadas; secciones sin datos vacías.
 3. Enlazá ficha e índice. En una bóveda nueva (carpeta descargada u otra carpeta nueva), reemplazá el aviso inicial del Panel por bienvenida y acceso al proyecto y al inventario. No copies el próximo paso al Panel: queda en «Próximas acciones» de la ficha y el Panel lo muestra en «Acciones pendientes». Remití a esa sección con una frase que siga siendo cierta cuando cambien las tareas, por ejemplo: «Tus tareas aparecen en Acciones pendientes; si no hay ninguna, pedí "seguí con [proyecto]" para elegir la próxima», con el nombre real del proyecto. Conservá el ejemplo con `ejemplo: true`, separado de proyectos propios. El creador no completa este paso.
 4. Actualizá configuración y avance; preferencias personales allí, sin cambiar reglas compartidas. En una bóveda nueva, conservá también la [vista simple preparada](../../DOCS/obsidian.md#vista-simple-de-una-bóveda-nueva), incluidos el CSS activo y el filtro del gráfico: la persona no los configura a mano. Mantené [mapas y nodos](../../DOCS/indice-principal.md): el catálogo debe reflejar los archivos reales del destino.

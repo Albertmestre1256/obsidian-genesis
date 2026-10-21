@@ -45,7 +45,7 @@
 
 ## 21/10/2026 — entrega de una copia como ZIP
 
-Antes de ofrecer una copia para descargar, la IA pregunta el primer paso (puede quedar pendiente), completa el cierre y solo marca la configuración como lista con «CIERRE VERIFICADO». Arma el ZIP con nombres UTF-8 y lo comprueba descomprimiéndolo y repitiendo el cierre sobre esa copia. La guía de ChatGPT y Solución de problemas explican qué hacer si los nombres aparecen como «├ìndice». Surgió de una prueba con ChatGPT web.
+Antes de ofrecer una copia para descargar, la IA pregunta el primer paso (puede quedar pendiente), completa el cierre y solo marca la configuración como lista con «CIERRE VERIFICADO». Descomprime el kit recibido con `zipfile` de Python y, con Python, crea el proyecto con el creador. Arma el ZIP con nombres UTF-8 y lo comprueba descomprimiéndolo, comparando sus nombres con los del kit y repitiendo el cierre sobre esa copia. La guía de ChatGPT y Solución de problemas explican qué hacer si los nombres aparecen como «├ìndice». Surgió de una prueba con ChatGPT web.
 
 ## 21/10/2026 — README más claro con guías enlazadas
 

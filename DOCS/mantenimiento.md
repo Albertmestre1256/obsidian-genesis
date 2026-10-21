@@ -101,11 +101,11 @@ Mantiene los mismos mapas y registro: autor, fecha con zona, operación, rutas y
 
 ## Entregar una copia como ZIP
 
-Cuando la IA no puede escribir en la carpeta de la persona y entrega una copia para descargar, completa estos pasos antes de ofrecer el enlace:
+Cuando la IA no puede escribir en la carpeta de la persona y entrega una copia para descargar, descomprime el kit recibido con `zipfile` de Python, no con `unzip`: otras herramientas pueden cambiar nombres con tildes, como `PROJECT_TEMPLATE/00 - Índice y Contexto.md`. Con Python, crea el proyecto con el [creador](creacion-para-asistentes.md). Después completa estos pasos antes de ofrecer el enlace:
 
 1. **Próximo paso:** si todavía no se habló, preguntá cuál es el primer paso concreto. Si la persona no lo sabe, queda pendiente; no lo inventes.
 2. **Cierre completo:** seguí la [secuencia de cierre](#secuencia-de-cierre-compartida) sobre la copia de trabajo. La configuración queda `lista` solo si la operación final termina en «CIERRE VERIFICADO»; con errores, corregilos o dejá `parcial` y decí qué falta.
 3. **ZIP con nombres UTF-8:** armá el ZIP con una herramienta que marque los nombres como UTF-8, por ejemplo `zipfile` de Python, e incluí los archivos ocultos del kit. Sin esa marca, Windows muestra nombres como «├ìndice» o «fotografÃ­a» y los enlaces se rompen.
-4. **Comprobar lo que se entrega:** descomprimí ese mismo ZIP en una carpeta nueva, comprobá que los nombres con tildes se lean igual y volvé a correr el cierre con el ID final sobre esa carpeta.
+4. **Comprobar lo que se entrega:** descomprimí ese mismo ZIP en una carpeta nueva y compará su lista de archivos con la del kit recibido: ningún archivo del kit puede faltar ni cambiar de nombre; solo se agregan los creados. Después volvé a correr el cierre con el ID final sobre esa carpeta.
 
 Informá qué se comprobó y qué no, por ejemplo la vista en Obsidian. Sin Python, aplicá las alternativas manuales y declará que el cierre automático no se ejecutó. Si no podés completar algún paso, decilo antes de entregar.
