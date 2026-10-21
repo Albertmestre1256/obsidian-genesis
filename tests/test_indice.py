@@ -218,26 +218,6 @@ def test_no_sigue_junction_ni_reemplaza_indice(tmp_path):
         os.rmdir(str(junction))
 
 
-def test_instalacion_catalogo_del_destino_y_reinstalacion(tmp_path):
-    guardar(tmp_path, 'apuntes/original.md', '# Nota previa\n')
-    command = [sys.executable, '-B', str(ROOT / 'instalar.py'), str(tmp_path), '--yes']
-    first = subprocess.run(command, capture_output=True, text=True, encoding='utf-8')
-    assert first.returncode == 0, first.stdout + first.stderr
-    before = (tmp_path / 'INDICE.md').read_bytes()
-    assert 'apuntes/original.md' in before.decode('utf-8')
-    assert run(tmp_path, '--comprobar').returncode == 0
-    assert subprocess.run(command, capture_output=True).returncode == 0
-    assert (tmp_path / 'INDICE.md').read_bytes() == before
-
-
-def test_instalacion_indice_propio_impide_copia(tmp_path):
-    path = guardar(tmp_path, 'INDICE.md', '# Mi entrada propia\n')
-    result = subprocess.run([sys.executable, '-B', str(ROOT / 'instalar.py'), str(tmp_path), '--yes'], capture_output=True)
-    assert result.returncode == 1
-    assert {p.name for p in tmp_path.iterdir()} == {'INDICE.md'}
-    assert path.read_text(encoding='utf-8') == '# Mi entrada propia\n'
-
-
 def test_creacion_cli_registra_proyecto_en_indice(tmp_path):
     vault = tmp_path / 'vault'
     shutil.copytree(ROOT / '00_CORE', vault / '00_CORE', ignore=shutil.ignore_patterns('__pycache__'))

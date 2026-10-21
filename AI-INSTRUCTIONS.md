@@ -3,7 +3,7 @@
 > - Líneas 8–11: Entrada para la IA
 > - Líneas 12–17: Antes de trabajar
 > - Líneas 18–31: Elegir el recorrido
-> - Líneas 32–50: Herramientas opcionales
+> - Líneas 32–49: Herramientas opcionales
 
 # Entrada para la IA
 
@@ -35,7 +35,6 @@ Usá herramientas del kit leído, no código preexistente de otra bóveda. Pytho
 
 | Herramienta | Cuándo y dónde consultar |
 |---|---|
-| `instalar.py` | Material heredado de la integración en bóvedas existentes, fuera del alcance actual: no lo uses para configurar. Su retiro o separación está pendiente de decisión. |
 | `crear_proyecto.py` | `DOCS/creacion-para-asistentes.md`; crea ficha, índice y carpetas, sin completar Panel ni configuración. |
 | `00_CORE/schemas/validate.py` | «Revisar fichas» en `DOCS/usar-con-otras-ias.md`, incluida revisión manual. |
 | `actualizar_indice.py` | `DOCS/indice-principal.md`: mapas generales y locales. |

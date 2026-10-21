@@ -7,22 +7,22 @@
 > - Líneas 55–58: Mapa de nodos
 > - Líneas 59–62: Catálogo completo de archivos
 > - Líneas 63–71: Ajustes de Obsidian
-> - Líneas 72–95: Ayuda
-> - Líneas 96–105: Carpeta: skills
-> - Líneas 106–122: Desarrollo
-> - Líneas 123–145: Entrada y herramientas
-> - Líneas 146–151: Fichas y plantillas de proyecto
-> - Líneas 152–157: Guías de comunicación
-> - Líneas 158–166: Guías de redacción
-> - Líneas 167–179: Integración Claude
-> - Líneas 180–190: Integración OpenCode
-> - Líneas 191–200: Plantilla de carpetas
-> - Líneas 201–208: Plantillas de organización
-> - Líneas 209–217: Protocolos
-> - Líneas 218–226: Recursos opcionales de davidkimai
-> - Líneas 227–232: Reglas compartidas
-> - Líneas 233–240: Validación
-> - Líneas 241–249: Alcance del catálogo
+> - Líneas 72–94: Ayuda
+> - Líneas 95–104: Carpeta: skills
+> - Líneas 105–119: Desarrollo
+> - Líneas 120–141: Entrada y herramientas
+> - Líneas 142–147: Fichas y plantillas de proyecto
+> - Líneas 148–153: Guías de comunicación
+> - Líneas 154–162: Guías de redacción
+> - Líneas 163–175: Integración Claude
+> - Líneas 176–186: Integración OpenCode
+> - Líneas 187–196: Plantilla de carpetas
+> - Líneas 197–204: Plantillas de organización
+> - Líneas 205–213: Protocolos
+> - Líneas 214–222: Recursos opcionales de davidkimai
+> - Líneas 223–228: Reglas compartidas
+> - Líneas 229–236: Validación
+> - Líneas 237–245: Alcance del catálogo
 
 # Índice principal de la bóveda
 
@@ -38,7 +38,7 @@ Podés agregar presentación y comentarios antes o después del bloque automáti
 
 ## Panorama
 
-- Archivos catalogados: 98. Proyectos propios identificados: 0. Ejemplos ficticios: 1.
+- Archivos catalogados: 94. Proyectos propios identificados: 0. Ejemplos ficticios: 1.
 - Configuración: todavía no existe una nota de configuración del kit.
 - El estado detallado y las tareas se leen en cada ficha; este catálogo no los reemplaza.
 
@@ -76,7 +76,6 @@ Cada fila enlaza un archivo. Las carpetas se representan mediante sus archivos; 
 | [chatgpt.md](DOCS/chatgpt.md) | Empezar con ChatGPT |
 | [creacion-para-asistentes.md](DOCS/creacion-para-asistentes.md) | Crear los archivos de un proyecto |
 | [indice-principal.md](DOCS/indice-principal.md) | Mantener el mapa general y los índices de nodos |
-| [instalacion-manual.md](DOCS/instalacion-manual.md) | Agregar el kit a una bóveda existente sin Python (heredado) |
 | [mantenimiento.md](DOCS/mantenimiento.md) | Mantener notas, mapas y registro |
 | [mcp-claude.md](DOCS/mcp-claude.md) | Si Claude no conecta con el MCP |
 | [obsidian.md](DOCS/obsidian.md) | Plantillas y panel |
@@ -113,12 +112,10 @@ Cada fila enlaza un archivo. Las carpetas se representan mediante sus archivos; 
 | [conftest.py](tests/conftest.py) | PY |
 | [test\_crear\_proyecto.py](tests/test_crear_proyecto.py) | PY |
 | [test\_indice.py](tests/test_indice.py) | PY |
-| [test\_instalar.py](tests/test_instalar.py) | PY |
 | [test\_kit.py](tests/test_kit.py) | PY |
 | [test\_mantenimiento.py](tests/test_mantenimiento.py) | PY |
 | [test\_nodos.py](tests/test_nodos.py) | PY |
 | [test\_validate.py](tests/test_validate.py) | PY |
-| [test\_vista\_simple\_existente.py](tests/test_vista_simple_existente.py) | PY |
 
 ### Entrada y herramientas
 
@@ -133,7 +130,6 @@ Cada fila enlaza un archivo. Las carpetas se representan mediante sus archivos; 
 | [CONTRIBUTING.md](CONTRIBUTING.md) | Contribuir |
 | [crear\_proyecto.py](crear_proyecto.py) | PY |
 | [INDICE.md](INDICE.md) | Índice principal de la bóveda |
-| [instalar.py](instalar.py) | PY |
 | [LEER\_PRIMERO.md](LEER_PRIMERO.md) | Puerta de entrada a los proyectos, las reglas y el mapa de esta bóveda. |
 | [LICENSE](LICENSE) | Archivo sin extensión |
 | [Panel.md](Panel.md) | Mis proyectos |

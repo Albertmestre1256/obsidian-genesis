@@ -9,12 +9,12 @@ descripcion: "各文档的内容、用途以及适合查阅的时机。"
 > - Líneas 27–37: 本指南目录
 > - Líneas 38–47: 入口
 > - Líneas 48–65: 规则与项目
-> - Líneas 66–84: 帮助
-> - Líneas 85–98: 集成与设置
-> - Líneas 99–112: Python 与测试
-> - Líneas 113–123: 仓库与署名
-> - Líneas 124–132: 可选资源
-> - Líneas 133–145: 使用过程中创建的文件
+> - Líneas 66–83: 帮助
+> - Líneas 84–97: 集成与设置
+> - Líneas 98–110: Python 与测试
+> - Líneas 111–121: 仓库与署名
+> - Líneas 122–130: 可选资源
+> - Líneas 131–143: 使用过程中创建的文件
 
 # 工具包文档与工具指南
 
@@ -72,7 +72,6 @@ descripcion: "各文档的内容、用途以及适合查阅的时机。"
 | [`DOCS/chatgpt.md`](../DOCS/chatgpt.md) | ChatGPT 使用文件夹或附件的操作流程。 |
 | [`DOCS/usar-con-otras-ias.md`](../DOCS/usar-con-otras-ias.md) | 用于继续项目、写作或保存进展的日常请求示例。 |
 | [`DOCS/primer-proyecto.md`](../DOCS/primer-proyecto.md) | 手动创建项目的备选方法。 |
-| [`DOCS/instalacion-manual.md`](../DOCS/instalacion-manual.md) | 旧的现有仓库整合方式，不在当前范围内；是否移除或拆分尚待决定。 |
 | [`DOCS/creacion-para-asistentes.md`](../DOCS/creacion-para-asistentes.md) | 供 AI 准备项目文件时使用的技术参考。 |
 | [`DOCS/indice-principal.md`](../DOCS/indice-principal.md) | 维护总索引、局部索引和可扩展的链接关系。 |
 | [`DOCS/mantenimiento.md`](../DOCS/mantenimiento.md) | 更新行号索引、地图与记录，并检查收尾状态。 |
@@ -102,13 +101,12 @@ Python 用于自动执行任务。只要 AI 能管理文件，使用工具包就
 
 | 文档或工具 | 用途 |
 |---|---|
-| [`instalar.py`](../instalar.py) | 用于现有仓库的旧安装器，不在当前范围内；是否移除或拆分尚待决定。 |
 | [`crear_proyecto.py`](../crear_proyecto.py) | 为已商定的项目创建上下文笔记与文件夹。 |
 | [`actualizar_indice.py`](../actualizar_indice.py) | 生成或检查总索引与节点索引。 |
 | [`00_CORE/schemas/validate.py`](../00_CORE/schemas/validate.py) | 检查上下文笔记与配置；使用 --cierre 核查一次操作。 |
 | [`00_CORE/schemas/note_index.py`](../00_CORE/schemas/note_index.py) | 计算并检查可编辑笔记的行号范围。 |
 | [`00_CORE/schemas/registrar_cambios.py`](../00_CORE/schemas/registrar_cambios.py) | 记录修改者、变更文件并保留历史。 |
-| [`tests/conftest.py`](../tests/conftest.py) · [`tests/test_crear_proyecto.py`](../tests/test_crear_proyecto.py) · [`tests/test_indice.py`](../tests/test_indice.py) · [`tests/test_instalar.py`](../tests/test_instalar.py) · [`tests/test_kit.py`](../tests/test_kit.py) · [`tests/test_mantenimiento.py`](../tests/test_mantenimiento.py) · [`tests/test_nodos.py`](../tests/test_nodos.py) · [`tests/test_validate.py`](../tests/test_validate.py) | 共享测试准备，以及创建、索引、安装、打包、维护、节点和验证测试。 |
+| [`tests/conftest.py`](../tests/conftest.py) · [`tests/test_crear_proyecto.py`](../tests/test_crear_proyecto.py) · [`tests/test_indice.py`](../tests/test_indice.py) · [`tests/test_kit.py`](../tests/test_kit.py) · [`tests/test_mantenimiento.py`](../tests/test_mantenimiento.py) · [`tests/test_nodos.py`](../tests/test_nodos.py) · [`tests/test_validate.py`](../tests/test_validate.py) | 共享测试准备，以及创建、索引、打包、维护、节点和验证测试。 |
 
 ## 仓库与署名
 

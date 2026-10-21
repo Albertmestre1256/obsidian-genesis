@@ -13,8 +13,6 @@ labels: bug
 
 **IA utilizada (si corresponde):**
 
-**¿Bóveda nueva o existente?:**
-
 **Pasos para reproducirlo:**
 1.
 2.

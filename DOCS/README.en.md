@@ -9,12 +9,12 @@ descripcion: "What each kit document contains, what it does and when to consult 
 > - Líneas 27–37: Contents of this guide
 > - Líneas 38–47: Entry points
 > - Líneas 48–65: Rules and projects
-> - Líneas 66–84: Help
-> - Líneas 85–98: Integrations and settings
-> - Líneas 99–112: Python and tests
-> - Líneas 113–123: Repository and credits
-> - Líneas 124–132: Optional resources
-> - Líneas 133–145: Files created during use
+> - Líneas 66–83: Help
+> - Líneas 84–97: Integrations and settings
+> - Líneas 98–110: Python and tests
+> - Líneas 111–121: Repository and credits
+> - Líneas 122–130: Optional resources
+> - Líneas 131–143: Files created during use
 
 # Guide to the kit documents and tools
 
@@ -72,7 +72,6 @@ You do not need to read everything to begin: follow the main README and answer y
 | [`DOCS/chatgpt.md`](../DOCS/chatgpt.md) | ChatGPT workflows with a folder or attachments. |
 | [`DOCS/usar-con-otras-ias.md`](../DOCS/usar-con-otras-ias.md) | Everyday requests to resume, draft or save progress. |
 | [`DOCS/primer-proyecto.md`](../DOCS/primer-proyecto.md) | Create a project manually as an alternative. |
-| [`DOCS/instalacion-manual.md`](../DOCS/instalacion-manual.md) | Legacy integration into existing vaults, outside the current scope; kept until removal or separation is decided. |
 | [`DOCS/creacion-para-asistentes.md`](../DOCS/creacion-para-asistentes.md) | Technical reference for an AI preparing project files. |
 | [`DOCS/indice-principal.md`](../DOCS/indice-principal.md) | Maintain the map, local indexes and scalable links. |
 | [`DOCS/mantenimiento.md`](../DOCS/mantenimiento.md) | Update line ranges, maps and logs, and verify closure. |
@@ -102,13 +101,12 @@ Python automates tasks; you do not need to program to use the kit with an AI tha
 
 | Document or tool | Purpose |
 |---|---|
-| [`instalar.py`](../instalar.py) | Legacy installer for existing vaults, outside the current scope; kept until removal or separation is decided. |
 | [`crear_proyecto.py`](../crear_proyecto.py) | Create the context note and folders of an agreed project. |
 | [`actualizar_indice.py`](../actualizar_indice.py) | Generate or check the general index and node indexes. |
 | [`00_CORE/schemas/validate.py`](../00_CORE/schemas/validate.py) | Check context notes and setup; with --cierre, verify an operation. |
 | [`00_CORE/schemas/note_index.py`](../00_CORE/schemas/note_index.py) | Compute and check line ranges in editable notes. |
 | [`00_CORE/schemas/registrar_cambios.py`](../00_CORE/schemas/registrar_cambios.py) | Record authorship, changed files and preserved history. |
-| [`tests/conftest.py`](../tests/conftest.py) · [`tests/test_crear_proyecto.py`](../tests/test_crear_proyecto.py) · [`tests/test_indice.py`](../tests/test_indice.py) · [`tests/test_instalar.py`](../tests/test_instalar.py) · [`tests/test_kit.py`](../tests/test_kit.py) · [`tests/test_mantenimiento.py`](../tests/test_mantenimiento.py) · [`tests/test_nodos.py`](../tests/test_nodos.py) · [`tests/test_validate.py`](../tests/test_validate.py) | Shared fixtures and tests for creation, indexes, installation, packaging, maintenance, nodes and validation. |
+| [`tests/conftest.py`](../tests/conftest.py) · [`tests/test_crear_proyecto.py`](../tests/test_crear_proyecto.py) · [`tests/test_indice.py`](../tests/test_indice.py) · [`tests/test_kit.py`](../tests/test_kit.py) · [`tests/test_mantenimiento.py`](../tests/test_mantenimiento.py) · [`tests/test_nodos.py`](../tests/test_nodos.py) · [`tests/test_validate.py`](../tests/test_validate.py) | Shared fixtures and tests for creation, indexes, packaging, maintenance, nodes and validation. |
 
 ## Repository and credits
 

@@ -9,12 +9,12 @@ descripcion: "Inhalt und Zweck der Kit-Dokumente und wann sie hilfreich sind."
 > - Líneas 27–37: Inhaltsverzeichnis
 > - Líneas 38–47: Einstieg
 > - Líneas 48–65: Regeln und Projekte
-> - Líneas 66–84: Hilfe
-> - Líneas 85–98: Integrationen und Einstellungen
-> - Líneas 99–112: Python und Tests
-> - Líneas 113–123: Repository und Credits
-> - Líneas 124–132: Optionale Ressourcen
-> - Líneas 133–145: Beim Verwenden erzeugte Dateien
+> - Líneas 66–83: Hilfe
+> - Líneas 84–97: Integrationen und Einstellungen
+> - Líneas 98–110: Python und Tests
+> - Líneas 111–121: Repository und Credits
+> - Líneas 122–130: Optionale Ressourcen
+> - Líneas 131–143: Beim Verwenden erzeugte Dateien
 
 # Wegweiser zu den Dokumenten und Werkzeugen des Kits
 
@@ -72,7 +72,6 @@ Du musst zum Start nicht alles lesen: Folge dem Haupt-README und beantworte die 
 | [`DOCS/chatgpt.md`](../DOCS/chatgpt.md) | ChatGPT-Abläufe mit Ordner oder Anhängen. |
 | [`DOCS/usar-con-otras-ias.md`](../DOCS/usar-con-otras-ias.md) | Alltägliche Anfragen zum Fortsetzen, Schreiben oder Speichern von Fortschritten. |
 | [`DOCS/primer-proyecto.md`](../DOCS/primer-proyecto.md) | Ein Projekt alternativ von Hand anlegen. |
-| [`DOCS/instalacion-manual.md`](../DOCS/instalacion-manual.md) | Frühere Integration in bestehende Vaults, außerhalb des aktuellen Umfangs; bleibt erhalten, bis über Entfernen oder Auslagern entschieden ist. |
 | [`DOCS/creacion-para-asistentes.md`](../DOCS/creacion-para-asistentes.md) | Technische Referenz für die KI beim Erstellen von Projektdateien. |
 | [`DOCS/indice-principal.md`](../DOCS/indice-principal.md) | Übersicht, lokale Indizes und skalierbare Verknüpfungen pflegen. |
 | [`DOCS/mantenimiento.md`](../DOCS/mantenimiento.md) | Zeilenbereiche, Übersichten und Protokoll aktualisieren; Abschluss prüfen. |
@@ -102,13 +101,12 @@ Python automatisiert Aufgaben. Mit einer KI, die Dateien verwalten kann, brauchs
 
 | Dokument oder Werkzeug | Zweck |
 |---|---|
-| [`instalar.py`](../instalar.py) | Früheres Installationsprogramm für bestehende Vaults, außerhalb des aktuellen Umfangs; bleibt erhalten, bis über Entfernen oder Auslagern entschieden ist. |
 | [`crear_proyecto.py`](../crear_proyecto.py) | Kontextnotiz und Ordner eines vereinbarten Projekts erstellen. |
 | [`actualizar_indice.py`](../actualizar_indice.py) | Allgemeinen Index und Knotenindizes erzeugen oder prüfen. |
 | [`00_CORE/schemas/validate.py`](../00_CORE/schemas/validate.py) | Kontextnotizen und Einrichtung prüfen; mit --cierre einen Vorgang abgleichen. |
 | [`00_CORE/schemas/note_index.py`](../00_CORE/schemas/note_index.py) | Zeilenbereiche bearbeitbarer Notizen berechnen und prüfen. |
 | [`00_CORE/schemas/registrar_cambios.py`](../00_CORE/schemas/registrar_cambios.py) | Urheberschaft und geänderte Dateien mit erhaltener Historie protokollieren. |
-| [`tests/conftest.py`](../tests/conftest.py) · [`tests/test_crear_proyecto.py`](../tests/test_crear_proyecto.py) · [`tests/test_indice.py`](../tests/test_indice.py) · [`tests/test_instalar.py`](../tests/test_instalar.py) · [`tests/test_kit.py`](../tests/test_kit.py) · [`tests/test_mantenimiento.py`](../tests/test_mantenimiento.py) · [`tests/test_nodos.py`](../tests/test_nodos.py) · [`tests/test_validate.py`](../tests/test_validate.py) | Gemeinsame Testvorbereitung sowie Tests für Erstellung, Indizes, Installation, Paket, Pflege, Knoten und Validierung. |
+| [`tests/conftest.py`](../tests/conftest.py) · [`tests/test_crear_proyecto.py`](../tests/test_crear_proyecto.py) · [`tests/test_indice.py`](../tests/test_indice.py) · [`tests/test_kit.py`](../tests/test_kit.py) · [`tests/test_mantenimiento.py`](../tests/test_mantenimiento.py) · [`tests/test_nodos.py`](../tests/test_nodos.py) · [`tests/test_validate.py`](../tests/test_validate.py) | Gemeinsame Testvorbereitung sowie Tests für Erstellung, Indizes, Paket, Pflege, Knoten und Validierung. |
 
 ## Repository und Credits
 

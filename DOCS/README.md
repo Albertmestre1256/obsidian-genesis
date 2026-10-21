@@ -9,12 +9,12 @@ descripcion: "Qué contiene cada documento del kit, para qué sirve y cuándo co
 > - Líneas 27–37: Índice de esta guía
 > - Líneas 38–47: Entradas
 > - Líneas 48–65: Reglas y proyectos
-> - Líneas 66–84: Ayuda
-> - Líneas 85–98: Integraciones y ajustes
-> - Líneas 99–112: Python y pruebas
-> - Líneas 113–123: Repositorio y créditos
-> - Líneas 124–132: Recursos opcionales
-> - Líneas 133–145: Archivos creados durante el uso
+> - Líneas 66–83: Ayuda
+> - Líneas 84–97: Integraciones y ajustes
+> - Líneas 98–110: Python y pruebas
+> - Líneas 111–121: Repositorio y créditos
+> - Líneas 122–130: Recursos opcionales
+> - Líneas 131–143: Archivos creados durante el uso
 
 # Guía de documentos y herramientas del kit
 
@@ -72,7 +72,6 @@ No necesitás leer todo para empezar: seguí el README principal y respondé las
 | [`DOCS/chatgpt.md`](../DOCS/chatgpt.md) | Recorridos de ChatGPT con carpeta o archivos adjuntos. |
 | [`DOCS/usar-con-otras-ias.md`](../DOCS/usar-con-otras-ias.md) | Pedidos de uso diario para retomar, redactar o guardar avances. |
 | [`DOCS/primer-proyecto.md`](../DOCS/primer-proyecto.md) | Crear un proyecto a mano como alternativa. |
-| [`DOCS/instalacion-manual.md`](../DOCS/instalacion-manual.md) | Integración heredada en bóvedas existentes, fuera del alcance actual; se conserva hasta decidir su retiro o separación. |
 | [`DOCS/creacion-para-asistentes.md`](../DOCS/creacion-para-asistentes.md) | Referencia técnica para que la IA prepare archivos del proyecto. |
 | [`DOCS/indice-principal.md`](../DOCS/indice-principal.md) | Mantener el mapa, los índices locales y sus enlaces escalables. |
 | [`DOCS/mantenimiento.md`](../DOCS/mantenimiento.md) | Actualizar rangos, mapas y registro, y comprobar el cierre. |
@@ -102,13 +101,12 @@ Python automatiza tareas; no hace falta programar para usar el kit con una IA qu
 
 | Documento o herramienta | Función |
 |---|---|
-| [`instalar.py`](../instalar.py) | Instalador heredado para bóvedas existentes, fuera del alcance actual; se conserva hasta decidir su retiro o separación. |
 | [`crear_proyecto.py`](../crear_proyecto.py) | Crear ficha y carpetas de un proyecto acordado. |
 | [`actualizar_indice.py`](../actualizar_indice.py) | Generar o comprobar el índice general y los índices de nodos. |
 | [`00_CORE/schemas/validate.py`](../00_CORE/schemas/validate.py) | Revisar fichas/configuración; con --cierre, contrastar una operación. |
 | [`00_CORE/schemas/note_index.py`](../00_CORE/schemas/note_index.py) | Calcular y comprobar los rangos de líneas de notas editables. |
 | [`00_CORE/schemas/registrar_cambios.py`](../00_CORE/schemas/registrar_cambios.py) | Registrar autoría, archivos modificados e historial conservado. |
-| [`tests/conftest.py`](../tests/conftest.py) · [`tests/test_crear_proyecto.py`](../tests/test_crear_proyecto.py) · [`tests/test_indice.py`](../tests/test_indice.py) · [`tests/test_instalar.py`](../tests/test_instalar.py) · [`tests/test_kit.py`](../tests/test_kit.py) · [`tests/test_mantenimiento.py`](../tests/test_mantenimiento.py) · [`tests/test_nodos.py`](../tests/test_nodos.py) · [`tests/test_validate.py`](../tests/test_validate.py) | Preparación compartida y pruebas de creación, índices, instalación, paquete, mantenimiento, nodos y validación. |
+| [`tests/conftest.py`](../tests/conftest.py) · [`tests/test_crear_proyecto.py`](../tests/test_crear_proyecto.py) · [`tests/test_indice.py`](../tests/test_indice.py) · [`tests/test_kit.py`](../tests/test_kit.py) · [`tests/test_mantenimiento.py`](../tests/test_mantenimiento.py) · [`tests/test_nodos.py`](../tests/test_nodos.py) · [`tests/test_validate.py`](../tests/test_validate.py) | Preparación compartida y pruebas de creación, índices, paquete, mantenimiento, nodos y validación. |
 
 ## Repositorio y créditos
 
