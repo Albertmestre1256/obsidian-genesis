@@ -50,9 +50,13 @@ def test_rangos_apuntan_a_secciones_y_respetan_cuerpo(eol, bom):
 def test_atribucion_traducida_queda_primera(atribucion):
     text = atribucion + '\n\n# Kit\n## Uso\nHola\n'
     result = lines.render(text)
-    assert result.splitlines()[0] == atribucion
-    assert result.splitlines()[1].startswith('> [!info]')
-    assert result.splitlines()[2] == '> - Líneas 1–1: Atribución'
+    salida = result.splitlines()
+    # La línea en blanco evita que GitHub muestre atribución e índice como una sola cita.
+    assert salida[0] == atribucion and salida[1] == '' and salida[2].startswith('> [!info]')
+    assert salida[3] == '> - Líneas 1–1: Atribución' and salida[4].startswith('> - Líneas 3–')
+    for titulo in ('# Kit', '## Uso'):
+        inicio = int(re.search(r'Líneas (\d+)–\d+: ' + titulo.lstrip('# '), result).group(1))
+        assert salida[inicio - 1] == titulo
     assert lines.render(result) == result
 
 
@@ -755,3 +759,326 @@ def test_lectura_vieja_se_rechaza_y_no_deja_bloqueo(tmp_path):
         lines.guardar(target, b'Lectura anterior', b'Mi cambio')
     assert target.read_bytes() == b'Cambio de otro asistente'
     assert sorted(p.name for p in tmp_path.iterdir()) == ['Nota.md']
+
+
+@pytest.mark.parametrize('accion', [[], {}, ['crear'], 3])
+def test_accion_no_textual_es_error_controlado(tmp_path, accion):
+    data = event(tmp_path)
+    data['cambios'] = [{'accion': accion, 'ruta': 'Notas/Apunte.md'}]
+    with pytest.raises(ValueError):
+        log.registrar(tmp_path, data, '2026-10-09T10:00:00-03:00')
+    assert not (tmp_path / '00_CORE').exists()
+
+
+def test_bloqueo_retirado_por_otro_no_oculta_el_registro(tmp_path, monkeypatch):
+    original = log._registrar
+
+    def registrar_y_retirar(root, *args):
+        resultado = original(root, *args)
+        bloqueo = root / '00_CORE/logs/.registro-cambios.lock'
+        if bloqueo.exists():  # La simulación previa no toma el bloqueo.
+            bloqueo.unlink()
+        return resultado
+
+    monkeypatch.setattr(log, '_registrar', registrar_y_retirar)
+    resultado = log.registrar(tmp_path, event(tmp_path), '2026-10-09T10:00:00-03:00')
+    assert isinstance(resultado, dict)
+    assert (tmp_path / log.REGISTRO).is_file()
+
+
+@pytest.mark.skipif(os.name == 'nt', reason='Permisos POSIX')
+def test_guardar_conserva_permisos_de_la_nota(tmp_path):
+    nota = tmp_path / 'Nota.md'
+    nota.write_text('# Título\nTexto.\n', encoding='utf-8')
+    os.chmod(str(nota), 0o644)
+    raw = nota.read_bytes()
+    assert lines.guardar(nota, raw, lines.contenido(raw))
+    assert nota.stat().st_mode & 0o777 == 0o644
+
+
+@pytest.mark.skipif(os.name == 'nt', reason='Permisos POSIX')
+def test_guardar_nota_nueva_respeta_la_mascara(tmp_path):
+    anterior = os.umask(0o022)
+    try:
+        nota = tmp_path / 'Nueva.md'
+        assert lines.guardar(nota, None, b'# Nueva\n')
+    finally:
+        os.umask(anterior)
+    assert nota.stat().st_mode & 0o777 == 0o644
+
+
+@pytest.mark.parametrize('separador', ['\x0c', '\u2028', '\x85', '\x0b'])
+def test_rangos_cuentan_solo_saltos_de_linea_reales(separador):
+    texto = '# Uno\nTexto' + separador + 'pegado de un PDF.\n## Dos\nFin.\n'
+    salida = lines.render(texto).split('\n')
+    rango = next(l for l in salida if l.endswith(': Dos'))
+    inicio = int(re.search(r'Líneas (\d+)–', rango).group(1))
+    assert salida[inicio - 1] == '## Dos'
+    assert lines.contenido(lines.render(texto).encode('utf-8')) == lines.render(texto).encode('utf-8')
+
+
+@pytest.mark.parametrize('contenedor', ['_archivo', '01_FUENTES', '.trash', 'venv'])
+def test_boveda_dentro_de_carpeta_con_nombre_protegido(tmp_path, monkeypatch, contenedor):
+    vault = tmp_path / contenedor / 'boveda'
+    (vault / 'Notas').mkdir(parents=True)
+    (vault / '00_CORE/atoms').mkdir(parents=True)
+    (vault / 'INDICE.md').write_text('# Mapa\n', encoding='utf-8')
+    (vault / '00_CORE/atoms/00_vault-rules.md').write_text('# Reglas\n', encoding='utf-8')
+    (vault / 'Notas/Apunte.md').write_text('# Apunte\nTexto.\n', encoding='utf-8')
+    (vault / '01_FUENTES').mkdir()
+    (vault / '01_FUENTES/Original.md').write_text('# Original\n', encoding='utf-8')
+    assert {p.name for p in lines.archivos(vault)} == {'Apunte.md', 'INDICE.md', '00_vault-rules.md'}
+    assert lines.main(['check', '--vault', str(vault)]) == 1
+    monkeypatch.chdir(vault)
+    assert lines.main(['check', 'Notas/Apunte.md']) == 1
+    assert lines.main(['check', '01_FUENTES/Original.md']) == 2
+
+
+@pytest.mark.parametrize('carpeta', ['01_FUENTES', '00_CORE/logs/historial', '_archivo'])
+def test_raiz_protegida_sigue_rechazada(tmp_path, carpeta):
+    (tmp_path / carpeta).mkdir(parents=True)
+    with pytest.raises(ValueError):
+        list(lines.archivos(tmp_path / carpeta))
+
+
+def _enlazar(enlace, destino):
+    """Symlink o, en Windows sin privilegios, junction; False si la cuenta no lo permite."""
+    try:
+        enlace.symlink_to(destino, target_is_directory=True)
+        return True
+    except OSError:
+        if os.name != 'nt':
+            return False
+        return subprocess.run(['cmd', '/c', 'mklink', '/J', str(enlace), str(destino)],
+                              capture_output=True).returncode == 0
+
+
+def _desenlazar(enlace):
+    os.unlink(str(enlace)) if enlace.is_symlink() else os.rmdir(str(enlace))
+
+
+def test_resumen_con_marca_no_falsifica_entradas(tmp_path):
+    falso = '%% cambio: {"id": "falso", "verificado": true} %%'
+    data = event(tmp_path, resumen=falso)
+    log.registrar(tmp_path, data, '2026-10-20T10:00:00-03:00')
+    raw = (tmp_path / log.REGISTRO).read_bytes()
+    _, entradas = log.entradas(raw)
+    assert [e['id'] for e in entradas] == ['test-1']
+    assert entradas[0]['resumen'] == falso
+    marcas = [l for l in raw.decode('utf-8').splitlines() if l.startswith('%%')]
+    assert len(marcas) == 1 and marcas[0].count('%') == 4
+
+
+def test_porcentaje_en_resumen_se_conserva_y_no_corta_el_comentario(tmp_path):
+    data = event(tmp_path, resumen='Avance al 100% del plan; 50 %% de lo previsto.')
+    log.registrar(tmp_path, data, '2026-10-20T10:00:00-03:00')
+    raw = (tmp_path / log.REGISTRO).read_bytes()
+    assert log.entradas(raw)[1][0]['resumen'] == data['resumen']
+    assert '100&#37; del plan' in raw.decode('utf-8')
+
+
+class _Reanalisis:
+    def __init__(self, tag):
+        import stat
+        self.st_mode = stat.S_IFDIR
+        self.st_file_attributes = 0x400
+        self.st_reparse_tag = tag
+
+
+@pytest.mark.parametrize('tag,enlace', [(0xA0000003, True), (0xA000000C, True), (0xA000001D, True), (None, True),
+                                        (0, False), (0x9000001A, False), (0x9000601A, False), (0x80000013, False),
+                                        (0x80000017, False), (0x9000001C, False)])
+def test_solo_junctions_y_symlinks_cuentan_como_enlace(tag, enlace):
+    assert lines.es_enlace(_Reanalisis(tag)) is enlace
+
+
+def test_boveda_bajo_enlace_externo_se_acepta_y_el_interno_no(tmp_path):
+    real = tmp_path / 'real'
+    boveda = real / 'boveda'
+    (boveda / 'Notas').mkdir(parents=True)
+    (boveda / '00_CORE/atoms').mkdir(parents=True)
+    (boveda / 'INDICE.md').write_text('# Mapa\n', encoding='utf-8')
+    (boveda / '00_CORE/atoms/00_vault-rules.md').write_text('# Reglas\n', encoding='utf-8')
+    (boveda / 'Notas/Apunte.md').write_text('# Apunte\n', encoding='utf-8')
+    enlace = tmp_path / 'enlace'
+    if not _enlazar(enlace, real):
+        pytest.skip('La cuenta no permite crear enlaces ni junctions')
+    try:
+        assert {p.name for p in lines.archivos(enlace / 'boveda')} == {'Apunte.md', 'INDICE.md', '00_vault-rules.md'}
+        fuera = tmp_path / 'fuera'
+        fuera.mkdir()
+        interno = boveda / 'externo'
+        if _enlazar(interno, fuera):
+            try:
+                with pytest.raises(ValueError):
+                    list(lines.archivos(enlace / 'boveda'))
+            finally:
+                _desenlazar(interno)
+    finally:
+        _desenlazar(enlace)
+
+
+def _marcar(vault):
+    (vault / '00_CORE/atoms').mkdir(parents=True, exist_ok=True)
+    (vault / 'INDICE.md').write_text('# Mapa\n', encoding='utf-8')
+    (vault / '00_CORE/atoms/00_vault-rules.md').write_text('# Reglas\n', encoding='utf-8')
+    return vault
+
+
+@pytest.mark.parametrize('interna', ['01_FUENTES/sub', '00_CORE/logs/historial/2026', '_archivo/x'])
+def test_carpeta_protegida_dentro_de_la_boveda_se_rechaza(tmp_path, interna):
+    vault = _marcar(tmp_path / 'boveda')
+    (vault / interna).mkdir(parents=True)
+    (vault / interna / 'Original.md').write_text('# Original\n', encoding='utf-8')
+    with pytest.raises(ValueError):
+        list(lines.archivos(vault / interna))
+
+
+def test_check_desde_una_carpeta_protegida_no_reescribe(tmp_path, monkeypatch):
+    vault = _marcar(tmp_path / 'boveda')
+    (vault / '01_FUENTES/sub').mkdir(parents=True)
+    original = vault / '01_FUENTES/sub/Original.md'
+    original.write_text('# Original\n', encoding='utf-8')
+    monkeypatch.chdir(vault / '01_FUENTES')
+    assert lines.main(['check', 'sub/Original.md']) == 2
+    assert lines.main(['apply', 'sub/Original.md']) == 2
+    assert original.read_text(encoding='utf-8') == '# Original\n'
+
+
+def test_modo_notas_acepta_boveda_bajo_enlace_externo(tmp_path):
+    real = tmp_path / 'real'
+    vault = _marcar(real / 'boveda')
+    (vault / 'Notas').mkdir()
+    (vault / 'Notas/Apunte.md').write_text('# Apunte\n', encoding='utf-8')
+    enlace = tmp_path / 'enlace'
+    if not _enlazar(enlace, real):
+        pytest.skip('La cuenta no permite crear enlaces ni junctions')
+    try:
+        assert lines.main(['apply', str(enlace / 'boveda/Notas/Apunte.md')]) == 0
+        assert lines.main(['check', str(enlace / 'boveda/Notas/Apunte.md')]) == 0
+    finally:
+        _desenlazar(enlace)
+
+
+def test_registro_bajo_enlace_externo_y_enlace_interno_rechazado(tmp_path):
+    real = tmp_path / 'real'
+    vault = _marcar(real / 'boveda')
+    enlace = tmp_path / 'enlace'
+    if not _enlazar(enlace, real):
+        pytest.skip('La cuenta no permite crear enlaces ni junctions')
+    try:
+        raiz = enlace / 'boveda'
+        assert log.registrar(raiz, event(raiz), '2026-10-20T10:00:00-03:00')['estado'] == 'registrado'
+        fuera = tmp_path / 'fuera'
+        fuera.mkdir()
+        (fuera / 'x.md').write_text('# Externo\n', encoding='utf-8')
+        interno = vault / 'Externo'
+        if _enlazar(interno, fuera):
+            try:
+                cambio = [{'accion': 'editar', 'ruta': 'Externo/x.md'}]
+                with pytest.raises(ValueError):
+                    log.registrar(raiz, event(raiz, 'test-2', cambios=cambio), '2026-10-20T11:00:00-03:00')
+            finally:
+                _desenlazar(interno)
+    finally:
+        _desenlazar(enlace)
+
+
+def _envejecer(path, minutos):
+    viejo = time.time() - minutos * 60
+    os.utime(str(path), (viejo, viejo))
+
+
+def test_bloqueo_huerfano_de_nota_explica_como_recuperarse(tmp_path):
+    target = tmp_path / 'Nota.md'
+    target.write_bytes(b'Original')
+    lock = tmp_path / '.Nota.md.kit-lock'
+    lock.write_bytes(b'pid=1 inicio=ayer')
+    _envejecer(lock, 90)
+    with pytest.raises(ValueError) as error:
+        lines.guardar(target, b'Original', b'Cambio')
+    mensaje = str(error.value)
+    assert 'en curso' in mensaje and str(lock) in mensaje
+    assert 'más de 10 minutos' in mensaje and 'huérfano' in mensaje and 'TROUBLESHOOTING' in mensaje
+    assert lock.read_bytes() == b'pid=1 inicio=ayer' and target.read_bytes() == b'Original'
+
+
+def test_bloqueo_reciente_no_se_presenta_como_huerfano_probable(tmp_path):
+    target = tmp_path / 'Nota.md'
+    lock = tmp_path / '.Nota.md.kit-lock'
+    lock.write_bytes(b'')
+    with pytest.raises(ValueError) as error:
+        lines.guardar(target, None, b'Nueva')
+    mensaje = str(error.value)
+    assert 'más de 10 minutos' not in mensaje and 'borrá' not in mensaje and 'TROUBLESHOOTING' in mensaje
+    assert not target.exists()
+
+
+def test_bloqueo_huerfano_del_registro_explica_como_recuperarse(tmp_path):
+    data = event(tmp_path)
+    lock = tmp_path / '00_CORE/logs/.registro-cambios.lock'
+    lock.parent.mkdir(parents=True)
+    lock.write_bytes(b'')
+    _envejecer(lock, 60)
+    with pytest.raises(ValueError, match='huérfano') as error:
+        log.registrar(tmp_path, data, '2026-10-21T10:00:00-03:00')
+    assert 'Otro registro' in str(error.value) and lock.exists()
+
+
+def test_guia_de_bloqueos_existe_en_la_ayuda():
+    texto = (ROOT / 'DOCS/TROUBLESHOOTING.md').read_text(encoding='utf-8')
+    assert '\n## Aparece un bloqueo\n' in texto.replace('\r\n', '\n')
+
+
+def test_bloqueo_propio_queda_identificado_mientras_escribe(tmp_path):
+    target = tmp_path / 'Nota.md'
+    with lines.bloqueo(target):
+        contenido = (tmp_path / '.Nota.md.kit-lock').read_bytes()
+    pid, inicio = contenido.decode('utf-8').split()
+    assert pid == 'pid={}'.format(os.getpid())
+    assert datetime.fromisoformat(inicio[len('inicio='):]).utcoffset() is not None
+    assert not list(tmp_path.glob('*.kit-lock'))
+
+
+def _fallar_marca():
+    raise OSError(errno.ENOSPC, 'Disco lleno')
+
+
+def test_bloqueo_de_nota_se_retira_si_falla_su_marca(tmp_path, monkeypatch):
+    target = tmp_path / 'Nota.md'
+    target.write_bytes(b'Original')
+    monkeypatch.setattr(lines, 'marca_bloqueo', _fallar_marca)
+    with pytest.raises(OSError):
+        lines.guardar(target, b'Original', b'Cambio')
+    assert not list(tmp_path.glob('*.kit-lock')) and target.read_bytes() == b'Original'
+    monkeypatch.undo()
+    assert lines.guardar(target, b'Original', b'Cambio') and target.read_bytes() == b'Cambio'
+
+
+def test_bloqueo_del_registro_se_retira_si_falla_su_marca(tmp_path, monkeypatch):
+    lock = tmp_path / '00_CORE/logs/.registro-cambios.lock'
+    monkeypatch.setattr(log.lineas, 'marca_bloqueo', _fallar_marca)
+    with pytest.raises(OSError):
+        log.registrar(tmp_path, event(tmp_path), '2026-10-20T10:00:00-03:00')
+    assert not lock.exists()
+    monkeypatch.undo()
+    assert log.registrar(tmp_path, event(tmp_path), '2026-10-20T10:00:00-03:00')['estado'] == 'registrado'
+
+
+def test_bloqueo_del_registro_queda_identificado_mientras_registra(tmp_path, monkeypatch):
+    lock = tmp_path / '00_CORE/logs/.registro-cambios.lock'
+    original, vistos = log._registrar, []
+
+    def espiar(*args):
+        vistos.append(lock.read_bytes() if lock.exists() else None)
+        return original(*args)
+    monkeypatch.setattr(log, '_registrar', espiar)
+    assert log.registrar(tmp_path, event(tmp_path), '2026-10-20T10:00:00-03:00')['estado'] == 'registrado'
+    assert vistos[0] is None and vistos[-1].startswith(b'pid=') and not lock.exists()
+
+
+def test_bloqueo_de_antiguedad_desconocida_remite_a_la_guia(tmp_path):
+    mensaje = lines.mensaje_bloqueo(tmp_path / '.ya-retirado.kit-lock')
+    assert 'antigüedad desconocida' in mensaje and 'reintentá antes de borrar' in mensaje
+    assert 'confirmación a la persona' in mensaje
+    assert 'TROUBLESHOOTING' in mensaje

@@ -90,7 +90,7 @@ def evento(root, data, comprobar=True):
         raise ValueError('cambios debe incluir los archivos efectivamente cambiados.')
     result['cambios'] = []
     for change in changes:
-        if not isinstance(change, dict) or change.get('accion') not in ACCIONES:
+        if not isinstance(change, dict) or not isinstance(change.get('accion'), str) or change['accion'] not in ACCIONES:
             raise ValueError('Acción de cambio no reconocida.')
         item = {'accion': change['accion'], 'ruta': relativa(change.get('ruta'))}
         if item['ruta'] == REGISTRO or item['ruta'].startswith(ARCHIVO + '/'):
@@ -157,11 +157,13 @@ def _registrar(root, data, fecha=None, dry_run=False):
         base = lineas.sin_indice(before.decode('utf-8-sig'))
     event['fecha'] = now.isoformat()
     author = 'IA:{} ({})'.format(event['ia'], ', '.join([event['herramienta']] + ([event['modelo']] if 'modelo' in event else [])))
-    esc = lambda s: s.replace('|', '\\|').replace('<', '&lt;').replace('>', '&gt;')
+    # '%' como entidad: un texto libre no puede abrir comentarios ni imitar una entrada.
+    esc = lambda s: s.replace('%', '&#37;').replace('|', '\\|').replace('<', '&lt;').replace('>', '&gt;')
     added = '\n## {} · {}\n\nAutor: {}. Verificado: {}.\n\n{}\n\n| Acción | Ruta | Desde | SHA-256 del resultado |\n|---|---|---|---|\n'.format(event['fecha'], event['id'], esc(author), 'sí' if event['verificado'] else 'no', esc(event['resumen']))
     for change in event['cambios']:
         added += '| {} | {} | {} | {} |\n'.format(change['accion'], esc(change['ruta']), esc(change.get('desde', '')), change.get('sha256', 'archivo eliminado; no es un hash comprobado'))
-    added += '\n%% cambio: ' + json.dumps(event, ensure_ascii=False, sort_keys=True) + ' %%\n'
+    # '%' escapado en el JSON: el comentario de Obsidian no se cierra antes de tiempo.
+    added += '\n%% cambio: ' + json.dumps(event, ensure_ascii=False, sort_keys=True).replace('%', '\\u0025') + ' %%\n'
     after = lineas.contenido((base.rstrip() + '\n' + added).encode('utf-8'))
     if not rotate and before and before.startswith(b'\xef\xbb\xbf'):
         after = b'\xef\xbb\xbf' + after
@@ -187,15 +189,21 @@ def registrar(root, data, fecha=None, dry_run=False):
     lock = lineas.ruta_real(root / '00_CORE/logs/.registro-cambios.lock')
     lock.parent.mkdir(parents=True, exist_ok=True)
     try:
-        with lock.open('xb') as stream:
-            identity = os.fstat(stream.fileno())
+        stream = lock.open('xb')
     except FileExistsError:
-        raise ValueError('Otro registro está en curso; releer y reintentar después. No retirar su bloqueo.')
+        raise ValueError(lineas.mensaje_bloqueo(lock, 'Otro registro'))
+    identity = os.fstat(stream.fileno())
     try:
+        # La marca se escribe bajo el finally: si falla, el bloqueo propio se retira.
+        with stream:
+            stream.write(lineas.marca_bloqueo())
         return _registrar(root, data, fecha)
     finally:
-        if os.path.samestat(identity, lineas.ruta_real(lock).lstat()):
-            lock.unlink()
+        try:
+            if os.path.samestat(identity, lineas.ruta_real(lock).lstat()):
+                lock.unlink()
+        except FileNotFoundError:
+            pass
 
 
 def main(argv=None):

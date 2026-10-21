@@ -30,7 +30,7 @@ NODO_INICIO = '%% node-index:start %%'
 NODO_FIN = '%% node-index:end %%'
 IGNORAR = {'.git', '__pycache__', '.pytest_cache', '.trash', '.obsidian-mcp',
            'node_modules', '.venv', 'venv', '.DS_Store', 'Thumbs.db', 'desktop.ini'}
-OCULTAS = {'.claude', '.opencode', '.obsidian', '.github', '.gitignore'}
+OCULTAS = {'.claude', '.agents', '.opencode', '.obsidian', '.github', '.gitignore'}
 # De .obsidian solo se catalogan los ajustes del kit: Obsidian crea otros al usarse
 # (apariencia, atajos, plugins, sesiones) y no deben desactualizar el índice.
 AJUSTES_KIT = {'app.json', 'core-plugins.json', 'graph.json', 'templates.json'}
@@ -55,16 +55,49 @@ def cabecera(raiz):
             text = text.replace('[{}]({})'.format(label, path), label)
     return text
 
+# Marcas de una bóveda del kit: el ancestro más externo que las tiene es el límite de la revisión.
+MARCAS = ('INDICE.md', '00_CORE/atoms/00_vault-rules.md')
 
-def ruta_real(ruta):
+
+def es_enlace(info):
+    """Symlink, junction u otro enlace de Windows (etiqueta de tipo name surrogate)."""
+    if stat.S_ISLNK(info.st_mode):
+        return True
+    if getattr(info, 'st_file_attributes', 0) & 0x400:
+        tag = getattr(info, 'st_reparse_tag', None)
+        # Nube, deduplicación o compresión no redirigen; 0 es un reanálisis que lstat ya atravesó.
+        return tag is None or bool(tag & 0x20000000)
+    return False
+
+
+def raiz_boveda(ruta):
+    """Ancestro más externo con las marcas del kit, o None si no hay una bóveda reconocible."""
     ruta = Path(os.path.abspath(str(ruta)))
-    for parte in (ruta,) + tuple(ruta.parents):
+    raiz = None
+    for part in (ruta,) + tuple(ruta.parents):
+        # INDICE.md primero: la mayoría de los ancestros no lo tienen y basta una consulta.
+        if (part / MARCAS[0]).is_file() and (part / MARCAS[1]).is_file():
+            raiz = part
+        # Un checkout en .claude/worktrees es una copia propia, no una parte de la bóveda que lo contiene.
+        if part.parent.name.casefold() == 'worktrees' and part.parent.parent.name.casefold() == '.claude':
+            break
+    return raiz
+
+
+def ruta_real(ruta, raiz=None):
+    """Rechazar enlaces desde la ruta hasta la raíz de la bóveda, inclusive; sin raíz, hasta el disco."""
+    ruta = Path(os.path.abspath(str(ruta)))
+    raiz = raiz_boveda(ruta) if raiz is None else Path(os.path.abspath(str(raiz)))
+    tope = os.path.normcase(str(raiz)) if raiz is not None else None
+    for part in (ruta,) + tuple(ruta.parents):
         try:
-            info = parte.lstat()
+            info = part.lstat()
         except FileNotFoundError:
             continue
-        if stat.S_ISLNK(info.st_mode) or getattr(info, 'st_file_attributes', 0) & 0x400:
-            raise ValueError('No se siguen enlaces ni junctions: {}'.format(parte))
+        if es_enlace(info):
+            raise ValueError('No se siguen enlaces ni junctions: {}'.format(part))
+        if os.path.normcase(str(part)) == tope:
+            break
     return ruta
 
 
@@ -164,13 +197,15 @@ def categoria(ruta):
                   'davidkimai-resources': 'Recursos opcionales de davidkimai'}
         return groups.get(parts[1] if len(parts) > 1 else '', 'Configuración y registros comunes')
     return {'DOCS': 'Ayuda', 'PROJECT_TEMPLATE': 'Plantilla de carpetas', '.claude': 'Integración Claude',
-            '.opencode': 'Integración OpenCode',
+            '.opencode': 'Integración OpenCode', '.agents': 'Integración Codex',
             '.obsidian': 'Ajustes de Obsidian', '.github': 'Desarrollo', 'tests': 'Desarrollo'}.get(
                 parts[0], 'Entrada y herramientas' if len(parts) == 1 else 'Carpeta: ' + parts[0])
 
 
 def catalogo(raiz):
     records = []
+    # La raíz ya se validó al planificar; dentro del recorrido basta revisar hasta ella.
+    limite = raiz_boveda(raiz) or raiz
     for base, dirs, files in os.walk(str(raiz), followlinks=False):
         dirs[:] = sorted(d for d in dirs if not omitir(d)
                          and (Path(base).relative_to(raiz).as_posix(), d) != ('.claude', 'worktrees'))
@@ -178,11 +213,11 @@ def catalogo(raiz):
         if en_ajustes:
             dirs[:] = []
         for d in dirs:
-            ruta_real(Path(base) / d)
+            ruta_real(Path(base) / d, limite)
         for name in sorted(files):
             if omitir(name) or (en_ajustes and name not in AJUSTES_KIT):
                 continue
-            path = ruta_real(Path(base) / name)
+            path = ruta_real(Path(base) / name, limite)
             if not path.is_file():
                 raise ValueError('No es un archivo normal: {}'.format(path))
             rel = path.relative_to(raiz).as_posix()
@@ -317,7 +352,7 @@ def bloque(records, hierarchy=None):
         description = m.get('descripcion') or m.get('description') or m.get('titulo') or ('Índice principal de la bóveda' if r['ruta'] == 'INDICE.md' else Path(r['ruta']).suffix.lstrip('.').upper() or 'Archivo sin extensión')
         lines.append('| {} | {} |'.format(link(r['ruta'], labels[r['ruta']]), esc(description[:180])))
     lines += ['', '## Alcance del catálogo', '',
-              'Incluye notas, fuentes, adjuntos, guías y herramientas, además de .claude, .opencode, .obsidian y .github cuando existen. No lee el cuerpo completo de las notas ni los archivos de ajustes para elaborar descripciones.', '',
+              'Incluye notas, fuentes, adjuntos, guías y herramientas, además de .claude, .agents, .opencode, .obsidian y .github cuando existen. No lee el cuerpo completo de las notas ni los archivos de ajustes para elaborar descripciones.', '',
               'Excluye Git, papelera, registro interno del MCP, cachés, dependencias, checkouts de .claude/worktrees, ajustes que Obsidian crea al usarse (solo cataloga los del kit), otros archivos ocultos y nombres habituales de credenciales o claves. No sigue enlaces ni junctions; si los encuentra en el material a catalogar, informa el impedimento y conserva el índice anterior.', '',
               'Los metadatos reconocidos son campos escalares simples del comienzo de notas Markdown; estructuras complejas no se interpretan como proyectos. Todas las notas visibles siguen apareciendo en el catálogo aunque no tengan esos metadatos.', '']
     if notices:
@@ -352,6 +387,12 @@ def planificar(raiz):
     raiz = ruta_real(raiz)
     if not raiz.is_dir():
         raise ValueError('La carpeta de bóveda debe existir.')
+    # Originales, históricos e integraciones se miden desde la raíz de la bóveda (sin marcas, desde el disco),
+    # igual que note_index: indicar una de esas carpetas no crea ni reescribe índices dentro de ella.
+    boveda = raiz_boveda(raiz)
+    if lineador().protegida(raiz, boveda):
+        raise ValueError('La carpeta indicada es original, histórica o una integración; no se actualizan índices: ' + str(raiz))
+    limite = boveda or raiz
     records = catalogo(raiz)
     paths = {record['ruta'] for record in records}
     # Una entrada propia de la bóveda prevalece sobre la del kit.
@@ -360,9 +401,9 @@ def planificar(raiz):
     plan = plan_documento(raiz / 'INDICE.md', bloque(records, hierarchy), INICIO, FIN, cabecera(raiz))
     plan['nodos'], plan['manuales'] = [], []
     for folder, node in hierarchy[0].items():
-        path = ruta_real(raiz / node['ruta'])
+        path = ruta_real(raiz / node['ruta'], limite)
         text = path.read_text(encoding='utf-8')
-        if lineador().protegida(path) or (NODO_INICIO not in text and NODO_FIN not in text):
+        if lineador().protegida(path, boveda) or (NODO_INICIO not in text and NODO_FIN not in text):
             plan['manuales'].append(node['ruta'])
         else:
             plan['nodos'].append(plan_documento(path, bloque_nodo(folder, hierarchy, lectura), NODO_INICIO, NODO_FIN))

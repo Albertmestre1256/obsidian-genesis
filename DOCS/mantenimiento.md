@@ -1,12 +1,13 @@
 > [!info]- Índice de esta nota (líneas)
-> - Líneas 1–9: Este índice
-> - Líneas 11–14: Mantener notas, mapas y registro
-> - Líneas 15–22: Al crear o editar notas
-> - Líneas 23–39: Índices de líneas con Python
-> - Líneas 40–77: Registro identificado y períodos de cinco días
-> - Líneas 78–79: Cierre de la operación
-> - Líneas 80–94: Secuencia de cierre compartida
-> - Líneas 95–99: Sin Python o con archivos adjuntos
+> - Líneas 1–10: Este índice
+> - Líneas 12–15: Mantener notas, mapas y registro
+> - Líneas 16–23: Al crear o editar notas
+> - Líneas 24–40: Índices de líneas con Python
+> - Líneas 41–78: Registro identificado y períodos de cinco días
+> - Líneas 79–80: Cierre de la operación
+> - Líneas 81–95: Secuencia de cierre compartida
+> - Líneas 96–101: Sin Python o con archivos adjuntos
+> - Líneas 102–111: Entregar una copia como ZIP
 
 # Mantener notas, mapas y registro
 
@@ -73,7 +74,7 @@ python 00_CORE/schemas/registrar_cambios.py --destino "ruta-de-la-boveda" --dato
 python 00_CORE/schemas/registrar_cambios.py --destino "ruta-de-la-boveda" --datos "evento-temporal.json"
 ```
 
-El script escribe solo registros e históricos. Archiva antes de renovar, conserva registros incompatibles y bloquea escrituras concurrentes. Si aparece `.registro-cambios.lock`, releer y resolver la operación, sin quitarlo por iniciativa propia. Tras un fallo, puede existir el histórico y seguir vigente el activo anterior; reintentar conserva ambas copias. Un id ya registrado devuelve `ya-registrado` aunque la nota haya cambiado después; datos distintos con ese id se rechazan.
+El script escribe solo registros e históricos. Archiva antes de renovar, conserva registros incompatibles y bloquea escrituras concurrentes. Si aparece `.registro-cambios.lock`, releer y resolver la operación, sin quitarlo mientras otra pueda estar activa; si quedó de una operación interrumpida, seguir «Aparece un bloqueo» en [Solución de problemas](TROUBLESHOOTING.md). Tras un fallo, puede existir el histórico y seguir vigente el activo anterior; reintentar conserva ambas copias. Un id ya registrado devuelve `ya-registrado` aunque la nota haya cambiado después; datos distintos con ese id se rechazan.
 
 ## Cierre de la operación
 
@@ -96,4 +97,15 @@ La IA gestiona los IDs y pasos técnicos; la persona no los proporciona. Índice
 
 La IA cuenta líneas del archivo final, excluye títulos dentro de código como secciones y comprueba los rangos tras cada edición. Si no puede, los declara pendientes.
 
-Mantiene los mismos mapas y registro: autor, fecha con zona, operación, rutas y resultado comprobado. Antes de renovar, comprueba `inicio` y guarda una copia íntegra en una ruta libre; relee el resultado y sus rangos. Con adjuntos, entrega la copia actualizada y aclara que los originales no están sincronizados.
+Mantiene los mismos mapas y registro: autor, fecha con zona, operación, rutas y resultado comprobado. Antes de renovar, comprueba `inicio` y guarda una copia íntegra en una ruta libre; relee el resultado y sus rangos. Con adjuntos, entrega la copia actualizada según [Entregar una copia como ZIP](#entregar-una-copia-como-zip) y aclara que los originales no están sincronizados.
+
+## Entregar una copia como ZIP
+
+Cuando la IA no puede escribir en la carpeta de la persona y entrega una copia para descargar, descomprime el kit recibido con `zipfile` de Python, no con `unzip`: otras herramientas pueden cambiar nombres con tildes, como `PROJECT_TEMPLATE/00 - Índice y Contexto.md`. Con Python, crea el proyecto con el [creador](creacion-para-asistentes.md). Después completa estos pasos antes de ofrecer el enlace:
+
+1. **Próximo paso:** si todavía no se habló, preguntá cuál es el primer paso concreto. Si la persona no lo sabe, queda pendiente; no lo inventes.
+2. **Cierre completo:** seguí la [secuencia de cierre](#secuencia-de-cierre-compartida) sobre la copia de trabajo. La configuración queda `lista` solo si la operación final termina en «CIERRE VERIFICADO»; con errores, corregilos o dejá `parcial` y decí qué falta.
+3. **ZIP con nombres UTF-8:** armá el ZIP con una herramienta que marque los nombres como UTF-8, por ejemplo `zipfile` de Python, e incluí los archivos ocultos del kit. Sin esa marca, Windows muestra nombres como «├ìndice» o «fotografÃ­a» y los enlaces se rompen.
+4. **Comprobar lo que se entrega:** descomprimí ese mismo ZIP en una carpeta nueva y compará su lista de archivos con la del kit recibido: ningún archivo del kit puede faltar ni cambiar de nombre; solo se agregan los creados. Después volvé a correr el cierre con el ID final sobre esa carpeta.
+
+Informá qué se comprobó y qué no, por ejemplo la vista en Obsidian. Sin Python, aplicá las alternativas manuales y declará que el cierre automático no se ejecutó. Si no podés completar algún paso, decilo antes de entregar.

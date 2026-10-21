@@ -9,12 +9,12 @@ descripcion: "Qué contiene cada documento del kit, para qué sirve y cuándo co
 > - Líneas 27–37: Índice de esta guía
 > - Líneas 38–47: Entradas
 > - Líneas 48–65: Reglas y proyectos
-> - Líneas 66–84: Ayuda
-> - Líneas 85–98: Integraciones y ajustes
-> - Líneas 99–112: Python y pruebas
-> - Líneas 113–123: Repositorio y créditos
-> - Líneas 124–132: Recursos opcionales
-> - Líneas 133–145: Archivos creados durante el uso
+> - Líneas 66–83: Ayuda
+> - Líneas 84–97: Integraciones y ajustes
+> - Líneas 98–110: Python y pruebas
+> - Líneas 111–121: Repositorio y créditos
+> - Líneas 122–130: Recursos opcionales
+> - Líneas 131–143: Archivos creados durante el uso
 
 # Guía de documentos y herramientas del kit
 
@@ -22,7 +22,7 @@ descripcion: "Qué contiene cada documento del kit, para qué sirve y cuándo co
 
 **Esta guía en otros idiomas:** [Español](README.md) · [English](README.en.md) · [Deutsch](README.de.md) · [中文](README.zh.md)
 
-No necesitás leer todo para empezar: seguí el README principal y respondé las preguntas de tu IA. Esta guía sirve para entender los archivos o encontrar ayuda. Las rutas son las mismas en todos los idiomas; las instrucciones comunes del kit siguen en español. Esta guía describe el repositorio completo y se consulta en la carpeta descargada del kit. Al integrar el kit en otra bóveda, se conserva aquí junto con las pruebas y la documentación de desarrollo; la ayuda de uso sí se copia.
+No necesitás leer todo para empezar: seguí el README principal y respondé las preguntas de tu IA. Esta guía sirve para entender los archivos o encontrar ayuda. Las rutas son las mismas en todos los idiomas; las instrucciones comunes del kit siguen en español. Esta guía describe el repositorio completo y se consulta en la carpeta descargada del kit.
 
 ## Índice de esta guía
 
@@ -67,12 +67,11 @@ No necesitás leer todo para empezar: seguí el README principal y respondé las
 
 | Documento o herramienta | Función |
 |---|---|
-| [`DOCS/QUICKSTART.md`](../DOCS/QUICKSTART.md) | Inicio con una IA: acceso local, copias adjuntas, bóvedas existentes y reanudación. |
+| [`DOCS/QUICKSTART.md`](../DOCS/QUICKSTART.md) | Inicio con una IA: acceso local, copias adjuntas y reanudación. |
 | [`DOCS/opencode.md`](../DOCS/opencode.md) | Abrir el kit y usar sus comandos desde OpenCode. |
 | [`DOCS/chatgpt.md`](../DOCS/chatgpt.md) | Recorridos de ChatGPT con carpeta o archivos adjuntos. |
 | [`DOCS/usar-con-otras-ias.md`](../DOCS/usar-con-otras-ias.md) | Pedidos de uso diario para retomar, redactar o guardar avances. |
 | [`DOCS/primer-proyecto.md`](../DOCS/primer-proyecto.md) | Crear un proyecto a mano como alternativa. |
-| [`DOCS/instalacion-manual.md`](../DOCS/instalacion-manual.md) | Integrar el kit sin ejecutar Python. |
 | [`DOCS/creacion-para-asistentes.md`](../DOCS/creacion-para-asistentes.md) | Referencia técnica para que la IA prepare archivos del proyecto. |
 | [`DOCS/indice-principal.md`](../DOCS/indice-principal.md) | Mantener el mapa, los índices locales y sus enlaces escalables. |
 | [`DOCS/mantenimiento.md`](../DOCS/mantenimiento.md) | Actualizar rangos, mapas y registro, y comprobar el cierre. |
@@ -93,22 +92,21 @@ No necesitás leer todo para empezar: seguí el README principal y respondé las
 | [`.claude/skills/validar/SKILL.md`](../.claude/skills/validar/SKILL.md) · [`.opencode/commands/validar.md`](../.opencode/commands/validar.md) | /validar: revisar fichas y explicar errores o avisos. |
 | [`.claude/skills/cerrar/SKILL.md`](../.claude/skills/cerrar/SKILL.md) · [`.opencode/commands/cerrar.md`](../.opencode/commands/cerrar.md) | /cerrar: proponer guardar cambios y verificar lo aprobado. |
 | [`.claude/skills/vault-manager/SKILL.md`](../.claude/skills/vault-manager/SKILL.md) · [`.claude/settings.json`](../.claude/settings.json) | Orientación de uso de la bóveda y ajustes de la integración Claude. |
-| [`.obsidian/app.json`](../.obsidian/app.json) · [`.obsidian/core-plugins.json`](../.obsidian/core-plugins.json) · [`.obsidian/graph.json`](../.obsidian/graph.json) · [`.obsidian/templates.json`](../.obsidian/templates.json) · [`.obsidian/appearance.json`](../.obsidian/appearance.json) · [`.obsidian/snippets/genesis-vista-simple.css`](../.obsidian/snippets/genesis-vista-simple.css) | Ajustes iniciales y vista simple activa en una bóveda nueva; conservar los propios al integrar. |
+| [`.obsidian/app.json`](../.obsidian/app.json) · [`.obsidian/core-plugins.json`](../.obsidian/core-plugins.json) · [`.obsidian/graph.json`](../.obsidian/graph.json) · [`.obsidian/templates.json`](../.obsidian/templates.json) · [`.obsidian/appearance.json`](../.obsidian/appearance.json) · [`.obsidian/snippets/genesis-vista-simple.css`](../.obsidian/snippets/genesis-vista-simple.css) | Ajustes iniciales y vista simple activa en una bóveda nueva. |
 | [`Proyectos.base`](../Proyectos.base) | Tabla de proyectos que usa el Panel; no es una nota ni un script. |
 
 ## Python y pruebas
 
-Python automatiza tareas; no hace falta programar para usar el kit con una IA que pueda gestionar archivos. Las pruebas son para quienes desarrollan el kit y el instalador no las copia a una bóveda instalada.
+Python automatiza tareas; no hace falta programar para usar el kit con una IA que pueda gestionar archivos. Las pruebas son para quienes desarrollan el kit.
 
 | Documento o herramienta | Función |
 |---|---|
-| [`instalar.py`](../instalar.py) | Agregar el kit a otra bóveda sin reemplazar archivos existentes. |
 | [`crear_proyecto.py`](../crear_proyecto.py) | Crear ficha y carpetas de un proyecto acordado. |
 | [`actualizar_indice.py`](../actualizar_indice.py) | Generar o comprobar el índice general y los índices de nodos. |
 | [`00_CORE/schemas/validate.py`](../00_CORE/schemas/validate.py) | Revisar fichas/configuración; con --cierre, contrastar una operación. |
 | [`00_CORE/schemas/note_index.py`](../00_CORE/schemas/note_index.py) | Calcular y comprobar los rangos de líneas de notas editables. |
 | [`00_CORE/schemas/registrar_cambios.py`](../00_CORE/schemas/registrar_cambios.py) | Registrar autoría, archivos modificados e historial conservado. |
-| [`tests/conftest.py`](../tests/conftest.py) · [`tests/test_crear_proyecto.py`](../tests/test_crear_proyecto.py) · [`tests/test_indice.py`](../tests/test_indice.py) · [`tests/test_instalar.py`](../tests/test_instalar.py) · [`tests/test_kit.py`](../tests/test_kit.py) · [`tests/test_mantenimiento.py`](../tests/test_mantenimiento.py) · [`tests/test_nodos.py`](../tests/test_nodos.py) · [`tests/test_validate.py`](../tests/test_validate.py) | Preparación compartida y pruebas de creación, índices, instalación, paquete, mantenimiento, nodos y validación. |
+| [`tests/conftest.py`](../tests/conftest.py) · [`tests/test_crear_proyecto.py`](../tests/test_crear_proyecto.py) · [`tests/test_indice.py`](../tests/test_indice.py) · [`tests/test_kit.py`](../tests/test_kit.py) · [`tests/test_mantenimiento.py`](../tests/test_mantenimiento.py) · [`tests/test_nodos.py`](../tests/test_nodos.py) · [`tests/test_validate.py`](../tests/test_validate.py) | Preparación compartida y pruebas de creación, índices, paquete, mantenimiento, nodos y validación. |
 
 ## Repositorio y créditos
 

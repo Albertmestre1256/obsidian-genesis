@@ -47,7 +47,7 @@ El plan de publicación exige que **4 de 5 personas** completen las cinco tareas
 
 El recorrido manual es una alternativa: evaluarlo por separado no sustituye la prueba principal de configuración guiada. Anotá si el asistente trabajó con acceso directo a carpeta, con un ZIP descargable o solo con texto; este último no cuenta como configuración completada.
 
-Antes de convocar participantes, revisar también en carpetas de prueba: bóveda existente con reglas propias, nombre de proyecto ocupado y reanudación tras una configuración parcial. La prueba visual en Obsidian queda para la etapa final del proyecto.
+Antes de convocar participantes, revisar también en carpetas de prueba: nombre de proyecto ocupado y reanudación tras una configuración parcial. La prueba visual en Obsidian queda para la etapa final del proyecto.
 
 ## Ensayos virtuales previos
 

@@ -295,6 +295,14 @@ def test_hecho_sin_fuente(revisar, ejemplo):
     assert any("no tiene fuente" in a for a in avisos)
 
 
+@pytest.mark.parametrize('fuente,avisa', [(' (fuente: mi agenda (2026))', False),
+    (' (fuente: ) más datos (otro)', True), (' (fuente: ) (ver anexo)', True)])
+def test_fuente_con_parentesis(revisar, ejemplo, fuente, avisa):
+    errores, avisos = revisar(reemplazar(ejemplo, " (fuente: mi agenda)", fuente))
+    assert errores == []
+    assert any("no tiene fuente" in a for a in avisos) == avisa
+
+
 def test_decision_sin_fecha(revisar, ejemplo):
     _, avisos = revisar(reemplazar(ejemplo, "- 2026-09-20: ", "- ayer: "))
     assert any("no empieza con una fecha" in a for a in avisos)
@@ -550,9 +558,17 @@ def test_cierre_correcto_no_exige_cv_y_no_escribe(validador, boveda_cierre, esta
     assert foto_cierre(vault) == before
 
 
-@pytest.mark.parametrize('fallo', ['aviso-panel', 'mapa-general', 'mapa-nodo', 'rango',
-    'sin-registro', 'id-ajeno', 'sin-config-en-evento', 'evento-no-verificado',
-    'hash-config-viejo', 'registro-roto', 'fecha-futura', 'registro-bloqueado', 'sin-config'])
+# Cada escenario debe fallar por su propio control, no por otro que lo tape.
+CIERRE_ESPERADO = {
+    'aviso-panel': 'Para empezar', 'mapa-general': 'Mapas desactualizados', 'mapa-nodo': 'Mapas desactualizados',
+    'rango': 'Rangos desactualizados', 'sin-registro': 'Falta registro activo', 'id-ajeno': 'no encontrada',
+    'sin-config-en-evento': 'sin cambio de configuración', 'evento-no-verificado': 'no verificada',
+    'hash-config-viejo': 'hash de configuración no coincide', 'registro-roto': 'Registro propio sin propiedades',
+    'fecha-futura': 'fecha en el futuro', 'registro-bloqueado': 'Registro bloqueado',
+    'sin-config': 'Falta 00_CORE/configuracion.md'}
+
+
+@pytest.mark.parametrize('fallo', list(CIERRE_ESPERADO))
 def test_cierre_incompleto_falla_sin_reparar(validador, boveda_cierre, fallo):
     from datetime import datetime, timedelta
     vault, maps, lines, registry = boveda_cierre()
@@ -564,9 +580,10 @@ def test_cierre_incompleto_falla_sin_reparar(validador, boveda_cierre, fallo):
     elif fallo == 'mapa-general':
         (vault / 'Apunte.md').write_bytes(lines.contenido(b'# Apunte\n'))
     elif fallo == 'mapa-nodo':
+        # Solo el bloque del nodo: una nota nueva cambiaría también el mapa general y lo taparía.
         node = vault / 'estudio/00 - Índice - estudio.md'
-        note = node.parent / 'Nota nueva.md'
-        note.write_bytes(lines.contenido(b'# Nota\n'))
+        text = node.read_text(encoding='utf-8').replace(maps.NODO_INICIO, maps.NODO_INICIO+'\n- [[Nota inventada]]', 1)
+        node.write_bytes(lines.contenido(text.encode('utf-8')))
     elif fallo == 'rango':
         config = vault / '00_CORE/configuracion.md'
         config.write_text(config.read_text(encoding='utf-8')+'\n## Detalle nuevo\nTexto.\n', encoding='utf-8')
@@ -592,6 +609,7 @@ def test_cierre_incompleto_falla_sin_reparar(validador, boveda_cierre, fallo):
     before = foto_cierre(vault)
     errors = validador.validar_cierre(vault, operation)
     assert errors and all(isinstance(e,str) and e.strip() for e in errors)
+    assert any(CIERRE_ESPERADO[fallo] in e for e in errors), errors
     assert foto_cierre(vault) == before
 
 
@@ -1380,3 +1398,30 @@ def test_cierre_cells_relativa_ajena_no_se_confunde_con_boveda(validador,boveda_
 ])
 def test_fila_inventario_conserva_barras_y_columnas(validador, fila, esperado):
     assert validador._parsear_fila_tabla(fila) == esperado
+
+
+@pytest.mark.parametrize('copia', ['.trash/configuracion.md', '.obsidian/configuracion.md',
+                                   'node_modules/paquete/configuracion.md'])
+def test_nombre_corto_del_panel_ignora_carpetas_no_indexadas(validador, tmp_path, copia):
+    preparar_configuracion(tmp_path, '[[configuracion]]\n')
+    destino = tmp_path / copia
+    destino.parent.mkdir(parents=True, exist_ok=True)
+    destino.write_text('# Copia vieja\n', encoding='utf-8')
+    assert validador.validar_configuracion(tmp_path) == []
+
+
+def test_nombre_corto_repetido_en_la_boveda_sigue_sin_dar_acceso(validador, tmp_path):
+    preparar_configuracion(tmp_path, '[[configuracion]]\n')
+    (tmp_path / 'Otra').mkdir()
+    (tmp_path / 'Otra/configuracion.md').write_text('# Otra\n', encoding='utf-8')
+    assert any('Panel no da acceso' in error for error in validador.validar_configuracion(tmp_path))
+
+
+def test_inventario_mezclado_explica_la_mezcla(validador, tmp_path):
+    preparar_configuracion(tmp_path, '[[00_CORE/configuracion]]\n')
+    configuracion = tmp_path / '00_CORE/configuracion.md'
+    configuracion.write_text(configuracion.read_text(encoding='utf-8')
+                             + '> | otro-item | boveda | pendiente | — | — | — |\n', encoding='utf-8')
+    errores = validador.validar_configuracion(tmp_path)
+    assert any('mezcla una tabla suelta' in error for error in errores)
+    assert not any('no se encuentra tabla' in error for error in errores)

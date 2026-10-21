@@ -1,54 +1,42 @@
 > **Main credit to [davidkimai](https://github.com/davidkimai):** this kit is based on their work [Context Engineering](https://github.com/davidkimai/Context-Engineering). Obsidian Genesis adapts that work to start and organize Obsidian vaults with the help of an AI.
+
 > [!info]- Índice de esta nota (líneas)
 > - Líneas 1–1: Atribución
-> - Líneas 2–17: Este índice
-> - Líneas 19–20: Introducción
-> - Líneas 21–28: Obsidian Genesis: your vault, set up by an AI
-> - Líneas 29–52: Project status — October 20, 2026
-> - Líneas 53–73: Get started in three steps
-> - Líneas 74–79: Attachments or an existing vault
-> - Líneas 80–87: Continue
-> - Líneas 88–102: What it contains
-> - Líneas 103–113: Optional help
-> - Líneas 114–117: Privacy
-> - Líneas 118–121: License
-> - Líneas 122–125: Community and support
-> - Líneas 126–129: About the development
-> - Líneas 130–132: Support the project
+> - Líneas 3–19: Este índice
+> - Líneas 21–22: Introducción
+> - Líneas 23–28: Obsidian Genesis: your vault, set up by an AI
+> - Líneas 29–40: What each thing is
+> - Líneas 41–59: Get started in three steps
+> - Líneas 60–68: What you get
+> - Líneas 69–76: Everyday use
+> - Líneas 77–97: Guides
+> - Líneas 98–113: What is in the folder
+> - Líneas 114–119: Project status
+> - Líneas 120–123: Privacy
+> - Líneas 124–127: License
+> - Líneas 128–131: Community and support
+> - Líneas 132–135: Support the project
+> - Líneas 136–138: About the development
 
 **Language:** [Español](README.md) · English · [Deutsch](README.de.md) · [中文](README.zh.md)
 
 # Obsidian Genesis: your vault, set up by an AI
 
-Download the kit, give the folder to an AI and answer its questions. The assistant prepares your notes and your first project following the kit's rules. You don't need to program or know Obsidian.
+Obsidian Genesis is a free kit to start using [Obsidian](https://obsidian.md) without knowing how it works. You give this folder to an AI that can read and write files, answer a few simple questions, and the AI builds your vault: your first project, a panel to get in and an index it keeps up to date. You don't need to program.
 
-A **vault** is a folder of notes that you open with [Obsidian](https://obsidian.md). The kit is in Spanish and works for study, work or any personal project. You can write to the assistant in your own language; the kit's notes and guides stay in Spanish for now.
+It works for study, work or any personal project. The kit is in Spanish: you can write to the assistant in your own language, but the kit's notes and guides stay in Spanish for now. This README and the document guide are also available in Spanish, German and Chinese.
 
-The entry note [Leer primero](LEER_PRIMERO.md) ("Read first") connects the Panel and the general index. In a new vault, the kit enables Obsidian's **Graph view**: open it from its sidebar icon to explore the connected notes, or use the local graph from a project's index.
+## What each thing is
 
-## Project status — October 20, 2026
-
-**Code published on `main` (`c69c38a`); not a stable release yet.** The focus is still to start a vault through simple questions, without asking the person to program or maintain the indexes.
-
-| Already implemented | What it allows |
+| Term | What it is |
 |---|---|
-| Conversational setup | Save answers before the first project and resume whatever was left pending. |
-| Optional, resumable profile | Keep a single collapsible inventory; preserve skipped data and complete only what the person chooses. |
-| Connected nodes and indexes | Each collection links its parent, children and notes; general nodes link the map and Leer primero. New projects get indexes with their own names. |
-| Maintenance and closing | Identify the assistant, record changes with preserved history and check project cards, Panel, profile, maps, line ranges and the consistency of the initial project. |
-| Access for different AIs | Guides for Claude Code, OpenCode, ChatGPT and other assistants with file tools; a manual alternative is available. |
+| Vault | The folder of notes you open with Obsidian. |
+| Project card | A note with a project's goal, verified facts and next actions. |
+| Panel | The home page: your projects and pending tasks. |
+| General index | `INDICE.md`, the map of every file. The AI reads it first and keeps it up to date. |
+| Node | A topic folder with its own index, for example "Course summaries". |
 
-The project creator checks the state again before saving a project and tells blocking conditions apart from partial failures; each file is created without replacing an existing one.
-
-The simple view reduces clutter in the file explorer and graph for new folders and can be enabled optionally in existing vaults with backups. It preserves preferences and custom searches, reporting when the kit filter remains pending.
-
-The [remote matrix for code commit `c69c38a`](https://github.com/Albertmestre1256/obsidian-genesis/actions/runs/39375866749) finished **6/6 successfully** on Windows, macOS and Ubuntu with Python 3.8 and 3.13. These are technical results; they do not establish ease of use.
-
-Setup and resumption were checked with Claude Code. The manual OpenCode/Big Pickle trial demonstrated continued use within one session, without establishing independent resumption. A new Codex chat resumed an earlier copy and preserved skipped information, with external context and tools. These are not tests with real beginners and do not validate the interface for all current changes.
-
-Still pending: independent resumption in OpenCode, specific coverage of ChatGPT web, a test with five beginners (at least four without help) and the final formal visual review in Obsidian.
-
-Community discussions are available, and you can support the project on [Patreon](https://www.patreon.com/obsidiangenesis). The README and document guide are available in Spanish, English, German and Chinese; shared kit instructions remain in Spanish. General adaptation and optimization of existing vaults will be a later phase. [Changelog](CHANGELOG.md) · [How to contribute](CONTRIBUTING.md) (both in Spanish).
+The AI works with the kit's rules and guides: it asks before writing, explains where it will save each thing and checks the files when it finishes.
 
 ## Get started in three steps
 
@@ -60,56 +48,74 @@ Community discussions are available, and you can support the project on [Patreon
 
 | You use | How to open the kit |
 |---|---|
+| Claude Code | Open the folder and use the message above or `/configurar`. |
 | OpenCode | Open the folder and use the message above or `/configurar`. [Guide](DOCS/opencode.md). |
 | ChatGPT | Local folder with file tools, or an attached copy. [Guide](DOCS/chatgpt.md). |
-| Claude Code | Open the folder and use the message above or `/configurar`. |
 | Another AI | Give it access to the folder and use the same message. |
 
-The AI asks what you want to organize, which notes to keep and what the goal is. You can answer "I don't know yet" or "I have no deadline"; the first task can be chosen later.
+The AI asks what you want to organize, which notes to keep and what the goal is. You can answer "I don't know yet" or "I have no deadline": the first task can be chosen later. If you attach a ZIP instead of giving access to the folder, the [quick start](DOCS/QUICKSTART.md) explains what you can get back.
 
-It also keeps a **personalization inventory**: what you answered, what is pending and what you chose to skip. In new notes it is collapsed below the project and its progress; you can expand it when you want to review it. Introduction, CV, education, routine and how long you will use the vault are optional. You can start with the basics and later say **"what is missing to personalize my vault"** or **"let's complete my profile"**. [How it works](00_CORE/protocols/personalizar-vault.md).
+If you already have a vault, the kit does not adapt it: use it in a new folder. Adapting existing vaults will be a separate repository, not available yet.
 
-**You get:** a prepared folder, the project card, a Panel to access it and an explanation of how to open it in Obsidian. The AI checks the files; the visual check happens in Obsidian. If you don't have it yet, install it from [obsidian.md](https://obsidian.md), open the prepared folder as a vault and go to `Panel.md`.
+## What you get
 
-## Attachments or an existing vault
+- A folder ready to open as a vault, with your first project and its card.
+- The **Panel** (`Panel.md`) to reach your projects and tasks, and **Leer primero** (`LEER_PRIMERO.md`, "Read first"), which connects the Panel with the general index.
+- A simple view: the file explorer shows your notes and hides the kit's technical files. Obsidian's **Graph view**, from its sidebar icon, shows how they connect.
+- An optional, collapsed **personalization inventory**: what you answered, what is pending and what you chose to skip. You can complete it whenever you like with **"what is missing to personalize my vault"**. [How it works](00_CORE/protocols/personalizar-vault.md).
 
-An attached ZIP does not give access to your computer. If the chat can generate files, it can return a configured copy for you to download. If it only answers with text, saving it remains pending. The [access guide](DOCS/QUICKSTART.md) explains the options.
+To open it, install Obsidian from [obsidian.md](https://obsidian.md), open the prepared folder as a vault and go to `Panel.md`. The AI checks the files; you check how it looks in Obsidian.
 
-If you already have a vault, the current integration is conservative: the AI reads its rules, compares conflicts and keeps notes and settings. Automatically reorganizing or optimizing a whole existing vault is not implemented yet; it is the later phase mentioned above.
+## Everyday use
 
-## Continue
+- **Resume:** say **"Continue with [project]"** or use `/empezar`. The AI reads the index, the rules and the project card, and picks up what is pending.
+- **Other requests:** another project, a draft, a review or saving the day's closing. [Ready-to-use requests](DOCS/usar-con-otras-ias.md).
+- **Organize more content:** ask **"Add a node for summaries of my courses"**. The AI creates its index and connects it to the general map. [How nodes work](DOCS/indice-principal.md).
 
-Say **"Continue with [project]"**. The AI first reads the index, then the rules and the current project card, and resumes what is pending. You can ask for another project, a draft, a review or to save the closing: [everyday requests](DOCS/usar-con-otras-ias.md).
+Claude Code and OpenCode include `/configurar`, `/empezar`, `/nuevo-proyecto`, `/redactar`, `/validar` and `/cerrar`; in Claude, creating another project and closing are invoked manually. Permissions depend on the assistant. If you work with attachments, always share the current notes: they don't sync on their own.
 
-To organize more content, ask **"Add a node for summaries of my courses"**. Each node has an index with links and summaries; the general map connects all nodes and the AI maintains them when adding notes. Existing indexes are kept; renaming them or reorganizing notes requires an agreed scope. [Guide](DOCS/indice-principal.md).
+## Guides
 
-Claude Code and OpenCode include `/configurar`, `/empezar`, `/nuevo-proyecto`, `/redactar`, `/validar` and `/cerrar`. In Claude, creating another project and closing are invoked manually. Permissions depend on the assistant. With attachments, always share the current notes: they are not synchronized.
+The guides are in Spanish, except the document guide.
 
-## What it contains
-
-To understand what each file does and when to use it, open the [guide to documents and tools](DOCS/README.en.md).
-
-| Place | Use |
+| If you want to… | Read |
 |---|---|
-| `INDICE.md` | First read: complete catalog of files and projects |
-| `LEER_PRIMERO.md` | Entry note for the person and central connection of the general nodes |
+| See the ways to give the folder to an AI | [Quick start](DOCS/QUICKSTART.md) |
+| Use ChatGPT | [Getting started with ChatGPT](DOCS/chatgpt.md) |
+| Use OpenCode | [Getting started with OpenCode](DOCS/opencode.md) |
+| Fix Claude's connection to Obsidian (MCP) | [If Claude does not connect to the MCP](DOCS/mcp-claude.md) |
+| Learn the everyday requests | [Working with an AI](DOCS/usar-con-otras-ias.md) |
+| Create a project without an AI | [Your first project by hand](DOCS/primer-proyecto.md) |
+| Understand the Panel, templates and simple view | [Templates and panel](DOCS/obsidian.md) |
+| Add nodes and understand the general map | [General map and node indexes](DOCS/indice-principal.md) |
+| See how changes are recorded and checked | [Maintenance](DOCS/mantenimiento.md) |
+| Use the five optional skills | [Optional skills](DOCS/skills-portables.md) |
+| Solve a problem | [Troubleshooting](DOCS/TROUBLESHOOTING.md) |
+| See what each kit file does | [Guide to documents and tools](DOCS/README.en.md) |
+
+**For assistants and kit development:** [entry for the AI](AI-INSTRUCTIONS.md) · [vault rules](00_CORE/atoms/00_vault-rules.md) · [setup protocol](00_CORE/protocols/configurar-vault.md) · [project creator](DOCS/creacion-para-asistentes.md) · [how to contribute](CONTRIBUTING.md) · [user testing](DOCS/prueba-con-usuarios.md) · [publishing](DOCS/publicacion.md) · [changelog](CHANGELOG.md).
+
+## What is in the folder
+
+| Place | What for |
+|---|---|
 | `Panel.md` | Access to projects and tasks |
-| `00_CORE/` | Rules, project cards, guides and tools |
-| `PROJECT_TEMPLATE/` | Folders for sources, drafts, deliverables and history |
-| `DOCS/` | Optional help |
+| `LEER_PRIMERO.md` | Entry note for the person and connection of the general nodes |
+| `INDICE.md` | Catalog of files and projects; the AI's first read |
+| `00_CORE/` | Rules, project cards, templates and tools |
+| `PROJECT_TEMPLATE/` | A project's folders: sources, drafts, deliverables and archive |
+| `skills/` | Five optional skills |
+| `DOCS/` | Guides |
 
-The `aprender-python` example is fictional and kept apart from your own projects. Your data is filled in from your answers; sections without information can stay empty.
+The `aprender-python` example is fictional and kept apart from your projects. Your data comes from your answers; whatever you don't know can stay empty.
 
-## Optional help
+Python 3.8 or later automates creation, validation and the index with the standard library. Without Python, the AI uses its file tools.
 
-These guides are in Spanish:
+## Project status
 
-- [Create a project by hand](DOCS/primer-proyecto.md).
-- [Integrate the kit without Python](DOCS/instalacion-manual.md).
-- [Templates and panel](DOCS/obsidian.md).
-- [Troubleshooting](DOCS/TROUBLESHOOTING.md).
+Candidate for the first release (v0.1.0); not stable yet. Conversational setup with a resumable profile, the project creator, connected nodes and indexes, change recording and validation all work. Automated tests pass on Windows, macOS and Ubuntu with Python 3.8 and 3.13; that does not show the kit is easy to use.
 
-Python 3.8 or later automates installation, creation, validation and the index with the standard library. The AI can also set things up using its file tools. To contribute: [CONTRIBUTING](CONTRIBUTING.md).
+Setup and resumption were checked with Claude Code. Still pending: independent resumption in OpenCode, ChatGPT web, a test with five beginners and the final visual review in Obsidian. Details are in the [changelog](CHANGELOG.md) (in Spanish).
 
 ## Privacy
 
@@ -123,10 +129,10 @@ The kit stores local files and does not install synchronization. The AI processe
 
 For questions, ideas and experiences, use the [community discussions](https://github.com/Albertmestre1256/obsidian-genesis/discussions). If something fails, open a [bug report](https://github.com/Albertmestre1256/obsidian-genesis/issues) using the “No me funciona” template and a small example with fictional data. [How to contribute](CONTRIBUTING.md) (in Spanish).
 
-## About the development
-
-Albert Mestre develops this adaptation with substantial contributions from **OpenCode, Claude and Codex (OpenAI)**, which helped build an important part of the code and supported documentation and testing. They are credited here as contributing AI tools. Proposals are reviewed and results are verified before they are integrated; using AI does not replace tests with people and does not by itself show that the kit is easy to use.
-
 ## Support the project
 
 Obsidian Genesis is free and will stay free. If you find it useful, you can support it on [Patreon](https://www.patreon.com/obsidiangenesis). Contributions help fund time for beginner guides, testing with real people, translations and support. They are optional: they do not unlock features, and the whole kit remains public.
+
+## About the development
+
+Albert Mestre develops this adaptation with substantial contributions from **OpenCode, Claude and Codex (OpenAI)**, which helped build an important part of the code and supported documentation and testing. They are credited here as contributing AI tools. Proposals are reviewed and results are verified before they are integrated; using AI does not replace tests with people and does not by itself show that the kit is easy to use.

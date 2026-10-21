@@ -1,54 +1,42 @@
 > **Besonderer Dank an [davidkimai](https://github.com/davidkimai):** Dieses Kit basiert auf dessen Arbeit [Context Engineering](https://github.com/davidkimai/Context-Engineering). Obsidian Genesis passt diese Arbeit an, um Obsidian-Vaults mit Hilfe einer KI einzurichten und zu organisieren.
+
 > [!info]- Índice de esta nota (líneas)
 > - Líneas 1–1: Atribución
-> - Líneas 2–17: Este índice
-> - Líneas 19–20: Introducción
-> - Líneas 21–28: Obsidian Genesis: dein Vault, eingerichtet von einer KI
-> - Líneas 29–52: Projektstand — 20. Oktober 2026
-> - Líneas 53–73: In drei Schritten starten
-> - Líneas 74–79: Anhänge oder ein bestehender Vault
-> - Líneas 80–87: Fortsetzen
-> - Líneas 88–102: Was es enthält
-> - Líneas 103–113: Optionale Hilfe
-> - Líneas 114–117: Datenschutz
-> - Líneas 118–121: Lizenz
-> - Líneas 122–125: Community und Hilfe
-> - Líneas 126–129: Über die Entwicklung
-> - Líneas 130–132: Projekt unterstützen
+> - Líneas 3–19: Este índice
+> - Líneas 21–22: Introducción
+> - Líneas 23–28: Obsidian Genesis: dein Vault, eingerichtet von einer KI
+> - Líneas 29–40: Was die Begriffe bedeuten
+> - Líneas 41–59: In drei Schritten starten
+> - Líneas 60–68: Was du erhältst
+> - Líneas 69–76: Im Alltag
+> - Líneas 77–97: Anleitungen
+> - Líneas 98–113: Was im Ordner liegt
+> - Líneas 114–119: Projektstand
+> - Líneas 120–123: Datenschutz
+> - Líneas 124–127: Lizenz
+> - Líneas 128–131: Community und Hilfe
+> - Líneas 132–135: Projekt unterstützen
+> - Líneas 136–138: Über die Entwicklung
 
 **Sprache:** [Español](README.md) · [English](README.en.md) · Deutsch · [中文](README.zh.md)
 
 # Obsidian Genesis: dein Vault, eingerichtet von einer KI
 
-Lade das Kit herunter, gib den Ordner einer KI und beantworte ihre Fragen. Der Assistent bereitet deine Notizen und dein erstes Projekt nach den Regeln des Kits vor. Du musst weder programmieren noch Obsidian kennen.
+Obsidian Genesis ist ein kostenloses Kit, mit dem du [Obsidian](https://obsidian.md) nutzen kannst, ohne zu wissen, wie es funktioniert. Du gibst diesen Ordner einer KI, die Dateien lesen und schreiben kann, beantwortest ein paar einfache Fragen, und die KI richtet deinen Vault ein: dein erstes Projekt, ein Panel als Einstieg und einen Index, den sie aktuell hält. Du musst nicht programmieren.
 
-Ein **Vault** ist ein Ordner mit Notizen, den du mit [Obsidian](https://obsidian.md) öffnest. Das Kit ist auf Spanisch und eignet sich für Studium, Arbeit oder jedes persönliche Projekt. Du kannst dem Assistenten in deiner eigenen Sprache schreiben; die Notizen und Anleitungen des Kits bleiben vorerst auf Spanisch.
+Es eignet sich für Studium, Arbeit oder jedes persönliche Projekt. Das Kit ist auf Spanisch: Du kannst dem Assistenten in deiner eigenen Sprache schreiben, aber die Notizen und Anleitungen des Kits bleiben vorerst auf Spanisch. Dieses README und den Dokumentenwegweiser gibt es auch auf Spanisch, Englisch und Chinesisch.
 
-Die Einstiegsnotiz [Leer primero](LEER_PRIMERO.md) („Zuerst lesen“) verbindet das Panel und den allgemeinen Index. In einem neuen Vault aktiviert das Kit die **Graphansicht** von Obsidian: Öffne sie über ihr Symbol in der Seitenleiste, um die verbundenen Notizen zu erkunden, oder nutze den lokalen Graphen im Index eines Projekts.
+## Was die Begriffe bedeuten
 
-## Projektstand — 20. Oktober 2026
-
-**Code in `main` veröffentlicht (`c69c38a`); noch keine stabile Version.** Der Schwerpunkt bleibt, einen Vault mit einfachen Fragen zu starten, ohne dass die Person programmieren oder die Indizes pflegen muss.
-
-| Bereits umgesetzt | Was es ermöglicht |
+| Begriff | Bedeutung |
 |---|---|
-| Einrichtung im Gespräch | Antworten vor dem ersten Projekt speichern und Offenes später fortsetzen. |
-| Optionales, fortsetzbares Profil | Ein einziges einklappbares Inventar führen; ausgelassene Angaben bewahren und nur das ergänzen, was die Person wählt. |
-| Verbundene Knoten und Indizes | Jede Sammlung verlinkt ihre übergeordnete Sammlung, ihre Unterknoten und Notizen; allgemeine Knoten verlinken die Übersichtskarte und Leer primero. Neue Projekte erhalten Indizes mit eigenem Namen. |
-| Pflege und Abschluss | Den Assistenten identifizieren, Änderungen mit erhaltener Historie protokollieren und Projektkarten, Panel, Profil, Übersichtskarten, Zeilenbereiche und die Stimmigkeit des ersten Projekts prüfen. |
-| Zugang für verschiedene KIs | Anleitungen für Claude Code, OpenCode, ChatGPT und andere Assistenten mit Dateiwerkzeugen; eine manuelle Alternative ist verfügbar. |
+| Vault | Der Ordner mit Notizen, den du mit Obsidian öffnest. |
+| Projektkarte | Eine Notiz mit Ziel, geprüften Fakten und nächsten Schritten eines Projekts. |
+| Panel | Die Startseite: deine Projekte und offenen Aufgaben. |
+| Allgemeiner Index | `INDICE.md`, die Übersicht aller Dateien. Die KI liest ihn zuerst und hält ihn aktuell. |
+| Knoten | Ein Themenordner mit eigenem Index, zum Beispiel „Zusammenfassungen meiner Kurse“. |
 
-Der Projektersteller prüft den Zustand erneut, bevor er ein Projekt speichert, und unterscheidet blockierende Bedingungen von Teilfehlern; jede Datei wird angelegt, ohne eine vorhandene zu ersetzen.
-
-Die einfache Ansicht reduziert die sichtbaren Hilfsdateien im Datei-Explorer und im Graphen neuer Ordner und lässt sich in bestehenden Vaults optional mit Sicherungskopien aktivieren. Einstellungen und eigene Suchabfragen bleiben erhalten; ein noch ausstehender Filter des Kits wird gemeldet.
-
-Die [entfernte Testmatrix für den Code-Commit `c69c38a`](https://github.com/Albertmestre1256/obsidian-genesis/actions/runs/39375866749) endete **6/6 erfolgreich** unter Windows, macOS und Ubuntu mit Python 3.8 und 3.13. Das sind technische Ergebnisse; sie belegen keine einfache Bedienung.
-
-Einrichtung und Fortsetzung wurden mit Claude Code geprüft. Der manuelle Versuch mit OpenCode/Big Pickle zeigte fortgesetzte Nutzung innerhalb derselben Sitzung, aber keine unabhängig geprüfte Fortsetzung. Ein neuer Codex-Chat setzte eine frühere Kopie fort und bewahrte ausgelassene Angaben, mit externem Kontext und externen Werkzeugen. Das sind keine Tests mit echten Einsteigenden; sie bestätigen nicht die Oberfläche aller aktuellen Änderungen.
-
-Noch offen sind die unabhängige Fortsetzung in OpenCode, die gesonderte Prüfung von ChatGPT im Web, ein Test mit fünf Einsteigenden (mindestens vier ohne Hilfe) und die abschließende formale Sichtprüfung in Obsidian.
-
-Die Community-Diskussionen sind verfügbar, und du kannst das Projekt auf [Patreon](https://www.patreon.com/obsidiangenesis) unterstützen. README und Dokumentenwegweiser sind auf Spanisch, Englisch, Deutsch und Chinesisch verfügbar; die gemeinsamen Anleitungen bleiben auf Spanisch. Die allgemeine Anpassung und Optimierung bestehender Vaults ist eine spätere Phase. [Änderungsprotokoll](CHANGELOG.md) · [Mitwirken](CONTRIBUTING.md) (beide auf Spanisch).
+Die KI arbeitet mit den Regeln und Anleitungen des Kits: Sie fragt, bevor sie schreibt, erklärt, wo sie was speichert, und prüft die Dateien am Ende.
 
 ## In drei Schritten starten
 
@@ -60,56 +48,74 @@ Die Community-Diskussionen sind verfügbar, und du kannst das Projekt auf [Patre
 
 | Du nutzt | So öffnest du das Kit |
 |---|---|
+| Claude Code | Öffne den Ordner und nutze die Nachricht oben oder `/configurar`. |
 | OpenCode | Öffne den Ordner und nutze die Nachricht oben oder `/configurar`. [Anleitung](DOCS/opencode.md). |
 | ChatGPT | Lokaler Ordner mit Dateiwerkzeugen oder eine angehängte Kopie. [Anleitung](DOCS/chatgpt.md). |
-| Claude Code | Öffne den Ordner und nutze die Nachricht oben oder `/configurar`. |
 | Eine andere KI | Gib ihr Zugriff auf den Ordner und nutze dieselbe Nachricht. |
 
-Die KI fragt, was du organisieren möchtest, welche Notizen du behalten willst und was das Ziel ist. Du kannst „weiß ich noch nicht“ oder „ich habe keine Frist“ antworten; die erste Aufgabe kann später gewählt werden.
+Die KI fragt, was du organisieren möchtest, welche Notizen du behalten willst und was das Ziel ist. Du kannst „weiß ich noch nicht“ oder „ich habe keine Frist“ antworten: Die erste Aufgabe kann später gewählt werden. Wenn du ein ZIP anhängst, statt Zugriff auf den Ordner zu geben, erklärt der [Schnellstart](DOCS/QUICKSTART.md), was du zurückbekommen kannst.
 
-Sie führt außerdem ein **Personalisierungsinventar**: was du beantwortet hast, was offen ist und was du übersprungen hast. In neuen Notizen ist es unter dem Projekt und seinem Fortschritt eingeklappt; du kannst es aufklappen, wenn du es ansehen möchtest. Vorstellung, Lebenslauf, Ausbildung, Routine und Nutzungsdauer des Vaults sind optional. Du kannst mit dem Nötigsten beginnen und später **„was fehlt noch, um meinen Vault zu personalisieren“** oder **„lass uns mein Profil vervollständigen“** sagen. [So funktioniert es](00_CORE/protocols/personalizar-vault.md).
+Wenn du bereits einen Vault hast, passt das Kit ihn nicht an: Verwende es in einem neuen Ordner. Bestehende Vaults anzupassen wird ein separates Repository, das noch nicht verfügbar ist.
 
-**Du erhältst:** einen vorbereiteten Ordner, die Projektkarte, ein Panel für den Zugriff und eine Erklärung, wie du ihn in Obsidian öffnest. Die KI prüft die Dateien; die visuelle Prüfung erfolgt in Obsidian. Falls du es noch nicht hast, installiere es von [obsidian.md](https://obsidian.md), öffne den vorbereiteten Ordner als Vault und gehe zu `Panel.md`.
+## Was du erhältst
 
-## Anhänge oder ein bestehender Vault
+- Einen Ordner, den du als Vault öffnen kannst, mit deinem ersten Projekt und seiner Projektkarte.
+- Das **Panel** (`Panel.md`) für den Zugriff auf Projekte und Aufgaben und **Leer primero** (`LEER_PRIMERO.md`, „Zuerst lesen“), das das Panel mit dem allgemeinen Index verbindet.
+- Eine einfache Ansicht: Der Datei-Explorer zeigt deine Notizen und blendet die technischen Dateien des Kits aus. Die **Graphansicht** von Obsidian, über ihr Symbol in der Seitenleiste, zeigt, wie sie verbunden sind.
+- Ein optionales, eingeklapptes **Personalisierungsinventar**: was du beantwortet hast, was offen ist und was du übersprungen hast. Du kannst es jederzeit mit **„was fehlt noch, um meinen Vault zu personalisieren“** vervollständigen. [So funktioniert es](00_CORE/protocols/personalizar-vault.md).
 
-Ein angehängtes ZIP gibt keinen Zugriff auf deinen Computer. Wenn der Chat Dateien erzeugen kann, kann er dir eine eingerichtete Kopie zum Herunterladen zurückgeben. Wenn er nur mit Text antwortet, bleibt das Speichern offen. Die [Zugangsanleitung](DOCS/QUICKSTART.md) erklärt die Möglichkeiten.
+Zum Öffnen installierst du Obsidian von [obsidian.md](https://obsidian.md), öffnest den vorbereiteten Ordner als Vault und gehst zu `Panel.md`. Die KI prüft die Dateien; wie es in Obsidian aussieht, prüfst du selbst.
 
-Wenn du bereits einen Vault hast, ist die aktuelle Integration zurückhaltend: Die KI liest seine Regeln, vergleicht Konflikte und bewahrt Notizen und Einstellungen. Einen ganzen bestehenden Vault automatisch umzuorganisieren oder zu optimieren ist noch nicht umgesetzt; das ist die oben erwähnte spätere Phase.
+## Im Alltag
 
-## Fortsetzen
+- **Fortsetzen:** Sag **„Mach weiter mit [Projekt]“** oder nutze `/empezar`. Die KI liest den Index, die Regeln und die Projektkarte und setzt das Offene fort.
+- **Weitere Anfragen:** ein weiteres Projekt, ein Entwurf, eine Überprüfung oder das Speichern des Tagesabschlusses. [Anfragen zum Kopieren](DOCS/usar-con-otras-ias.md).
+- **Mehr Inhalte organisieren:** Bitte **„Füge einen Knoten für Zusammenfassungen meiner Kurse hinzu“**. Die KI legt seinen Index an und verbindet ihn mit der allgemeinen Übersichtskarte. [So funktionieren Knoten](DOCS/indice-principal.md).
 
-Sag **„Mach weiter mit [Projekt]“**. Die KI liest zuerst den Index, dann die Regeln und die aktuelle Projektkarte und setzt das Offene fort. Du kannst um ein weiteres Projekt, einen Entwurf, eine Überprüfung oder das Speichern des Abschlusses bitten: [Alltägliche Anfragen](DOCS/usar-con-otras-ias.md).
+Claude Code und OpenCode enthalten `/configurar`, `/empezar`, `/nuevo-proyecto`, `/redactar`, `/validar` und `/cerrar`; in Claude werden das Anlegen eines weiteren Projekts und der Abschluss manuell aufgerufen. Die Berechtigungen hängen vom Assistenten ab. Wenn du mit Anhängen arbeitest, teile immer die aktuellen Notizen: Sie werden nicht von selbst synchronisiert.
 
-Um mehr Inhalte zu organisieren, bitte **„Füge einen Knoten für Zusammenfassungen meiner Kurse hinzu“**. Jeder Knoten hat einen Index mit Links und Zusammenfassungen; die allgemeine Übersichtskarte verbindet alle Knoten, und die KI pflegt sie beim Hinzufügen von Notizen. Vorhandene Indizes bleiben erhalten; sie umzubenennen oder Notizen umzuorganisieren erfordert einen vereinbarten Umfang. [Anleitung](DOCS/indice-principal.md).
+## Anleitungen
 
-Claude Code und OpenCode enthalten `/configurar`, `/empezar`, `/nuevo-proyecto`, `/redactar`, `/validar` und `/cerrar`. In Claude werden das Anlegen eines weiteren Projekts und der Abschluss manuell aufgerufen. Die Berechtigungen hängen vom Assistenten ab. Teile bei Anhängen immer die aktuellen Notizen: Sie werden nicht synchronisiert.
+Die Anleitungen sind auf Spanisch, außer dem Dokumentenwegweiser.
 
-## Was es enthält
-
-Was die einzelnen Dateien tun und wann sie hilfreich sind, erklärt der [Wegweiser zu Dokumenten und Werkzeugen](DOCS/README.de.md).
-
-| Ort | Zweck |
+| Wenn du … möchtest | Lies |
 |---|---|
-| `INDICE.md` | Erste Lektüre: vollständiger Katalog der Dateien und Projekte |
-| `LEER_PRIMERO.md` | Einstiegsnotiz für die Person und zentrale Verbindung der allgemeinen Knoten |
+| die Wege kennen, einer KI den Ordner zu geben | [Schnellstart](DOCS/QUICKSTART.md) |
+| ChatGPT nutzen | [Erste Schritte mit ChatGPT](DOCS/chatgpt.md) |
+| OpenCode nutzen | [Erste Schritte mit OpenCode](DOCS/opencode.md) |
+| die Verbindung von Claude mit Obsidian (MCP) reparieren | [Wenn Claude keine Verbindung zum MCP herstellt](DOCS/mcp-claude.md) |
+| die alltäglichen Anfragen kennen | [Mit einer KI arbeiten](DOCS/usar-con-otras-ias.md) |
+| ein Projekt ohne KI anlegen | [Dein erstes Projekt von Hand](DOCS/primer-proyecto.md) |
+| Panel, Vorlagen und einfache Ansicht verstehen | [Vorlagen und Panel](DOCS/obsidian.md) |
+| Knoten hinzufügen und die Übersichtskarte verstehen | [Übersichtskarte und Knotenindizes](DOCS/indice-principal.md) |
+| wissen, wie Änderungen protokolliert und geprüft werden | [Pflege](DOCS/mantenimiento.md) |
+| die fünf optionalen Skills nutzen | [Optionale Skills](DOCS/skills-portables.md) |
+| ein Problem lösen | [Fehlerbehebung](DOCS/TROUBLESHOOTING.md) |
+| sehen, was jede Datei des Kits tut | [Wegweiser zu Dokumenten und Werkzeugen](DOCS/README.de.md) |
+
+**Für Assistenten und die Entwicklung des Kits:** [Einstieg für die KI](AI-INSTRUCTIONS.md) · [Regeln des Vaults](00_CORE/atoms/00_vault-rules.md) · [Einrichtungsprotokoll](00_CORE/protocols/configurar-vault.md) · [Projektersteller](DOCS/creacion-para-asistentes.md) · [Mitwirken](CONTRIBUTING.md) · [Test mit Nutzenden](DOCS/prueba-con-usuarios.md) · [Veröffentlichung](DOCS/publicacion.md) · [Änderungsprotokoll](CHANGELOG.md).
+
+## Was im Ordner liegt
+
+| Ort | Wofür |
+|---|---|
 | `Panel.md` | Zugriff auf Projekte und Aufgaben |
-| `00_CORE/` | Regeln, Projektkarten, Anleitungen und Werkzeuge |
-| `PROJECT_TEMPLATE/` | Ordner für Quellen, Entwürfe, Ergebnisse und Verlauf |
-| `DOCS/` | Optionale Hilfe |
+| `LEER_PRIMERO.md` | Einstiegsnotiz für die Person und Verbindung der allgemeinen Knoten |
+| `INDICE.md` | Katalog der Dateien und Projekte; erste Lektüre der KI |
+| `00_CORE/` | Regeln, Projektkarten, Vorlagen und Werkzeuge |
+| `PROJECT_TEMPLATE/` | Ordner eines Projekts: Quellen, Entwürfe, Ergebnisse und Archiv |
+| `skills/` | Fünf optionale Skills |
+| `DOCS/` | Anleitungen |
 
-Das Beispiel `aprender-python` ist fiktiv und von deinen eigenen Projekten getrennt. Deine Daten werden aus deinen Antworten ergänzt; Abschnitte ohne Angaben können leer bleiben.
+Das Beispiel `aprender-python` ist fiktiv und von deinen Projekten getrennt. Deine Daten stammen aus deinen Antworten; was du nicht weißt, kann leer bleiben.
 
-## Optionale Hilfe
+Python 3.8 oder neuer automatisiert Erstellung, Prüfung und Index mit der Standardbibliothek. Ohne Python nutzt die KI ihre Dateiwerkzeuge.
 
-Diese Anleitungen sind auf Spanisch:
+## Projektstand
 
-- [Ein Projekt von Hand anlegen](DOCS/primer-proyecto.md).
-- [Das Kit ohne Python einbinden](DOCS/instalacion-manual.md).
-- [Vorlagen und Panel](DOCS/obsidian.md).
-- [Fehlerbehebung](DOCS/TROUBLESHOOTING.md).
+Kandidat für die erste Version (v0.1.0); noch nicht stabil. Die Einrichtung im Gespräch mit fortsetzbarem Profil, der Projektersteller, verbundene Knoten und Indizes, das Änderungsprotokoll und die Prüfung funktionieren. Die automatischen Tests laufen unter Windows, macOS und Ubuntu mit Python 3.8 und 3.13 erfolgreich; das belegt nicht, dass das Kit einfach zu benutzen ist.
 
-Python 3.8 oder neuer automatisiert Installation, Erstellung, Prüfung und Index mit der Standardbibliothek. Die KI kann die Einrichtung auch mit ihren Dateiwerkzeugen vornehmen. Zum Mitwirken: [CONTRIBUTING](CONTRIBUTING.md).
+Einrichtung und Fortsetzung wurden mit Claude Code geprüft. Noch offen sind die unabhängige Fortsetzung in OpenCode, ChatGPT im Web, ein Test mit fünf Einsteigenden und die abschließende Sichtprüfung in Obsidian. Details stehen im [Änderungsprotokoll](CHANGELOG.md) (auf Spanisch).
 
 ## Datenschutz
 
@@ -123,10 +129,10 @@ Das Kit speichert lokale Dateien und installiert keine Synchronisierung. Die KI 
 
 Für Fragen, Ideen und Erfahrungen gibt es die [Community-Diskussionen](https://github.com/Albertmestre1256/obsidian-genesis/discussions). Wenn etwas nicht funktioniert, erstelle einen [Fehlerbericht](https://github.com/Albertmestre1256/obsidian-genesis/issues) mit der Vorlage „No me funciona“ und einem kleinen Beispiel mit fiktiven Daten. [Mitwirken](CONTRIBUTING.md) (auf Spanisch).
 
-## Über die Entwicklung
-
-Albert Mestre entwickelt diese Adaption mit wesentlichen Beiträgen von **OpenCode, Claude und Codex (OpenAI)**. Diese KI-Werkzeuge halfen, einen wichtigen Teil des Codes zu erstellen, und unterstützten Dokumentation und Tests; sie werden hier als Mitwirkende gewürdigt. Vorschläge werden geprüft und Ergebnisse vor der Integration verifiziert; der Einsatz von KI ersetzt keine Tests mit Menschen und belegt für sich allein nicht, dass das Kit einfach zu benutzen ist.
-
 ## Projekt unterstützen
 
 Obsidian Genesis ist kostenlos und bleibt es auch. Wenn dir das Kit hilft, kannst du es auf [Patreon](https://www.patreon.com/obsidiangenesis) unterstützen. Beiträge schaffen Zeit für Anleitungen für Einsteigende, Tests mit echten Menschen, Übersetzungen und Hilfe. Sie sind freiwillig: Sie schalten keine Funktionen frei, und das gesamte Kit bleibt öffentlich.
+
+## Über die Entwicklung
+
+Albert Mestre entwickelt diese Adaption mit wesentlichen Beiträgen von **OpenCode, Claude und Codex (OpenAI)**. Diese KI-Werkzeuge halfen, einen wichtigen Teil des Codes zu erstellen, und unterstützten Dokumentation und Tests; sie werden hier als Mitwirkende gewürdigt. Vorschläge werden geprüft und Ergebnisse vor der Integration verifiziert; der Einsatz von KI ersetzt keine Tests mit Menschen und belegt für sich allein nicht, dass das Kit einfach zu benutzen ist.

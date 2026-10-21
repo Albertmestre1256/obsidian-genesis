@@ -1,6 +1,6 @@
 ---
 name: configurar
-description: Configura una bóveda de Obsidian desde este kit mediante preguntas simples, cuando el usuario pide empezar de cero o adaptar una bóveda existente. No usar para desarrollar el kit ni para retomar un proyecto ya configurado.
+description: Configura una bóveda de Obsidian desde este kit mediante preguntas simples, cuando el usuario pide empezar una bóveda nueva; no adapta bóvedas existentes. No usar para desarrollar el kit ni para retomar un proyecto ya configurado.
 ---
 
 Leé primero `INDICE.md` y después `00_CORE/atoms/00_vault-rules.md` y después `00_CORE/protocols/configurar-vault.md`. Ese protocolo es la fuente única del recorrido de configuración.

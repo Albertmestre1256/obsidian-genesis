@@ -1,33 +1,103 @@
 > [!info]- Índice de esta nota (líneas)
-> - Líneas 1–28: Este índice
-> - Líneas 30–31: Cambios
-> - Líneas 32–35: 20/10/2026 — estado del proyecto y financiación en GitHub
-> - Líneas 36–39: 20/10/2026 — apoyo opcional en Patreon
-> - Líneas 40–43: 20/10/2026 — comprobaciones mecánicas con herramientas
-> - Líneas 44–47: 20/10/2026 — comentarios YAML en el catálogo
-> - Líneas 48–51: 18/10/2026 — vista simple opcional en bóvedas existentes
-> - Líneas 52–55: 17/10/2026 — menos repetición al validar el inventario
-> - Líneas 56–59: 17/10/2026 — inicio y acceso en una sola guía
-> - Líneas 60–63: 17/10/2026 — entradas de IA más concisas
-> - Líneas 64–67: 17/10/2026 — vista simple inicial de bóvedas nuevas
-> - Líneas 68–71: 17/10/2026 — originales conservados y mantenimiento acotado
-> - Líneas 72–75: 16/10/2026 — guía de los documentos en cuatro idiomas
-> - Líneas 76–79: 16/10/2026 — simplificación de herramientas Python
-> - Líneas 80–83: 16/10/2026 — comunidad y soporte accesibles desde los README
-> - Líneas 84–87: 16/10/2026 — abrir la bóveda en Obsidian no desactualiza el índice
-> - Líneas 88–91: 16/10/2026 — instalar desde un kit abierto con OpenCode
-> - Líneas 92–95: 16/10/2026 — README en cuatro idiomas
-> - Líneas 96–99: 16/10/2026 — sin carpetas __pycache__ en la bóveda
-> - Líneas 100–103: 15/10/2026 — próximo paso solo en la ficha
-> - Líneas 104–107: 15/10/2026 — destino visible al comprobar el cierre
-> - Líneas 108–111: 15/10/2026 — conservar cambios posteriores al plan
-> - Líneas 112–115: 15/10/2026 — cierre coherente con el proyecto inicial
-> - Líneas 116–119: 14/10/2026 — operación visible coherente con el registro
-> - Líneas 120–123: 14/10/2026 — inventario de perfil plegable
-> - Líneas 124–127: 13/10/2026 — índices de proyectos con nombres propios
-> - Líneas 128–149: Sin publicar — candidata a v0.1.0
+> - Líneas 1–42: Este índice
+> - Líneas 44–45: Cambios
+> - Líneas 46–49: 21/10/2026 — entrega de una copia como ZIP
+> - Líneas 50–53: 21/10/2026 — README más claro con guías enlazadas
+> - Líneas 54–57: 21/10/2026 — material heredado fuera de Genesis
+> - Líneas 58–61: 21/10/2026 — skills opcionales en Markdown, sin instalador
+> - Líneas 62–65: 21/10/2026 — creador: porcentajes, identificador y plantilla
+> - Líneas 66–69: 21/10/2026 — bloqueos huérfanos con guía de recuperación
+> - Líneas 70–73: 21/10/2026 — ayuda de IA al final de los README
+> - Líneas 74–77: 20/10/2026 — registro inviolable y enlaces solo dentro de la bóveda
+> - Líneas 78–81: 20/10/2026 — robustez de registro, rangos y Panel
+> - Líneas 82–85: 20/10/2026 — vista simple con las skills portables
+> - Líneas 86–89: 20/10/2026 — cinco skills portables
+> - Líneas 90–93: 20/10/2026 — alcance: bóvedas nuevas
+> - Líneas 94–97: 20/10/2026 — decisión explícita sobre el retiro al configurar
+> - Líneas 98–101: 20/10/2026 — retiro opcional del material del kit
+> - Líneas 102–105: 20/10/2026 — estado del proyecto y financiación en GitHub
+> - Líneas 106–109: 20/10/2026 — apoyo opcional en Patreon
+> - Líneas 110–113: 20/10/2026 — comprobaciones mecánicas con herramientas
+> - Líneas 114–117: 20/10/2026 — comentarios YAML en el catálogo
+> - Líneas 118–121: 18/10/2026 — vista simple opcional en bóvedas existentes
+> - Líneas 122–125: 17/10/2026 — menos repetición al validar el inventario
+> - Líneas 126–129: 17/10/2026 — inicio y acceso en una sola guía
+> - Líneas 130–133: 17/10/2026 — entradas de IA más concisas
+> - Líneas 134–137: 17/10/2026 — vista simple inicial de bóvedas nuevas
+> - Líneas 138–141: 17/10/2026 — originales conservados y mantenimiento acotado
+> - Líneas 142–145: 16/10/2026 — guía de los documentos en cuatro idiomas
+> - Líneas 146–149: 16/10/2026 — simplificación de herramientas Python
+> - Líneas 150–153: 16/10/2026 — comunidad y soporte accesibles desde los README
+> - Líneas 154–157: 16/10/2026 — abrir la bóveda en Obsidian no desactualiza el índice
+> - Líneas 158–161: 16/10/2026 — instalar desde un kit abierto con OpenCode
+> - Líneas 162–165: 16/10/2026 — README en cuatro idiomas
+> - Líneas 166–169: 16/10/2026 — sin carpetas __pycache__ en la bóveda
+> - Líneas 170–173: 15/10/2026 — próximo paso solo en la ficha
+> - Líneas 174–177: 15/10/2026 — destino visible al comprobar el cierre
+> - Líneas 178–181: 15/10/2026 — conservar cambios posteriores al plan
+> - Líneas 182–185: 15/10/2026 — cierre coherente con el proyecto inicial
+> - Líneas 186–189: 14/10/2026 — operación visible coherente con el registro
+> - Líneas 190–193: 14/10/2026 — inventario de perfil plegable
+> - Líneas 194–197: 13/10/2026 — índices de proyectos con nombres propios
+> - Líneas 198–219: Sin publicar — candidata a v0.1.0
 
 # Cambios
+
+## 21/10/2026 — entrega de una copia como ZIP
+
+Antes de ofrecer una copia para descargar, la IA pregunta el primer paso (puede quedar pendiente), completa el cierre y solo marca la configuración como lista con «CIERRE VERIFICADO». Descomprime el kit recibido con `zipfile` de Python y, con Python, crea el proyecto con el creador. Arma el ZIP con nombres UTF-8 y lo comprueba descomprimiéndolo, comparando sus nombres con los del kit y repitiendo el cierre sobre esa copia. La guía de ChatGPT y Solución de problemas explican qué hacer si los nombres aparecen como «├ìndice». Surgió de una prueba con ChatGPT web.
+
+## 21/10/2026 — README más claro con guías enlazadas
+
+Los README en español, inglés, alemán y chino explican primero qué es el kit y suman un glosario corto (bóveda, ficha, Panel, índice general y nodo), qué recibís, el uso diario y una sección «Guías» que enlaza cada documento según lo que necesites. El estado del proyecto queda breve y sin datos de desarrollo. En los cuatro README, una línea en blanco separa la atribución del índice de líneas para que GitHub no los muestre como una sola cita.
+
+## 21/10/2026 — material heredado fuera de Genesis
+
+Genesis crea bóvedas nuevas. Se retiran el instalador para bóvedas existentes (`instalar.py`), su guía de instalación manual y sus pruebas, incluida la de vista simple en una bóveda existente; quedan respaldados para el futuro repositorio de adaptación. Las guías conservan el aviso de alcance: si ya tenés una bóveda, usá el kit en una carpeta nueva.
+
+## 21/10/2026 — skills opcionales en Markdown, sin instalador
+
+Las cinco skills de `skills/` quedan como notas Markdown opcionales: la configuración ya no las instala y la bóveda funciona sin ellas. Al entregar, la IA avisa que existen y las copia a la carpeta del asistente solo si la persona lo pide. Se retiran `instalar_skills.py` y sus pruebas; la guía de skills explica la copia con herramientas de archivos. Para retomar se recomienda `empezar`; `inicio` queda como alternativa portable.
+
+## 21/10/2026 — creador: porcentajes, identificador y plantilla
+
+El creador escapa `%` en el texto que escribe, como el catálogo, para que `%%` no abra un comentario de Obsidian y oculte el resto. Si el nombre no tiene letras latinas ni números, pide acordar un identificador en lugar de informar que falta el id. Al copiar la plantilla omite lo mismo que el catálogo (archivos del sistema como `.DS_Store` o `Thumbs.db`, ocultos y nombres habituales de credenciales) y además temporales (`~$*`, `*.tmp`, `*~`), y reconoce su índice aunque el nombre llegue en otra forma Unicode, como en macOS. La revisión de fichas acepta una fuente con paréntesis, como «(fuente: Plan (versión 2026))», sin avisar que falta.
+
+## 21/10/2026 — bloqueos huérfanos con guía de recuperación
+
+Si una escritura encuentra un bloqueo, el mensaje indica su ruta y antigüedad. Ante uno reciente pide esperar; a partir de los 10 minutos, o si no puede medir la antigüedad, explica cómo recuperarse si quedó de una operación interrumpida y pide que una IA lo confirme con la persona antes de borrarlo. Los bloqueos del kit registran el proceso y la hora de inicio. El kit sigue sin retirarlos por su cuenta; la guía está en «Aparece un bloqueo» de Solución de problemas.
+
+## 21/10/2026 — ayuda de IA al final de los README
+
+En los cuatro README, la sección sobre el desarrollo con ayuda de IA pasa a ser la última, después de «Apoyar el proyecto»; el crédito a davidkimai sigue en la primera línea. No cambia el texto de ninguna sección.
+
+## 20/10/2026 — registro inviolable y enlaces solo dentro de la bóveda
+
+Un resumen del registro ya no puede imitar ni cortar una entrada: el signo de porcentaje se escribe como entidad en el texto y escapado en el comentario de datos. La raíz de la bóveda se reconoce por `INDICE.md` y las reglas: las herramientas rechazan enlaces y junctions desde cada ruta hasta esa raíz, inclusive, pero ya no en las carpetas que la contienen; sin esas marcas revisan la ruta completa como antes. Los originales, históricos y archivos protegidos se miden desde esa raíz, también al revisar notas sueltas desde una subcarpeta. Solo las etiquetas de Windows que redirigen rutas cuentan como enlace: archivos en la nube, deduplicados o comprimidos, no. Vale también para el actualizador, el creador y la instalación de skills; el actualizador no crea ni reescribe índices si se le indica una carpeta protegida. Una prueba de temporales revisa el prefijo real.
+
+## 20/10/2026 — robustez de registro, rangos y Panel
+
+El registro rechaza con un error controlado una acción que no sea texto y no informa un fallo si otro proceso retiró su bloqueo después de guardar. Los rangos cuentan solo los saltos de línea reales, como Obsidian, y una bóveda del kit (con `INDICE.md` y reglas) dentro de una carpeta llamada `_archivo`, `01_FUENTES` u otra protegida ya no queda bloqueada, salvo dentro de otra bóveda del kit; una copia en `.claude/worktrees` cuenta como bóveda propia. Las notas reescritas conservan sus permisos. El acceso del Panel por nombre corto ignora carpetas ocultas, dependencias, enlaces y junctions. El inventario mezclado explica la mezcla, y el instalador heredado ya no remite a una sección retirada.
+
+## 20/10/2026 — vista simple con las skills portables
+
+La vista simple también oculta la carpeta `skills/` e `instalar_skills.py` en el explorador y el gráfico; los archivos siguen disponibles para la IA.
+
+## 20/10/2026 — cinco skills portables
+
+Fuentes editables de inicio, volcar, reorganización, coherencia y eficiencia de contexto en `skills/`, sin rutas ni reglas personales del mantenedor. La configuración incluye su instalación local para el asistente actual; `instalar_skills.py` consulta antes de copiar y conserva personalizaciones. Guía y alternativa sin Python en `DOCS/skills-portables.md`. Catálogo y mantenimiento reconocen las integraciones de Codex sin reescribir su formato.
+
+## 20/10/2026 — alcance: bóvedas nuevas
+
+Las entradas, el protocolo de configuración y las guías ya no ofrecen adaptar bóvedas existentes: Genesis prepara bóvedas nuevas y esa adaptación será un repositorio separado. El instalador y su guía sin Python se marcan como material heredado; ambos y sus pruebas se conservan, pendientes de una decisión de retiro o separación. No cambia código.
+
+## 20/10/2026 — decisión explícita sobre el retiro al configurar
+
+El cierre de configuración exige revisar el material sobrante y presentar cada archivo propuesto para eliminar, su función, motivo, respaldo y lo que se conserva. La persona autoriza la lista con la orden explícita de retiro o indica exclusiones, conservación o postergación; sin respuesta queda pendiente y no se borra. Este paso sustituye la mención opcional anterior, sin añadir scripts ni eliminar archivos del kit.
+
+## 20/10/2026 — retiro opcional del material del kit
+
+`DOCS/obsidian.md` describe cómo la IA puede retirar, a pedido, material del kit que ya no se usa en una bóveda lista: lista exacta de archivos autorizada, respaldo fuera de la bóveda, retiro archivo por archivo con nueva comprobación justo antes, referencias comprobadas y registro. Sin ese pedido se conserva todo. `configurar-vault.md` lo ofrece una vez al entregar y `AI-INSTRUCTIONS.md` lo enruta.
 
 ## 20/10/2026 — estado del proyecto y financiación en GitHub
 

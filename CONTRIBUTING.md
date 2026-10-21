@@ -25,7 +25,7 @@ python 00_CORE/schemas/validate.py
 python actualizar_indice.py --comprobar
 ```
 
-Las pruebas del instalador usan carpetas temporales y comprueban que no reemplace notas ni ajustes. Si cambiás rutas, revisá README, guías, skills y enlaces. Para cambios de interfaz, comprobá también una bóveda limpia en Obsidian.
+Las pruebas usan carpetas temporales y comprueban que el kit no reemplace notas ni ajustes. Si cambiás rutas, revisá README, guías, skills y enlaces. Para cambios de interfaz, comprobá también una bóveda limpia en Obsidian.
 
 Tras cambiar archivos o descripciones, actualizá `INDICE.md` con `python actualizar_indice.py` y volvé a comprobarlo. En OpenCode, verificá que los comandos se carguen y después probá su recorrido con un proveedor disponible. Una carga correcta no acredita la respuesta del modelo. Conservá las pruebas y sus datos ficticios fuera del kit distribuido.
 

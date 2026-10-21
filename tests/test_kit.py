@@ -37,7 +37,7 @@ def test_archivos_esenciales():
                  ".opencode/commands/configurar.md", "DOCS/opencode.md", "DOCS/chatgpt.md",
                  "00_CORE/atoms/00_vault-rules.md", "00_CORE/templates/TEMPLATE_cell.md",
                  "00_CORE/cells/ejemplo-context.md", "00_CORE/schemas/validate.py",
-                 ".claude/settings.json", ".obsidian/app.json", "Panel.md", "Proyectos.base", "instalar.py", ".github/workflows/tests.yml"]:
+                 ".claude/settings.json", ".obsidian/app.json", "Panel.md", "Proyectos.base", ".github/workflows/tests.yml"]:
         assert (RAIZ / ruta).exists(), ruta
 
 
@@ -141,12 +141,9 @@ def test_scripts_no_dejan_pycache_en_la_boveda(tmp_path):
         ".git", "tests", "__pycache__", ".pytest_cache", ".agents"))
     entorno = {k: v for k, v in os.environ.items() if k not in ("PYTHONDONTWRITEBYTECODE", "PYTHONPYCACHEPREFIX")}
     entorno["PYTHONIOENCODING"] = "utf-8"
-    destino = tmp_path / "otra-boveda"
-    destino.mkdir()
     for argumentos in (["00_CORE/schemas/validate.py", ".", "--cierre", "--operacion", "prueba-pycache"],
                        ["actualizar_indice.py", "--comprobar"],
-                       ["00_CORE/schemas/registrar_cambios.py", "--help"],
-                       ["instalar.py", str(destino), "--dry-run"]):
+                       ["00_CORE/schemas/registrar_cambios.py", "--help"]):
         resultado = subprocess.run([sys.executable, *argumentos], cwd=boveda, env=entorno,
                                    capture_output=True, text=True, encoding="utf-8")
         assert resultado.returncode in (0, 1) and "Traceback" not in resultado.stderr, resultado.stderr

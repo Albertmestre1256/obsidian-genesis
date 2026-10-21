@@ -2,8 +2,8 @@
 > - Líneas 1–6: Este índice
 > - Líneas 8–11: Entrada para la IA
 > - Líneas 12–17: Antes de trabajar
-> - Líneas 18–29: Elegir el recorrido
-> - Líneas 30–48: Herramientas opcionales
+> - Líneas 18–31: Elegir el recorrido
+> - Líneas 32–49: Herramientas opcionales
 
 # Entrada para la IA
 
@@ -12,20 +12,22 @@ Configurá la bóveda con preguntas simples; la persona no edita plantillas ni n
 ## Antes de trabajar
 
 1. Ubicá la raíz que contiene `INDICE.md` y estas instrucciones, incluso dentro de un ZIP. Ante varias bóvedas posibles, preguntá cuál usar.
-2. Leé `INDICE.md` completo, continuando si la salida se recorta; listar archivos o ejecutar el actualizador no sustituye esa lectura. Después leé `00_CORE/atoms/00_vault-rules.md` y ubicá la ficha por `proyecto` o el índice del nodo solicitado, contrastando sus rutas reales. En una bóveda existente, respetá su entrada y sus reglas.
+2. Leé `INDICE.md` completo, continuando si la salida se recorta; listar archivos o ejecutar el actualizador no sustituye esa lectura. Después leé `00_CORE/atoms/00_vault-rules.md` y ubicá la ficha por `proyecto` o el índice del nodo solicitado, contrastando sus rutas reales. Este kit prepara bóvedas nuevas: si el destino es una carpeta con notas propias que no preparó este kit, proponé una carpeta nueva en lugar de adaptarla. Una bóveda ya preparada con el kit se retoma normalmente.
 3. Leé la referencia del recorrido elegido **antes de escribir**; después cargá solo el contexto necesario. Reutilizá las lecturas vigentes de esta sesión. Con adjuntos, aclarás los límites de acceso y comprobación.
 
 ## Elegir el recorrido
 
 | Pedido | Referencia obligatoria |
 |---|---|
-| Configurar una bóveda nueva, integrar una existente o retomar configuración parcial | `00_CORE/protocols/configurar-vault.md`: preguntas, configuración e inventario antes del proyecto, Panel y comprobación de entrega. |
+| Configurar una bóveda nueva o retomar una configuración parcial | `00_CORE/protocols/configurar-vault.md`: preguntas, configuración e inventario antes del proyecto, Panel y comprobación de entrega. |
 | Completar el perfil, revisar faltantes o retomar datos omitidos, también con la bóveda lista | `00_CORE/protocols/personalizar-vault.md` |
+| Retirar de una bóveda lista el material del kit que ya no se usa | «Retirar material del kit que ya no usás» en `DOCS/obsidian.md`, sin repetir la entrevista |
 | Crear, ampliar o consultar un nodo | «Crear y actualizar un nodo» en `DOCS/indice-principal.md` |
 | Retomar, crear otro proyecto, redactar, revisar o cerrar | Sección correspondiente de `DOCS/usar-con-otras-ias.md` |
+| Usar, copiar o personalizar las skills opcionales: inicio, volcar, reorganización, coherencia o eficiencia de contexto | `DOCS/skills-portables.md`: fuentes editables, copia opcional al asistente y selección de la skill pertinente. Para retomar, recomendá `empezar`. |
 | Desarrollar o revisar el kit | Atendé ese pedido sin personalizar el repositorio ni iniciar la entrevista. |
 
-Una idea de proyecto no confirma datos pendientes; crear una ficha no completa la configuración. El protocolo distingue configuración parcial, bóveda lista y ausencia de configuración: conservá el trabajo y las omisiones al retomar.
+Una idea de proyecto no confirma datos pendientes; crear una ficha no completa la configuración. El protocolo distingue configuración parcial, bóveda lista y ausencia de configuración: conservá el trabajo y las omisiones al retomar. Al entregar una configuración lista, cumplí el paso obligatorio de revisión del material para retirar indicado en ese protocolo; no esperes a que la persona lo pida por su cuenta.
 
 ## Herramientas opcionales
 
@@ -33,7 +35,6 @@ Usá herramientas del kit leído, no código preexistente de otra bóveda. Pytho
 
 | Herramienta | Cuándo y dónde consultar |
 |---|---|
-| `instalar.py` | Para integrar otra bóveda: simulá con `python instalar.py "ruta-del-destino" --dry-run` y aplicá con `--yes` dentro del alcance acordado. Conserva archivos y `.obsidian`; alternativa en `DOCS/instalacion-manual.md`. No se usa sobre el propio kit. |
 | `crear_proyecto.py` | `DOCS/creacion-para-asistentes.md`; crea ficha, índice y carpetas, sin completar Panel ni configuración. |
 | `00_CORE/schemas/validate.py` | «Revisar fichas» en `DOCS/usar-con-otras-ias.md`, incluida revisión manual. |
 | `actualizar_indice.py` | `DOCS/indice-principal.md`: mapas generales y locales. |

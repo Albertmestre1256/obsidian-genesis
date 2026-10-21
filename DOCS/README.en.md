@@ -9,12 +9,12 @@ descripcion: "What each kit document contains, what it does and when to consult 
 > - Líneas 27–37: Contents of this guide
 > - Líneas 38–47: Entry points
 > - Líneas 48–65: Rules and projects
-> - Líneas 66–84: Help
-> - Líneas 85–98: Integrations and settings
-> - Líneas 99–112: Python and tests
-> - Líneas 113–123: Repository and credits
-> - Líneas 124–132: Optional resources
-> - Líneas 133–145: Files created during use
+> - Líneas 66–83: Help
+> - Líneas 84–97: Integrations and settings
+> - Líneas 98–110: Python and tests
+> - Líneas 111–121: Repository and credits
+> - Líneas 122–130: Optional resources
+> - Líneas 131–143: Files created during use
 
 # Guide to the kit documents and tools
 
@@ -22,7 +22,7 @@ descripcion: "What each kit document contains, what it does and when to consult 
 
 **This guide in other languages:** [Español](README.md) · [English](README.en.md) · [Deutsch](README.de.md) · [中文](README.zh.md)
 
-You do not need to read everything to begin: follow the main README and answer your AI’s questions. Use this guide to understand the files or find help. File paths are the same in every language; the kit’s shared instructions remain in Spanish. This guide describes the complete repository and is read in the downloaded kit folder. When integrating the kit into another vault, it stays here with the tests and development documentation; usage help is copied.
+You do not need to read everything to begin: follow the main README and answer your AI’s questions. Use this guide to understand the files or find help. File paths are the same in every language; the kit’s shared instructions remain in Spanish. This guide describes the complete repository and is read in the downloaded kit folder.
 
 ## Contents of this guide
 
@@ -67,12 +67,11 @@ You do not need to read everything to begin: follow the main README and answer y
 
 | Document or tool | Purpose |
 |---|---|
-| [`DOCS/QUICKSTART.md`](../DOCS/QUICKSTART.md) | Start with an AI: local access, attached copies, existing vaults and resuming. |
+| [`DOCS/QUICKSTART.md`](../DOCS/QUICKSTART.md) | Start with an AI: local access, attached copies and resuming. |
 | [`DOCS/opencode.md`](../DOCS/opencode.md) | Open the kit and use its commands in OpenCode. |
 | [`DOCS/chatgpt.md`](../DOCS/chatgpt.md) | ChatGPT workflows with a folder or attachments. |
 | [`DOCS/usar-con-otras-ias.md`](../DOCS/usar-con-otras-ias.md) | Everyday requests to resume, draft or save progress. |
 | [`DOCS/primer-proyecto.md`](../DOCS/primer-proyecto.md) | Create a project manually as an alternative. |
-| [`DOCS/instalacion-manual.md`](../DOCS/instalacion-manual.md) | Integrate the kit without running Python. |
 | [`DOCS/creacion-para-asistentes.md`](../DOCS/creacion-para-asistentes.md) | Technical reference for an AI preparing project files. |
 | [`DOCS/indice-principal.md`](../DOCS/indice-principal.md) | Maintain the map, local indexes and scalable links. |
 | [`DOCS/mantenimiento.md`](../DOCS/mantenimiento.md) | Update line ranges, maps and logs, and verify closure. |
@@ -93,22 +92,21 @@ You do not need to read everything to begin: follow the main README and answer y
 | [`.claude/skills/validar/SKILL.md`](../.claude/skills/validar/SKILL.md) · [`.opencode/commands/validar.md`](../.opencode/commands/validar.md) | /validar: check context notes and explain errors or warnings. |
 | [`.claude/skills/cerrar/SKILL.md`](../.claude/skills/cerrar/SKILL.md) · [`.opencode/commands/cerrar.md`](../.opencode/commands/cerrar.md) | /cerrar: propose saving changes and verify approved updates. |
 | [`.claude/skills/vault-manager/SKILL.md`](../.claude/skills/vault-manager/SKILL.md) · [`.claude/settings.json`](../.claude/settings.json) | Vault usage guidance and Claude integration settings. |
-| [`.obsidian/app.json`](../.obsidian/app.json) · [`.obsidian/core-plugins.json`](../.obsidian/core-plugins.json) · [`.obsidian/graph.json`](../.obsidian/graph.json) · [`.obsidian/templates.json`](../.obsidian/templates.json) · [`.obsidian/appearance.json`](../.obsidian/appearance.json) · [`.obsidian/snippets/genesis-vista-simple.css`](../.obsidian/snippets/genesis-vista-simple.css) | Initial settings and enabled simple view for a new vault; preserve existing settings when integrating. |
+| [`.obsidian/app.json`](../.obsidian/app.json) · [`.obsidian/core-plugins.json`](../.obsidian/core-plugins.json) · [`.obsidian/graph.json`](../.obsidian/graph.json) · [`.obsidian/templates.json`](../.obsidian/templates.json) · [`.obsidian/appearance.json`](../.obsidian/appearance.json) · [`.obsidian/snippets/genesis-vista-simple.css`](../.obsidian/snippets/genesis-vista-simple.css) | Initial settings and enabled simple view for a new vault. |
 | [`Proyectos.base`](../Proyectos.base) | Project table used by the Panel; not a note or script. |
 
 ## Python and tests
 
-Python automates tasks; you do not need to program to use the kit with an AI that can manage files. Tests are for kit developers, and the installer does not copy them into an installed vault.
+Python automates tasks; you do not need to program to use the kit with an AI that can manage files. Tests are for kit developers.
 
 | Document or tool | Purpose |
 |---|---|
-| [`instalar.py`](../instalar.py) | Add the kit to another vault without replacing existing files. |
 | [`crear_proyecto.py`](../crear_proyecto.py) | Create the context note and folders of an agreed project. |
 | [`actualizar_indice.py`](../actualizar_indice.py) | Generate or check the general index and node indexes. |
 | [`00_CORE/schemas/validate.py`](../00_CORE/schemas/validate.py) | Check context notes and setup; with --cierre, verify an operation. |
 | [`00_CORE/schemas/note_index.py`](../00_CORE/schemas/note_index.py) | Compute and check line ranges in editable notes. |
 | [`00_CORE/schemas/registrar_cambios.py`](../00_CORE/schemas/registrar_cambios.py) | Record authorship, changed files and preserved history. |
-| [`tests/conftest.py`](../tests/conftest.py) · [`tests/test_crear_proyecto.py`](../tests/test_crear_proyecto.py) · [`tests/test_indice.py`](../tests/test_indice.py) · [`tests/test_instalar.py`](../tests/test_instalar.py) · [`tests/test_kit.py`](../tests/test_kit.py) · [`tests/test_mantenimiento.py`](../tests/test_mantenimiento.py) · [`tests/test_nodos.py`](../tests/test_nodos.py) · [`tests/test_validate.py`](../tests/test_validate.py) | Shared fixtures and tests for creation, indexes, installation, packaging, maintenance, nodes and validation. |
+| [`tests/conftest.py`](../tests/conftest.py) · [`tests/test_crear_proyecto.py`](../tests/test_crear_proyecto.py) · [`tests/test_indice.py`](../tests/test_indice.py) · [`tests/test_kit.py`](../tests/test_kit.py) · [`tests/test_mantenimiento.py`](../tests/test_mantenimiento.py) · [`tests/test_nodos.py`](../tests/test_nodos.py) · [`tests/test_validate.py`](../tests/test_validate.py) | Shared fixtures and tests for creation, indexes, packaging, maintenance, nodes and validation. |
 
 ## Repository and credits
 

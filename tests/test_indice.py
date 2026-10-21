@@ -218,26 +218,6 @@ def test_no_sigue_junction_ni_reemplaza_indice(tmp_path):
         os.rmdir(str(junction))
 
 
-def test_instalacion_catalogo_del_destino_y_reinstalacion(tmp_path):
-    guardar(tmp_path, 'apuntes/original.md', '# Nota previa\n')
-    command = [sys.executable, '-B', str(ROOT / 'instalar.py'), str(tmp_path), '--yes']
-    first = subprocess.run(command, capture_output=True, text=True, encoding='utf-8')
-    assert first.returncode == 0, first.stdout + first.stderr
-    before = (tmp_path / 'INDICE.md').read_bytes()
-    assert 'apuntes/original.md' in before.decode('utf-8')
-    assert run(tmp_path, '--comprobar').returncode == 0
-    assert subprocess.run(command, capture_output=True).returncode == 0
-    assert (tmp_path / 'INDICE.md').read_bytes() == before
-
-
-def test_instalacion_indice_propio_impide_copia(tmp_path):
-    path = guardar(tmp_path, 'INDICE.md', '# Mi entrada propia\n')
-    result = subprocess.run([sys.executable, '-B', str(ROOT / 'instalar.py'), str(tmp_path), '--yes'], capture_output=True)
-    assert result.returncode == 1
-    assert {p.name for p in tmp_path.iterdir()} == {'INDICE.md'}
-    assert path.read_text(encoding='utf-8') == '# Mi entrada propia\n'
-
-
 def test_creacion_cli_registra_proyecto_en_indice(tmp_path):
     vault = tmp_path / 'vault'
     shutil.copytree(ROOT / '00_CORE', vault / '00_CORE', ignore=shutil.ignore_patterns('__pycache__'))
@@ -305,7 +285,8 @@ def test_cambio_ajeno_antes_del_reemplazo_se_conserva(tmp_path, monkeypatch):
     with pytest.raises(ValueError, match='cambió'):
         indice.actualizar(tmp_path)
     assert path.read_bytes() == b'# Cambio concurrente de la persona\n'
-    assert not list(tmp_path.glob('.indice-*.tmp'))
+    # El guardado publica temporales '.nota-*.tmp' (note_index.guardar); ninguno debe quedar.
+    assert not list(tmp_path.glob('.nota-*.tmp')) and not list(tmp_path.glob('.indice-*.tmp'))
 
 
 def test_indice_distribuido_coincide_con_archivos_del_kit():
@@ -378,3 +359,23 @@ def test_obsidian_del_kit_contiene_solo_ajustes_y_vista_simple_distribuibles():
     # Lo que Obsidian cree al abrir el kit no se cataloga; tampoco debe colarse en el paquete.
     assert {p.name for p in (ROOT / '.obsidian').iterdir()} == indice.AJUSTES_KIT | {'appearance.json', 'snippets'}
     assert {p.name for p in (ROOT / '.obsidian/snippets').iterdir()} == {'genesis-vista-simple.css'}
+
+
+def test_actualizar_escribe_en_boveda_bajo_enlace_externo(tmp_path):
+    real = tmp_path / 'real'
+    vault = real / 'boveda'
+    guardar(vault, 'INDICE.md', '# Mapa\n\n' + indice.INICIO + '\n' + indice.FIN + '\n')
+    guardar(vault, '00_CORE/atoms/00_vault-rules.md', '# Reglas\n')
+    guardar(vault, 'Notas/Nueva nota.md', '# Nueva nota\n')
+    enlace = tmp_path / 'enlace'
+    try:
+        enlace.symlink_to(real, target_is_directory=True)
+    except OSError:
+        if os.name != 'nt' or subprocess.run(['cmd', '/c', 'mklink', '/J', str(enlace), str(real)],
+                                             capture_output=True).returncode:
+            pytest.skip('La cuenta no permite crear enlaces ni junctions')
+    try:
+        assert indice.actualizar(enlace / 'boveda')['estado'] == 'actualizado'
+        assert 'Nueva nota' in (vault / 'INDICE.md').read_text(encoding='utf-8')
+    finally:
+        os.unlink(str(enlace)) if enlace.is_symlink() else os.rmdir(str(enlace))

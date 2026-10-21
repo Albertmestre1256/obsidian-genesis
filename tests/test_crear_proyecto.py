@@ -6,6 +6,7 @@ from pathlib import Path
 import shutil
 import subprocess
 import sys
+import unicodedata
 
 import pytest
 
@@ -614,3 +615,72 @@ def test_conservacion_cli_keyboard_interrupt_after_first_guardar_is_partial(_con
     result = json.loads(capsys.readouterr().out)
     assert written and written[0].is_file()
     assert result['estado']=='parcial'
+
+
+def test_boveda_bajo_enlace_externo_crea_el_proyecto(vault, datos, tmp_path):
+    (vault / 'INDICE.md').write_text('# Mapa\n', encoding='utf-8')
+    real = tmp_path / 'real'
+    real.mkdir()
+    movida = Path(shutil.move(str(vault), str(real / vault.name)))
+    enlace = tmp_path / 'enlace'
+    try:
+        enlace.symlink_to(real, target_is_directory=True)
+    except OSError:
+        if os.name != 'nt' or subprocess.run(['cmd', '/c', 'mklink', '/J', str(enlace), str(real)],
+                                             capture_output=True).returncode:
+            pytest.skip('La cuenta no permite crear enlaces ni junctions')
+    try:
+        plan = crear.planificar(enlace / movida.name, datos)
+        crear.aplicar(plan, [])
+        assert (movida / 'preparar-dos-materias').is_dir()
+    finally:
+        os.unlink(str(enlace)) if enlace.is_symlink() else os.rmdir(str(enlace))
+
+
+def _cuerpo(texto):
+    return texto.split('\n---\n', 1)[1] if texto.startswith('---\n') else texto
+
+
+def test_porcentajes_no_abren_comentarios_de_obsidian(vault, datos, validador):
+    datos.update(nombre='Ahorro %%oculto%% visible', descripcion='Subir 20%% el ahorro.',
+                 hechos=[{'texto': 'Ahorro actual: 10%.', 'fuente': 'Planilla %%mensual%%'}])
+    plan = crear.planificar(vault, datos)
+    crear.aplicar(plan, [])
+    for rel in (plan['ficha'], plan['indice']):
+        cuerpo = _cuerpo((vault / rel).read_text(encoding='utf-8'))
+        cuerpo = cuerpo.replace('%% node-index:start %%', '').replace('%% node-index:end %%', '')
+        assert '%%' not in cuerpo and 'oculto' in cuerpo
+    assert validador.validar(vault / plan['ficha']) == ([], [])
+
+
+def test_fuente_con_parentesis_no_se_toma_como_faltante(vault, datos, validador):
+    datos['hechos'] = [{'texto': 'Hay dos materias.', 'fuente': 'Plan de estudios (versión 2026)'},
+                       {'texto': 'Falta elegir horario.'}]
+    plan = crear.planificar(vault, datos)
+    crear.aplicar(plan, [])
+    errores, avisos = validador.validar(vault / plan['ficha'])
+    assert not errores and len(avisos) == 1 and 'Falta elegir horario' in avisos[0]
+
+
+def test_nombre_sin_letras_latinas_pide_acordar_identificador(vault, datos):
+    datos['nombre'] = '数据分析'
+    before = foto(vault)
+    with pytest.raises(ValueError, match='identificador'):
+        crear.planificar(vault, datos)
+    assert foto(vault) == before
+    datos['id'] = 'analisis-de-datos'
+    assert crear.planificar(vault, datos)['id'] == 'analisis-de-datos'
+
+
+def test_plantilla_sin_archivos_del_sistema_ni_temporales(vault, datos, tmp_path):
+    origen = tmp_path / 'otro-kit'
+    shutil.copytree(RAIZ, origen, ignore=shutil.ignore_patterns('.git', '__pycache__', '.pytest_cache', 'tests'))
+    limpio = set(crear.planificar(vault, datos, origen=origen)['nuevos'])
+    plantilla = origen / 'PROJECT_TEMPLATE'
+    indice = '00 - Índice y Contexto.md'
+    (plantilla / unicodedata.normalize('NFD', indice)).write_bytes((plantilla / indice).read_bytes())
+    for basura in ['.DS_Store', 'Thumbs.db', '02_SINTESIS/~$borrador.docx', '02_SINTESIS/borrador.md.tmp',
+                   '03_ENTREGABLES/copia.md~', '.oculta/nota.md', '__pycache__/modulo.pyc']:
+        (plantilla / basura).parent.mkdir(exist_ok=True)
+        (plantilla / basura).write_bytes(b'basura')
+    assert set(crear.planificar(vault, datos, origen=origen)['nuevos']) == limpio

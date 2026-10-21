@@ -1,27 +1,28 @@
 > [!info]- Índice de esta nota (líneas)
-> - Líneas 1–24: Este índice
-> - Líneas 26–37: Índice principal de la bóveda
-> - Líneas 38–43: Panorama
-> - Líneas 44–47: Proyectos propios
-> - Líneas 48–53: Ejemplos ficticios
-> - Líneas 54–57: Mapa de nodos
-> - Líneas 58–61: Catálogo completo de archivos
-> - Líneas 62–70: Ajustes de Obsidian
-> - Líneas 71–93: Ayuda
-> - Líneas 94–110: Desarrollo
-> - Líneas 111–133: Entrada y herramientas
-> - Líneas 134–139: Fichas y plantillas de proyecto
-> - Líneas 140–145: Guías de comunicación
-> - Líneas 146–154: Guías de redacción
-> - Líneas 155–167: Integración Claude
-> - Líneas 168–178: Integración OpenCode
-> - Líneas 179–188: Plantilla de carpetas
-> - Líneas 189–196: Plantillas de organización
-> - Líneas 197–205: Protocolos
-> - Líneas 206–214: Recursos opcionales de davidkimai
-> - Líneas 215–220: Reglas compartidas
-> - Líneas 221–228: Validación
-> - Líneas 229–237: Alcance del catálogo
+> - Líneas 1–25: Este índice
+> - Líneas 27–38: Índice principal de la bóveda
+> - Líneas 39–44: Panorama
+> - Líneas 45–48: Proyectos propios
+> - Líneas 49–54: Ejemplos ficticios
+> - Líneas 55–58: Mapa de nodos
+> - Líneas 59–62: Catálogo completo de archivos
+> - Líneas 63–71: Ajustes de Obsidian
+> - Líneas 72–94: Ayuda
+> - Líneas 95–104: Carpeta: skills
+> - Líneas 105–119: Desarrollo
+> - Líneas 120–141: Entrada y herramientas
+> - Líneas 142–147: Fichas y plantillas de proyecto
+> - Líneas 148–153: Guías de comunicación
+> - Líneas 154–162: Guías de redacción
+> - Líneas 163–175: Integración Claude
+> - Líneas 176–186: Integración OpenCode
+> - Líneas 187–196: Plantilla de carpetas
+> - Líneas 197–204: Plantillas de organización
+> - Líneas 205–213: Protocolos
+> - Líneas 214–222: Recursos opcionales de davidkimai
+> - Líneas 223–228: Reglas compartidas
+> - Líneas 229–236: Validación
+> - Líneas 237–245: Alcance del catálogo
 
 # Índice principal de la bóveda
 
@@ -37,7 +38,7 @@ Podés agregar presentación y comentarios antes o después del bloque automáti
 
 ## Panorama
 
-- Archivos catalogados: 92. Proyectos propios identificados: 0. Ejemplos ficticios: 1.
+- Archivos catalogados: 94. Proyectos propios identificados: 0. Ejemplos ficticios: 1.
 - Configuración: todavía no existe una nota de configuración del kit.
 - El estado detallado y las tareas se leen en cada ficha; este catálogo no los reemplaza.
 
@@ -75,7 +76,6 @@ Cada fila enlaza un archivo. Las carpetas se representan mediante sus archivos; 
 | [chatgpt.md](DOCS/chatgpt.md) | Empezar con ChatGPT |
 | [creacion-para-asistentes.md](DOCS/creacion-para-asistentes.md) | Crear los archivos de un proyecto |
 | [indice-principal.md](DOCS/indice-principal.md) | Mantener el mapa general y los índices de nodos |
-| [instalacion-manual.md](DOCS/instalacion-manual.md) | Agregar el kit a una bóveda sin Python |
 | [mantenimiento.md](DOCS/mantenimiento.md) | Mantener notas, mapas y registro |
 | [mcp-claude.md](DOCS/mcp-claude.md) | Si Claude no conecta con el MCP |
 | [obsidian.md](DOCS/obsidian.md) | Plantillas y panel |
@@ -88,8 +88,19 @@ Cada fila enlaza un archivo. Las carpetas se representan mediante sus archivos; 
 | [README.en.md](DOCS/README.en.md) | What each kit document contains, what it does and when to consult it. |
 | [README.md](DOCS/README.md) | Qué contiene cada documento del kit, para qué sirve y cuándo consultarlo. |
 | [README.zh.md](DOCS/README.zh.md) | 各文档的内容、用途以及适合查阅的时机。 |
+| [skills-portables.md](DOCS/skills-portables.md) | Cinco skills opcionales para tu bóveda |
 | [TROUBLESHOOTING.md](DOCS/TROUBLESHOOTING.md) | Solución de problemas |
 | [usar-con-otras-ias.md](DOCS/usar-con-otras-ias.md) | Trabajar con una IA |
+
+### Carpeta: skills
+
+| Archivo | Qué contiene |
+|---|---|
+| [inicio/SKILL.md](skills/inicio/SKILL.md) | Inicia o retoma una sesión en Obsidian desde las reglas, mapa y estado guardado del proyecto. Usar ante /inicio o al cambiar de proyecto; solo lectura. |
+| [vault-coherence-auditor/SKILL.md](skills/vault-coherence-auditor/SKILL.md) | Audita reglas contradictorias, enlaces rotos y estados desfasados en Obsidian. Usar al pedir coherencia o referencias viejas; presenta evidencia y un plan antes de corregir. |
+| [vault-reorganizer/SKILL.md](skills/vault-reorganizer/SKILL.md) | Mueve, renombra o archiva notas y proyectos de Obsidian concretos, conservando enlaces y trazabilidad. Usar cuando el usuario indique qué reorganizar; no decide estados por su cuen |
+| [vault-token-optimizer/SKILL.md](skills/vault-token-optimizer/SKILL.md) | Revisa el costo de contexto de una bóveda de Obsidian y propone mejoras medibles. Usar al pedir reducir lecturas, fichas o redundancias; distingue consulta de cambios autorizados. |
+| [volcar/SKILL.md](skills/volcar/SKILL.md) | Guarda novedades de la conversación en Obsidian con destinos acordados, verificación y resumen de continuidad. Usar ante /volcar o al pedir guardar el progreso del chat. |
 
 ### Desarrollo
 
@@ -101,12 +112,10 @@ Cada fila enlaza un archivo. Las carpetas se representan mediante sus archivos; 
 | [conftest.py](tests/conftest.py) | PY |
 | [test\_crear\_proyecto.py](tests/test_crear_proyecto.py) | PY |
 | [test\_indice.py](tests/test_indice.py) | PY |
-| [test\_instalar.py](tests/test_instalar.py) | PY |
 | [test\_kit.py](tests/test_kit.py) | PY |
 | [test\_mantenimiento.py](tests/test_mantenimiento.py) | PY |
 | [test\_nodos.py](tests/test_nodos.py) | PY |
 | [test\_validate.py](tests/test_validate.py) | PY |
-| [test\_vista\_simple\_existente.py](tests/test_vista_simple_existente.py) | PY |
 
 ### Entrada y herramientas
 
@@ -121,7 +130,6 @@ Cada fila enlaza un archivo. Las carpetas se representan mediante sus archivos; 
 | [CONTRIBUTING.md](CONTRIBUTING.md) | Contribuir |
 | [crear\_proyecto.py](crear_proyecto.py) | PY |
 | [INDICE.md](INDICE.md) | Índice principal de la bóveda |
-| [instalar.py](instalar.py) | PY |
 | [LEER\_PRIMERO.md](LEER_PRIMERO.md) | Puerta de entrada a los proyectos, las reglas y el mapa de esta bóveda. |
 | [LICENSE](LICENSE) | Archivo sin extensión |
 | [Panel.md](Panel.md) | Mis proyectos |
@@ -158,7 +166,7 @@ Cada fila enlaza un archivo. Las carpetas se representan mediante sus archivos; 
 |---|---|
 | [settings.json](.claude/settings.json) | JSON |
 | [cerrar/SKILL.md](.claude/skills/cerrar/SKILL.md) | Cierra la sesión guardando en la célula del proyecto lo que cambió hoy |
-| [configurar/SKILL.md](.claude/skills/configurar/SKILL.md) | Configura una bóveda de Obsidian desde este kit mediante preguntas simples, cuando el usuario pide empezar de cero o adaptar una bóveda existente. No usar para desarrollar el kit n |
+| [configurar/SKILL.md](.claude/skills/configurar/SKILL.md) | Configura una bóveda de Obsidian desde este kit mediante preguntas simples, cuando el usuario pide empezar una bóveda nueva; no adapta bóvedas existentes. No usar para desarrollar |
 | [empezar/SKILL.md](.claude/skills/empezar/SKILL.md) | Arranca una sesión de trabajo en un proyecto cargando solo el contexto necesario |
 | [nuevo-proyecto/SKILL.md](.claude/skills/nuevo-proyecto/SKILL.md) | Crea las carpetas y la ficha de un proyecto mediante preguntas simples. |
 | [redactar/SKILL.md](.claude/skills/redactar/SKILL.md) | Escribe un texto para un proyecto con los datos necesarios y una revisión proporcional a la tarea |
@@ -228,7 +236,7 @@ Cada fila enlaza un archivo. Las carpetas se representan mediante sus archivos; 
 
 ## Alcance del catálogo
 
-Incluye notas, fuentes, adjuntos, guías y herramientas, además de .claude, .opencode, .obsidian y .github cuando existen. No lee el cuerpo completo de las notas ni los archivos de ajustes para elaborar descripciones.
+Incluye notas, fuentes, adjuntos, guías y herramientas, además de .claude, .agents, .opencode, .obsidian y .github cuando existen. No lee el cuerpo completo de las notas ni los archivos de ajustes para elaborar descripciones.
 
 Excluye Git, papelera, registro interno del MCP, cachés, dependencias, checkouts de .claude/worktrees, ajustes que Obsidian crea al usarse (solo cataloga los del kit), otros archivos ocultos y nombres habituales de credenciales o claves. No sigue enlaces ni junctions; si los encuentra en el material a catalogar, informa el impedimento y conserva el índice anterior.
 
