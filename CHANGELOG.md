@@ -41,7 +41,7 @@
 
 ## 21/10/2026 — creador: porcentajes, identificador y plantilla
 
-El creador escapa `%` en el texto que escribe, como el catálogo, para que `%%` no abra un comentario de Obsidian y oculte el resto. Si el nombre no tiene letras latinas ni números, pide acordar un identificador en lugar de informar que falta el id. Al copiar la plantilla omite archivos ocultos, del sistema (`.DS_Store`, `Thumbs.db`) y temporales, y reconoce su índice aunque el nombre llegue en otra forma Unicode, como en macOS. La revisión de fichas acepta una fuente con paréntesis, como «(fuente: Plan (versión 2026))», sin avisar que falta.
+El creador escapa `%` en el texto que escribe, como el catálogo, para que `%%` no abra un comentario de Obsidian y oculte el resto. Si el nombre no tiene letras latinas ni números, pide acordar un identificador en lugar de informar que falta el id. Al copiar la plantilla omite lo mismo que el catálogo (archivos del sistema como `.DS_Store` o `Thumbs.db`, ocultos y nombres habituales de credenciales) y además temporales (`~$*`, `*.tmp`, `*~`), y reconoce su índice aunque el nombre llegue en otra forma Unicode, como en macOS. La revisión de fichas acepta una fuente con paréntesis, como «(fuente: Plan (versión 2026))», sin avisar que falta.
 
 ## 21/10/2026 — bloqueos huérfanos con guía de recuperación
 

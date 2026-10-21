@@ -295,6 +295,14 @@ def test_hecho_sin_fuente(revisar, ejemplo):
     assert any("no tiene fuente" in a for a in avisos)
 
 
+@pytest.mark.parametrize('fuente,avisa', [(' (fuente: mi agenda (2026))', False),
+    (' (fuente: ) más datos (otro)', True), (' (fuente: ) (ver anexo)', True)])
+def test_fuente_con_parentesis(revisar, ejemplo, fuente, avisa):
+    errores, avisos = revisar(reemplazar(ejemplo, " (fuente: mi agenda)", fuente))
+    assert errores == []
+    assert any("no tiene fuente" in a for a in avisos) == avisa
+
+
 def test_decision_sin_fecha(revisar, ejemplo):
     _, avisos = revisar(reemplazar(ejemplo, "- 2026-09-20: ", "- ayer: "))
     assert any("no empieza con una fecha" in a for a in avisos)

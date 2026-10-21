@@ -680,6 +680,7 @@ def test_plantilla_sin_archivos_del_sistema_ni_temporales(vault, datos, tmp_path
     indice = '00 - Índice y Contexto.md'
     (plantilla / unicodedata.normalize('NFD', indice)).write_bytes((plantilla / indice).read_bytes())
     for basura in ['.DS_Store', 'Thumbs.db', '02_SINTESIS/~$borrador.docx', '02_SINTESIS/borrador.md.tmp',
-                   '03_ENTREGABLES/copia.md~']:
+                   '03_ENTREGABLES/copia.md~', '.oculta/nota.md', '__pycache__/modulo.pyc']:
+        (plantilla / basura).parent.mkdir(exist_ok=True)
         (plantilla / basura).write_bytes(b'basura')
     assert set(crear.planificar(vault, datos, origen=origen)['nuevos']) == limpio
