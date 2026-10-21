@@ -2,48 +2,47 @@
 > - Líneas 1–35: Este índice
 > - Líneas 37–38: Cambios
 > - Líneas 39–42: 20/10/2026 — registro inviolable y enlaces solo dentro de la bóveda
-> - Líneas 43–47: 20/10/2026 — robustez de registro, rangos y Panel
-> - Líneas 48–51: 20/10/2026 — vista simple con las skills portables
-> - Líneas 52–55: 20/10/2026 — cinco skills portables
-> - Líneas 56–59: 20/10/2026 — alcance: bóvedas nuevas
-> - Líneas 60–63: 20/10/2026 — decisión explícita sobre el retiro al configurar
-> - Líneas 64–67: 20/10/2026 — retiro opcional del material del kit
-> - Líneas 68–71: 20/10/2026 — estado del proyecto y financiación en GitHub
-> - Líneas 72–75: 20/10/2026 — apoyo opcional en Patreon
-> - Líneas 76–79: 20/10/2026 — comprobaciones mecánicas con herramientas
-> - Líneas 80–83: 20/10/2026 — comentarios YAML en el catálogo
-> - Líneas 84–87: 18/10/2026 — vista simple opcional en bóvedas existentes
-> - Líneas 88–91: 17/10/2026 — menos repetición al validar el inventario
-> - Líneas 92–95: 17/10/2026 — inicio y acceso en una sola guía
-> - Líneas 96–99: 17/10/2026 — entradas de IA más concisas
-> - Líneas 100–103: 17/10/2026 — vista simple inicial de bóvedas nuevas
-> - Líneas 104–107: 17/10/2026 — originales conservados y mantenimiento acotado
-> - Líneas 108–111: 16/10/2026 — guía de los documentos en cuatro idiomas
-> - Líneas 112–115: 16/10/2026 — simplificación de herramientas Python
-> - Líneas 116–119: 16/10/2026 — comunidad y soporte accesibles desde los README
-> - Líneas 120–123: 16/10/2026 — abrir la bóveda en Obsidian no desactualiza el índice
-> - Líneas 124–127: 16/10/2026 — instalar desde un kit abierto con OpenCode
-> - Líneas 128–131: 16/10/2026 — README en cuatro idiomas
-> - Líneas 132–135: 16/10/2026 — sin carpetas __pycache__ en la bóveda
-> - Líneas 136–139: 15/10/2026 — próximo paso solo en la ficha
-> - Líneas 140–143: 15/10/2026 — destino visible al comprobar el cierre
-> - Líneas 144–147: 15/10/2026 — conservar cambios posteriores al plan
-> - Líneas 148–151: 15/10/2026 — cierre coherente con el proyecto inicial
-> - Líneas 152–155: 14/10/2026 — operación visible coherente con el registro
-> - Líneas 156–159: 14/10/2026 — inventario de perfil plegable
-> - Líneas 160–163: 13/10/2026 — índices de proyectos con nombres propios
-> - Líneas 164–185: Sin publicar — candidata a v0.1.0
+> - Líneas 43–46: 20/10/2026 — robustez de registro, rangos y Panel
+> - Líneas 47–50: 20/10/2026 — vista simple con las skills portables
+> - Líneas 51–54: 20/10/2026 — cinco skills portables
+> - Líneas 55–58: 20/10/2026 — alcance: bóvedas nuevas
+> - Líneas 59–62: 20/10/2026 — decisión explícita sobre el retiro al configurar
+> - Líneas 63–66: 20/10/2026 — retiro opcional del material del kit
+> - Líneas 67–70: 20/10/2026 — estado del proyecto y financiación en GitHub
+> - Líneas 71–74: 20/10/2026 — apoyo opcional en Patreon
+> - Líneas 75–78: 20/10/2026 — comprobaciones mecánicas con herramientas
+> - Líneas 79–82: 20/10/2026 — comentarios YAML en el catálogo
+> - Líneas 83–86: 18/10/2026 — vista simple opcional en bóvedas existentes
+> - Líneas 87–90: 17/10/2026 — menos repetición al validar el inventario
+> - Líneas 91–94: 17/10/2026 — inicio y acceso en una sola guía
+> - Líneas 95–98: 17/10/2026 — entradas de IA más concisas
+> - Líneas 99–102: 17/10/2026 — vista simple inicial de bóvedas nuevas
+> - Líneas 103–106: 17/10/2026 — originales conservados y mantenimiento acotado
+> - Líneas 107–110: 16/10/2026 — guía de los documentos en cuatro idiomas
+> - Líneas 111–114: 16/10/2026 — simplificación de herramientas Python
+> - Líneas 115–118: 16/10/2026 — comunidad y soporte accesibles desde los README
+> - Líneas 119–122: 16/10/2026 — abrir la bóveda en Obsidian no desactualiza el índice
+> - Líneas 123–126: 16/10/2026 — instalar desde un kit abierto con OpenCode
+> - Líneas 127–130: 16/10/2026 — README en cuatro idiomas
+> - Líneas 131–134: 16/10/2026 — sin carpetas __pycache__ en la bóveda
+> - Líneas 135–138: 15/10/2026 — próximo paso solo en la ficha
+> - Líneas 139–142: 15/10/2026 — destino visible al comprobar el cierre
+> - Líneas 143–146: 15/10/2026 — conservar cambios posteriores al plan
+> - Líneas 147–150: 15/10/2026 — cierre coherente con el proyecto inicial
+> - Líneas 151–154: 14/10/2026 — operación visible coherente con el registro
+> - Líneas 155–158: 14/10/2026 — inventario de perfil plegable
+> - Líneas 159–162: 13/10/2026 — índices de proyectos con nombres propios
+> - Líneas 163–184: Sin publicar — candidata a v0.1.0
 
 # Cambios
 
 ## 20/10/2026 — registro inviolable y enlaces solo dentro de la bóveda
 
-Un resumen del registro ya no puede imitar ni cortar una entrada: el signo de porcentaje se escribe como entidad en el texto y escapado en el comentario de datos. La raíz de la bóveda se reconoce por `INDICE.md` y las reglas: las herramientas rechazan enlaces y junctions desde cada ruta hasta esa raíz, inclusive, pero ya no en las carpetas que la contienen; sin esas marcas revisan la ruta completa como antes. Los originales, históricos y archivos protegidos se miden desde esa raíz, también al revisar notas sueltas desde una subcarpeta. Solo las etiquetas de Windows que redirigen rutas cuentan como enlace: archivos en la nube, deduplicados o comprimidos, no. Vale también para el actualizador, el creador y la instalación de skills. Una prueba de temporales revisa el prefijo real.
+Un resumen del registro ya no puede imitar ni cortar una entrada: el signo de porcentaje se escribe como entidad en el texto y escapado en el comentario de datos. La raíz de la bóveda se reconoce por `INDICE.md` y las reglas: las herramientas rechazan enlaces y junctions desde cada ruta hasta esa raíz, inclusive, pero ya no en las carpetas que la contienen; sin esas marcas revisan la ruta completa como antes. Los originales, históricos y archivos protegidos se miden desde esa raíz, también al revisar notas sueltas desde una subcarpeta. Solo las etiquetas de Windows que redirigen rutas cuentan como enlace: archivos en la nube, deduplicados o comprimidos, no. Vale también para el actualizador, el creador y la instalación de skills; el actualizador no crea ni reescribe índices si se le indica una carpeta protegida. Una prueba de temporales revisa el prefijo real.
 
 ## 20/10/2026 — robustez de registro, rangos y Panel
 
-El registro rechaza con un error controlado una acción que no sea texto y no informa un fallo si otro proceso retiró su bloqueo después de guardar. Los rangos cuentan solo los saltos de línea reales, como Obsidian, y una bóveda dentro de una carpeta llamada `_archivo`, `01_FUENTES` u otra protegida ya no queda bloqueada. Las notas reescritas conservan sus permisos. El acceso del Panel por nombre corto ignora carpetas ocultas, dependencias, enlaces y junctions. El inventario mezclado explica la mezcla, y el instalador heredado ya no remite a una sección retirada.
-
+El registro rechaza con un error controlado una acción que no sea texto y no informa un fallo si otro proceso retiró su bloqueo después de guardar. Los rangos cuentan solo los saltos de línea reales, como Obsidian, y una bóveda del kit (con `INDICE.md` y reglas) dentro de una carpeta llamada `_archivo`, `01_FUENTES` u otra protegida ya no queda bloqueada. Las notas reescritas conservan sus permisos. El acceso del Panel por nombre corto ignora carpetas ocultas, dependencias, enlaces y junctions. El inventario mezclado explica la mezcla, y el instalador heredado ya no remite a una sección retirada.
 
 ## 20/10/2026 — vista simple con las skills portables
 

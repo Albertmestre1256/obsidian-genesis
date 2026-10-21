@@ -384,6 +384,12 @@ def planificar(raiz):
     raiz = ruta_real(raiz)
     if not raiz.is_dir():
         raise ValueError('La carpeta de bóveda debe existir.')
+    # Originales, históricos e integraciones se miden desde la raíz de la bóveda (sin marcas, desde el disco),
+    # igual que note_index: indicar una de esas carpetas no crea ni reescribe índices dentro de ella.
+    boveda = raiz_boveda(raiz)
+    if lineador().protegida(raiz, boveda):
+        raise ValueError('La carpeta indicada es original, histórica o una integración; no se actualizan índices: ' + str(raiz))
+    limite = boveda or raiz
     records = catalogo(raiz)
     paths = {record['ruta'] for record in records}
     # Una entrada propia de la bóveda prevalece sobre la del kit.
@@ -392,9 +398,9 @@ def planificar(raiz):
     plan = plan_documento(raiz / 'INDICE.md', bloque(records, hierarchy), INICIO, FIN, cabecera(raiz))
     plan['nodos'], plan['manuales'] = [], []
     for folder, node in hierarchy[0].items():
-        path = ruta_real(raiz / node['ruta'], raiz_boveda(raiz) or raiz)
+        path = ruta_real(raiz / node['ruta'], limite)
         text = path.read_text(encoding='utf-8')
-        if lineador().protegida(path, raiz) or (NODO_INICIO not in text and NODO_FIN not in text):
+        if lineador().protegida(path, boveda) or (NODO_INICIO not in text and NODO_FIN not in text):
             plan['manuales'].append(node['ruta'])
         else:
             plan['nodos'].append(plan_documento(path, bloque_nodo(folder, hierarchy, lectura), NODO_INICIO, NODO_FIN))

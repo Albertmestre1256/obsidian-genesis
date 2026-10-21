@@ -97,8 +97,12 @@ def test_enlace_de_destino_no_escribe_fuera(tmp_path):
                                   capture_output=True)
         if junction.returncode:
             pytest.skip('La cuenta no permite crear enlaces ni junctions')
-    assert instalador.main([str(destino), '--asistente', 'claude', '--yes']) == 2
-    assert list(exterior.iterdir()) == []
+    try:
+        assert instalador.main([str(destino), '--asistente', 'claude', '--yes']) == 2
+        assert list(exterior.iterdir()) == []
+    finally:
+        enlace = destino / '.claude'
+        os.unlink(str(enlace)) if enlace.is_symlink() else os.rmdir(str(enlace))
 
 
 def test_conflicto_aparecido_al_escribir_se_conserva(tmp_path, monkeypatch, capsys):

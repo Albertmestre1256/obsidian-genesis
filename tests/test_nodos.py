@@ -289,3 +289,41 @@ def test_nodo_en_boveda_dentro_de_archivo_no_queda_manual(tmp_path):
     guardar(root, '00_CORE/atoms/00_vault-rules.md', '# Reglas\n')
     nodo(root, 'Coleccion')
     assert indice.actualizar(root)['indices_manuales'] == []
+
+
+def _marcar(root):
+    guardar(root, 'INDICE.md', '# Mapa\n\n' + indice.INICIO + '\n' + indice.FIN + '\n')
+    guardar(root, '00_CORE/atoms/00_vault-rules.md', '# Reglas\n')
+    return root
+
+
+@pytest.mark.parametrize('interna', ['01_FUENTES/sub', '_archivo/x', '00_CORE/logs/historial/2026'])
+def test_actualizar_rechaza_carpeta_protegida_de_la_boveda(tmp_path, interna):
+    root = _marcar(tmp_path / 'boveda')
+    indice_nodo = nodo(root, interna + '/Coleccion')
+    antes = indice_nodo.read_bytes()
+    with pytest.raises(ValueError):
+        indice.actualizar(root / interna)
+    assert indice_nodo.read_bytes() == antes
+    assert not (root / interna / 'INDICE.md').exists()
+
+
+def test_boveda_sin_marcas_dentro_de_archivo_se_rechaza_igual_que_en_note_index(tmp_path):
+    root = tmp_path / '_archivo' / 'boveda'
+    nodo(root, 'Coleccion')
+    with pytest.raises(ValueError):
+        indice.actualizar(root)
+    assert not (root / 'INDICE.md').exists()
+
+
+def test_boveda_anidada_en_archivo_de_otra_coherente_con_note_index(tmp_path):
+    exterior = _marcar(tmp_path / 'exterior')
+    interior = _marcar(exterior / '_archivo' / 'interior')
+    nodo(interior, 'Coleccion')
+    antes = (interior / 'INDICE.md').read_bytes()
+    with pytest.raises(ValueError):
+        indice.actualizar(interior)
+    assert (interior / 'INDICE.md').read_bytes() == antes
+    lineas = indice.lineador()
+    with pytest.raises(ValueError):
+        list(lineas.archivos(interior))
