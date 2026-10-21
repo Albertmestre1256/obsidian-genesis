@@ -13,8 +13,8 @@
 > - Líneas 113–116: Datenschutz
 > - Líneas 117–120: Lizenz
 > - Líneas 121–124: Community und Hilfe
-> - Líneas 125–128: Über die Entwicklung
-> - Líneas 129–131: Projekt unterstützen
+> - Líneas 125–128: Projekt unterstützen
+> - Líneas 129–131: Über die Entwicklung
 
 **Sprache:** [Español](README.md) · [English](README.en.md) · Deutsch · [中文](README.zh.md)
 
@@ -122,10 +122,10 @@ Das Kit speichert lokale Dateien und installiert keine Synchronisierung. Die KI 
 
 Für Fragen, Ideen und Erfahrungen gibt es die [Community-Diskussionen](https://github.com/Albertmestre1256/obsidian-genesis/discussions). Wenn etwas nicht funktioniert, erstelle einen [Fehlerbericht](https://github.com/Albertmestre1256/obsidian-genesis/issues) mit der Vorlage „No me funciona“ und einem kleinen Beispiel mit fiktiven Daten. [Mitwirken](CONTRIBUTING.md) (auf Spanisch).
 
-## Über die Entwicklung
-
-Albert Mestre entwickelt diese Adaption mit wesentlichen Beiträgen von **OpenCode, Claude und Codex (OpenAI)**. Diese KI-Werkzeuge halfen, einen wichtigen Teil des Codes zu erstellen, und unterstützten Dokumentation und Tests; sie werden hier als Mitwirkende gewürdigt. Vorschläge werden geprüft und Ergebnisse vor der Integration verifiziert; der Einsatz von KI ersetzt keine Tests mit Menschen und belegt für sich allein nicht, dass das Kit einfach zu benutzen ist.
-
 ## Projekt unterstützen
 
 Obsidian Genesis ist kostenlos und bleibt es auch. Wenn dir das Kit hilft, kannst du es auf [Patreon](https://www.patreon.com/obsidiangenesis) unterstützen. Beiträge schaffen Zeit für Anleitungen für Einsteigende, Tests mit echten Menschen, Übersetzungen und Hilfe. Sie sind freiwillig: Sie schalten keine Funktionen frei, und das gesamte Kit bleibt öffentlich.
+
+## Über die Entwicklung
+
+Albert Mestre entwickelt diese Adaption mit wesentlichen Beiträgen von **OpenCode, Claude und Codex (OpenAI)**. Diese KI-Werkzeuge halfen, einen wichtigen Teil des Codes zu erstellen, und unterstützten Dokumentation und Tests; sie werden hier als Mitwirkende gewürdigt. Vorschläge werden geprüft und Ergebnisse vor der Integration verifiziert; der Einsatz von KI ersetzt keine Tests mit Menschen und belegt für sich allein nicht, dass das Kit einfach zu benutzen ist.

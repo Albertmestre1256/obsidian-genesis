@@ -13,8 +13,8 @@
 > - Líneas 113–116: 隐私
 > - Líneas 117–120: 许可证
 > - Líneas 121–124: 社区与支持
-> - Líneas 125–128: 关于开发
-> - Líneas 129–131: 支持本项目
+> - Líneas 125–128: 支持本项目
+> - Líneas 129–131: 关于开发
 
 **语言：** [Español](README.md) · [English](README.en.md) · [Deutsch](README.de.md) · 中文
 
@@ -122,10 +122,10 @@ Python 3.8 或更高版本可以借助标准库自动完成创建、验证和索
 
 如有问题、想法或使用经验，可以参加[社区讨论](https://github.com/Albertmestre1256/obsidian-genesis/discussions)。如果遇到故障，请通过[问题报告](https://github.com/Albertmestre1256/obsidian-genesis/issues)使用“No me funciona”模板，并提供使用虚构数据的简短示例。[如何贡献](CONTRIBUTING.md)（西班牙语）。
 
-## 关于开发
-
-Albert Mestre 在 **OpenCode、Claude 和 Codex（OpenAI）** 的重要协助下开发这一改编版本。这些 AI 工具帮助构建了代码的重要部分，并支持文档编写和测试，因此在此列为项目的贡献工具。各项提议都会经过审阅，结果在整合前都会经过验证；使用 AI 不能取代与真人的测试，也不能单凭这一点证明工具包易于使用。
-
 ## 支持本项目
 
 Obsidian Genesis 是免费的，并将一直免费。如果它对你有帮助，可以通过 [Patreon](https://www.patreon.com/obsidiangenesis) 支持本项目。捐助用于投入时间完善初学者指南、开展真人测试、维护翻译和提供支持。捐助完全自愿：不会解锁任何功能，整个工具包始终公开。
+
+## 关于开发
+
+Albert Mestre 在 **OpenCode、Claude 和 Codex（OpenAI）** 的重要协助下开发这一改编版本。这些 AI 工具帮助构建了代码的重要部分，并支持文档编写和测试，因此在此列为项目的贡献工具。各项提议都会经过审阅，结果在整合前都会经过验证；使用 AI 不能取代与真人的测试，也不能单凭这一点证明工具包易于使用。

@@ -13,8 +13,8 @@
 > - Líneas 111–114: Privacidad
 > - Líneas 115–118: Licencia
 > - Líneas 119–122: Comunidad y soporte
-> - Líneas 123–126: Sobre el desarrollo
-> - Líneas 127–129: Apoyar el proyecto
+> - Líneas 123–126: Apoyar el proyecto
+> - Líneas 127–129: Sobre el desarrollo
 
 **Idioma:** Español · [English](README.en.md) · [Deutsch](README.de.md) · [中文](README.zh.md)
 
@@ -120,10 +120,10 @@ El kit guarda archivos locales y no instala sincronización. La IA procesa lo co
 
 Para dudas, ideas y experiencias, usá las [discusiones de la comunidad](https://github.com/Albertmestre1256/obsidian-genesis/discussions). Si algo falla, abrí un [reporte de error](https://github.com/Albertmestre1256/obsidian-genesis/issues) con la plantilla «No me funciona» y un ejemplo ficticio pequeño. [Cómo contribuir](CONTRIBUTING.md).
 
-## Sobre el desarrollo
-
-Albert Mestre desarrolla esta adaptación con contribuciones importantes de **OpenCode, Claude y Codex (OpenAI)**, que ayudaron a construir una parte sustancial del código y apoyaron la documentación y las pruebas. Se los reconoce aquí como herramientas de IA contribuidoras al proyecto. Las propuestas se revisan y los resultados se verifican antes de integrarlos; el uso de IA no sustituye las pruebas con personas ni acredita por sí solo que el kit sea fácil de usar.
-
 ## Apoyar el proyecto
 
 Obsidian Genesis es gratuito y lo seguirá siendo. Si te resulta útil, podés apoyarlo en [Patreon](https://www.patreon.com/obsidiangenesis). Los aportes ayudan a dedicar tiempo a guías para principiantes, pruebas con personas reales, traducciones y soporte. Son opcionales: no desbloquean funciones y todo el kit sigue siendo público.
+
+## Sobre el desarrollo
+
+Albert Mestre desarrolla esta adaptación con contribuciones importantes de **OpenCode, Claude y Codex (OpenAI)**, que ayudaron a construir una parte sustancial del código y apoyaron la documentación y las pruebas. Se los reconoce aquí como herramientas de IA contribuidoras al proyecto. Las propuestas se revisan y los resultados se verifican antes de integrarlos; el uso de IA no sustituye las pruebas con personas ni acredita por sí solo que el kit sea fácil de usar.
