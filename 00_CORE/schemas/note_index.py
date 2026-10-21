@@ -41,6 +41,9 @@ def raiz_boveda(path):
         # INDICE.md primero: la mayoría de los ancestros no lo tienen y basta una consulta.
         if (part / MARCAS[0]).is_file() and (part / MARCAS[1]).is_file():
             raiz = part
+        # Un checkout en .claude/worktrees es una copia propia, no una parte de la bóveda que lo contiene.
+        if part.parent.name.casefold() == 'worktrees' and part.parent.parent.name.casefold() == '.claude':
+            break
     return raiz
 
 

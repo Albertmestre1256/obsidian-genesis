@@ -42,7 +42,7 @@ Un resumen del registro ya no puede imitar ni cortar una entrada: el signo de po
 
 ## 20/10/2026 — robustez de registro, rangos y Panel
 
-El registro rechaza con un error controlado una acción que no sea texto y no informa un fallo si otro proceso retiró su bloqueo después de guardar. Los rangos cuentan solo los saltos de línea reales, como Obsidian, y una bóveda del kit (con `INDICE.md` y reglas) dentro de una carpeta llamada `_archivo`, `01_FUENTES` u otra protegida ya no queda bloqueada. Las notas reescritas conservan sus permisos. El acceso del Panel por nombre corto ignora carpetas ocultas, dependencias, enlaces y junctions. El inventario mezclado explica la mezcla, y el instalador heredado ya no remite a una sección retirada.
+El registro rechaza con un error controlado una acción que no sea texto y no informa un fallo si otro proceso retiró su bloqueo después de guardar. Los rangos cuentan solo los saltos de línea reales, como Obsidian, y una bóveda del kit (con `INDICE.md` y reglas) dentro de una carpeta llamada `_archivo`, `01_FUENTES` u otra protegida ya no queda bloqueada, salvo dentro de otra bóveda del kit; una copia en `.claude/worktrees` cuenta como bóveda propia. Las notas reescritas conservan sus permisos. El acceso del Panel por nombre corto ignora carpetas ocultas, dependencias, enlaces y junctions. El inventario mezclado explica la mezcla, y el instalador heredado ya no remite a una sección retirada.
 
 ## 20/10/2026 — vista simple con las skills portables
 

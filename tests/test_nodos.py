@@ -302,7 +302,7 @@ def test_actualizar_rechaza_carpeta_protegida_de_la_boveda(tmp_path, interna):
     root = _marcar(tmp_path / 'boveda')
     indice_nodo = nodo(root, interna + '/Coleccion')
     antes = indice_nodo.read_bytes()
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match='original'):
         indice.actualizar(root / interna)
     assert indice_nodo.read_bytes() == antes
     assert not (root / interna / 'INDICE.md').exists()
@@ -311,7 +311,7 @@ def test_actualizar_rechaza_carpeta_protegida_de_la_boveda(tmp_path, interna):
 def test_boveda_sin_marcas_dentro_de_archivo_se_rechaza_igual_que_en_note_index(tmp_path):
     root = tmp_path / '_archivo' / 'boveda'
     nodo(root, 'Coleccion')
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match='original'):
         indice.actualizar(root)
     assert not (root / 'INDICE.md').exists()
 
@@ -321,9 +321,20 @@ def test_boveda_anidada_en_archivo_de_otra_coherente_con_note_index(tmp_path):
     interior = _marcar(exterior / '_archivo' / 'interior')
     nodo(interior, 'Coleccion')
     antes = (interior / 'INDICE.md').read_bytes()
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match='original'):
         indice.actualizar(interior)
     assert (interior / 'INDICE.md').read_bytes() == antes
     lineas = indice.lineador()
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match='editable'):
         list(lineas.archivos(interior))
+
+
+def test_checkout_en_worktrees_de_otra_copia_es_su_propia_boveda(tmp_path):
+    exterior = _marcar(tmp_path / 'repo')
+    copia = _marcar(exterior / '.claude' / 'worktrees' / 'w')
+    nodo(copia, 'Coleccion')
+    assert indice.actualizar(copia)['indices_manuales'] == []
+    assert indice.lineador().raiz_boveda(copia / 'Coleccion') == copia
+    assert [p.name for p in indice.lineador().archivos(copia)]
+    with pytest.raises(ValueError, match='original'):
+        indice.actualizar(_marcar(exterior / '_archivo' / 'interior'))
