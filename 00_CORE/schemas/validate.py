@@ -51,7 +51,8 @@ _mapas = None
 
 RE_VINETA = re.compile(r"^[-*+] +(.*)$")                 # viñeta de primer nivel
 RE_TAREA = re.compile(r"^[-*+] \[( |x|X)\] +\S")         # - [ ] tarea / - [x] tarea
-RE_FUENTE = re.compile(r"\(fuente:\s*([^)]*)\)\s*$", re.IGNORECASE)
+# La fuente puede llevar paréntesis propios: «(fuente: Plan (versión 2026))».
+RE_FUENTE = re.compile(r"\(fuente:\s*(.*)\)\s*$", re.IGNORECASE)
 RE_FECHA_INICIO = re.compile(r"^(\d{4}-\d{2}-\d{2})\b")
 RE_CONTEXTO = re.compile(r"^\s*([ABCD])(?![A-Za-zÀ-ÿ])", re.IGNORECASE)
 RE_CLAVE = re.compile(r"^([A-Za-zÀ-ÿ0-9_-][^:]*):(?:\s+(.*)|\s*)$")

@@ -135,7 +135,8 @@ def comprobar_id(valor):
 
 
 def markdown(valor):
-    return re.sub(r'([\\\[\]<>#|*_`])', r'\\\1', valor)
+    # Como en el catálogo, «%» se escapa: «%%» abriría un comentario de Obsidian y ocultaría el resto.
+    return re.sub(r'([\\\[\]<>#|*_`%])', r'\\\1', valor)
 
 
 def modulo_kit(origen, ruta, nombre):
@@ -169,7 +170,11 @@ def planificar(destino, datos, origen=RAIZ):
     nombre, descripcion, objetivo = [texto_linea(datos.get(k), k) for k in ('nombre', 'descripcion', 'objetivo')]
     contexto = texto_linea(datos.get('contexto'), 'contexto').upper()
     fecha = texto_linea(datos.get('fecha'), 'fecha')
-    codigo = comprobar_id(texto_linea(datos.get('id', identificador(nombre)), 'id'))
+    sugerido = identificador(nombre)
+    if 'id' not in datos and not sugerido:
+        raise ValueError('El nombre no tiene letras latinas ni números para formar el identificador; '
+                         'acordá uno corto con letras, números y guiones, por ejemplo proyecto-1.')
+    codigo = comprobar_id(texto_linea(datos.get('id', sugerido), 'id'))
     paso = texto_linea(datos.get('proximo_paso'), 'proximo_paso', opcional=True)
     revisar = validador(origen)
     if contexto not in revisar.CONTEXTOS or not revisar.es_fecha(fecha):
@@ -221,10 +226,16 @@ def planificar(destino, datos, origen=RAIZ):
     indice = re.sub(r'^> \*\*Célula del proyecto:.*$', '> **Ficha:** [[00_CORE/cells/{}-context]]'.format(codigo), indice, flags=re.M)
     files = {'{}/{}'.format(codigo, nombre_indice): indice.encode('utf-8')}
     template = ruta_real(origen / 'PROJECT_TEMPLATE')
+    omitir = indexador(origen).omitir
     for actual in sorted(template.rglob('*')):
         ruta_real(actual)
-        if actual.is_file() and actual.name != '00 - Índice y Contexto.md':
-            files[codigo + '/' + actual.relative_to(template).as_posix()] = actual.read_bytes()
+        relativa = actual.relative_to(template)
+        # Sin archivos ocultos, del sistema ni temporales que hayan quedado en la plantilla.
+        if any(omitir(p) or p.startswith('~$') or p.endswith(('.tmp', '~')) for p in relativa.parts):
+            continue
+        # macOS puede entregar el nombre en NFD; el índice se reconoce igual.
+        if actual.is_file() and unicodedata.normalize('NFC', actual.name) != '00 - Índice y Contexto.md':
+            files[codigo + '/' + relativa.as_posix()] = actual.read_bytes()
     cell_rel = '00_CORE/cells/{}-context.md'.format(codigo)
     files[cell_rel] = ficha.encode('utf-8')
     lineas = lineador(origen)
