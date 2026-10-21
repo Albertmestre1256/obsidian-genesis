@@ -817,10 +817,13 @@ def test_rangos_cuentan_solo_saltos_de_linea_reales(separador):
 def test_boveda_dentro_de_carpeta_con_nombre_protegido(tmp_path, monkeypatch, contenedor):
     vault = tmp_path / contenedor / 'boveda'
     (vault / 'Notas').mkdir(parents=True)
+    (vault / '00_CORE/atoms').mkdir(parents=True)
+    (vault / 'INDICE.md').write_text('# Mapa\n', encoding='utf-8')
+    (vault / '00_CORE/atoms/00_vault-rules.md').write_text('# Reglas\n', encoding='utf-8')
     (vault / 'Notas/Apunte.md').write_text('# Apunte\nTexto.\n', encoding='utf-8')
     (vault / '01_FUENTES').mkdir()
     (vault / '01_FUENTES/Original.md').write_text('# Original\n', encoding='utf-8')
-    assert [p.name for p in lines.archivos(vault)] == ['Apunte.md']
+    assert {p.name for p in lines.archivos(vault)} == {'Apunte.md', 'INDICE.md', '00_vault-rules.md'}
     assert lines.main(['check', '--vault', str(vault)]) == 1
     monkeypatch.chdir(vault)
     assert lines.main(['check', 'Notas/Apunte.md']) == 1
@@ -878,8 +881,9 @@ class _Reanalisis:
         self.st_reparse_tag = tag
 
 
-@pytest.mark.parametrize('tag,enlace', [(0xA0000003, True), (0xA000000C, True), (None, True),
-                                        (0x9000001A, False), (0x9000601A, False), (0x80000013, False)])
+@pytest.mark.parametrize('tag,enlace', [(0xA0000003, True), (0xA000000C, True), (0xA000001D, True), (None, True),
+                                        (0, False), (0x9000001A, False), (0x9000601A, False), (0x80000013, False),
+                                        (0x80000017, False), (0x9000001C, False)])
 def test_solo_junctions_y_symlinks_cuentan_como_enlace(tag, enlace):
     assert lines.es_enlace(_Reanalisis(tag)) is enlace
 
@@ -888,12 +892,15 @@ def test_boveda_bajo_enlace_externo_se_acepta_y_el_interno_no(tmp_path):
     real = tmp_path / 'real'
     boveda = real / 'boveda'
     (boveda / 'Notas').mkdir(parents=True)
+    (boveda / '00_CORE/atoms').mkdir(parents=True)
+    (boveda / 'INDICE.md').write_text('# Mapa\n', encoding='utf-8')
+    (boveda / '00_CORE/atoms/00_vault-rules.md').write_text('# Reglas\n', encoding='utf-8')
     (boveda / 'Notas/Apunte.md').write_text('# Apunte\n', encoding='utf-8')
     enlace = tmp_path / 'enlace'
     if not _enlazar(enlace, real):
         pytest.skip('La cuenta no permite crear enlaces ni junctions')
     try:
-        assert [p.name for p in lines.archivos(enlace / 'boveda')] == ['Apunte.md']
+        assert {p.name for p in lines.archivos(enlace / 'boveda')} == {'Apunte.md', 'INDICE.md', '00_vault-rules.md'}
         fuera = tmp_path / 'fuera'
         fuera.mkdir()
         interno = boveda / 'externo'
@@ -901,6 +908,72 @@ def test_boveda_bajo_enlace_externo_se_acepta_y_el_interno_no(tmp_path):
             try:
                 with pytest.raises(ValueError):
                     list(lines.archivos(enlace / 'boveda'))
+            finally:
+                _desenlazar(interno)
+    finally:
+        _desenlazar(enlace)
+
+
+def _marcar(vault):
+    (vault / '00_CORE/atoms').mkdir(parents=True, exist_ok=True)
+    (vault / 'INDICE.md').write_text('# Mapa\n', encoding='utf-8')
+    (vault / '00_CORE/atoms/00_vault-rules.md').write_text('# Reglas\n', encoding='utf-8')
+    return vault
+
+
+@pytest.mark.parametrize('interna', ['01_FUENTES/sub', '00_CORE/logs/historial/2026', '_archivo/x'])
+def test_carpeta_protegida_dentro_de_la_boveda_se_rechaza(tmp_path, interna):
+    vault = _marcar(tmp_path / 'boveda')
+    (vault / interna).mkdir(parents=True)
+    (vault / interna / 'Original.md').write_text('# Original\n', encoding='utf-8')
+    with pytest.raises(ValueError):
+        list(lines.archivos(vault / interna))
+
+
+def test_check_desde_una_carpeta_protegida_no_reescribe(tmp_path, monkeypatch):
+    vault = _marcar(tmp_path / 'boveda')
+    (vault / '01_FUENTES/sub').mkdir(parents=True)
+    original = vault / '01_FUENTES/sub/Original.md'
+    original.write_text('# Original\n', encoding='utf-8')
+    monkeypatch.chdir(vault / '01_FUENTES')
+    assert lines.main(['check', 'sub/Original.md']) == 2
+    assert lines.main(['apply', 'sub/Original.md']) == 2
+    assert original.read_text(encoding='utf-8') == '# Original\n'
+
+
+def test_modo_notas_acepta_boveda_bajo_enlace_externo(tmp_path):
+    real = tmp_path / 'real'
+    vault = _marcar(real / 'boveda')
+    (vault / 'Notas').mkdir()
+    (vault / 'Notas/Apunte.md').write_text('# Apunte\n', encoding='utf-8')
+    enlace = tmp_path / 'enlace'
+    if not _enlazar(enlace, real):
+        pytest.skip('La cuenta no permite crear enlaces ni junctions')
+    try:
+        assert lines.main(['apply', str(enlace / 'boveda/Notas/Apunte.md')]) == 0
+        assert lines.main(['check', str(enlace / 'boveda/Notas/Apunte.md')]) == 0
+    finally:
+        _desenlazar(enlace)
+
+
+def test_registro_bajo_enlace_externo_y_enlace_interno_rechazado(tmp_path):
+    real = tmp_path / 'real'
+    vault = _marcar(real / 'boveda')
+    enlace = tmp_path / 'enlace'
+    if not _enlazar(enlace, real):
+        pytest.skip('La cuenta no permite crear enlaces ni junctions')
+    try:
+        raiz = enlace / 'boveda'
+        assert log.registrar(raiz, event(raiz), '2026-10-20T10:00:00-03:00')['estado'] == 'registrado'
+        fuera = tmp_path / 'fuera'
+        fuera.mkdir()
+        (fuera / 'x.md').write_text('# Externo\n', encoding='utf-8')
+        interno = vault / 'Externo'
+        if _enlazar(interno, fuera):
+            try:
+                cambio = [{'accion': 'editar', 'ruta': 'Externo/x.md'}]
+                with pytest.raises(ValueError):
+                    log.registrar(raiz, event(raiz, 'test-2', cambios=cambio), '2026-10-20T11:00:00-03:00')
             finally:
                 _desenlazar(interno)
     finally:

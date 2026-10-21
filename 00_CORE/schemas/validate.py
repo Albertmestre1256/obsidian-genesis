@@ -541,9 +541,9 @@ def _es_enlace(ruta):
     if stat.S_ISLNK(info.st_mode):
         return True
     if getattr(info, 'st_file_attributes', 0) & 0x400:
-        # Como note_index.es_enlace: archivos en la nube y deduplicación no redirigen rutas.
+        # Como note_index.es_enlace: solo las etiquetas de tipo name surrogate redirigen rutas.
         tag = getattr(info, 'st_reparse_tag', None)
-        return tag is None or not ((tag & 0xFFFF0FFF) == 0x9000001A or tag == 0x80000013)
+        return tag is None or bool(tag & 0x20000000)
     return False
 
 
@@ -918,7 +918,7 @@ def validar_cierre(raiz, operacion):
             if historial_dir.is_dir():
                 for arch in sorted(historial_dir.glob('*.md')):
                     try:
-                        raw = _lineas.ruta_real(arch).read_bytes()
+                        raw = _lineas.ruta_real(arch, raiz).read_bytes()
                         _, prev = _registro.entradas(raw)
                         historicos.extend(prev)
                     except (OSError, ValueError) as e:

@@ -18,22 +18,37 @@ ATRIBUCIONES = ('> **Crédito principal', '> **Main credit', '> **Besonderer Dan
 IGNORAR = {'.git', '.obsidian', '.obsidian-mcp', '.claude', '.agents', '.opencode', '.github',
            '__pycache__', '.pytest_cache', '.trash', 'node_modules', '.venv', 'venv', '_archivo'}
 
-# Raíces ya validadas: sus carpetas contenedoras no se revisan (p. ej. /home enlazado).
-_RAICES = set()
+# Marcas de una bóveda del kit: el ancestro más externo que las tiene es el límite de la revisión.
+MARCAS = ('INDICE.md', '00_CORE/atoms/00_vault-rules.md')
 
 
 def es_enlace(info):
-    """Symlink o junction. Archivos en la nube (OneDrive) y deduplicación de Windows no redirigen rutas."""
+    """Symlink, junction u otro enlace de Windows (etiqueta de tipo name surrogate)."""
     if stat.S_ISLNK(info.st_mode):
         return True
     if getattr(info, 'st_file_attributes', 0) & 0x400:
         tag = getattr(info, 'st_reparse_tag', None)
-        return tag is None or not ((tag & 0xFFFF0FFF) == 0x9000001A or tag == 0x80000013)
+        # Nube, deduplicación o compresión no redirigen; 0 es un reanálisis que lstat ya atravesó.
+        return tag is None or bool(tag & 0x20000000)
     return False
 
 
-def ruta_real(path):
+def raiz_boveda(path):
+    """Ancestro más externo con las marcas del kit, o None si no hay una bóveda reconocible."""
     path = Path(os.path.abspath(str(path)))
+    raiz = None
+    for part in (path,) + tuple(path.parents):
+        # INDICE.md primero: la mayoría de los ancestros no lo tienen y basta una consulta.
+        if (part / MARCAS[0]).is_file() and (part / MARCAS[1]).is_file():
+            raiz = part
+    return raiz
+
+
+def ruta_real(path, raiz=None):
+    """Rechazar enlaces desde la ruta hasta la raíz de la bóveda, inclusive; sin raíz, hasta el disco."""
+    path = Path(os.path.abspath(str(path)))
+    raiz = raiz_boveda(path) if raiz is None else Path(os.path.abspath(str(raiz)))
+    tope = os.path.normcase(str(raiz)) if raiz is not None else None
     for part in (path,) + tuple(path.parents):
         try:
             info = part.lstat()
@@ -41,27 +56,15 @@ def ruta_real(path):
             continue
         if es_enlace(info):
             raise ValueError('No seguir enlaces ni junctions: ' + str(part))
-        if os.path.normcase(str(part)) in _RAICES:
+        if os.path.normcase(str(part)) == tope:
             break
     return path
 
 
-def raiz_confiable(path):
-    """Validar la raíz de trabajo sin exigir lo mismo a las carpetas que la contienen."""
-    path = Path(os.path.abspath(str(path)))
-    try:
-        if es_enlace(path.lstat()):
-            raise ValueError('La raíz es un enlace o junction: ' + str(path))
-    except FileNotFoundError:
-        pass
-    _RAICES.add(os.path.normcase(str(path)))
-    return path
-
-
 @contextmanager
-def bloqueo(path):
+def bloqueo(path, raiz=None):
     """Coordinar escritores del kit; los clientes MCP usan sus propios etags."""
-    lock = ruta_real(path.with_name('.' + path.name + '.kit-lock'))
+    lock = ruta_real(path.with_name('.' + path.name + '.kit-lock'), raiz)
     try:
         stream = lock.open('xb')
     except FileExistsError:
@@ -72,7 +75,7 @@ def bloqueo(path):
             yield
     finally:
         try:
-            if os.path.samestat(identity, ruta_real(lock).lstat()):
+            if os.path.samestat(identity, ruta_real(lock, raiz).lstat()):
                 lock.unlink()
         except FileNotFoundError:
             pass
@@ -89,12 +92,13 @@ def modo_final(path):
 
 
 def guardar(path, before, after):
-    path = ruta_real(path)
+    raiz = raiz_boveda(path)
+    path = ruta_real(path, raiz)
     if before == after:
         return False
     path.parent.mkdir(parents=True, exist_ok=True)
     # El bloqueo abarca la comprobación, el reemplazo y la relectura.
-    with bloqueo(path):
+    with bloqueo(path, raiz):
         temporary = None
         try:
             with tempfile.NamedTemporaryFile(prefix='.nota-', suffix='.tmp', dir=str(path.parent), delete=False) as stream:
@@ -105,16 +109,16 @@ def guardar(path, before, after):
             if before is None:
                 # Publicar completo sin reemplazar un archivo aparecido mientras se escribía.
                 try:
-                    os.link(str(temporary), str(ruta_real(path)))
+                    os.link(str(temporary), str(ruta_real(path, raiz)))
                 except OSError as error:
                     if error.errno not in {errno.ENOTSUP, errno.ENOSYS, errno.EPERM, errno.EINVAL} and getattr(error, 'winerror', None) not in {1, 50}:
                         raise
                     # Sin enlaces duros, crear exclusivamente y conservar cualquier
                     # salida parcial para releerla, sin retirar posibles ediciones ajenas.
-                    with ruta_real(path).open('xb') as stream:
+                    with ruta_real(path, raiz).open('xb') as stream:
                         stream.write(after)
             else:
-                if ruta_real(path).read_bytes() != before:
+                if ruta_real(path, raiz).read_bytes() != before:
                     raise ValueError('La nota cambió; releé antes de guardar: ' + str(path))
                 os.replace(str(temporary), str(path))
                 temporary = None
@@ -221,17 +225,19 @@ def protegida(path, raiz=None):
 
 
 def archivos(root):
-    root = raiz_confiable(root)
-    historial = tuple(p.casefold() for p in root.parts[-3:]) == ('00_core', 'logs', 'historial')
-    if not root.is_dir() or protegida(root, root.parent) or historial:
+    root = Path(os.path.abspath(str(root)))
+    # La protección se mide desde la raíz de la bóveda; sin marcas, desde el disco (conservador).
+    raiz = raiz_boveda(root)
+    root = ruta_real(root, raiz)
+    if not root.is_dir() or protegida(root, raiz):
         raise ValueError('Indicá una carpeta de bóveda existente y editable: ' + str(root))
     for base, dirs, names in os.walk(str(root), followlinks=False):
-        dirs[:] = sorted(d for d in dirs if not protegida(Path(base) / d, root))
+        dirs[:] = sorted(d for d in dirs if not protegida(Path(base) / d, raiz))
         for d in dirs:
-            ruta_real(Path(base) / d)
+            ruta_real(Path(base) / d, raiz)
         for name in sorted(names):
             if name.lower().endswith('.md'):
-                yield ruta_real(Path(base) / name)
+                yield ruta_real(Path(base) / name, raiz)
 
 
 def main(argv=None):
@@ -245,9 +251,8 @@ def main(argv=None):
             raise ValueError('Indicá notas concretas o --vault, nunca ambos.')
         paths = list(archivos(Path(args.vault))) if args.vault else [ruta_real(Path(p)) for p in args.notas]
         plans = []
-        raiz = Path(args.vault) if args.vault else Path.cwd()
         for path in paths:
-            if protegida(path, raiz):
+            if protegida(path, raiz_boveda(path)):
                 raise ValueError('Original, histórico o integración protegido; describirlo en el mapa del nodo: ' + str(path))
             raw = path.read_bytes()
             plans.append((path, raw, contenido(raw)))

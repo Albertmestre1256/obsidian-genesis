@@ -38,7 +38,7 @@
 
 ## 20/10/2026 — registro inviolable y enlaces solo dentro de la bóveda
 
-Un resumen del registro ya no puede imitar ni cortar una entrada: el signo de porcentaje se escribe como entidad en el texto y escapado en el comentario de datos. Las herramientas rechazan enlaces y junctions dentro de la bóveda, pero ya no la carpeta que la contiene, y distinguen archivos en la nube o deduplicados de Windows de un enlace real; también al instalar las skills. Una prueba de temporales revisa el prefijo real.
+Un resumen del registro ya no puede imitar ni cortar una entrada: el signo de porcentaje se escribe como entidad en el texto y escapado en el comentario de datos. La raíz de la bóveda se reconoce por `INDICE.md` y las reglas: las herramientas rechazan enlaces y junctions desde cada ruta hasta esa raíz, inclusive, pero ya no en las carpetas que la contienen; sin esas marcas revisan la ruta completa como antes. Los originales, históricos y archivos protegidos se miden desde esa raíz, también al revisar notas sueltas desde una subcarpeta. Solo las etiquetas de Windows que redirigen rutas cuentan como enlace: archivos en la nube, deduplicados o comprimidos, no. Vale también para el actualizador, el creador y la instalación de skills. Una prueba de temporales revisa el prefijo real.
 
 ## 20/10/2026 — robustez de registro, rangos y Panel
 

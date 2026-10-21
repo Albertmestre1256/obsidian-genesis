@@ -65,43 +65,46 @@ def encontrar_indice_existente(origen, destino, codigo):
     
     return None
 
-# Raíces ya validadas: sus carpetas contenedoras no se revisan (p. ej. /home enlazado).
-_RAICES = set()
+# Marcas de una bóveda del kit: el ancestro más externo que las tiene es el límite de la revisión.
+MARCAS = ('INDICE.md', '00_CORE/atoms/00_vault-rules.md')
 
 
 def es_enlace(info):
-    """Symlink o junction. Archivos en la nube (OneDrive) y deduplicación de Windows no redirigen rutas."""
+    """Symlink, junction u otro enlace de Windows (etiqueta de tipo name surrogate)."""
     if stat.S_ISLNK(info.st_mode):
         return True
     if getattr(info, 'st_file_attributes', 0) & 0x400:
         tag = getattr(info, 'st_reparse_tag', None)
-        return tag is None or not ((tag & 0xFFFF0FFF) == 0x9000001A or tag == 0x80000013)
+        # Nube, deduplicación o compresión no redirigen; 0 es un reanálisis que lstat ya atravesó.
+        return tag is None or bool(tag & 0x20000000)
     return False
 
 
-def ruta_real(ruta):
+def raiz_boveda(ruta):
+    """Ancestro más externo con las marcas del kit, o None si no hay una bóveda reconocible."""
     ruta = Path(os.path.abspath(str(ruta)))
-    for parte in (ruta,) + tuple(ruta.parents):
+    raiz = None
+    for part in (ruta,) + tuple(ruta.parents):
+        # INDICE.md primero: la mayoría de los ancestros no lo tienen y basta una consulta.
+        if (part / MARCAS[0]).is_file() and (part / MARCAS[1]).is_file():
+            raiz = part
+    return raiz
+
+
+def ruta_real(ruta, raiz=None):
+    """Rechazar enlaces desde la ruta hasta la raíz de la bóveda, inclusive; sin raíz, hasta el disco."""
+    ruta = Path(os.path.abspath(str(ruta)))
+    raiz = raiz_boveda(ruta) if raiz is None else Path(os.path.abspath(str(raiz)))
+    tope = os.path.normcase(str(raiz)) if raiz is not None else None
+    for part in (ruta,) + tuple(ruta.parents):
         try:
-            info = parte.lstat()
+            info = part.lstat()
         except FileNotFoundError:
             continue
         if es_enlace(info):
-            raise ValueError('La ruta contiene un enlace o junction: {}'.format(parte))
-        if os.path.normcase(str(parte)) in _RAICES:
+            raise ValueError('La ruta contiene un enlace o junction: {}'.format(part))
+        if os.path.normcase(str(part)) == tope:
             break
-    return ruta
-
-
-def raiz_confiable(ruta):
-    """Validar la raíz de trabajo sin exigir lo mismo a las carpetas que la contienen."""
-    ruta = Path(os.path.abspath(str(ruta)))
-    try:
-        if es_enlace(ruta.lstat()):
-            raise ValueError('La raíz es un enlace o junction: ' + str(ruta))
-    except FileNotFoundError:
-        pass
-    _RAICES.add(os.path.normcase(str(ruta)))
     return ruta
 
 
@@ -152,7 +155,7 @@ def lineador(origen=RAIZ):
 
 
 def planificar(destino, datos, origen=RAIZ):
-    origen, destino = raiz_confiable(origen), raiz_confiable(destino)
+    origen, destino = ruta_real(origen), ruta_real(destino)
     if not destino.is_dir():
         raise ValueError('La carpeta de bóveda debe existir y tener los archivos del kit.')
     reglas = Path('00_CORE/atoms/00_vault-rules.md')

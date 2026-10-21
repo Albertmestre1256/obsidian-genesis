@@ -379,3 +379,23 @@ def test_obsidian_del_kit_contiene_solo_ajustes_y_vista_simple_distribuibles():
     # Lo que Obsidian cree al abrir el kit no se cataloga; tampoco debe colarse en el paquete.
     assert {p.name for p in (ROOT / '.obsidian').iterdir()} == indice.AJUSTES_KIT | {'appearance.json', 'snippets'}
     assert {p.name for p in (ROOT / '.obsidian/snippets').iterdir()} == {'genesis-vista-simple.css'}
+
+
+def test_actualizar_escribe_en_boveda_bajo_enlace_externo(tmp_path):
+    real = tmp_path / 'real'
+    vault = real / 'boveda'
+    guardar(vault, 'INDICE.md', '# Mapa\n\n' + indice.INICIO + '\n' + indice.FIN + '\n')
+    guardar(vault, '00_CORE/atoms/00_vault-rules.md', '# Reglas\n')
+    guardar(vault, 'Notas/Nueva nota.md', '# Nueva nota\n')
+    enlace = tmp_path / 'enlace'
+    try:
+        enlace.symlink_to(real, target_is_directory=True)
+    except OSError:
+        if os.name != 'nt' or subprocess.run(['cmd', '/c', 'mklink', '/J', str(enlace), str(real)],
+                                             capture_output=True).returncode:
+            pytest.skip('La cuenta no permite crear enlaces ni junctions')
+    try:
+        assert indice.actualizar(enlace / 'boveda')['estado'] == 'actualizado'
+        assert 'Nueva nota' in (vault / 'INDICE.md').read_text(encoding='utf-8')
+    finally:
+        os.unlink(str(enlace)) if enlace.is_symlink() else os.rmdir(str(enlace))

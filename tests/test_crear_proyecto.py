@@ -614,3 +614,23 @@ def test_conservacion_cli_keyboard_interrupt_after_first_guardar_is_partial(_con
     result = json.loads(capsys.readouterr().out)
     assert written and written[0].is_file()
     assert result['estado']=='parcial'
+
+
+def test_boveda_bajo_enlace_externo_crea_el_proyecto(vault, datos, tmp_path):
+    (vault / 'INDICE.md').write_text('# Mapa\n', encoding='utf-8')
+    real = tmp_path / 'real'
+    real.mkdir()
+    movida = Path(shutil.move(str(vault), str(real / vault.name)))
+    enlace = tmp_path / 'enlace'
+    try:
+        enlace.symlink_to(real, target_is_directory=True)
+    except OSError:
+        if os.name != 'nt' or subprocess.run(['cmd', '/c', 'mklink', '/J', str(enlace), str(real)],
+                                             capture_output=True).returncode:
+            pytest.skip('La cuenta no permite crear enlaces ni junctions')
+    try:
+        plan = crear.planificar(enlace / movida.name, datos)
+        crear.aplicar(plan, [])
+        assert (movida / 'preparar-dos-materias').is_dir()
+    finally:
+        os.unlink(str(enlace)) if enlace.is_symlink() else os.rmdir(str(enlace))

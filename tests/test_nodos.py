@@ -281,3 +281,11 @@ def test_error_en_nodo_conserva_mapa_general_previo(tmp_path):
     path.write_text('---\ntipo: indice-nodo\n---\n' + indice.NODO_INICIO, encoding='utf-8')
     before = foto(tmp_path)
     assert run(tmp_path).returncode == 2 and foto(tmp_path) == before
+
+
+def test_nodo_en_boveda_dentro_de_archivo_no_queda_manual(tmp_path):
+    root = tmp_path / '_archivo' / 'boveda'
+    guardar(root, 'INDICE.md', '# Mapa\n\n' + indice.INICIO + '\n' + indice.FIN + '\n')
+    guardar(root, '00_CORE/atoms/00_vault-rules.md', '# Reglas\n')
+    nodo(root, 'Coleccion')
+    assert indice.actualizar(root)['indices_manuales'] == []

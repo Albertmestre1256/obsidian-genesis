@@ -116,7 +116,7 @@ def evento(root, data, comprobar=True):
 
 
 def _registrar(root, data, fecha=None, dry_run=False):
-    root = lineas.raiz_confiable(root)
+    root = lineas.ruta_real(root)
     if not root.is_dir():
         raise ValueError('La bóveda debe existir.')
     now = momento(fecha) if fecha else datetime.now().astimezone()
@@ -179,7 +179,7 @@ def _registrar(root, data, fecha=None, dry_run=False):
 def registrar(root, data, fecha=None, dry_run=False):
     if dry_run:
         return _registrar(root, data, fecha, True)
-    root = lineas.raiz_confiable(root)
+    root = lineas.ruta_real(root)
     if not root.is_dir():
         raise ValueError('La bóveda debe existir.')
     # Comprobar el plan antes de crear carpetas; repetir bajo bloqueo para guardar.
