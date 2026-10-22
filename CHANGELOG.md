@@ -143,7 +143,7 @@ Las entradas remiten a los recorridos existentes sin repetir sus procedimientos.
 
 ## 17/10/2026 — vista simple inicial de bóvedas nuevas
 
-La carpeta nueva lleva activado un fragmento CSS para despejar el explorador y un filtro del gráfico que prioriza proyectos, fichas y notas frente al soporte técnico. Los archivos siguen accesibles y no cambian sus rutas. La IA conserva los ajustes preparados en la entrega, sin pedir pasos técnicos al principiante. Se reutiliza la vista confirmada por Albert en una copia local; no se acredita una revisión visual formal de este candidato. El instalador de bóvedas existentes conserva sus preferencias y no aplica todavía esta vista.
+La carpeta nueva lleva activado un fragmento CSS para despejar el explorador y un filtro del gráfico que prioriza proyectos, fichas y notas frente al soporte técnico. Los archivos siguen accesibles y no cambian sus rutas. La IA conserva los ajustes preparados en la entrega, sin pedir pasos técnicos al principiante. Se reutiliza la vista comprobada en una copia local; no se acredita una revisión visual formal de este candidato. El instalador de bóvedas existentes conserva sus preferencias y no aplica todavía esta vista.
 
 ## 17/10/2026 — originales conservados y mantenimiento acotado
 
