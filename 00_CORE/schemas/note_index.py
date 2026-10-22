@@ -2,6 +2,7 @@
 """Índices de líneas para notas editables. Python estándar 3.8+."""
 import argparse
 import errno
+import importlib.util
 from contextlib import contextmanager
 from datetime import datetime
 import os
@@ -9,6 +10,7 @@ from pathlib import Path
 import re
 import stat
 import sys
+sys.dont_write_bytecode = True  # no dejar __pycache__ dentro de la bóveda
 import tempfile
 import time
 
@@ -20,51 +22,30 @@ ATRIBUCIONES = ('> **Crédito principal', '> **Main credit', '> **Besonderer Dan
 IGNORAR = {'.git', '.obsidian', '.obsidian-mcp', '.claude', '.agents', '.opencode', '.github',
            '__pycache__', '.pytest_cache', '.trash', 'node_modules', '.venv', 'venv', '_archivo'}
 
-# Marcas de una bóveda del kit: el ancestro más externo que las tiene es el límite de la revisión.
-MARCAS = ('INDICE.md', '00_CORE/atoms/00_vault-rules.md')
-
-
-def es_enlace(info):
-    """Symlink, junction u otro enlace de Windows (etiqueta de tipo name surrogate)."""
-    if stat.S_ISLNK(info.st_mode):
-        return True
-    if getattr(info, 'st_file_attributes', 0) & 0x400:
+def _cargar_rutas():
+    """Cargar la política del kit propio, comprobando su ruta antes de ejecutarla."""
+    raiz = Path(os.path.abspath(__file__)).parents[2]
+    ruta = raiz / '00_CORE/schemas/rutas_boveda.py'
+    # Guardia de arranque: no depende de la política que todavía no se cargó.
+    for parte in (ruta,) + tuple(ruta.parents):
+        info = parte.lstat()
         tag = getattr(info, 'st_reparse_tag', None)
-        # Nube, deduplicación o compresión no redirigen; 0 es un reanálisis que lstat ya atravesó.
-        return tag is None or bool(tag & 0x20000000)
-    return False
-
-
-def raiz_boveda(path):
-    """Ancestro más externo con las marcas del kit, o None si no hay una bóveda reconocible."""
-    path = Path(os.path.abspath(str(path)))
-    raiz = None
-    for part in (path,) + tuple(path.parents):
-        # INDICE.md primero: la mayoría de los ancestros no lo tienen y basta una consulta.
-        if (part / MARCAS[0]).is_file() and (part / MARCAS[1]).is_file():
-            raiz = part
-        # Un checkout en .claude/worktrees es una copia propia, no una parte de la bóveda que lo contiene.
-        if part.parent.name.casefold() == 'worktrees' and part.parent.parent.name.casefold() == '.claude':
+        redirige = (getattr(info, 'st_file_attributes', 0) & 0x400
+                    and (tag is None or bool(tag & 0x20000000)))
+        if stat.S_ISLNK(info.st_mode) or redirige:
+            raise ValueError('No cargar herramientas a través de enlaces ni junctions: ' + str(parte))
+        if parte == raiz:
             break
-    return raiz
+    spec = importlib.util.spec_from_file_location('rutas_boveda_kit', ruta)
+    modulo = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(modulo)
+    return modulo
 
 
-def ruta_real(path, raiz=None):
-    """Rechazar enlaces desde la ruta hasta la raíz de la bóveda, inclusive; sin raíz, hasta el disco."""
-    path = Path(os.path.abspath(str(path)))
-    raiz = raiz_boveda(path) if raiz is None else Path(os.path.abspath(str(raiz)))
-    tope = os.path.normcase(str(raiz)) if raiz is not None else None
-    for part in (path,) + tuple(path.parents):
-        try:
-            info = part.lstat()
-        except FileNotFoundError:
-            continue
-        if es_enlace(info):
-            raise ValueError('No seguir enlaces ni junctions: ' + str(part))
-        if os.path.normcase(str(part)) == tope:
-            break
-    return path
-
+_rutas = _cargar_rutas()
+es_enlace = _rutas.es_enlace
+raiz_boveda = _rutas.raiz_boveda
+ruta_real = _rutas.ruta_real
 
 GUIA_BLOQUEO = 'ver «Aparece un bloqueo» en DOCS/TROUBLESHOOTING.md'
 
@@ -165,13 +146,9 @@ def guardar(path, before, after):
     return True
 
 
-def partir(text):
-    # Solo \n separa líneas; splitlines también corta en \x0c, U+2028 y otros que Obsidian no cuenta.
-    return re.findall(r'[^\n]*\n|[^\n]+\Z', text)
-
-
 def separar(text, reubicar=False):
-    lines = partir(text)
+    # Solo \n separa líneas; splitlines también corta en \x0c, U+2028 y otros que Obsidian no cuenta.
+    lines = re.findall(r'[^\n]*\n|[^\n]+\Z', text)
     clean = [line.rstrip('\r\n') for line in lines]
     first = 0
     if clean and clean[0] == '---':

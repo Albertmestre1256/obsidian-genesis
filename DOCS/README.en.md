@@ -11,10 +11,10 @@ descripcion: "What each kit document contains, what it does and when to consult 
 > - Líneas 48–65: Rules and projects
 > - Líneas 66–83: Help
 > - Líneas 84–97: Integrations and settings
-> - Líneas 98–110: Python and tests
-> - Líneas 111–121: Repository and credits
-> - Líneas 122–130: Optional resources
-> - Líneas 131–143: Files created during use
+> - Líneas 98–111: Python and tests
+> - Líneas 112–123: Repository and credits
+> - Líneas 124–132: Optional resources
+> - Líneas 133–145: Files created during use
 
 # Guide to the kit documents and tools
 
@@ -104,14 +104,16 @@ Python automates tasks; you do not need to program to use the kit with an AI tha
 | [`crear_proyecto.py`](../crear_proyecto.py) | Create the context note and folders of an agreed project. |
 | [`actualizar_indice.py`](../actualizar_indice.py) | Generate or check the general index and node indexes. |
 | [`00_CORE/schemas/validate.py`](../00_CORE/schemas/validate.py) | Check context notes and setup; with --cierre, verify an operation. |
+| [`00_CORE/schemas/rutas_boveda.py`](../00_CORE/schemas/rutas_boveda.py) | Check vault roots and paths; internal policy shared by the tools. |
 | [`00_CORE/schemas/note_index.py`](../00_CORE/schemas/note_index.py) | Compute and check line ranges in editable notes. |
 | [`00_CORE/schemas/registrar_cambios.py`](../00_CORE/schemas/registrar_cambios.py) | Record authorship, changed files and preserved history. |
-| [`tests/conftest.py`](../tests/conftest.py) · [`tests/test_crear_proyecto.py`](../tests/test_crear_proyecto.py) · [`tests/test_indice.py`](../tests/test_indice.py) · [`tests/test_kit.py`](../tests/test_kit.py) · [`tests/test_mantenimiento.py`](../tests/test_mantenimiento.py) · [`tests/test_nodos.py`](../tests/test_nodos.py) · [`tests/test_validate.py`](../tests/test_validate.py) | Shared fixtures and tests for creation, indexes, packaging, maintenance, nodes and validation. |
+| [`tests/test_rutas_boveda.py`](../tests/test_rutas_boveda.py) · [`tests/conftest.py`](../tests/conftest.py) · [`tests/test_crear_proyecto.py`](../tests/test_crear_proyecto.py) · [`tests/test_indice.py`](../tests/test_indice.py) · [`tests/test_kit.py`](../tests/test_kit.py) · [`tests/test_mantenimiento.py`](../tests/test_mantenimiento.py) · [`tests/test_nodos.py`](../tests/test_nodos.py) · [`tests/test_validate.py`](../tests/test_validate.py) | Shared fixtures and tests for creation, indexes, packaging, maintenance, nodes and validation. |
 
 ## Repository and credits
 
 | Document or tool | Purpose |
 |---|---|
+| [`GLOSSARY.md`](../GLOSSARY.md) | Vault and vault-root terminology. |
 | [`LICENSE`](../LICENSE) | MIT license and attribution to davidkimai and Albert Mestre. |
 | [`CHANGELOG.md`](../CHANGELOG.md) | Kit changes by version or date. |
 | [`CONTRIBUTING.md`](../CONTRIBUTING.md) | How to contribute, ask for help and check changes. |

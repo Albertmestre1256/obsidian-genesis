@@ -9,20 +9,20 @@
 > - Líneas 63–71: Ajustes de Obsidian
 > - Líneas 72–94: Ayuda
 > - Líneas 95–104: Carpeta: skills
-> - Líneas 105–119: Desarrollo
-> - Líneas 120–141: Entrada y herramientas
-> - Líneas 142–147: Fichas y plantillas de proyecto
-> - Líneas 148–153: Guías de comunicación
-> - Líneas 154–162: Guías de redacción
-> - Líneas 163–175: Integración Claude
-> - Líneas 176–186: Integración OpenCode
-> - Líneas 187–196: Plantilla de carpetas
-> - Líneas 197–204: Plantillas de organización
-> - Líneas 205–213: Protocolos
-> - Líneas 214–222: Recursos opcionales de davidkimai
-> - Líneas 223–228: Reglas compartidas
-> - Líneas 229–236: Validación
-> - Líneas 237–245: Alcance del catálogo
+> - Líneas 105–120: Desarrollo
+> - Líneas 121–143: Entrada y herramientas
+> - Líneas 144–149: Fichas y plantillas de proyecto
+> - Líneas 150–155: Guías de comunicación
+> - Líneas 156–164: Guías de redacción
+> - Líneas 165–177: Integración Claude
+> - Líneas 178–188: Integración OpenCode
+> - Líneas 189–198: Plantilla de carpetas
+> - Líneas 199–206: Plantillas de organización
+> - Líneas 207–215: Protocolos
+> - Líneas 216–224: Recursos opcionales de davidkimai
+> - Líneas 225–230: Reglas compartidas
+> - Líneas 231–239: Validación
+> - Líneas 240–248: Alcance del catálogo
 
 # Índice principal de la bóveda
 
@@ -38,7 +38,7 @@ Podés agregar presentación y comentarios antes o después del bloque automáti
 
 ## Panorama
 
-- Archivos catalogados: 94. Proyectos propios identificados: 0. Ejemplos ficticios: 1.
+- Archivos catalogados: 97. Proyectos propios identificados: 0. Ejemplos ficticios: 1.
 - Configuración: todavía no existe una nota de configuración del kit.
 - El estado detallado y las tareas se leen en cada ficha; este catálogo no los reemplaza.
 
@@ -115,6 +115,7 @@ Cada fila enlaza un archivo. Las carpetas se representan mediante sus archivos; 
 | [test\_kit.py](tests/test_kit.py) | PY |
 | [test\_mantenimiento.py](tests/test_mantenimiento.py) | PY |
 | [test\_nodos.py](tests/test_nodos.py) | PY |
+| [test\_rutas\_boveda.py](tests/test_rutas_boveda.py) | PY |
 | [test\_validate.py](tests/test_validate.py) | PY |
 
 ### Entrada y herramientas
@@ -129,6 +130,7 @@ Cada fila enlaza un archivo. Las carpetas se representan mediante sus archivos; 
 | [CLAUDE.md](CLAUDE.md) | MD |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | Contribuir |
 | [crear\_proyecto.py](crear_proyecto.py) | PY |
+| [GLOSSARY.md](GLOSSARY.md) | Obsidian Genesis |
 | [INDICE.md](INDICE.md) | Índice principal de la bóveda |
 | [LEER\_PRIMERO.md](LEER_PRIMERO.md) | Puerta de entrada a los proyectos, las reglas y el mapa de esta bóveda. |
 | [LICENSE](LICENSE) | Archivo sin extensión |
@@ -232,6 +234,7 @@ Cada fila enlaza un archivo. Las carpetas se representan mediante sus archivos; 
 |---|---|
 | [note\_index.py](00_CORE/schemas/note_index.py) | PY |
 | [registrar\_cambios.py](00_CORE/schemas/registrar_cambios.py) | PY |
+| [rutas\_boveda.py](00_CORE/schemas/rutas_boveda.py) | PY |
 | [validate.py](00_CORE/schemas/validate.py) | PY |
 
 ## Alcance del catálogo

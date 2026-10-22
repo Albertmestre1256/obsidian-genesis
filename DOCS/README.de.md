@@ -11,10 +11,10 @@ descripcion: "Inhalt und Zweck der Kit-Dokumente und wann sie hilfreich sind."
 > - Líneas 48–65: Regeln und Projekte
 > - Líneas 66–83: Hilfe
 > - Líneas 84–97: Integrationen und Einstellungen
-> - Líneas 98–110: Python und Tests
-> - Líneas 111–121: Repository und Credits
-> - Líneas 122–130: Optionale Ressourcen
-> - Líneas 131–143: Beim Verwenden erzeugte Dateien
+> - Líneas 98–111: Python und Tests
+> - Líneas 112–123: Repository und Credits
+> - Líneas 124–132: Optionale Ressourcen
+> - Líneas 133–145: Beim Verwenden erzeugte Dateien
 
 # Wegweiser zu den Dokumenten und Werkzeugen des Kits
 
@@ -104,14 +104,16 @@ Python automatisiert Aufgaben. Mit einer KI, die Dateien verwalten kann, brauchs
 | [`crear_proyecto.py`](../crear_proyecto.py) | Kontextnotiz und Ordner eines vereinbarten Projekts erstellen. |
 | [`actualizar_indice.py`](../actualizar_indice.py) | Allgemeinen Index und Knotenindizes erzeugen oder prüfen. |
 | [`00_CORE/schemas/validate.py`](../00_CORE/schemas/validate.py) | Kontextnotizen und Einrichtung prüfen; mit --cierre einen Vorgang abgleichen. |
+| [`00_CORE/schemas/rutas_boveda.py`](../00_CORE/schemas/rutas_boveda.py) | Vault-Wurzeln und Pfade prüfen; gemeinsame interne Regeln der Werkzeuge. |
 | [`00_CORE/schemas/note_index.py`](../00_CORE/schemas/note_index.py) | Zeilenbereiche bearbeitbarer Notizen berechnen und prüfen. |
 | [`00_CORE/schemas/registrar_cambios.py`](../00_CORE/schemas/registrar_cambios.py) | Urheberschaft und geänderte Dateien mit erhaltener Historie protokollieren. |
-| [`tests/conftest.py`](../tests/conftest.py) · [`tests/test_crear_proyecto.py`](../tests/test_crear_proyecto.py) · [`tests/test_indice.py`](../tests/test_indice.py) · [`tests/test_kit.py`](../tests/test_kit.py) · [`tests/test_mantenimiento.py`](../tests/test_mantenimiento.py) · [`tests/test_nodos.py`](../tests/test_nodos.py) · [`tests/test_validate.py`](../tests/test_validate.py) | Gemeinsame Testvorbereitung sowie Tests für Erstellung, Indizes, Paket, Pflege, Knoten und Validierung. |
+| [`tests/test_rutas_boveda.py`](../tests/test_rutas_boveda.py) · [`tests/conftest.py`](../tests/conftest.py) · [`tests/test_crear_proyecto.py`](../tests/test_crear_proyecto.py) · [`tests/test_indice.py`](../tests/test_indice.py) · [`tests/test_kit.py`](../tests/test_kit.py) · [`tests/test_mantenimiento.py`](../tests/test_mantenimiento.py) · [`tests/test_nodos.py`](../tests/test_nodos.py) · [`tests/test_validate.py`](../tests/test_validate.py) | Gemeinsame Testvorbereitung sowie Tests für Erstellung, Indizes, Paket, Pflege, Knoten und Validierung. |
 
 ## Repository und Credits
 
 | Dokument oder Werkzeug | Zweck |
 |---|---|
+| [`GLOSSARY.md`](../GLOSSARY.md) | Begriffe für Vault und Vault-Wurzel. |
 | [`LICENSE`](../LICENSE) | MIT-Lizenz und Namensnennung von davidkimai und Albert Mestre. |
 | [`CHANGELOG.md`](../CHANGELOG.md) | Änderungen des Kits nach Version oder Datum. |
 | [`CONTRIBUTING.md`](../CONTRIBUTING.md) | Mitwirken, Hilfe suchen und Änderungen prüfen. |

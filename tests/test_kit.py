@@ -36,7 +36,7 @@ def test_archivos_esenciales():
                  "DOCS/QUICKSTART.md", "DOCS/creacion-para-asistentes.md", "crear_proyecto.py",
                  ".opencode/commands/configurar.md", "DOCS/opencode.md", "DOCS/chatgpt.md",
                  "00_CORE/atoms/00_vault-rules.md", "00_CORE/templates/TEMPLATE_cell.md",
-                 "00_CORE/cells/ejemplo-context.md", "00_CORE/schemas/validate.py",
+                 "00_CORE/cells/ejemplo-context.md", "00_CORE/schemas/validate.py", "00_CORE/schemas/rutas_boveda.py",
                  ".claude/settings.json", ".obsidian/app.json", "Panel.md", "Proyectos.base", ".github/workflows/tests.yml"]:
         assert (RAIZ / ruta).exists(), ruta
 

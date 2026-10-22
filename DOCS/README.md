@@ -11,10 +11,10 @@ descripcion: "Qué contiene cada documento del kit, para qué sirve y cuándo co
 > - Líneas 48–65: Reglas y proyectos
 > - Líneas 66–83: Ayuda
 > - Líneas 84–97: Integraciones y ajustes
-> - Líneas 98–110: Python y pruebas
-> - Líneas 111–121: Repositorio y créditos
-> - Líneas 122–130: Recursos opcionales
-> - Líneas 131–143: Archivos creados durante el uso
+> - Líneas 98–111: Python y pruebas
+> - Líneas 112–123: Repositorio y créditos
+> - Líneas 124–132: Recursos opcionales
+> - Líneas 133–145: Archivos creados durante el uso
 
 # Guía de documentos y herramientas del kit
 
@@ -104,14 +104,16 @@ Python automatiza tareas; no hace falta programar para usar el kit con una IA qu
 | [`crear_proyecto.py`](../crear_proyecto.py) | Crear ficha y carpetas de un proyecto acordado. |
 | [`actualizar_indice.py`](../actualizar_indice.py) | Generar o comprobar el índice general y los índices de nodos. |
 | [`00_CORE/schemas/validate.py`](../00_CORE/schemas/validate.py) | Revisar fichas/configuración; con --cierre, contrastar una operación. |
+| [`00_CORE/schemas/rutas_boveda.py`](../00_CORE/schemas/rutas_boveda.py) | Comprobar la raíz de bóveda y las rutas; política interna compartida por las herramientas. |
 | [`00_CORE/schemas/note_index.py`](../00_CORE/schemas/note_index.py) | Calcular y comprobar los rangos de líneas de notas editables. |
 | [`00_CORE/schemas/registrar_cambios.py`](../00_CORE/schemas/registrar_cambios.py) | Registrar autoría, archivos modificados e historial conservado. |
-| [`tests/conftest.py`](../tests/conftest.py) · [`tests/test_crear_proyecto.py`](../tests/test_crear_proyecto.py) · [`tests/test_indice.py`](../tests/test_indice.py) · [`tests/test_kit.py`](../tests/test_kit.py) · [`tests/test_mantenimiento.py`](../tests/test_mantenimiento.py) · [`tests/test_nodos.py`](../tests/test_nodos.py) · [`tests/test_validate.py`](../tests/test_validate.py) | Preparación compartida y pruebas de creación, índices, paquete, mantenimiento, nodos y validación. |
+| [`tests/test_rutas_boveda.py`](../tests/test_rutas_boveda.py) · [`tests/conftest.py`](../tests/conftest.py) · [`tests/test_crear_proyecto.py`](../tests/test_crear_proyecto.py) · [`tests/test_indice.py`](../tests/test_indice.py) · [`tests/test_kit.py`](../tests/test_kit.py) · [`tests/test_mantenimiento.py`](../tests/test_mantenimiento.py) · [`tests/test_nodos.py`](../tests/test_nodos.py) · [`tests/test_validate.py`](../tests/test_validate.py) | Preparación compartida y pruebas de creación, índices, paquete, mantenimiento, nodos y validación. |
 
 ## Repositorio y créditos
 
 | Documento o herramienta | Función |
 |---|---|
+| [`GLOSSARY.md`](../GLOSSARY.md) | Vocabulario de bóveda y raíz de bóveda. |
 | [`LICENSE`](../LICENSE) | Licencia MIT y atribución de davidkimai y Albert Mestre. |
 | [`CHANGELOG.md`](../CHANGELOG.md) | Cambios del kit por versión o fecha. |
 | [`CONTRIBUTING.md`](../CONTRIBUTING.md) | Cómo contribuir, pedir ayuda y comprobar cambios. |
