@@ -703,7 +703,7 @@ def test_cierre_indice_manual_exige_revision_explicita(validador, boveda_cierre)
 def test_cierre_no_ejecuta_scripts_del_destino(validador, boveda_cierre):
     vault, _, _, _ = boveda_cierre()
     for relative in ['actualizar_indice.py','00_CORE/schemas/note_index.py',
-                     '00_CORE/schemas/registrar_cambios.py']:
+                     '00_CORE/schemas/registrar_cambios.py', '00_CORE/schemas/rutas_boveda.py']:
         (vault/relative).write_text('raise RuntimeError("No ejecutar código del destino")\n',encoding='utf-8')
     before = foto_cierre(vault)
     assert validador.validar_cierre(vault,'cierre-final') == []

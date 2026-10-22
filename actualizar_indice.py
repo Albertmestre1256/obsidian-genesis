@@ -55,50 +55,36 @@ def cabecera(raiz):
             text = text.replace('[{}]({})'.format(label, path), label)
     return text
 
-# Marcas de una bóveda del kit: el ancestro más externo que las tiene es el límite de la revisión.
-MARCAS = ('INDICE.md', '00_CORE/atoms/00_vault-rules.md')
-
-
-def es_enlace(info):
-    """Symlink, junction u otro enlace de Windows (etiqueta de tipo name surrogate)."""
-    if stat.S_ISLNK(info.st_mode):
-        return True
-    if getattr(info, 'st_file_attributes', 0) & 0x400:
+def _cargar_rutas():
+    """Cargar la política del kit propio, comprobando su ruta antes de ejecutarla."""
+    raiz = Path(os.path.abspath(__file__)).parent
+    ruta = raiz / '00_CORE/schemas/rutas_boveda.py'
+    # Guardia de arranque: no depende de la política que todavía no se cargó.
+    for parte in (ruta,) + tuple(ruta.parents):
+        info = parte.lstat()
         tag = getattr(info, 'st_reparse_tag', None)
-        # Nube, deduplicación o compresión no redirigen; 0 es un reanálisis que lstat ya atravesó.
-        return tag is None or bool(tag & 0x20000000)
-    return False
+        redirige = (getattr(info, 'st_file_attributes', 0) & 0x400
+                    and (tag is None or bool(tag & 0x20000000)))
+        if stat.S_ISLNK(info.st_mode) or redirige:
+            raise ValueError('No cargar herramientas a través de enlaces ni junctions: ' + str(parte))
+        if parte == raiz:
+            break
+    spec = importlib.util.spec_from_file_location('rutas_boveda_kit', ruta)
+    modulo = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(modulo)
+    return modulo
+
+
+_rutas = _cargar_rutas()
+es_enlace = _rutas.es_enlace
 
 
 def raiz_boveda(ruta):
-    """Ancestro más externo con las marcas del kit, o None si no hay una bóveda reconocible."""
-    ruta = Path(os.path.abspath(str(ruta)))
-    raiz = None
-    for part in (ruta,) + tuple(ruta.parents):
-        # INDICE.md primero: la mayoría de los ancestros no lo tienen y basta una consulta.
-        if (part / MARCAS[0]).is_file() and (part / MARCAS[1]).is_file():
-            raiz = part
-        # Un checkout en .claude/worktrees es una copia propia, no una parte de la bóveda que lo contiene.
-        if part.parent.name.casefold() == 'worktrees' and part.parent.parent.name.casefold() == '.claude':
-            break
-    return raiz
+    return _rutas.raiz_boveda(ruta)
 
 
 def ruta_real(ruta, raiz=None):
-    """Rechazar enlaces desde la ruta hasta la raíz de la bóveda, inclusive; sin raíz, hasta el disco."""
-    ruta = Path(os.path.abspath(str(ruta)))
-    raiz = raiz_boveda(ruta) if raiz is None else Path(os.path.abspath(str(raiz)))
-    tope = os.path.normcase(str(raiz)) if raiz is not None else None
-    for part in (ruta,) + tuple(ruta.parents):
-        try:
-            info = part.lstat()
-        except FileNotFoundError:
-            continue
-        if es_enlace(info):
-            raise ValueError('No se siguen enlaces ni junctions: {}'.format(part))
-        if os.path.normcase(str(part)) == tope:
-            break
-    return ruta
+    return _rutas.ruta_real(ruta, raiz)
 
 
 def omitir(nombre):

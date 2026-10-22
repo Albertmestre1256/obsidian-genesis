@@ -11,10 +11,10 @@ descripcion: "各文档的内容、用途以及适合查阅的时机。"
 > - Líneas 48–65: 规则与项目
 > - Líneas 66–83: 帮助
 > - Líneas 84–97: 集成与设置
-> - Líneas 98–110: Python 与测试
-> - Líneas 111–121: 仓库与署名
-> - Líneas 122–130: 可选资源
-> - Líneas 131–143: 使用过程中创建的文件
+> - Líneas 98–111: Python 与测试
+> - Líneas 112–123: 仓库与署名
+> - Líneas 124–132: 可选资源
+> - Líneas 133–145: 使用过程中创建的文件
 
 # 工具包文档与工具指南
 
@@ -104,14 +104,16 @@ Python 用于自动执行任务。只要 AI 能管理文件，使用工具包就
 | [`crear_proyecto.py`](../crear_proyecto.py) | 为已商定的项目创建上下文笔记与文件夹。 |
 | [`actualizar_indice.py`](../actualizar_indice.py) | 生成或检查总索引与节点索引。 |
 | [`00_CORE/schemas/validate.py`](../00_CORE/schemas/validate.py) | 检查上下文笔记与配置；使用 --cierre 核查一次操作。 |
+| [`00_CORE/schemas/rutas_boveda.py`](../00_CORE/schemas/rutas_boveda.py) | 检查仓库根目录与路径；供各工具共用的内部规则。 |
 | [`00_CORE/schemas/note_index.py`](../00_CORE/schemas/note_index.py) | 计算并检查可编辑笔记的行号范围。 |
 | [`00_CORE/schemas/registrar_cambios.py`](../00_CORE/schemas/registrar_cambios.py) | 记录修改者、变更文件并保留历史。 |
-| [`tests/conftest.py`](../tests/conftest.py) · [`tests/test_crear_proyecto.py`](../tests/test_crear_proyecto.py) · [`tests/test_indice.py`](../tests/test_indice.py) · [`tests/test_kit.py`](../tests/test_kit.py) · [`tests/test_mantenimiento.py`](../tests/test_mantenimiento.py) · [`tests/test_nodos.py`](../tests/test_nodos.py) · [`tests/test_validate.py`](../tests/test_validate.py) | 共享测试准备，以及创建、索引、打包、维护、节点和验证测试。 |
+| [`tests/test_rutas_boveda.py`](../tests/test_rutas_boveda.py) · [`tests/conftest.py`](../tests/conftest.py) · [`tests/test_crear_proyecto.py`](../tests/test_crear_proyecto.py) · [`tests/test_indice.py`](../tests/test_indice.py) · [`tests/test_kit.py`](../tests/test_kit.py) · [`tests/test_mantenimiento.py`](../tests/test_mantenimiento.py) · [`tests/test_nodos.py`](../tests/test_nodos.py) · [`tests/test_validate.py`](../tests/test_validate.py) | 共享测试准备，以及创建、索引、打包、维护、节点和验证测试。 |
 
 ## 仓库与署名
 
 | 文档或工具 | 用途 |
 |---|---|
+| [`GLOSSARY.md`](../GLOSSARY.md) | 仓库与仓库根目录的术语。 |
 | [`LICENSE`](../LICENSE) | MIT 许可证及 davidkimai 与 Albert Mestre 的署名。 |
 | [`CHANGELOG.md`](../CHANGELOG.md) | 按版本或日期记录工具包变更。 |
 | [`CONTRIBUTING.md`](../CONTRIBUTING.md) | 如何参与贡献、寻求帮助和检查修改。 |
