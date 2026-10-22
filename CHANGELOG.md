@@ -1,47 +1,52 @@
 > [!info]- Índice de esta nota (líneas)
-> - Líneas 1–42: Este índice
-> - Líneas 44–45: Cambios
-> - Líneas 46–49: 21/10/2026 — entrega de una copia como ZIP
-> - Líneas 50–53: 21/10/2026 — README más claro con guías enlazadas
-> - Líneas 54–57: 21/10/2026 — material heredado fuera de Genesis
-> - Líneas 58–61: 21/10/2026 — skills opcionales en Markdown, sin instalador
-> - Líneas 62–65: 21/10/2026 — creador: porcentajes, identificador y plantilla
-> - Líneas 66–69: 21/10/2026 — bloqueos huérfanos con guía de recuperación
-> - Líneas 70–73: 21/10/2026 — ayuda de IA al final de los README
-> - Líneas 74–77: 20/10/2026 — registro inviolable y enlaces solo dentro de la bóveda
-> - Líneas 78–81: 20/10/2026 — robustez de registro, rangos y Panel
-> - Líneas 82–85: 20/10/2026 — vista simple con las skills portables
-> - Líneas 86–89: 20/10/2026 — cinco skills portables
-> - Líneas 90–93: 20/10/2026 — alcance: bóvedas nuevas
-> - Líneas 94–97: 20/10/2026 — decisión explícita sobre el retiro al configurar
-> - Líneas 98–101: 20/10/2026 — retiro opcional del material del kit
-> - Líneas 102–105: 20/10/2026 — estado del proyecto y financiación en GitHub
-> - Líneas 106–109: 20/10/2026 — apoyo opcional en Patreon
-> - Líneas 110–113: 20/10/2026 — comprobaciones mecánicas con herramientas
-> - Líneas 114–117: 20/10/2026 — comentarios YAML en el catálogo
-> - Líneas 118–121: 18/10/2026 — vista simple opcional en bóvedas existentes
-> - Líneas 122–125: 17/10/2026 — menos repetición al validar el inventario
-> - Líneas 126–129: 17/10/2026 — inicio y acceso en una sola guía
-> - Líneas 130–133: 17/10/2026 — entradas de IA más concisas
-> - Líneas 134–137: 17/10/2026 — vista simple inicial de bóvedas nuevas
-> - Líneas 138–141: 17/10/2026 — originales conservados y mantenimiento acotado
-> - Líneas 142–145: 16/10/2026 — guía de los documentos en cuatro idiomas
-> - Líneas 146–149: 16/10/2026 — simplificación de herramientas Python
-> - Líneas 150–153: 16/10/2026 — comunidad y soporte accesibles desde los README
-> - Líneas 154–157: 16/10/2026 — abrir la bóveda en Obsidian no desactualiza el índice
-> - Líneas 158–161: 16/10/2026 — instalar desde un kit abierto con OpenCode
-> - Líneas 162–165: 16/10/2026 — README en cuatro idiomas
-> - Líneas 166–169: 16/10/2026 — sin carpetas __pycache__ en la bóveda
-> - Líneas 170–173: 15/10/2026 — próximo paso solo en la ficha
-> - Líneas 174–177: 15/10/2026 — destino visible al comprobar el cierre
-> - Líneas 178–181: 15/10/2026 — conservar cambios posteriores al plan
-> - Líneas 182–185: 15/10/2026 — cierre coherente con el proyecto inicial
-> - Líneas 186–189: 14/10/2026 — operación visible coherente con el registro
-> - Líneas 190–193: 14/10/2026 — inventario de perfil plegable
-> - Líneas 194–197: 13/10/2026 — índices de proyectos con nombres propios
-> - Líneas 198–219: Sin publicar — candidata a v0.1.0
+> - Líneas 1–43: Este índice
+> - Líneas 45–46: Cambios
+> - Líneas 47–50: 21/10/2026 — contenido no confiable, datos sensibles y versión de Obsidian
+> - Líneas 51–54: 21/10/2026 — entrega de una copia como ZIP
+> - Líneas 55–58: 21/10/2026 — README más claro con guías enlazadas
+> - Líneas 59–62: 21/10/2026 — material heredado fuera de Genesis
+> - Líneas 63–66: 21/10/2026 — skills opcionales en Markdown, sin instalador
+> - Líneas 67–70: 21/10/2026 — creador: porcentajes, identificador y plantilla
+> - Líneas 71–74: 21/10/2026 — bloqueos huérfanos con guía de recuperación
+> - Líneas 75–78: 21/10/2026 — ayuda de IA al final de los README
+> - Líneas 79–82: 20/10/2026 — registro inviolable y enlaces solo dentro de la bóveda
+> - Líneas 83–86: 20/10/2026 — robustez de registro, rangos y Panel
+> - Líneas 87–90: 20/10/2026 — vista simple con las skills portables
+> - Líneas 91–94: 20/10/2026 — cinco skills portables
+> - Líneas 95–98: 20/10/2026 — alcance: bóvedas nuevas
+> - Líneas 99–102: 20/10/2026 — decisión explícita sobre el retiro al configurar
+> - Líneas 103–106: 20/10/2026 — retiro opcional del material del kit
+> - Líneas 107–110: 20/10/2026 — estado del proyecto y financiación en GitHub
+> - Líneas 111–114: 20/10/2026 — apoyo opcional en Patreon
+> - Líneas 115–118: 20/10/2026 — comprobaciones mecánicas con herramientas
+> - Líneas 119–122: 20/10/2026 — comentarios YAML en el catálogo
+> - Líneas 123–126: 18/10/2026 — vista simple opcional en bóvedas existentes
+> - Líneas 127–130: 17/10/2026 — menos repetición al validar el inventario
+> - Líneas 131–134: 17/10/2026 — inicio y acceso en una sola guía
+> - Líneas 135–138: 17/10/2026 — entradas de IA más concisas
+> - Líneas 139–142: 17/10/2026 — vista simple inicial de bóvedas nuevas
+> - Líneas 143–146: 17/10/2026 — originales conservados y mantenimiento acotado
+> - Líneas 147–150: 16/10/2026 — guía de los documentos en cuatro idiomas
+> - Líneas 151–154: 16/10/2026 — simplificación de herramientas Python
+> - Líneas 155–158: 16/10/2026 — comunidad y soporte accesibles desde los README
+> - Líneas 159–162: 16/10/2026 — abrir la bóveda en Obsidian no desactualiza el índice
+> - Líneas 163–166: 16/10/2026 — instalar desde un kit abierto con OpenCode
+> - Líneas 167–170: 16/10/2026 — README en cuatro idiomas
+> - Líneas 171–174: 16/10/2026 — sin carpetas __pycache__ en la bóveda
+> - Líneas 175–178: 15/10/2026 — próximo paso solo en la ficha
+> - Líneas 179–182: 15/10/2026 — destino visible al comprobar el cierre
+> - Líneas 183–186: 15/10/2026 — conservar cambios posteriores al plan
+> - Líneas 187–190: 15/10/2026 — cierre coherente con el proyecto inicial
+> - Líneas 191–194: 14/10/2026 — operación visible coherente con el registro
+> - Líneas 195–198: 14/10/2026 — inventario de perfil plegable
+> - Líneas 199–202: 13/10/2026 — índices de proyectos con nombres propios
+> - Líneas 203–224: Sin publicar — candidata a v0.1.0
 
 # Cambios
+
+## 21/10/2026 — contenido no confiable, datos sensibles y versión de Obsidian
+
+Las reglas tratan como material para analizar todo el contenido de notas, fuentes y adjuntos: si pide algo a la IA, no se sigue y se le muestra a la persona. También piden no guardar contraseñas, claves, tokens ni datos de tarjetas o documentos de identidad. La guía de Obsidian indica que Bases y la tabla de proyectos del Panel necesitan Obsidian 1.9.10 o posterior.
 
 ## 21/10/2026 — entrega de una copia como ZIP
 

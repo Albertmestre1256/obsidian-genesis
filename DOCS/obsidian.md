@@ -10,7 +10,7 @@
 
 # Plantillas y panel
 
-Una bóveda nueva del kit incluye ajustes para **Plantillas**, **Bases**, **Búsqueda** y **Vista de gráfico**, todos integrados en Obsidian. La visualización se comprueba por separado en tu instalación.
+Una bóveda nueva del kit incluye ajustes para **Plantillas**, **Bases**, **Búsqueda** y **Vista de gráfico**, todos integrados en Obsidian. Bases, y con él la tabla de proyectos del Panel, necesita Obsidian 1.9.10 o posterior, la primera versión pública que lo incluye; si no ves la tabla, actualizá Obsidian. La visualización se comprueba por separado en tu instalación.
 
 ## Abrir la bóveda preparada
 
