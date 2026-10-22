@@ -1,48 +1,53 @@
 > [!info]- Índice de esta nota (líneas)
-> - Líneas 1–43: Este índice
-> - Líneas 45–46: Cambios
-> - Líneas 47–50: 21/10/2026 — contenido no confiable, datos sensibles y versión de Obsidian
-> - Líneas 51–54: 21/10/2026 — entrega de una copia como ZIP
-> - Líneas 55–58: 21/10/2026 — README más claro con guías enlazadas
-> - Líneas 59–62: 21/10/2026 — material heredado fuera de Genesis
-> - Líneas 63–66: 21/10/2026 — skills opcionales en Markdown, sin instalador
-> - Líneas 67–70: 21/10/2026 — creador: porcentajes, identificador y plantilla
-> - Líneas 71–74: 21/10/2026 — bloqueos huérfanos con guía de recuperación
-> - Líneas 75–78: 21/10/2026 — ayuda de IA al final de los README
-> - Líneas 79–82: 20/10/2026 — registro inviolable y enlaces solo dentro de la bóveda
-> - Líneas 83–86: 20/10/2026 — robustez de registro, rangos y Panel
-> - Líneas 87–90: 20/10/2026 — vista simple con las skills portables
-> - Líneas 91–94: 20/10/2026 — cinco skills portables
-> - Líneas 95–98: 20/10/2026 — alcance: bóvedas nuevas
-> - Líneas 99–102: 20/10/2026 — decisión explícita sobre el retiro al configurar
-> - Líneas 103–106: 20/10/2026 — retiro opcional del material del kit
-> - Líneas 107–110: 20/10/2026 — estado del proyecto y financiación en GitHub
-> - Líneas 111–114: 20/10/2026 — apoyo opcional en Patreon
-> - Líneas 115–118: 20/10/2026 — comprobaciones mecánicas con herramientas
-> - Líneas 119–122: 20/10/2026 — comentarios YAML en el catálogo
-> - Líneas 123–126: 18/10/2026 — vista simple opcional en bóvedas existentes
-> - Líneas 127–130: 17/10/2026 — menos repetición al validar el inventario
-> - Líneas 131–134: 17/10/2026 — inicio y acceso en una sola guía
-> - Líneas 135–138: 17/10/2026 — entradas de IA más concisas
-> - Líneas 139–142: 17/10/2026 — vista simple inicial de bóvedas nuevas
-> - Líneas 143–146: 17/10/2026 — originales conservados y mantenimiento acotado
-> - Líneas 147–150: 16/10/2026 — guía de los documentos en cuatro idiomas
-> - Líneas 151–154: 16/10/2026 — simplificación de herramientas Python
-> - Líneas 155–158: 16/10/2026 — comunidad y soporte accesibles desde los README
-> - Líneas 159–162: 16/10/2026 — abrir la bóveda en Obsidian no desactualiza el índice
-> - Líneas 163–166: 16/10/2026 — instalar desde un kit abierto con OpenCode
-> - Líneas 167–170: 16/10/2026 — README en cuatro idiomas
-> - Líneas 171–174: 16/10/2026 — sin carpetas __pycache__ en la bóveda
-> - Líneas 175–178: 15/10/2026 — próximo paso solo en la ficha
-> - Líneas 179–182: 15/10/2026 — destino visible al comprobar el cierre
-> - Líneas 183–186: 15/10/2026 — conservar cambios posteriores al plan
-> - Líneas 187–190: 15/10/2026 — cierre coherente con el proyecto inicial
-> - Líneas 191–194: 14/10/2026 — operación visible coherente con el registro
-> - Líneas 195–198: 14/10/2026 — inventario de perfil plegable
-> - Líneas 199–202: 13/10/2026 — índices de proyectos con nombres propios
-> - Líneas 203–224: Sin publicar — candidata a v0.1.0
+> - Líneas 1–44: Este índice
+> - Líneas 46–47: Cambios
+> - Líneas 48–51: 21/10/2026 — versión 1.0
+> - Líneas 52–55: 21/10/2026 — contenido no confiable, datos sensibles y versión de Obsidian
+> - Líneas 56–59: 21/10/2026 — entrega de una copia como ZIP
+> - Líneas 60–63: 21/10/2026 — README más claro con guías enlazadas
+> - Líneas 64–67: 21/10/2026 — material heredado fuera de Genesis
+> - Líneas 68–71: 21/10/2026 — skills opcionales en Markdown, sin instalador
+> - Líneas 72–75: 21/10/2026 — creador: porcentajes, identificador y plantilla
+> - Líneas 76–79: 21/10/2026 — bloqueos huérfanos con guía de recuperación
+> - Líneas 80–83: 21/10/2026 — ayuda de IA al final de los README
+> - Líneas 84–87: 20/10/2026 — registro inviolable y enlaces solo dentro de la bóveda
+> - Líneas 88–91: 20/10/2026 — robustez de registro, rangos y Panel
+> - Líneas 92–95: 20/10/2026 — vista simple con las skills portables
+> - Líneas 96–99: 20/10/2026 — cinco skills portables
+> - Líneas 100–103: 20/10/2026 — alcance: bóvedas nuevas
+> - Líneas 104–107: 20/10/2026 — decisión explícita sobre el retiro al configurar
+> - Líneas 108–111: 20/10/2026 — retiro opcional del material del kit
+> - Líneas 112–115: 20/10/2026 — estado del proyecto y financiación en GitHub
+> - Líneas 116–119: 20/10/2026 — apoyo opcional en Patreon
+> - Líneas 120–123: 20/10/2026 — comprobaciones mecánicas con herramientas
+> - Líneas 124–127: 20/10/2026 — comentarios YAML en el catálogo
+> - Líneas 128–131: 18/10/2026 — vista simple opcional en bóvedas existentes
+> - Líneas 132–135: 17/10/2026 — menos repetición al validar el inventario
+> - Líneas 136–139: 17/10/2026 — inicio y acceso en una sola guía
+> - Líneas 140–143: 17/10/2026 — entradas de IA más concisas
+> - Líneas 144–147: 17/10/2026 — vista simple inicial de bóvedas nuevas
+> - Líneas 148–151: 17/10/2026 — originales conservados y mantenimiento acotado
+> - Líneas 152–155: 16/10/2026 — guía de los documentos en cuatro idiomas
+> - Líneas 156–159: 16/10/2026 — simplificación de herramientas Python
+> - Líneas 160–163: 16/10/2026 — comunidad y soporte accesibles desde los README
+> - Líneas 164–167: 16/10/2026 — abrir la bóveda en Obsidian no desactualiza el índice
+> - Líneas 168–171: 16/10/2026 — instalar desde un kit abierto con OpenCode
+> - Líneas 172–175: 16/10/2026 — README en cuatro idiomas
+> - Líneas 176–179: 16/10/2026 — sin carpetas __pycache__ en la bóveda
+> - Líneas 180–183: 15/10/2026 — próximo paso solo en la ficha
+> - Líneas 184–187: 15/10/2026 — destino visible al comprobar el cierre
+> - Líneas 188–191: 15/10/2026 — conservar cambios posteriores al plan
+> - Líneas 192–195: 15/10/2026 — cierre coherente con el proyecto inicial
+> - Líneas 196–199: 14/10/2026 — operación visible coherente con el registro
+> - Líneas 200–203: 14/10/2026 — inventario de perfil plegable
+> - Líneas 204–207: 13/10/2026 — índices de proyectos con nombres propios
+> - Líneas 208–229: Versión 1.0 — qué incluye
 
 # Cambios
+
+## 21/10/2026 — versión 1.0
+
+El kit pasa a la versión 1.0, la primera publicable. El estado del proyecto en los cuatro README lo indica y suma la configuración comprobada con ChatGPT web. El resumen de la versión ya no menciona el instalador ni la adaptación de bóvedas existentes, retirados del kit. El tag v1.0.0 y la release se publican con autorización.
 
 ## 21/10/2026 — contenido no confiable, datos sensibles y versión de Obsidian
 
@@ -200,25 +205,25 @@ Las notas de configuración nuevas muestran proyecto y avance antes de la tabla 
 
 Los proyectos nuevos usan un nombre de índice ligado a su identificador para distinguirlos en el gráfico. El creador conserva nombres anteriores y propios, evita proponer un segundo índice al reintentar y rechaza ambigüedades o referencias incompatibles antes de escribir. No migra bóvedas existentes.
 
-## Sin publicar — candidata a v0.1.0
+## Versión 1.0 — qué incluye
 
 - Configuración conversacional: entregar carpeta, responder preguntas y recibir una bóveda preparada, sin exigir Python ni edición de plantillas.
-- Protocolo único para bóvedas nuevas, existentes o copias descargables; guarda configuración parcial antes del proyecto y permite retomar fichas editadas.
+- Protocolo único para bóvedas nuevas o copias descargables; guarda configuración parcial antes del proyecto y permite retomar fichas editadas.
 - Objetivo acordado, nombres derivados de las respuestas y fecha, fuentes y primera tarea opcionales. Enlaces portables en copias descargables.
 - Inventario persistente de personalización: perfil, formación, materiales, alcance, vida útil y preferencias; distingue pendientes, omisiones y propuestas por bóveda y proyecto, sin exigir CV ni reiniciar la configuración.
 - `INDICE.md` como primera lectura completa: catálogo con etiquetas breves, proyectos propios y ejemplos separados. Actualización después de guardar y comprobación al iniciar.
-- Actualizador conserva comentarios y saltos LF/CRLF, evita enlaces y junctions y se integra con instalación y creación.
+- Actualizador conserva comentarios y saltos LF/CRLF, evita enlaces y junctions y se integra con la creación de proyectos.
 - Mapa vinculante de nodos con índices locales, resúmenes, padre e hijos. El mismo actualizador mantiene los bloques locales y el general; conserva índices manuales y fuentes originales.
 - Identificación de IA y registro renovable a los cinco días, con historial íntegro y reintentos incluso si las notas cambian después. Zona horaria local, validación de registros dañados y recuperación de escrituras interrumpidas.
 - Índices por líneas en notas editables y mapas nuevos, conservación de comentarios y exclusión de originales, históricos e integraciones del reindexado. Comprobación de rangos en CI; mantenimiento común sin exigir Python al usuario.
 - Índice de líneas plegable en lectura, conservando los rangos y admitiendo el formato anterior. Plantillas agrupadas en `00_CORE/templates/`, separadas de las fichas existentes.
 - Guía común de trabajo diario y revisión manual; accesos de Claude Code y OpenCode remiten a ella, conservando sus metadatos y permisos.
 - Guías de OpenCode y ChatGPT para carpeta local o adjuntos; seis comandos para configurar, retomar, crear, redactar, validar y cerrar.
-- Instalador conservador con simulación y detección de conflictos, sin reemplazar notas, instrucciones propias ni ajustes de Obsidian.
+- Cinco skills opcionales en Markdown, sin instalador. La adaptación de bóvedas existentes queda fuera del kit.
 - Creador opcional comprueba nombres y coincidencias por propiedades, usa las plantillas y conserva archivos completos al reintentar.
 - Panel y Bases reconocen fichas renombradas por propiedades y excluyen plantillas y ejemplos ficticios.
 - Validador sin dependencias: propiedades planas, textos entre comillas y listas simples; explica errores de formato y avisos sin acreditar veracidad.
 - Guías de escritura proporcionales a la tarea, alternativa manual para principiantes y recursos opcionales con atribución a davidkimai.
 - Pruebas de conservación, reanudación, rutas y catálogo. CI en Windows/macOS/Linux con Python 3.8 y 3.13, acciones v7 y comprobación del índice.
 
-Pendiente: completar los recorridos nativos en Claude Code, OpenCode y ChatGPT, probar con usuarios, comprobar al final la interfaz de Obsidian y publicar la release autorizada. La fecha y el tag v0.1.0 se fijan al publicar.
+Pendiente: la reanudación en ChatGPT web y OpenCode, la prueba con cinco principiantes, la revisión visual final en Obsidian y publicar la release autorizada. La fecha y el tag v1.0.0 se fijan al publicar.
