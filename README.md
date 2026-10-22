@@ -111,9 +111,9 @@ Python 3.8 o posterior automatiza la creación, la validación y el índice con 
 
 ## Estado del proyecto
 
-Versión candidata a la primera release (v0.1.0); todavía no es estable. Funcionan la configuración conversacional con perfil reanudable, el creador de proyectos, los nodos e índices conectados, el registro de cambios y la validación. Las pruebas automáticas pasan en Windows, macOS y Ubuntu con Python 3.8 y 3.13; eso no acredita que el kit sea fácil de usar.
+Versión 1.0, la primera publicable. Funcionan la configuración conversacional con perfil reanudable, el creador de proyectos, los nodos e índices conectados, el registro de cambios y la validación. Las pruebas automáticas pasan en Windows, macOS y Ubuntu con Python 3.8 y 3.13; eso no acredita que el kit sea fácil de usar.
 
-Se comprobaron la configuración y la reanudación con Claude Code. Faltan la reanudación independiente en OpenCode, ChatGPT web, una prueba con cinco principiantes y la revisión visual final en Obsidian. El detalle está en el [historial de cambios](CHANGELOG.md).
+Se comprobaron la configuración y la reanudación con Claude Code, y la configuración con ChatGPT web. Faltan la reanudación en ChatGPT web y OpenCode, una prueba con cinco principiantes y la revisión visual final en Obsidian. El detalle está en el [historial de cambios](CHANGELOG.md).
 
 ## Privacidad
 

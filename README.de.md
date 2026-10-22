@@ -113,9 +113,9 @@ Python 3.8 oder neuer automatisiert Erstellung, Prüfung und Index mit der Stand
 
 ## Projektstand
 
-Kandidat für die erste Version (v0.1.0); noch nicht stabil. Die Einrichtung im Gespräch mit fortsetzbarem Profil, der Projektersteller, verbundene Knoten und Indizes, das Änderungsprotokoll und die Prüfung funktionieren. Die automatischen Tests laufen unter Windows, macOS und Ubuntu mit Python 3.8 und 3.13 erfolgreich; das belegt nicht, dass das Kit einfach zu benutzen ist.
+Version 1.0, die erste veröffentlichbare Version. Die Einrichtung im Gespräch mit fortsetzbarem Profil, der Projektersteller, verbundene Knoten und Indizes, das Änderungsprotokoll und die Prüfung funktionieren. Die automatischen Tests laufen unter Windows, macOS und Ubuntu mit Python 3.8 und 3.13 erfolgreich; das belegt nicht, dass das Kit einfach zu benutzen ist.
 
-Einrichtung und Fortsetzung wurden mit Claude Code geprüft. Noch offen sind die unabhängige Fortsetzung in OpenCode, ChatGPT im Web, ein Test mit fünf Einsteigenden und die abschließende Sichtprüfung in Obsidian. Details stehen im [Änderungsprotokoll](CHANGELOG.md) (auf Spanisch).
+Einrichtung und Fortsetzung wurden mit Claude Code geprüft, die Einrichtung auch mit ChatGPT im Web. Noch offen sind die Fortsetzung in ChatGPT im Web und in OpenCode, ein Test mit fünf Einsteigenden und die abschließende Sichtprüfung in Obsidian. Details stehen im [Änderungsprotokoll](CHANGELOG.md) (auf Spanisch).
 
 ## Datenschutz
 

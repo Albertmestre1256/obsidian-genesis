@@ -113,9 +113,9 @@ Python 3.8 or later automates creation, validation and the index with the standa
 
 ## Project status
 
-Candidate for the first release (v0.1.0); not stable yet. Conversational setup with a resumable profile, the project creator, connected nodes and indexes, change recording and validation all work. Automated tests pass on Windows, macOS and Ubuntu with Python 3.8 and 3.13; that does not show the kit is easy to use.
+Version 1.0, the first publishable release. Conversational setup with a resumable profile, the project creator, connected nodes and indexes, change recording and validation all work. Automated tests pass on Windows, macOS and Ubuntu with Python 3.8 and 3.13; that does not show the kit is easy to use.
 
-Setup and resumption were checked with Claude Code. Still pending: independent resumption in OpenCode, ChatGPT web, a test with five beginners and the final visual review in Obsidian. Details are in the [changelog](CHANGELOG.md) (in Spanish).
+Setup and resumption were checked with Claude Code, and setup with ChatGPT web. Still pending: resumption in ChatGPT web and OpenCode, a test with five beginners and the final visual review in Obsidian. Details are in the [changelog](CHANGELOG.md) (in Spanish).
 
 ## Privacy
 
