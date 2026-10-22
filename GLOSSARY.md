@@ -1,9 +1,11 @@
 > [!info]- Índice de esta nota (líneas)
 > - Líneas 1–4: Este índice
-> - Líneas 6–9: Obsidian Genesis
-> - Líneas 10–16: Lenguaje
+> - Líneas 6–11: Obsidian Genesis
+> - Líneas 12–18: Lenguaje
 
 # Obsidian Genesis
+
+[Mapa general](INDICE.md)
 
 Vocabulario para distinguir la bóveda con la que se trabaja de las carpetas que la contienen.
 
