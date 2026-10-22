@@ -146,13 +146,9 @@ def guardar(path, before, after):
     return True
 
 
-def partir(text):
-    # Solo \n separa líneas; splitlines también corta en \x0c, U+2028 y otros que Obsidian no cuenta.
-    return re.findall(r'[^\n]*\n|[^\n]+\Z', text)
-
-
 def separar(text, reubicar=False):
-    lines = partir(text)
+    # Solo \n separa líneas; splitlines también corta en \x0c, U+2028 y otros que Obsidian no cuenta.
+    lines = re.findall(r'[^\n]*\n|[^\n]+\Z', text)
     clean = [line.rstrip('\r\n') for line in lines]
     first = 0
     if clean and clean[0] == '---':

@@ -48,7 +48,7 @@
 
 ## 22/10/2026 — política común de rutas de bóveda
 
-El creador, el catálogo y el mantenimiento de rangos comparten la detección de raíz y el rechazo de enlaces en `00_CORE/schemas/rutas_boveda.py`. Cada herramienta carga esa política desde su propio kit y comprueba la ruta antes de ejecutar el archivo; conserva sus puntos de entrada. Se mantienen las reglas de junctions, archivos de nube, ancestros externos y copias de trabajo independientes. Bloqueos, escritura, protección de originales, registro y lectores de propiedades conservan su implementación. Las regresiones nuevas comprueban bibliotecas ausentes o redirigidas y nombres ajenos en el directorio actual y los módulos cargados. El glosario define bóveda y raíz de bóveda sin incorporar datos personales.
+El creador, el catálogo y el mantenimiento de rangos comparten la detección de raíz y el rechazo de enlaces en `00_CORE/schemas/rutas_boveda.py`. Cada herramienta carga esa política desde su propio kit y comprueba la ruta antes de ejecutar el archivo; conserva sus puntos de entrada. Se mantienen las reglas de junctions, archivos de nube, ancestros externos y copias de trabajo independientes. Bloqueos, escritura, protección de originales, registro y lectores de propiedades conservan su implementación. Las regresiones nuevas comprueban bibliotecas ausentes o redirigidas y nombres ajenos en el directorio actual y los módulos cargados. El glosario define bóveda y raíz de bóveda sin incorporar datos personales. Se integra el separador de líneas de uso único en su consumidor, sin alterar qué saltos cuenta Obsidian.
 
 ## 21/10/2026 — versión 1.0
 
