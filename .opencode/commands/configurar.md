@@ -2,7 +2,7 @@
 description: Configura una bóveda de Obsidian con preguntas simples o retoma una configuración parcial.
 ---
 
-Leé primero `INDICE.md` completo; después `00_CORE/atoms/00_vault-rules.md` y `AI-INSTRUCTIONS.md`.
+Seguí «Antes de trabajar» de `AI-INSTRUCTIONS.md`; reutilizá los documentos ya cargados completos y vigentes.
 Para iniciar la bóveda nueva, seguí `00_CORE/protocols/configurar-vault.md` con tus herramientas disponibles. Usá las respuestas ya dadas, acordá destino y alcance, guardá el avance y mantené el índice vigente. Retomá la configuración existente sin rehacer fichas editadas.
 Si el pedido es desarrollar el kit o trabajar en un proyecto ya configurado, seguí ese recorrido de `AI-INSTRUCTIONS.md`.
 

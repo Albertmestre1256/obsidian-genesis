@@ -37,11 +37,26 @@ def test_inventario_abierto_no_exige_cv_para_validar(validador, tmp_path, link):
 
 
 @pytest.mark.parametrize('panel', ['```md\n[[00_CORE/configuracion]]\n```\n',
+                                 '    [[00_CORE/configuracion]]\n',
+                                 '\t[[00_CORE/configuracion]]\n',
+                                 '> ```md\n> [[00_CORE/configuracion]]\n> ```\n',
+                                 '~~~~md\n[[00_CORE/configuracion]]\n~~~~~\n',
                                  '%% [[00_CORE/configuracion]] %%\n',
                                  '[Perfil](https://example.com/00_CORE/configuracion.md)\n'])
 def test_ejemplos_y_enlaces_externos_no_integran_el_panel(validador, tmp_path, panel):
     preparar_configuracion(tmp_path, panel)
     assert any('Panel no da acceso' in error for error in validador.validar_configuracion(tmp_path))
+
+
+@pytest.mark.parametrize('panel', [
+    '    [[Ejemplo]]\n\n[[00_CORE/configuracion]]\n',
+    '> ```md\n> [[Ejemplo]]\n> ```\n\n[[00_CORE/configuracion]]\n',
+    '> ```md\n> [[Ejemplo]]\n\n[[00_CORE/configuracion]]\n',
+    '~~~~md\n[[Ejemplo]]\n~~~~~\n\n[[00_CORE/configuracion]]\n',
+    '> [[00_CORE/configuracion|Perfil]]\n'])
+def test_enlaces_visibles_tras_codigo_o_en_cita_integran_el_panel(validador, tmp_path, panel):
+    preparar_configuracion(tmp_path, panel)
+    assert validador.validar_configuracion(tmp_path) == []
 
 
 def test_configuracion_incompleta_sin_fichas_no_pasa(validador, tmp_path, capsys):

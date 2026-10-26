@@ -12,7 +12,7 @@ Configurá la bóveda con preguntas simples; la persona no edita plantillas ni n
 ## Antes de trabajar
 
 1. Ubicá la raíz que contiene `INDICE.md` y estas instrucciones, incluso dentro de un ZIP. Ante varias bóvedas posibles, preguntá cuál usar.
-2. Leé `INDICE.md` completo, continuando si la salida se recorta; listar archivos o ejecutar el actualizador no sustituye esa lectura. Después leé `00_CORE/atoms/00_vault-rules.md` y ubicá la ficha por `proyecto` o el índice del nodo solicitado, contrastando sus rutas reales. Este kit prepara bóvedas nuevas: si el destino es una carpeta con notas propias que no preparó este kit, proponé una carpeta nueva en lugar de adaptarla. Una bóveda ya preparada con el kit se retoma normalmente.
+2. Usá `INDICE.md` completo y después `00_CORE/atoms/00_vault-rules.md`: la carga automática o una lectura anterior cuenta si el contenido sigue completo y vigente en el contexto. No vuelvas a abrirlo solo por cambiar de comando; si falta, está recortado, cambió o una compactación lo quitó, leé lo necesario para recuperarlo completo. Una ruta configurada, listar archivos o ejecutar el actualizador no sustituye disponer del contenido. Ubicá la ficha por `proyecto` o el índice del nodo solicitado, contrastando sus rutas reales. Este kit prepara bóvedas nuevas: si el destino es una carpeta con notas propias que no preparó este kit, proponé una carpeta nueva en lugar de adaptarla. Una bóveda ya preparada con el kit se retoma normalmente.
 3. Leé la referencia del recorrido elegido **antes de escribir**; después cargá solo el contexto necesario. Reutilizá las lecturas vigentes de esta sesión. Con adjuntos, aclarás los límites de acceso y comprobación.
 
 ## Elegir el recorrido

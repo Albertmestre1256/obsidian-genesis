@@ -625,8 +625,7 @@ def validar_configuracion(raiz):
 
 
 def _texto_visible(texto):
-    texto = re.sub(r'%%.*?%%|<!--.*?-->', '', texto, flags=re.S)
-    texto = re.sub(r'^(`{3,}|~{3,})[^\n]*\n.*?^\1\s*$', '', texto, flags=re.M | re.S)
+    texto = '\n'.join(_lineas_visibles(texto))
     return re.sub(r'(`+).*?\1', '', texto)
 
 
