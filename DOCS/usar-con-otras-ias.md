@@ -17,7 +17,7 @@ Para configurar la bóveda por primera vez, seguí el [inicio rápido](QUICKSTAR
 
 ## Contexto y archivos
 
-Leé `INDICE.md` completo, las reglas y la ficha vigente identificada por `proyecto`; para nodos, su índice local y ficha del padre si existe. Usá el destino indicado o inequívoco; preguntá ante ambigüedad. Los ejemplos se usan solo para practicar por elección explícita. Cargá después únicamente fuentes y guías pertinentes.
+Usá `INDICE.md` completo, las reglas y la ficha vigente identificada por `proyecto`, reutilizando el contenido completo y vigente ya disponible según «Antes de trabajar» de `AI-INSTRUCTIONS.md`; para nodos, su índice local y ficha del padre si existe. Usá el destino indicado o inequívoco; preguntá ante ambigüedad. Los ejemplos se usan solo para practicar por elección explícita. Cargá después únicamente fuentes y guías pertinentes.
 
 Al guardar, seguí [el mantenimiento común](mantenimiento.md): conservar versiones, verificar notas, actualizar mapas y registrar cambios. Con adjuntos, entregá copias y destinos; la persona debe actualizar los originales y compartir su versión vigente. Informá cualquier acceso o comprobación pendiente.
 

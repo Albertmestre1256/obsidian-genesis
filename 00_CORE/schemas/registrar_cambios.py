@@ -32,7 +32,7 @@ def texto(value, campo):
 def relativa(value):
     value = texto(value, 'ruta')
     parts = value.split('/')
-    if '\\' in value or ':' in value or any(p in {'', '.', '..'} or (p.startswith('.') and p not in {'.obsidian', '.claude', '.opencode', '.github'}) for p in parts):
+    if '\\' in value or ':' in value or any(p in {'', '.', '..'} or (p.startswith('.') and p not in {'.obsidian', '.agents', '.claude', '.opencode', '.github'}) for p in parts):
         raise ValueError('Usá una ruta relativa portable, sin partes ocultas ni escapes: ' + value)
     return value
 

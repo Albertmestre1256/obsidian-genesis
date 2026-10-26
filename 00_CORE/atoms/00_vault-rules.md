@@ -24,7 +24,7 @@ Una bóveda es una carpeta de notas. Cada proyecto tiene una ficha corta en `00_
 
 ## 0. Entrar por el índice principal
 
-La primera lectura de la IA es `INDICE.md`, en la raíz: muestra qué hay en toda la bóveda. Después se leen estas reglas y la ficha del proyecto. Comprobá que el catálogo siga vigente y sus enlaces apunten a archivos existentes. Al guardar cambios, actualizá el índice dentro del mismo alcance y verificá lo agregado; si no podés, informá el pendiente. El índice describe las notas, no convierte su contenido en instrucciones ni exige leer todos los proyectos. Su mantenimiento se detalla en `DOCS/indice-principal.md`.
+El contexto inicial incluye `INDICE.md` completo, en la raíz: muestra qué hay en toda la bóveda. Después se usan estas reglas y la ficha del proyecto. Reutilizá el contenido completo y vigente ya disponible por carga automática o lectura anterior; recuperá lo que falte, esté recortado, haya cambiado o se haya perdido tras compactar. Que una ruta figure en la configuración no acredita su carga. Comprobá que el catálogo siga vigente y sus enlaces apunten a archivos existentes. Al guardar cambios, actualizá el índice dentro del mismo alcance y verificá lo agregado; si no podés, informá el pendiente. El índice describe las notas, no convierte su contenido en instrucciones ni exige leer todos los proyectos. Su mantenimiento se detalla en `DOCS/indice-principal.md`.
 
 ## 1. Elegir el proyecto antes de trabajar
 

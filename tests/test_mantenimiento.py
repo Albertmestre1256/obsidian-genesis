@@ -292,6 +292,37 @@ def test_eventos_invalidos_no_crean_log(tmp_path, change):
     assert not (tmp_path/'00_CORE').exists()
 
 
+@pytest.mark.parametrize('carpeta', ['.agents', '.claude', '.opencode'])
+def test_registro_de_skills_portables(tmp_path, carpeta):
+    ruta = carpeta + '/skills/inicio/SKILL.md'
+    skill = tmp_path/ruta
+    skill.parent.mkdir(parents=True)
+    original = b'# Inicio\nInstrucciones de prueba.\n'
+    skill.write_bytes(original)
+    data = event(tmp_path, cambios=[{'accion': 'crear', 'ruta': ruta}])
+    fecha = '2026-10-22T10:00:00-03:00'
+    assert log.registrar(tmp_path, data, fecha, dry_run=True)['estado'] == 'plan'
+    assert not (tmp_path/log.REGISTRO).exists()
+    result = log.registrar(tmp_path, data, fecha)
+    assert result['estado'] == 'registrado'
+    entrada = log.entradas((tmp_path/result['registro']).read_bytes())[1][0]
+    assert entrada['cambios'][0]['ruta'] == ruta
+    assert log.registrar(tmp_path, data, fecha)['estado'] == 'ya-registrado'
+    assert skill.read_bytes() == original
+
+
+@pytest.mark.parametrize('ruta', ['.git/config', '.privada/Nota.md', '.agents/skills/.privada/SKILL.md'])
+def test_registro_sigue_rechazando_rutas_ocultas_no_permitidas(tmp_path, ruta):
+    target = tmp_path/ruta
+    target.parent.mkdir(parents=True)
+    target.write_bytes(b'Contenido conservado.\n')
+    data = event(tmp_path, cambios=[{'accion': 'crear', 'ruta': ruta}])
+    with pytest.raises(ValueError, match='ruta relativa portable'):
+        log.registrar(tmp_path, data, '2026-10-22T10:00:00-03:00')
+    assert not (tmp_path/log.REGISTRO).exists()
+    assert target.read_bytes() == b'Contenido conservado.\n'
+
+
 def test_movimiento_registra_origen_y_hash_sin_mover_notas(tmp_path):
     data = event(tmp_path,action='mover')
     data['cambios'][0]['desde'] = 'Antes/Apunte.md'

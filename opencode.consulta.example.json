@@ -1,0 +1,32 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "instructions": [
+    "INDICE.md",
+    "00_CORE/atoms/00_vault-rules.md",
+    "AI-INSTRUCTIONS.md"
+  ],
+  "default_agent": "consulta",
+  "permission": { "*": "deny" },
+  "agent": {
+    "consulta": {
+      "description": "Consulta los archivos acordados sin modificar la bóveda.",
+      "mode": "primary"
+    }
+  },
+  "plugin": [
+    [
+      "./00_CORE/schemas/opencode_context.mjs",
+      {
+        "readPaths": [
+          "AGENTS.md",
+          "INDICE.md",
+          "AI-INSTRUCTIONS.md",
+          "00_CORE/atoms/00_vault-rules.md",
+          "00_CORE/cells/ejemplo-context.md",
+          "DOCS/usar-con-otras-ias.md",
+          "DOCS/opencode.md"
+        ]
+      }
+    ]
+  ]
+}

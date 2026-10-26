@@ -79,13 +79,25 @@ def test_enlaces_markdown_locales():
 
 
 def test_configuraciones_json_validas():
-    for archivo in list((RAIZ / ".obsidian").glob("*.json")) + list((RAIZ / ".claude").glob("*.json")):
+    for archivo in list((RAIZ / ".obsidian").glob("*.json")) + list((RAIZ / ".claude").glob("*.json")) + list(RAIZ.glob("opencode*.example.json")):
         json.loads(archivo.read_text(encoding="utf-8"))
     apariencia = json.loads((RAIZ / '.obsidian/appearance.json').read_text(encoding='utf-8'))
     assert set(apariencia) == {'enabledCssSnippets'}  # no distribuir preferencias personales
     assert 'genesis-vista-simple' in apariencia['enabledCssSnippets']
     for nombre in apariencia['enabledCssSnippets']:
         assert (RAIZ / '.obsidian/snippets' / (nombre + '.css')).is_file()
+
+
+def test_perfiles_opencode_referencian_archivos_distribuidos():
+    for archivo in RAIZ.glob("opencode*.example.json"):
+        config = json.loads(archivo.read_text(encoding="utf-8"))
+        for ruta in config['instructions']:
+            assert (RAIZ / ruta).is_file(), (archivo.name, ruta)
+        for plugin in config['plugin']:
+            ruta, opciones = plugin if isinstance(plugin, list) else (plugin, {})
+            assert (RAIZ / ruta).is_file(), (archivo.name, ruta)
+            for lectura in opciones.get('readPaths', []):
+                assert (RAIZ / lectura).is_file(), (archivo.name, lectura)
 
 
 def test_selector_plantillas_no_incluye_fichas_existentes():
