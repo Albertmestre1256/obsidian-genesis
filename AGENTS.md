@@ -4,8 +4,8 @@
 
 # Instrucciones para asistentes
 
-Usá primero `INDICE.md` completo, después `00_CORE/atoms/00_vault-rules.md` y `AI-INSTRUCTIONS.md`, que indica el recorrido según el pedido. Si un documento ya está completo y vigente en el contexto por carga automática o una lectura anterior, usalo sin volver a abrirlo. Una ruta en la configuración no acredita que su contenido se haya cargado. Si falta, está recortado o dejó de estar disponible o vigente, leelo; completá las páginas pendientes. Mantené el índice vigente al guardar cambios.
+Si no existe `00_CORE/configuracion.md`, la bóveda no está configurada: no cargues `INDICE.md` y seguí `00_CORE/protocols/configurar-rapido.md`. Con la bóveda configurada, usá primero `INDICE.md` completo, después `00_CORE/atoms/00_vault-rules.md` y `AI-INSTRUCTIONS.md`, que indica el recorrido según el pedido. Si un documento ya está completo y vigente en el contexto por carga automática o una lectura anterior, usalo sin volver a abrirlo. Una ruta en la configuración no acredita que su contenido se haya cargado. Si falta, está recortado o dejó de estar disponible o vigente, leelo; completá las páginas pendientes. Mantené el índice vigente al guardar cambios.
 
-Para iniciar o configurar la bóveda, leé `00_CORE/protocols/configurar-vault.md` **antes de escribir**. Una idea de proyecto inicia la conversación; no confirma los datos que falten. Crear una ficha es solo un paso de la configuración.
+Para iniciar o configurar la bóveda, leé `00_CORE/protocols/configurar-rapido.md` **antes de escribir**; la guía completa `00_CORE/protocols/configurar-vault.md` es para retomar una configuración parcial, ZIP, adjuntos, carpetas con notas propias o sin Python. Una idea de proyecto inicia la conversación; no confirma los datos que falten. Crear una ficha es solo un paso de la configuración.
 
 Este repositorio es un kit reutilizable. Un pedido de desarrollo o revisión no autoriza personalizarlo como bóveda del mantenedor.

@@ -2,8 +2,8 @@
 > - Líneas 1–6: Este índice
 > - Líneas 8–11: Entrada para la IA
 > - Líneas 12–17: Antes de trabajar
-> - Líneas 18–31: Elegir el recorrido
-> - Líneas 32–49: Herramientas opcionales
+> - Líneas 18–32: Elegir el recorrido
+> - Líneas 33–50: Herramientas opcionales
 
 # Entrada para la IA
 
@@ -11,7 +11,7 @@ Configurá la bóveda con preguntas simples; la persona no edita plantillas ni n
 
 ## Antes de trabajar
 
-1. Ubicá la raíz que contiene `INDICE.md` y estas instrucciones, incluso dentro de un ZIP. Ante varias bóvedas posibles, preguntá cuál usar.
+1. Ubicá la raíz que contiene `INDICE.md` y estas instrucciones, incluso dentro de un ZIP. Ante varias bóvedas posibles, preguntá cuál usar. Sin `00_CORE/configuracion.md` y con pedido de configurar, saltá al recorrido corto de la tabla: no hace falta cargar `INDICE.md` ni las reglas antes.
 2. Usá `INDICE.md` completo y después `00_CORE/atoms/00_vault-rules.md`: la carga automática o una lectura anterior cuenta si el contenido sigue completo y vigente en el contexto. No vuelvas a abrirlo solo por cambiar de comando; si falta, está recortado, cambió o una compactación lo quitó, leé lo necesario para recuperarlo completo. Una ruta configurada, listar archivos o ejecutar el actualizador no sustituye disponer del contenido. Ubicá la ficha por `proyecto` o el índice del nodo solicitado, contrastando sus rutas reales. Este kit prepara bóvedas nuevas: si el destino es una carpeta con notas propias que no preparó este kit, proponé una carpeta nueva en lugar de adaptarla. Una bóveda ya preparada con el kit se retoma normalmente.
 3. Leé la referencia del recorrido elegido **antes de escribir**; después cargá solo el contexto necesario. Reutilizá las lecturas vigentes de esta sesión. Con adjuntos, aclarás los límites de acceso y comprobación.
 
@@ -19,7 +19,8 @@ Configurá la bóveda con preguntas simples; la persona no edita plantillas ni n
 
 | Pedido | Referencia obligatoria |
 |---|---|
-| Configurar una bóveda nueva o retomar una configuración parcial | `00_CORE/protocols/configurar-vault.md`: preguntas, configuración e inventario antes del proyecto, Panel y comprobación de entrega. |
+| Configurar una bóveda nueva (con Python, sin configuración previa) | `00_CORE/protocols/configurar-rapido.md`: preguntas, un JSON y `configurar_boveda.py`; sin leer `INDICE.md` ni las demás guías. |
+| Retomar una configuración parcial, ZIP, adjuntos, sin Python o carpeta con notas propias | `00_CORE/protocols/configurar-vault.md`: preguntas, configuración e inventario antes del proyecto, Panel y comprobación de entrega. |
 | Completar el perfil, revisar faltantes o retomar datos omitidos, también con la bóveda lista | `00_CORE/protocols/personalizar-vault.md` |
 | Retirar de una bóveda lista el material del kit que ya no se usa | «Retirar material del kit que ya no usás» en `DOCS/obsidian.md`, sin repetir la entrevista |
 | Crear, ampliar o consultar un nodo | «Crear y actualizar un nodo» en `DOCS/indice-principal.md` |
