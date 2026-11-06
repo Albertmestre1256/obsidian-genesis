@@ -36,6 +36,12 @@ class Bloqueo(Exception):
     """Fallo con mensaje claro para la persona o la IA."""
 
 
+def escribir(ruta, texto):
+    """Escribe con saltos LF; Path.write_text no admite newline antes de Python 3.10."""
+    with open(str(ruta), 'w', encoding='utf-8', newline='\n') as archivo:
+        archivo.write(texto)
+
+
 def linea(valor, campo, opcional=False):
     try:
         return creador.texto_linea(valor, campo, opcional)
@@ -193,7 +199,7 @@ def adaptar_panel(destino, datos, ficha, indice_proyecto):
     texto = reemplazar(texto, 'Abrí la ficha original para completar una tarea.',
                        'Tus tareas aparecen en Acciones pendientes; si no hay ninguna, pedí «seguí con {}» para elegir la próxima. '
                        'Abrí la ficha original para completar una tarea.'.format(alias), 'Panel.md')
-    ruta.write_text(texto, encoding='utf-8', newline='\n')
+    escribir(ruta, texto)
 
 
 def activar_indice_en_claude(destino):
@@ -204,7 +210,7 @@ def activar_indice_en_claude(destino):
     texto = ruta.read_text(encoding='utf-8')
     if '@INDICE.md' in texto or '@AGENTS.md' not in texto:
         return False
-    ruta.write_text(texto.replace('@AGENTS.md', '@INDICE.md\n@AGENTS.md', 1), encoding='utf-8', newline='\n')
+    escribir(ruta, texto.replace('@AGENTS.md', '@INDICE.md\n@AGENTS.md', 1))
     return True
 
 
@@ -244,7 +250,7 @@ def configurar(destino, datos_crudos, dry_run=False):
         if not (destino / indice_proyecto).is_file():
             raise Bloqueo('No se encontró el índice del proyecto en {}.'.format(indice_proyecto))
         config = destino / '00_CORE' / 'configuracion.md'
-        config.write_text(construir_configuracion(datos, proximo_paso, ficha, indice_proyecto), encoding='utf-8', newline='\n')
+        escribir(config, construir_configuracion(datos, proximo_paso, ficha, indice_proyecto))
         adaptar_panel(destino, datos, ficha, indice_proyecto)
         claude_editado = activar_indice_en_claude(destino)
         herramientas = RAIZ / '00_CORE' / 'schemas'
@@ -285,7 +291,7 @@ def configurar(destino, datos_crudos, dry_run=False):
         texto = fijar(texto, 'Preparado y comprobado', 'Configuración e inventario guardados; proyecto creado (ficha, índice y carpetas); Panel adaptado; cierre verificado ({}).'.format(datos['fecha']))
         texto = fijar(texto, 'Pendiente o impedido', 'Retiro del material del kit: pendiente de decisión. Prueba visual en Obsidian: pendiente.')
         texto = fijar(texto, 'Última operación de mantenimiento', datos['op_final'])
-        config.write_text(texto, encoding='utf-8', newline='\n')
+        escribir(config, texto)
         ejecutar([herramientas / 'note_index.py', 'apply', config], 'El cálculo de rangos')
         registrar(datos['op_final'], 'Configuración marcada como lista tras el cierre parcial verificado; retiro del material del kit pendiente de decisión.',
                   [{'accion': 'editar', 'ruta': '00_CORE/configuracion.md'}])
