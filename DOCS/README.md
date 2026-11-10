@@ -8,13 +8,13 @@ descripcion: "Qué contiene cada documento del kit, para qué sirve y cuándo co
 > - Líneas 19–26: Guía de documentos y herramientas del kit
 > - Líneas 27–37: Índice de esta guía
 > - Líneas 38–47: Entradas
-> - Líneas 48–65: Reglas y proyectos
-> - Líneas 66–83: Ayuda
-> - Líneas 84–97: Integraciones y ajustes
-> - Líneas 98–111: Python y pruebas
-> - Líneas 112–123: Repositorio y créditos
-> - Líneas 124–132: Recursos opcionales
-> - Líneas 133–145: Archivos creados durante el uso
+> - Líneas 48–66: Reglas y proyectos
+> - Líneas 67–84: Ayuda
+> - Líneas 85–98: Integraciones y ajustes
+> - Líneas 99–113: Python y pruebas
+> - Líneas 114–125: Repositorio y créditos
+> - Líneas 126–134: Recursos opcionales
+> - Líneas 135–147: Archivos creados durante el uso
 
 # Guía de documentos y herramientas del kit
 
@@ -51,6 +51,7 @@ No necesitás leer todo para empezar: seguí el README principal y respondé las
 |---|---|
 | [`00_CORE/atoms/00_vault-rules.md`](../00_CORE/atoms/00_vault-rules.md) | Reglas compartidas: contexto, conservación, enlaces y autoría. |
 | [`00_CORE/protocols/configurar-vault.md`](../00_CORE/protocols/configurar-vault.md) | Entrevista y creación de una bóveda con datos parciales. |
+| [`00_CORE/protocols/configurar-rapido.md`](../00_CORE/protocols/configurar-rapido.md) | Ruta corta para una bóveda nueva: preguntas, un JSON y un comando. |
 | [`00_CORE/protocols/personalizar-vault.md`](../00_CORE/protocols/personalizar-vault.md) | Inventario de respuestas, omisiones y datos que se pueden completar después. |
 | [`00_CORE/protocols/context-injection.md`](../00_CORE/protocols/context-injection.md) | Qué contexto cargar según el pedido, sin leer toda la bóveda. |
 | [`00_CORE/protocols/ai-write-protocol.md`](../00_CORE/protocols/ai-write-protocol.md) | Preparar, redactar y revisar un texto con contexto suficiente. |
@@ -102,12 +103,13 @@ Python automatiza tareas; no hace falta programar para usar el kit con una IA qu
 | Documento o herramienta | Función |
 |---|---|
 | [`crear_proyecto.py`](../crear_proyecto.py) | Crear ficha y carpetas de un proyecto acordado. |
+| [`configurar_boveda.py`](../configurar_boveda.py) | Configurar una bóveda nueva en un paso, con cierre verificado. |
 | [`actualizar_indice.py`](../actualizar_indice.py) | Generar o comprobar el índice general y los índices de nodos. |
 | [`00_CORE/schemas/validate.py`](../00_CORE/schemas/validate.py) | Revisar fichas/configuración; con --cierre, contrastar una operación. |
 | [`00_CORE/schemas/rutas_boveda.py`](../00_CORE/schemas/rutas_boveda.py) | Comprobar la raíz de bóveda y las rutas; política interna compartida por las herramientas. |
 | [`00_CORE/schemas/note_index.py`](../00_CORE/schemas/note_index.py) | Calcular y comprobar los rangos de líneas de notas editables. |
 | [`00_CORE/schemas/registrar_cambios.py`](../00_CORE/schemas/registrar_cambios.py) | Registrar autoría, archivos modificados e historial conservado. |
-| [`tests/test_rutas_boveda.py`](../tests/test_rutas_boveda.py) · [`tests/conftest.py`](../tests/conftest.py) · [`tests/test_crear_proyecto.py`](../tests/test_crear_proyecto.py) · [`tests/test_indice.py`](../tests/test_indice.py) · [`tests/test_kit.py`](../tests/test_kit.py) · [`tests/test_mantenimiento.py`](../tests/test_mantenimiento.py) · [`tests/test_nodos.py`](../tests/test_nodos.py) · [`tests/test_validate.py`](../tests/test_validate.py) | Preparación compartida y pruebas de creación, índices, paquete, mantenimiento, nodos y validación. |
+| [`tests/test_rutas_boveda.py`](../tests/test_rutas_boveda.py) · [`tests/conftest.py`](../tests/conftest.py) · [`tests/test_crear_proyecto.py`](../tests/test_crear_proyecto.py) · [`tests/test_configurar_boveda.py`](../tests/test_configurar_boveda.py) · [`tests/test_indice.py`](../tests/test_indice.py) · [`tests/test_kit.py`](../tests/test_kit.py) · [`tests/test_mantenimiento.py`](../tests/test_mantenimiento.py) · [`tests/test_nodos.py`](../tests/test_nodos.py) · [`tests/test_validate.py`](../tests/test_validate.py) | Preparación compartida y pruebas de creación, índices, paquete, mantenimiento, nodos y validación. |
 
 ## Repositorio y créditos
 

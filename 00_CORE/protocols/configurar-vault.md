@@ -19,7 +19,7 @@ descripcion: Conversación de inicio para que una IA configure la bóveda con la
 
 # Configurar una bóveda conversando
 
-Esta es la guía principal de configuración. La persona cuenta qué necesita; la IA prepara los archivos. Consultá las referencias al ejecutar cada paso, sin convertirlas en tareas para el principiante. Desarrollar el kit o continuar un proyecto listo sigue `AI-INSTRUCTIONS.md`, sin reiniciar la entrevista.
+Esta es la guía completa de configuración. Para una bóveda nueva con Python y sin configuración previa, usá la [ruta corta](configurar-rapido.md), que gasta muchas menos lecturas; seguí esta guía al retomar una configuración parcial, con ZIP o adjuntos, ante carpetas con notas propias o sin Python. La persona cuenta qué necesita; la IA prepara los archivos. Consultá las referencias al ejecutar cada paso, sin convertirlas en tareas para el principiante. Desarrollar el kit o continuar un proyecto listo sigue `AI-INSTRUCTIONS.md`, sin reiniciar la entrevista.
 
 ## 1. Ubicar la bóveda
 
