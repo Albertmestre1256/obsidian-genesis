@@ -4,7 +4,7 @@
 
 # Crear los archivos de un proyecto
 
-Referencia del asistente para «Crear el proyecto» del [protocolo](../00_CORE/protocols/configurar-vault.md), con destino, objetivo y alcance acordados. `crear_proyecto.py` usa Python estándar 3.8+ y las plantillas del kit leído. La persona no prepara JSON ni ejecuta comandos.
+Referencia del asistente para «Crear el proyecto» del [protocolo](../00_CORE/protocols/configurar-vault.md), con destino, objetivo y alcance acordados. `crear_proyecto.py` usa Python estándar 3.8+ y las plantillas del kit leído. La persona no prepara JSON ni ejecuta comandos. Para configurar una bóveda nueva completa, `configurar_boveda.py` llama a este creador y además guarda la configuración, adapta el Panel y cierra: seguí la [ruta corta](../00_CORE/protocols/configurar-rapido.md).
 
 Desde ese kit, prepará un JSON temporal con las respuestas, fuera del repositorio distribuible:
 

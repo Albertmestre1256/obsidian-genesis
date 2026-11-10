@@ -7,7 +7,8 @@ Leé primero `INDICE.md` y después `00_CORE/atoms/00_vault-rules.md` y después
 
 | Pedido | Referencia |
 |---|---|
-| Configurar la bóveda | `00_CORE/protocols/configurar-vault.md` |
+| Configurar una bóveda nueva | `00_CORE/protocols/configurar-rapido.md` |
+| Retomar una configuración parcial o configurar sin Python | `00_CORE/protocols/configurar-vault.md` |
 | Retomar un proyecto | `.claude/skills/empezar/SKILL.md` |
 | Redactar | `.claude/skills/redactar/SKILL.md` |
 | Revisar fichas | `.claude/skills/validar/SKILL.md` |

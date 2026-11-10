@@ -8,13 +8,13 @@ descripcion: "各文档的内容、用途以及适合查阅的时机。"
 > - Líneas 19–26: 工具包文档与工具指南
 > - Líneas 27–37: 本指南目录
 > - Líneas 38–47: 入口
-> - Líneas 48–65: 规则与项目
-> - Líneas 66–83: 帮助
-> - Líneas 84–97: 集成与设置
-> - Líneas 98–111: Python 与测试
-> - Líneas 112–123: 仓库与署名
-> - Líneas 124–132: 可选资源
-> - Líneas 133–145: 使用过程中创建的文件
+> - Líneas 48–66: 规则与项目
+> - Líneas 67–84: 帮助
+> - Líneas 85–98: 集成与设置
+> - Líneas 99–113: Python 与测试
+> - Líneas 114–125: 仓库与署名
+> - Líneas 126–134: 可选资源
+> - Líneas 135–147: 使用过程中创建的文件
 
 # 工具包文档与工具指南
 
@@ -51,6 +51,7 @@ descripcion: "各文档的内容、用途以及适合查阅的时机。"
 |---|---|
 | [`00_CORE/atoms/00_vault-rules.md`](../00_CORE/atoms/00_vault-rules.md) | 关于上下文、保留原文、链接与署名的通用规则。 |
 | [`00_CORE/protocols/configurar-vault.md`](../00_CORE/protocols/configurar-vault.md) | 通过问答创建笔记库，允许信息暂不完整。 |
+| [`00_CORE/protocols/configurar-rapido.md`](../00_CORE/protocols/configurar-rapido.md) | 新笔记库的简短流程：提问、一个 JSON 文件和一条命令。 |
 | [`00_CORE/protocols/personalizar-vault.md`](../00_CORE/protocols/personalizar-vault.md) | 记录回答、跳过的信息和以后可补充的内容。 |
 | [`00_CORE/protocols/context-injection.md`](../00_CORE/protocols/context-injection.md) | 按请求选择上下文，无需读取整个笔记库。 |
 | [`00_CORE/protocols/ai-write-protocol.md`](../00_CORE/protocols/ai-write-protocol.md) | 使用足够的上下文准备、撰写和检查文本。 |
@@ -102,12 +103,13 @@ Python 用于自动执行任务。只要 AI 能管理文件，使用工具包就
 | 文档或工具 | 用途 |
 |---|---|
 | [`crear_proyecto.py`](../crear_proyecto.py) | 为已商定的项目创建上下文笔记与文件夹。 |
+| [`configurar_boveda.py`](../configurar_boveda.py) | 一步完成新笔记库的配置，并验证收尾。 |
 | [`actualizar_indice.py`](../actualizar_indice.py) | 生成或检查总索引与节点索引。 |
 | [`00_CORE/schemas/validate.py`](../00_CORE/schemas/validate.py) | 检查上下文笔记与配置；使用 --cierre 核查一次操作。 |
 | [`00_CORE/schemas/rutas_boveda.py`](../00_CORE/schemas/rutas_boveda.py) | 检查仓库根目录与路径；供各工具共用的内部规则。 |
 | [`00_CORE/schemas/note_index.py`](../00_CORE/schemas/note_index.py) | 计算并检查可编辑笔记的行号范围。 |
 | [`00_CORE/schemas/registrar_cambios.py`](../00_CORE/schemas/registrar_cambios.py) | 记录修改者、变更文件并保留历史。 |
-| [`tests/test_rutas_boveda.py`](../tests/test_rutas_boveda.py) · [`tests/conftest.py`](../tests/conftest.py) · [`tests/test_crear_proyecto.py`](../tests/test_crear_proyecto.py) · [`tests/test_indice.py`](../tests/test_indice.py) · [`tests/test_kit.py`](../tests/test_kit.py) · [`tests/test_mantenimiento.py`](../tests/test_mantenimiento.py) · [`tests/test_nodos.py`](../tests/test_nodos.py) · [`tests/test_validate.py`](../tests/test_validate.py) | 共享测试准备，以及创建、索引、打包、维护、节点和验证测试。 |
+| [`tests/test_rutas_boveda.py`](../tests/test_rutas_boveda.py) · [`tests/conftest.py`](../tests/conftest.py) · [`tests/test_crear_proyecto.py`](../tests/test_crear_proyecto.py) · [`tests/test_configurar_boveda.py`](../tests/test_configurar_boveda.py) · [`tests/test_indice.py`](../tests/test_indice.py) · [`tests/test_kit.py`](../tests/test_kit.py) · [`tests/test_mantenimiento.py`](../tests/test_mantenimiento.py) · [`tests/test_nodos.py`](../tests/test_nodos.py) · [`tests/test_validate.py`](../tests/test_validate.py) | 共享测试准备，以及创建、索引、打包、维护、节点和验证测试。 |
 
 ## 仓库与署名
 

@@ -8,13 +8,13 @@ descripcion: "Inhalt und Zweck der Kit-Dokumente und wann sie hilfreich sind."
 > - Líneas 19–26: Wegweiser zu den Dokumenten und Werkzeugen des Kits
 > - Líneas 27–37: Inhaltsverzeichnis
 > - Líneas 38–47: Einstieg
-> - Líneas 48–65: Regeln und Projekte
-> - Líneas 66–83: Hilfe
-> - Líneas 84–97: Integrationen und Einstellungen
-> - Líneas 98–111: Python und Tests
-> - Líneas 112–123: Repository und Credits
-> - Líneas 124–132: Optionale Ressourcen
-> - Líneas 133–145: Beim Verwenden erzeugte Dateien
+> - Líneas 48–66: Regeln und Projekte
+> - Líneas 67–84: Hilfe
+> - Líneas 85–98: Integrationen und Einstellungen
+> - Líneas 99–113: Python und Tests
+> - Líneas 114–125: Repository und Credits
+> - Líneas 126–134: Optionale Ressourcen
+> - Líneas 135–147: Beim Verwenden erzeugte Dateien
 
 # Wegweiser zu den Dokumenten und Werkzeugen des Kits
 
@@ -51,6 +51,7 @@ Du musst zum Start nicht alles lesen: Folge dem Haupt-README und beantworte die 
 |---|---|
 | [`00_CORE/atoms/00_vault-rules.md`](../00_CORE/atoms/00_vault-rules.md) | Gemeinsame Regeln für Kontext, Erhalt, Verknüpfungen und Urheberschaft. |
 | [`00_CORE/protocols/configurar-vault.md`](../00_CORE/protocols/configurar-vault.md) | Einrichtungsgespräch und Vault-Erstellung mit unvollständigen Angaben. |
+| [`00_CORE/protocols/configurar-rapido.md`](../00_CORE/protocols/configurar-rapido.md) | Kurzer Weg für einen neuen Vault: Fragen, eine JSON-Datei und ein Befehl. |
 | [`00_CORE/protocols/personalizar-vault.md`](../00_CORE/protocols/personalizar-vault.md) | Inventar der Antworten, Auslassungen und später ergänzbaren Angaben. |
 | [`00_CORE/protocols/context-injection.md`](../00_CORE/protocols/context-injection.md) | Passenden Kontext laden, ohne den gesamten Vault zu lesen. |
 | [`00_CORE/protocols/ai-write-protocol.md`](../00_CORE/protocols/ai-write-protocol.md) | Texte mit ausreichendem Kontext vorbereiten, verfassen und prüfen. |
@@ -102,12 +103,13 @@ Python automatisiert Aufgaben. Mit einer KI, die Dateien verwalten kann, brauchs
 | Dokument oder Werkzeug | Zweck |
 |---|---|
 | [`crear_proyecto.py`](../crear_proyecto.py) | Kontextnotiz und Ordner eines vereinbarten Projekts erstellen. |
+| [`configurar_boveda.py`](../configurar_boveda.py) | Einen neuen Vault in einem Schritt einrichten, mit geprüftem Abschluss. |
 | [`actualizar_indice.py`](../actualizar_indice.py) | Allgemeinen Index und Knotenindizes erzeugen oder prüfen. |
 | [`00_CORE/schemas/validate.py`](../00_CORE/schemas/validate.py) | Kontextnotizen und Einrichtung prüfen; mit --cierre einen Vorgang abgleichen. |
 | [`00_CORE/schemas/rutas_boveda.py`](../00_CORE/schemas/rutas_boveda.py) | Vault-Wurzeln und Pfade prüfen; gemeinsame interne Regeln der Werkzeuge. |
 | [`00_CORE/schemas/note_index.py`](../00_CORE/schemas/note_index.py) | Zeilenbereiche bearbeitbarer Notizen berechnen und prüfen. |
 | [`00_CORE/schemas/registrar_cambios.py`](../00_CORE/schemas/registrar_cambios.py) | Urheberschaft und geänderte Dateien mit erhaltener Historie protokollieren. |
-| [`tests/test_rutas_boveda.py`](../tests/test_rutas_boveda.py) · [`tests/conftest.py`](../tests/conftest.py) · [`tests/test_crear_proyecto.py`](../tests/test_crear_proyecto.py) · [`tests/test_indice.py`](../tests/test_indice.py) · [`tests/test_kit.py`](../tests/test_kit.py) · [`tests/test_mantenimiento.py`](../tests/test_mantenimiento.py) · [`tests/test_nodos.py`](../tests/test_nodos.py) · [`tests/test_validate.py`](../tests/test_validate.py) | Gemeinsame Testvorbereitung sowie Tests für Erstellung, Indizes, Paket, Pflege, Knoten und Validierung. |
+| [`tests/test_rutas_boveda.py`](../tests/test_rutas_boveda.py) · [`tests/conftest.py`](../tests/conftest.py) · [`tests/test_crear_proyecto.py`](../tests/test_crear_proyecto.py) · [`tests/test_configurar_boveda.py`](../tests/test_configurar_boveda.py) · [`tests/test_indice.py`](../tests/test_indice.py) · [`tests/test_kit.py`](../tests/test_kit.py) · [`tests/test_mantenimiento.py`](../tests/test_mantenimiento.py) · [`tests/test_nodos.py`](../tests/test_nodos.py) · [`tests/test_validate.py`](../tests/test_validate.py) | Gemeinsame Testvorbereitung sowie Tests für Erstellung, Indizes, Paket, Pflege, Knoten und Validierung. |
 
 ## Repository und Credits
 

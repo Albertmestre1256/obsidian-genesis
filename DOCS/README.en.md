@@ -8,13 +8,13 @@ descripcion: "What each kit document contains, what it does and when to consult 
 > - Líneas 19–26: Guide to the kit documents and tools
 > - Líneas 27–37: Contents of this guide
 > - Líneas 38–47: Entry points
-> - Líneas 48–65: Rules and projects
-> - Líneas 66–83: Help
-> - Líneas 84–97: Integrations and settings
-> - Líneas 98–111: Python and tests
-> - Líneas 112–123: Repository and credits
-> - Líneas 124–132: Optional resources
-> - Líneas 133–145: Files created during use
+> - Líneas 48–66: Rules and projects
+> - Líneas 67–84: Help
+> - Líneas 85–98: Integrations and settings
+> - Líneas 99–113: Python and tests
+> - Líneas 114–125: Repository and credits
+> - Líneas 126–134: Optional resources
+> - Líneas 135–147: Files created during use
 
 # Guide to the kit documents and tools
 
@@ -51,6 +51,7 @@ You do not need to read everything to begin: follow the main README and answer y
 |---|---|
 | [`00_CORE/atoms/00_vault-rules.md`](../00_CORE/atoms/00_vault-rules.md) | Shared rules for context, preservation, links and authorship. |
 | [`00_CORE/protocols/configurar-vault.md`](../00_CORE/protocols/configurar-vault.md) | Setup interview and vault creation with incomplete details. |
+| [`00_CORE/protocols/configurar-rapido.md`](../00_CORE/protocols/configurar-rapido.md) | Short route for a new vault: questions, one JSON file and one command. |
 | [`00_CORE/protocols/personalizar-vault.md`](../00_CORE/protocols/personalizar-vault.md) | Inventory of answers, omissions and details that can be completed later. |
 | [`00_CORE/protocols/context-injection.md`](../00_CORE/protocols/context-injection.md) | What context to load for a request, without reading the whole vault. |
 | [`00_CORE/protocols/ai-write-protocol.md`](../00_CORE/protocols/ai-write-protocol.md) | Prepare, draft and review text with sufficient context. |
@@ -102,12 +103,13 @@ Python automates tasks; you do not need to program to use the kit with an AI tha
 | Document or tool | Purpose |
 |---|---|
 | [`crear_proyecto.py`](../crear_proyecto.py) | Create the context note and folders of an agreed project. |
+| [`configurar_boveda.py`](../configurar_boveda.py) | Set up a new vault in one step, with a verified close. |
 | [`actualizar_indice.py`](../actualizar_indice.py) | Generate or check the general index and node indexes. |
 | [`00_CORE/schemas/validate.py`](../00_CORE/schemas/validate.py) | Check context notes and setup; with --cierre, verify an operation. |
 | [`00_CORE/schemas/rutas_boveda.py`](../00_CORE/schemas/rutas_boveda.py) | Check vault roots and paths; internal policy shared by the tools. |
 | [`00_CORE/schemas/note_index.py`](../00_CORE/schemas/note_index.py) | Compute and check line ranges in editable notes. |
 | [`00_CORE/schemas/registrar_cambios.py`](../00_CORE/schemas/registrar_cambios.py) | Record authorship, changed files and preserved history. |
-| [`tests/test_rutas_boveda.py`](../tests/test_rutas_boveda.py) · [`tests/conftest.py`](../tests/conftest.py) · [`tests/test_crear_proyecto.py`](../tests/test_crear_proyecto.py) · [`tests/test_indice.py`](../tests/test_indice.py) · [`tests/test_kit.py`](../tests/test_kit.py) · [`tests/test_mantenimiento.py`](../tests/test_mantenimiento.py) · [`tests/test_nodos.py`](../tests/test_nodos.py) · [`tests/test_validate.py`](../tests/test_validate.py) | Shared fixtures and tests for creation, indexes, packaging, maintenance, nodes and validation. |
+| [`tests/test_rutas_boveda.py`](../tests/test_rutas_boveda.py) · [`tests/conftest.py`](../tests/conftest.py) · [`tests/test_crear_proyecto.py`](../tests/test_crear_proyecto.py) · [`tests/test_configurar_boveda.py`](../tests/test_configurar_boveda.py) · [`tests/test_indice.py`](../tests/test_indice.py) · [`tests/test_kit.py`](../tests/test_kit.py) · [`tests/test_mantenimiento.py`](../tests/test_mantenimiento.py) · [`tests/test_nodos.py`](../tests/test_nodos.py) · [`tests/test_validate.py`](../tests/test_validate.py) | Shared fixtures and tests for creation, indexes, packaging, maintenance, nodes and validation. |
 
 ## Repository and credits
 

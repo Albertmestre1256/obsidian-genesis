@@ -9,20 +9,20 @@
 > - Líneas 63–71: Ajustes de Obsidian
 > - Líneas 72–94: Ayuda
 > - Líneas 95–104: Carpeta: skills
-> - Líneas 105–121: Desarrollo
-> - Líneas 122–146: Entrada y herramientas
-> - Líneas 147–152: Fichas y plantillas de proyecto
-> - Líneas 153–158: Guías de comunicación
-> - Líneas 159–167: Guías de redacción
-> - Líneas 168–180: Integración Claude
-> - Líneas 181–191: Integración OpenCode
-> - Líneas 192–201: Plantilla de carpetas
-> - Líneas 202–209: Plantillas de organización
-> - Líneas 210–218: Protocolos
-> - Líneas 219–227: Recursos opcionales de davidkimai
-> - Líneas 228–233: Reglas compartidas
-> - Líneas 234–243: Validación
-> - Líneas 244–252: Alcance del catálogo
+> - Líneas 105–122: Desarrollo
+> - Líneas 123–148: Entrada y herramientas
+> - Líneas 149–154: Fichas y plantillas de proyecto
+> - Líneas 155–160: Guías de comunicación
+> - Líneas 161–169: Guías de redacción
+> - Líneas 170–182: Integración Claude
+> - Líneas 183–193: Integración OpenCode
+> - Líneas 194–203: Plantilla de carpetas
+> - Líneas 204–211: Plantillas de organización
+> - Líneas 212–221: Protocolos
+> - Líneas 222–230: Recursos opcionales de davidkimai
+> - Líneas 231–236: Reglas compartidas
+> - Líneas 237–246: Validación
+> - Líneas 247–255: Alcance del catálogo
 
 # Índice principal de la bóveda
 
@@ -38,7 +38,7 @@ Podés agregar presentación y comentarios antes o después del bloque automáti
 
 ## Panorama
 
-- Archivos catalogados: 101. Proyectos propios identificados: 0. Ejemplos ficticios: 1.
+- Archivos catalogados: 104. Proyectos propios identificados: 0. Ejemplos ficticios: 1.
 - Configuración: todavía no existe una nota de configuración del kit.
 - El estado detallado y las tareas se leen en cada ficha; este catálogo no los reemplaza.
 
@@ -110,6 +110,7 @@ Cada fila enlaza un archivo. Las carpetas se representan mediante sus archivos; 
 | [no-me-funciona.md](.github/ISSUE_TEMPLATE/no-me-funciona.md) | MD |
 | [tests.yml](.github/workflows/tests.yml) | YML |
 | [conftest.py](tests/conftest.py) | PY |
+| [test\_configurar\_boveda.py](tests/test_configurar_boveda.py) | PY |
 | [test\_crear\_proyecto.py](tests/test_crear_proyecto.py) | PY |
 | [test\_indice.py](tests/test_indice.py) | PY |
 | [test\_kit.py](tests/test_kit.py) | PY |
@@ -129,6 +130,7 @@ Cada fila enlaza un archivo. Las carpetas se representan mediante sus archivos; 
 | [AI-INSTRUCTIONS.md](AI-INSTRUCTIONS.md) | Entrada para la IA |
 | [CHANGELOG.md](CHANGELOG.md) | Cambios |
 | [CLAUDE.md](CLAUDE.md) | MD |
+| [configurar\_boveda.py](configurar_boveda.py) | PY |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | Contribuir |
 | [crear\_proyecto.py](crear_proyecto.py) | PY |
 | [GLOSSARY.md](GLOSSARY.md) | Obsidian Genesis |
@@ -212,6 +214,7 @@ Cada fila enlaza un archivo. Las carpetas se representan mediante sus archivos; 
 | Archivo | Qué contiene |
 |---|---|
 | [ai-write-protocol.md](00_CORE/protocols/ai-write-protocol.md) | Preparar, redactar y revisar textos elaborados con el contexto necesario. |
+| [configurar-rapido.md](00_CORE/protocols/configurar-rapido.md) | Ruta corta para configurar una bóveda nueva con pocas lecturas: preguntas, un JSON y un comando. |
 | [configurar-vault.md](00_CORE/protocols/configurar-vault.md) | Conversación de inicio para que una IA configure la bóveda con las respuestas del usuario. |
 | [context-injection.md](00_CORE/protocols/context-injection.md) | Elegir el contexto mínimo según la tarea y ampliar solo cuando haga falta. |
 | [personalizar-vault.md](00_CORE/protocols/personalizar-vault.md) | Inventario de datos aportados, pendientes u omitidos para personalizar y completar la bóveda sin repetir la entrevista. |
